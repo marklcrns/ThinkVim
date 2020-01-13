@@ -145,7 +145,6 @@
 # }}}
 
 # Language{{{
-
 - { repo: honza/dockerfile.vim, on_ft: Dockerfile }
 - { repo: junegunn/vim-emoji, on_ft: [markdown,vim] }
 
@@ -261,6 +260,13 @@
   depends: vim-textobj-user
   on_map: { ox: <Plug> }
   hook_add:  let g:textobj_multiblock_no_default_key_mappings = 1
+
+# }}}
+
+# Windowds Navigations{{{
+- repo: christoomey/vim-tmux-navigator
+  on_map: { vnx: <Plug> }
+  hook_source: source  $VIM_PATH/layers/+tools/vim-tmux-navigator/config.vim
 
 # }}}
 
