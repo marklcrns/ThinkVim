@@ -91,11 +91,13 @@ function! s:defx_mappings() abort
 	setlocal signcolumn=no
 
 	nnoremap <silent><buffer><expr> <CR>  defx#do_action('drop')
+	nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
+	nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
 	nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
-	nnoremap <silent><buffer><expr> s     defx#do_action('open', 'botright vsplit')
-	nnoremap <silent><buffer><expr> i     defx#do_action('open', 'botright split')
+	nnoremap <silent><buffer><expr> <C-h> defx#do_action('open', 'botright split')
+	nnoremap <silent><buffer><expr> <C-v> defx#do_action('open', 'botright vsplit')
 	nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
 	nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
 	nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')

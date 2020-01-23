@@ -145,6 +145,7 @@
 # }}}
 
 # Language{{{
+
 - { repo: honza/dockerfile.vim, on_ft: Dockerfile }
 - { repo: junegunn/vim-emoji, on_ft: [markdown,vim] }
 
@@ -181,7 +182,6 @@
           \ 'css',
           \ 'javascript',
           \ 'jsx=javascriptreact',
-          \ 'tsx=typescriptreact',
           \ 'go',
           \]
 # }}}
@@ -213,7 +213,7 @@
 
 - repo: luochen1990/rainbow
   on_ft: [python,javascript,javascriptreact,html,css,go,vim,toml]
-  hook_source: let g:rainbow_active = 1
+  hook_source: let g:rainbow_active = 0
 
 - repo: Shougo/echodoc.vim
   on_event: CompleteDone
@@ -260,13 +260,6 @@
   depends: vim-textobj-user
   on_map: { ox: <Plug> }
   hook_add:  let g:textobj_multiblock_no_default_key_mappings = 1
-
-# }}}
-
-# Windowds Navigations{{{
-- repo: christoomey/vim-tmux-navigator
-  on_map: { vnx: <Plug> }
-  hook_source: source  $VIM_PATH/layers/+tools/vim-tmux-navigator/config.vim
 
 # }}}
 
