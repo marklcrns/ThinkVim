@@ -95,9 +95,6 @@ nmap <Leader>] :vertical resize +3<CR>
 nmap <Leader>{ :resize -3<CR>
 nmap <Leader>} :resize +3<CR>
 
-" Swap places with the next split
-nnoremap <Leader><C-x> <C-w>x<C-w>w
-
 " C-r: Easier search and replace visual/select mode
 xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 
@@ -190,7 +187,7 @@ endif
 " }}}
 
 " Accelerated-jk Config {{{
-if dein#tap('markdown-preview.nvim')
+if dein#tap('accelerated-jk')
     " conservative deceleration
     let g:accelerated_jk_enable_deceleration = 1
 

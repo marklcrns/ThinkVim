@@ -1,14 +1,6 @@
 
 autocmd User Startified setlocal cursorline
 
-" Start vim with startify and defx on
-" autocmd VimEnter *
-"	    \   if !argc()
-"	    \ |   Startify
-"	    \ |   Defx
-"	    \ |   wincmd w
-"	    \ | endif
-
 let g:startify_enable_special      = 0
 let g:startify_files_number        = 8
 let g:startify_relative_path       = 1

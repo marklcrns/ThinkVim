@@ -36,7 +36,7 @@ if dein#tap('coc.nvim')
         " Show all diagnostics
         nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
         " Manage extensions
-        nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+        nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
         " Show commands
         nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
         " Find symbol of current document
@@ -102,7 +102,7 @@ if dein#tap('coc.nvim')
         " use normal command like `<leader>xi(`
         nmap <leader>x  <Plug>(coc-cursors-operator)
         " coc-explorer
-        noremap <silent> <leader>j :execute 'CocCommand explorer' .
+        noremap <silent> <leader>ce :execute 'CocCommand explorer' .
             \ ' --toggle' .
             \ ' --sources=buffer+,file+' .
             \ ' --file-columns=git,selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
