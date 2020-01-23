@@ -46,11 +46,11 @@
 **_1._**
 
 ```
-1. git clone --depth=1 https://github.com/marklcrns/ThinkVim ~/.config/nvim
+1. git clone https://github.com/marklcrns/ThinkVim ~/.config/nvim
 2. mkdir ~/.thinkvim.d
 3. ln -s ~/.config/nvim/.thinkvim.d/local_plugins.yaml ~/.thinkvim.d/
-3. ln -s ~/.config/nvim/.thinkvim.d/local_settings.vim ~/.thinkvim.d/
-3. make or open nvim
+4. ln -s ~/.config/nvim/.thinkvim.d/local_settings.vim ~/.thinkvim.d/
+5. make or open nvim
 ```
 
 - Note: If your system sets \$XDG_CONFIG_HOME, use that instead of ~/.config in the code above. Nvim follows the XDG base-directories convention.
@@ -58,6 +58,10 @@
 **_2._** open the nvim ,it will auto install dein and plugins,when the plugins install success,it will install coc extensions.
 
 **_3._** if you see the coc extesions installed success in your vim commandline .Congratulations‼️
+
+### Delete Kite Completion (Optional for non linux or mac)
+
+- `rm -r ~/.config/nvim/pck`
 
 ## PluginsDetail
 
