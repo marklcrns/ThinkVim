@@ -98,6 +98,17 @@ nmap <Leader>} :resize +3<CR>
 " Swap places with the next split
 nnoremap <Leader><C-x> <C-w>x<C-w>w
 
+" C-r: Easier search and replace visual/select mode
+xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
+
+" Returns visually selected text
+function! s:get_selection(cmdtype) "{{{
+	let temp = @s
+	normal! gv"sy
+	let @/ = substitute(escape(@s, '\'.a:cmdtype), '\n', '\\n', 'g')
+	let @s = temp
+endfunction "}}}
+
 " Change current word in a repeatable manner
 nnoremap <leader>rn *``cgn
 nnoremap <leader>rN *``cgN
@@ -107,10 +118,10 @@ vnoremap <expr> <leader>rn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>rN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
 " Refactoring texts
-nnoremap <Leader>rc :%s///g<Left><Left>
-nnoremap <Leader>rC :%s///gc<Left><Left><Left>
-xnoremap <Leader>rc :s///g<Left><Left>
-xnoremap <Leader>rC :s///gc<Left><Left><Left>
+nnoremap <Leader>rr :%s///g<Left><Left>
+nnoremap <Leader>rR :%s///gc<Left><Left><Left>
+xnoremap <Leader>rr :s///g<Left><Left>
+xnoremap <Leader>rR :s///gc<Left><Left><Left>
 
 " Format paragraph (selected or not) to 80 character lines.
 nnoremap <Leader>rg gqap
@@ -127,6 +138,12 @@ nmap <LocalLeader>sw :set wrap!<CR>
 
 " Toggle spell check.
 map <Localleader>ss :setlocal spell!<CR>
+
+" Toggle fold
+nnoremap <CR> za
+
+" Focus the current fold by closing all others
+nnoremap <Leader><CR> zMzvzt
 
 "--------------------------------------------------
 " Autocommands:
@@ -164,18 +181,6 @@ if dein#tap('rainbow')
 endif
 " }}}
 
-" Indent Guides Config {{{
-if dein#tap('vim-indent-guides')
-    let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_start_level = 2
-    let g:indent_guides_guide_size = 1
-    let g:indent_guides_exclude_filetypes =
-        \ ['help', 'terminal', 'defx', 'denite', 'nerdtree',
-        \ 'startify', 'tagbar', 'vista_kind', 'vista', 'fzf']
-    let g:indent_guides_color_change_percent = 10
-endif
-" }}}
-
 " Markdown Preview Config {{{
 if dein#tap('markdown-preview.nvim')
     nmap <LocalLeader>md <Plug>MarkdownPreviewToggle
@@ -199,6 +204,39 @@ if dein#tap('markdown-preview.nvim')
     " Position-driven acceleration
     nmap j <Plug>(accelerated_jk_gj_position)
     nmap k <Plug>(accelerated_jk_gk_position)
+endif
+
+" Vimwiki {{{
+if dein#tap('vimwiki')
+	nnoremap <silent> <Leader>vw :<C-u>VimwikiIndex<CR>
+endif
+" }}}
+
+" Wordy {{{
+if dein#tap('vim-wordy')
+  if !&wildcharm | set wildcharm=<C-z> | endif
+  execute 'nnoremap <leader>rw :Wordy<space>'.nr2char(&wildcharm)
+
+  nnoremap <leader>rwn :NextWordy<CR>
+  nnoremap <leader>rwp :PrevWordy<CR>
+  nnoremap <leader>rwo :NoWordy<CR>
+
+endif
+" }}}
+
+if dein#tap('vim-quickhl')
+	nmap <Leader>mt <Plug>(quickhl-manual-this)
+	xmap <Leader>mt <Plug>(quickhl-manual-this)
+
+  nmap <Leader>mw <Plug>(quickhl-manual-this-whole-word)
+  xmap <Leader>mw <Plug>(quickhl-manual-this-whole-word)
+
+  nmap <Leader>mr <Plug>(quickhl-manual-reset)
+  xmap <Leader>mr <Plug>(quickhl-manual-reset)
+endif
+
+if dein#tap('thesaurus_query.vim')
+	nnoremap <silent> <Leader>K :<C-u>ThesaurusQueryReplaceCurrentWord<CR>
 endif
 
 "--------------------------------------------------

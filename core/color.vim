@@ -95,14 +95,18 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
-" Janah Color Scheme (modified)
+" Janah Color Scheme
 " ---------------------------------------------------------
 " Repo: https://github.com/mhinz/vim-janah
 
-" Folds {{{
-highlight foldcolumn ctermfg=102 ctermbg=237 cterm=none guifg=#878787 guibg=#3a3a3a gui=none
-highlight folded ctermfg=102 ctermbg=237 cterm=none guifg=#878787 guibg=#3a3a3a gui=none
+" Comments {{{
+highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 " }}}
 
-" Misc {{{
-highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+
+" Plugin: vim-indent-guides {{{
+" Ref: https://github.com/rafi/vim-config/blob/master/themes/rafi-2016.vim
+" ---------------------------------------------------------
+highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
+highlight IndentGuidesEven guibg=#303030 ctermbg=236
+" }}}

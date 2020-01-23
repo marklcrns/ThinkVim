@@ -2,34 +2,81 @@
 # ==========================================
 
 - { repo: junegunn/vim-emoji, if: 0 }
+- { repo: tpope/vim-markdown, if: 0 }
 - { repo: iamcco/markdown-preview.nvim, if: 0 }
 - { repo: Yggdroot/indentLine, if: 0 }
 
 # Normal Loading
 # ==========================================
 
-# Windows Navigations {{{
 - repo: christoomey/vim-tmux-navigator
-# }}}
 
-# Accelerated-jk {{{
-- repo: christoomey/vim-tmux-navigator
-# }}}
 
 # Lazy Loading
 # ==========================================
 
-# Windows Navigations {{{
+# Interface
 - repo: dhruvasagar/vim-zoom
   on_map: { n: <Plug> }
-# }}}
 
-# Indent Guides {{{
 - repo: nathanaelkane/vim-indent-guides
-  on_ft: [python,html,css,vim,javascript,javascriptreact,vue]
-# }}}
+  on_cmd: [ IndentGuidesEnable, IndentGuidesDisable, IndentGuidesToggle ]
+  hook_post_source: |
+    call indent_guides#init_script_vars()
+    call indent_guides#highlight_colors()
+  hook_add: |
+    let g:indent_guides_color_change_percent = 3
+    let g:indent_guides_autocmds_enabled = 0
+    let g:indent_guides_default_mapping = 0
+    let g:indent_guides_guide_size = 1
+    let g:indent_guides_indent_levels = 25
+    let g:indent_exclude = [ 'help', 'denite', 'codi' ]
+    let g:indent_guides_exclude_filetypes =
+        \ [ 'help', 'terminal', 'defx', 'denite', 'nerdtree',
+        \ 'startify', 'tagbar', 'vista_kind', 'vista', 'fzf',
+        \ 'codi' ]
+    augroup user_plugin_indentguides
+      autocmd!
+      autocmd BufEnter *
+      \ if ! empty(&l:filetype) && index(g:indent_exclude, &l:filetype) == -1
+      \|   if g:indent_guides_autocmds_enabled == 0 && &l:expandtab
+      \|     IndentGuidesEnable
+      \|   elseif g:indent_guides_autocmds_enabled == 1 && ! &l:expandtab
+      \|     IndentGuidesDisable
+      \|   endif
+      \| endif
+    augroup END
+    if ! has('vim_starting')
+      doautocmd <nomodeline> user_plugin_indentguides BufEnter
+    endif
 
-# Markdown Preview {{{
+# Markdown related
+- repo: plasticboy/vim-markdown
+  on_ft: markdown
+  hook_add: |
+    let g:vim_markdown_folding_level = 1
+    let g:vim_markdown_folding_style_pythonic = 1
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_auto_insert_bullets = 1
+    let g:vim_markdown_new_list_item_indent = 0
+    let g:vim_markdown_conceal_code_blocks = 0
+    let g:vim_markdown_conceal = 0
+    let g:vim_markdown_strikethrough = 1
+    let g:vim_markdown_edit_url_in = 'vsplit'
+    let g:vim_markdown_fenced_languages = [
+      \ 'c++=cpp',
+      \ 'viml=vim',
+      \ 'bash=sh',
+      \ 'ini=dosini',
+      \ 'js=javascript',
+      \ 'json=javascript',
+      \ 'jsx=javascriptreact',
+      \ 'tsx=typescriptreact',
+      \ 'docker=Dockerfile',
+      \ 'makefile=make',
+      \ 'py=python'
+      \ ]
+
 - repo: iamcco/markdown-preview.nvim
   on_ft: [markdown,pandoc.markdown,rmd]
   build: 'cd app & yarn install'
@@ -39,6 +86,82 @@
       let g:mkdp_auto_start = 0
       let g:mkdp_command_for_global = 1
       let g:mkdp_open_to_the_world = 1
-# }}}
 
+# Languages
+- repo: othree/html5.vim
+  on_ft: html
+  hook_add: |
+    let g:html5_event_handler_attributes_complete = 0
+    let g:html5_rdfa_attributes_complete = 0
+    let g:html5_microdata_attributes_complete = 0
+    let g:html5_aria_attributes_complete = 0
+
+# Python related
+- { repo: raimon49/requirements.txt.vim, on_ft: requirements }
+
+# Utils
+- { repo: metakirby5/codi.vim, on_cmd: Codi }
+
+- repo: itchyny/calendar.vim
+  on_cmd: Calendar
+  hook_source: |
+    let g:calendar_google_calendar = 1
+    let g:calendar_google_task = 1
+
+- repo: vimwiki/vimwiki
+  on_map: { n: <Plug> }
+  on_cmd: [ VimwikiIndex, VimwikiUISelect ]
+  hook_add: |
+    let g:vimwiki_use_calendar = 1
+    let g:vimwiki_hl_headers = 1
+    let g:vimwiki_hl_cb_checked = 1
+    let g:vimwiki_autowriteall = 0
+  hook_source: |
+    let g:vimwiki_list = [
+    \   { 'diary_header': 'Diary',
+    \     'diary_link_fmt': '%Y-%m/%d',
+    \     'auto_toc': 1,
+    \     'path': '~/docs/wiki/',
+    \     'syntax': 'markdown',
+    \     'ext': '.md' },
+    \   { 'path': '~/docs/books/',
+    \     'syntax': 'markdown',
+    \     'ext': '.md' }
+    \ ]
+
+- repo: Ron89/thesaurus_query.vim
+  on_cmd:
+    - Thesaurus
+    - ThesaurusQueryReplaceCurrentWord
+    - ThesaurusQueryLookupCurrentWord
+  hook_add: |
+    let g:tq_map_keys = 0
+    let g:tq_use_vim_autocomplete = 0
+
+
+# Syntax assist
+- { repo: hail2u/vim-css3-syntax, on_ft: css }
+- { repo: cakebaker/scss-syntax.vim, on_ft: [ scss, sass ]}
+- { repo: reedes/vim-wordy, on_cmd: [ Wordy, NextWordy, PrevWordy ]}
+
+# Misc
+- { repo: haya14busa/vim-asterisk, on_map: { nv: <Plug> }}
+- { repo: t9md/vim-quickhl, on_map: { nv: <Plug> }}
+- { repo: brooth/far.vim, on_cmd: [ Far, Farp, F ] }
+
+- repo: itchyny/vim-cursorword
+  on_path: .*
+  hook_source: |
+    augroup user_plugin_cursorword
+      autocmd!
+      autocmd FileType denite,qf,easygitblame let b:cursorword = 0
+      autocmd WinEnter * if &diff | let b:cursorword = 0 | endif
+      autocmd InsertEnter * let b:cursorword = 0
+      autocmd InsertLeave * let b:cursorword = 1
+    augroup END
+
+- repo: norcalli/nvim-colorizer.lua
+  if: has('nvim') && has('nvim-0.4.0')
+  on_path: .*
+  hook_source: luafile $VIM_PATH/layers/+ui/colorizer/colorizer.lua
 

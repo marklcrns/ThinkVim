@@ -1,13 +1,13 @@
 "Plugin key settings
 
 if dein#tap('denite.nvim')
-        nnoremap <silent><LocalLeader>m :<C-u>Denite menu<CR>
+        nnoremap <silent><LocalLeader>mm :<C-u>Denite menu<CR>
         noremap zl :<C-u>call <SID>my_denite_outline(&filetype)<CR>
         noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
         noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
 
         nnoremap <silent> <Leader>gl :<C-u>Denite gitlog:all<CR>
-	    nnoremap <silent> <Leader>gh :<C-u>Denite gitbranch<CR>
+        nnoremap <silent> <Leader>gh :<C-u>Denite gitbranch<CR>
         function! s:my_denite_outline(filetype) abort
         execute 'Denite' a:filetype ==# 'go' ? "decls:'%:p'" : 'outline'
         endfunction
@@ -81,11 +81,11 @@ if dein#tap('coc.nvim')
         nmap gm <Plug>(coc-git-commit)
         nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
         " float window scroll
-		nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-		nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+        nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+        nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
         " multiple cursors
         nmap <silent> <C-c> <Plug>(coc-cursors-position)
-        nmap <expr> <silent> <C-m> <SID>select_current_word()
+        nmap <expr> <silent> <C-s> <SID>select_current_word()
         xmap <silent> <C-d> <Plug>(coc-cursors-range)
         " use normal command like `<leader>xi(`
         nmap <leader>x  <Plug>(coc-cursors-operator)
@@ -150,7 +150,7 @@ if dein#tap('gina.vim')
 endif
 
 if dein#tap('vim-mundo')
-    nnoremap <silent> <leader>m :MundoToggle<CR>
+    nnoremap <silent> <leader>mm :MundoToggle<CR>
 endif
 
 if dein#tap('vim-choosewin')
