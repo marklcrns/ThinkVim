@@ -71,16 +71,16 @@ nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 " a command which  edit PLugin config easy
 nnoremap <leader>p :EditPluginSetting <Space>
 
-nmap <leader>1 <Plug>BuffetSwitch(1)
-nmap <leader>2 <Plug>BuffetSwitch(2)
-nmap <leader>3 <Plug>BuffetSwitch(3)
-nmap <leader>4 <Plug>BuffetSwitch(4)
-nmap <leader>5 <Plug>BuffetSwitch(5)
-nmap <leader>6 <Plug>BuffetSwitch(6)
-nmap <leader>7 <Plug>BuffetSwitch(7)
-nmap <leader>8 <Plug>BuffetSwitch(8)
-nmap <leader>9 <Plug>BuffetSwitch(9)
-nmap <leader>0 <Plug>BuffetSwitch(10)
+nmap <LocalLeader>1 <Plug>BuffetSwitch(1)
+nmap <LocalLeader>2 <Plug>BuffetSwitch(2)
+nmap <LocalLeader>3 <Plug>BuffetSwitch(3)
+nmap <LocalLeader>4 <Plug>BuffetSwitch(4)
+nmap <LocalLeader>5 <Plug>BuffetSwitch(5)
+nmap <LocalLeader>6 <Plug>BuffetSwitch(6)
+nmap <LocalLeader>7 <Plug>BuffetSwitch(7)
+nmap <LocalLeader>8 <Plug>BuffetSwitch(8)
+nmap <LocalLeader>9 <Plug>BuffetSwitch(9)
+nmap <LocalLeader>0 <Plug>BuffetSwitch(10)
 
 " Improve scroll, credits: https://github.com/Shougo
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
