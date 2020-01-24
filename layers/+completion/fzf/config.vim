@@ -31,7 +31,7 @@ let g:fzf_commits_log_options = '--graph --color=always
 " ripgrep
 if executable('rg')
   " let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*" --glob "!env" --glob "!node_modules" --glob "!__*"'
+  let $FZF_DEFAULT_COMMAND = 'fdfind --type f --follow --exclude .git --exclude node_modules --exclude env --exclude "__*"'
   set grepprg=rg\ --vimgrep
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
@@ -64,7 +64,7 @@ endfunction
 " Files + devicons
 function! Fzf_dev()
 
-let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
+let l:fzf_files_options = ' -m --bind f1:toggle-preview-wrap,f2:toggle-preview,ctrl-l:cancel,ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-a:select-all --preview "bat --color always --style numbers {2..}"'
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')

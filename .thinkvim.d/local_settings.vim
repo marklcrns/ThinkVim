@@ -148,6 +148,15 @@ nnoremap <CR> za
 " Focus the current fold by closing all others
 nnoremap <Leader><CR> zMzvzt
 
+" Navigate Through buffers
+noremap <Leader><Tab> :bn<CR>
+noremap <Leader><S-Tab> :bp<CR>
+
+" Wipe current buffer
+noremap <C-x> :Bw<CR>
+noremap <LocalLeader><Tab> :Bw<CR>
+noremap <LocalLeader><S-Tab> :Bonly<CR>
+
 "--------------------------------------------------
 " Autocommands:
 "--------------------------------------------------
@@ -163,7 +172,19 @@ autocmd VimResized * wincmd =
 "======================================================================
 
 " Spaceline {{{
-let g:spaceline_colorscheme = 'base16_dark'
+if dein#tap('spaceline.vim')
+    let g:spaceline_colorscheme = 'solarized_dark'
+    let g:spaceline_seperate_mode = 1
+    let g:spaceline_homemode_right = ''
+    let g:spaceline_filename_left  = ''
+    let g:spaceline_filesize_right = ''
+    let g:spaceline_gitinfo_left   = ''
+    let g:spaceline_gitinfo_right  = ''
+    let g:spaceline_cocexts_right  = ''
+    let g:spaceline_lineformat_right = ''
+    let g:spaceline_seperate_endseperate = ''
+    let g:spaceline_seperate_emptyseperate = ''
+endif
 " }}}
 
 " Vim tmux navigator {{{
