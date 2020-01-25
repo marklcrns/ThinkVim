@@ -59,11 +59,11 @@
 1. cd ~/.config/nvim
 2. mkdir -p env/python env/python3
 3. virtualenv --python=python ./env/python/env
-4. source ./env/python/env/bin/python
+4. source ./env/python/env/bin/activate
 5. pip install neovim
 6. deactivate
 7. virtualenv --python=python3 ./env/python3/env
-8. source ./env/python3/env/bin/python3
+8. source ./env/python3/env/bin/activate
 9. pip install neovim
 10. deacativate
 ```
