@@ -40,17 +40,32 @@
     # then compile and install ctags
     ```
 - bat : [install bat](https://github.com/sharkdp/bat)
+- pip install virtualenv
+- pip3 install virtualenv
 
 ## Installation
 
 **_1._**
 
-```
+```bash
+# Set up neovim
 1. git clone https://github.com/marklcrns/ThinkVim ~/.config/nvim
 2. mkdir ~/.thinkvim.d
 3. ln -s ~/.config/nvim/.thinkvim.d/local_plugins.yaml ~/.thinkvim.d/
 4. ln -s ~/.config/nvim/.thinkvim.d/local_settings.vim ~/.thinkvim.d/
-5. make or open nvim
+6. make or open nvim
+
+# Setting up virtualenv for neovim
+1. cd ~/.config/nvim
+2. mkdir -p env/python env/python3
+3. virtualenv --python=python ./env/python/env
+4. source ./env/python/env/bin/python
+5. pip install neovim
+6. deactivate
+7. virtualenv --python=python3 ./env/python3/env
+8. source ./env/python3/env/bin/python3
+9. pip install neovim
+10. deacativate
 ```
 
 - Note: If your system sets \$XDG_CONFIG_HOME, use that instead of ~/.config in the code above. Nvim follows the XDG base-directories convention.
