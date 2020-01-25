@@ -4,6 +4,10 @@ if &compatible
 	" vint: +ProhibitSetNoCompatible
 endif
 
+" Set python interpreter from a dedicted virtual environment
+let g:python_host_prog = expand('~/.config/nvim/env/python/env/bin/python')
+let g:python3_host_prog = expand('~/.config/nvim/env/python3/env/bin/python3')
+
 " Set main configuration directory as parent directory
 let $VIM_PATH =
 	\ get(g:, 'etc#vim_path',
