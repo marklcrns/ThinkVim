@@ -65,7 +65,7 @@
 7. virtualenv --python=python3 ./env/python3/env
 8. source ./env/python3/env/bin/activate
 9. pip install neovim
-10. deacativate
+10. deactivate
 ```
 
 - Note: If your system sets \$XDG_CONFIG_HOME, use that instead of ~/.config in the code above. Nvim follows the XDG base-directories convention.
