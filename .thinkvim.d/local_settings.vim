@@ -189,6 +189,9 @@ endif
 
 " Vim tmux navigator {{{
 if dein#tap('vim-tmux-navigator')
+    " Solution 1: https://github.com/RobbieClarken/dotfiles/commit/c1a8e28e46e4b0d26f6778e11fec3cea16e526e1
+    " Solution 2: https://gist.github.com/akselsjogren/35aec0af39e53319e12a3e1432da4d4e
+    " Make sure to add permission to the bash script with 'chmod +x ~/bin/workaround.sh'
     let g:tmux_navigator_disable_when_zoomed = 1
 endif
 " }}}
