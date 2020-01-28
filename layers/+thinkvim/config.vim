@@ -87,8 +87,6 @@ if dein#tap('coc.nvim')
         nmap <silent> <C-c> <Plug>(coc-cursors-position)
         nmap <expr> <silent> <C-s> <SID>select_current_word()
         xmap <silent> <C-d> <Plug>(coc-cursors-range)
-        " use normal command like `<leader>xi(`
-        nmap <leader>x  <Plug>(coc-cursors-operator)
 
         function! s:select_current_word()
             if !get(g:, 'coc_cursors_activated', 0)

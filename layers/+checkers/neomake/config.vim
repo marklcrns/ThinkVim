@@ -1,19 +1,23 @@
 
 " Neomake
 " ---------
-" Run NeoMake on write operations
-augroup my_neomake
-	autocmd!
-	autocmd BufWritePost * Neomake
-augroup END
+" augroup neomakeConfig
+"   autocmd!
+"   " Run Neomake automatically on buffer save
+"   autocmd BufEnter * Neomake
+"   autocmd BufWritePost * Neomake
+" augroup END
 
+" Run NeoMake on write operations
 let g:neomake_open_list = 2
+let g:neomake_list_height = 5
 let g:neomake_virtualtext_current_error = 0
 
 " Python
 if ! empty(g:python3_host_prog)
 	let g:neomake_python_python_exe = g:python3_host_prog
 endif
+let g:neomake_python_enabled_makers = ['flake8', 'pylint']
 
 " YAML / ANSIBLE
 let g:neomake_yaml_enabled_makers = ['yamllint']

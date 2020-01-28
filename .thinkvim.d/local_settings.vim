@@ -143,10 +143,10 @@ nmap <LocalLeader>sw :set wrap!<CR>
 map <Localleader>ss :setlocal spell!<CR>
 
 " Toggle fold
-" nnoremap <CR> za
+nnoremap <Leader><CR> za
 
 " Focus the current fold by closing all others
-nnoremap <Leader><CR> zMzvzt
+nnoremap <Leader><Leader><CR> zMzvzt
 
 " Navigate Through buffers
 noremap <Leader><Tab> :bn<CR>
@@ -264,6 +264,19 @@ endif
 
 if dein#tap('thesaurus_query.vim')
 	nnoremap <silent> <Leader>K :<C-u>ThesaurusQueryReplaceCurrentWord<CR>
+endif
+
+if dein#tap('neoformat')
+  nmap <LocalLeader>nf :Neoformat<CR>
+endif
+
+if dein#tap('neomake')
+  nmap <LocalLeader>nm :Neomake<CR>
+  nmap <LocalLeader>no :lopen<CR>
+  nmap <LocalLeader>nc :lclose<CR>
+  nmap <LocalLeader>nx :NeomakeClean<CR>
+  nmap [n :lprevious<CR>
+  nmap ]n :lnext<CR>
 endif
 
 "--------------------------------------------------
