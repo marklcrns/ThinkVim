@@ -77,9 +77,6 @@ let g:which_key_map = {
             \ 'e' : 'edit tab',
             \ 'm' : 'move tab',
             \ },
-      \ '<C-X>' : 'horizontal split'      ,
-      \ '<C-V>' : 'vertical split'      ,
-      \ '<C-F>' : 'zoom split'      ,
       \ }
 let g:which_key_map[' '] = {
       \ 'name' : '+easymotion-jumpto-word ' ,
