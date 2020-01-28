@@ -9,7 +9,7 @@
 " augroup END
 
 " Run NeoMake on write operations
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 let g:neomake_list_height = 5
 let g:neomake_virtualtext_current_error = 0
 
@@ -17,6 +17,16 @@ let g:neomake_virtualtext_current_error = 0
 if ! empty(g:python3_host_prog)
 	let g:neomake_python_python_exe = g:python3_host_prog
 endif
+" Ref: https://vi.stackexchange.com/a/9136
+" Added E501 to ignore 80 char per line limit
+let g:neomake_python_flake8_maker = {
+    \ 'args': ['--ignore=E501',  '--format=default'],
+    \ 'errorformat':
+        \ '%E%f:%l: could not compile,%-Z%p^,' .
+        \ '%A%f:%l:%c: %t%n %m,' .
+        \ '%A%f:%l: %t%n %m,' .
+        \ '%-G%.%#',
+    \ }
 let g:neomake_python_enabled_makers = ['flake8', 'pylint']
 
 " YAML / ANSIBLE
