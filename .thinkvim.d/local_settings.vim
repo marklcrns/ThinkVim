@@ -143,7 +143,7 @@ nmap <LocalLeader>sw :set wrap!<CR>
 map <Localleader>ss :setlocal spell!<CR>
 
 " Toggle fold
-nnoremap <CR> za
+" nnoremap <CR> za
 
 " Focus the current fold by closing all others
 nnoremap <Leader><CR> zMzvzt

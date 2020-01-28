@@ -12,6 +12,7 @@ let g:ale_linters = {
       \'javascript': ['eslint', 'stylelint'],
       \'jsx': ['eslint', 'stylelint'],
       \'less': ['prettier'],
+      \'python': ['flake8', 'pylint'],
       \ }
 
 "highlight clear ALEErrorSign

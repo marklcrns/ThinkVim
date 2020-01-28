@@ -1,6 +1,12 @@
 
 " Neomake
 " ---------
+" Run NeoMake on write operations
+augroup my_neomake
+	autocmd!
+	autocmd BufWritePost * Neomake
+augroup END
+
 let g:neomake_open_list = 2
 let g:neomake_virtualtext_current_error = 0
 
@@ -8,16 +14,6 @@ let g:neomake_virtualtext_current_error = 0
 if ! empty(g:python3_host_prog)
 	let g:neomake_python_python_exe = g:python3_host_prog
 endif
-
-let g:neomake_python_flake8_maker = {
-    \ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
-    \ 'errorformat':
-        \ '%E%f:%l: could not compile,%-Z%p^,' .
-        \ '%A%f:%l:%c: %t%n %m,' .
-        \ '%A%f:%l: %t%n %m,' .
-        \ '%-G%.%#',
-    \ }
-let g:neomake_python_enabled_makers = ['flake8']
 
 " YAML / ANSIBLE
 let g:neomake_yaml_enabled_makers = ['yamllint']
