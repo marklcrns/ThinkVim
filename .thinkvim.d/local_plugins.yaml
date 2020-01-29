@@ -172,3 +172,10 @@
   on_path: .*
   hook_source: luafile $VIM_PATH/layers/+ui/colorizer/colorizer.lua
 
+# Git
+- repo: tpope/vim-fugitive
+  on_cmd: [ Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse ]
+
+- repo: tpope/vim-rhubarb
+  depends: vim-fugitive
+  on_cmd: Gbrowse

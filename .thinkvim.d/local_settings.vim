@@ -56,6 +56,9 @@ vnoremap <silent> < <<cr>gv
 xnoremap < <gv
 xnoremap > >gv|
 
+" Fix indentation
+nmap <Leader>ri gg=G
+
 " Use backspace key for matchit.vim
 nmap <BS> %
 xmap <BS> %
