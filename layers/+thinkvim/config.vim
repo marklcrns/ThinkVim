@@ -1,7 +1,7 @@
 "Plugin key settings
 
 if dein#tap('denite.nvim')
-        nnoremap <silent><LocalLeader>mm :<C-u>Denite menu<CR>
+        nnoremap <silent><LocalLeader>d :<C-u>Denite menu<CR>
         noremap zl :<C-u>call <SID>my_denite_outline(&filetype)<CR>
         noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
         noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
@@ -107,10 +107,11 @@ if dein#tap('coc.nvim')
 endif
 
 if dein#tap('fzf.vim')
-        nnoremap <silent> <leader>fc :Colors<CR>
-        nnoremap <silent> <leader>fb :Buffers<CR>
         nnoremap <silent> <leader>ff :call Fzf_dev()<CR>
         nnoremap <silent> <leader>fr :Rg<CR>
+        nnoremap <silent> <leader>fg :GGrep<CR>
+        nnoremap <silent> <leader>fc :Colors<CR>
+        nnoremap <silent> <leader>fb :Buffers<CR>
         nnoremap <silent> <leader>fw :Rg <C-R><C-W><CR>
 endif
 
@@ -229,7 +230,9 @@ if dein#tap('splitjoin.vim')
 endif
 
 if dein#tap('vista.vim')
-        nnoremap <silent><localleader>v :Vista!!<CR>
+        nnoremap <silent><localleader>vv :Vista!!<CR>
+        nnoremap <silent><localleader>vc :Vista!<CR>
+        nnoremap <silent><localleader>vo :Vista<CR>
         nnoremap <silent><leader>fv     :Vista finder coc<CR>
 endif
 

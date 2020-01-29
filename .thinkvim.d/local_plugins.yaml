@@ -175,7 +175,7 @@
 
 # Git
 - repo: tpope/vim-fugitive
-  on_cmd: [ Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse ]
+  on_cmd: [ Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse, Glog, Gllog, Ggrep ]
 
 - repo: tpope/vim-rhubarb
   depends: vim-fugitive

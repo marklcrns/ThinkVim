@@ -66,6 +66,13 @@
 8. source ./env/python3/env/bin/activate
 9. pip install neovim
 10. deactivate
+
+# Linters
+1. npm install -g eslint
+2. cd ~/.config/nvim
+3. source ./env/python3/env/bin/activate
+4. pip install flake pylint autopep8
+5. deactivate
 ```
 
 - Note: If your system sets \$XDG_CONFIG_HOME, use that instead of ~/.config in the code above. Nvim follows the XDG base-directories convention.

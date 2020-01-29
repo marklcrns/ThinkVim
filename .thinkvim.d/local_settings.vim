@@ -29,13 +29,13 @@ set scrolloff=5
 "--------------------------------------------------
 
 " Quit without saving
-nnoremap <Leader>q :confirm q!<CR>
-nnoremap <Leader>Q :confirm qa!<CR>
-
+nnoremap <Leader>q :q!<CR>
+nnoremap <Leader>Q :qa!<CR>
 " Write
-" If there are buffers without a name, or that are readonly, bring up a confirm prompt
 nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wa<CR>
+" Save all and exit
+nnoremap <leader>S :confirm wqa!<CR>
 
 " Prevent x from overriding what's in the clipboard.
 noremap x "_x
@@ -91,6 +91,22 @@ vnoremap <Leader>j :m'>+<CR>gv=gv
 " Makes Relative Number jumps work with text wrap
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Move through the loclist
+nnoremap <silent> <LocalLeader>lo :lopen<CR>
+nnoremap <silent> <LocalLeader>lc :lclose<CR>
+nnoremap <silent> [l :lprevious<CR>
+nnoremap <silent> ]l :lnext<CR>
+nnoremap <silent> [L :lfirst<CR>
+nnoremap <silent> ]L :llast<CR>
+
+" Move through the quickfix list
+nnoremap <silent> <LocalLeader>qo :copen<CR>
+nnoremap <silent> <LocalLeader>qc :cclose<CR>
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [Q :cfirst<CR>
+nnoremap <silent> ]Q :clast<CR>
 
 " Splits
 noremap <Leader><C-h> :split<CR>
@@ -281,11 +297,20 @@ endif
 
 if dein#tap('neomake')
   nmap <LocalLeader>nm :Neomake<CR>
+  nmap <LocalLeader>nx :NeomakeClean<CR>
   nmap <LocalLeader>no :lopen<CR>
   nmap <LocalLeader>nc :lclose<CR>
-  nmap <LocalLeader>nx :NeomakeClean<CR>
   nmap [n :lprevious<CR>
   nmap ]n :lnext<CR>
+endif
+
+if dein#tap('vim-fugitive')
+  " Ref http://vimcasts.org/episodes/fugitive-vim-exploring-the-history-of-a-git-repository/
+	nnoremap <silent> <Leader>gl :Glog<CR>
+	vnoremap <silent> <Leader>gl :Glog<CR>
+	nnoremap <silent> <Leader>gL :Glog -- %<CR>
+	nnoremap <silent> <Leader>gg :Ggrep<Space>
+	nnoremap <silent> <Leader>gG :Glog --grep= -- %<Left><Left><Left><Left><Left>
 endif
 
 "--------------------------------------------------

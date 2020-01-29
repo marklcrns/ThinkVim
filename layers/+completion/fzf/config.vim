@@ -27,8 +27,14 @@ let g:fzf_commits_log_options = '--graph --color=always
   \ --format="%C(yellow)%h%C(red)%d%C(reset)
   \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
 
+" GGrep
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
 "let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
-" ripgrep
+" Ripgrep
 if executable('rg')
   " let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   let $FZF_DEFAULT_COMMAND = 'fdfind --type f --follow --exclude .git --exclude node_modules --exclude env --exclude "__*"'
@@ -64,7 +70,7 @@ endfunction
 " Files + devicons
 function! Fzf_dev()
 
-let l:fzf_files_options = ' -m --bind f1:toggle-preview-wrap,f2:toggle-preview,ctrl-l:cancel,ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-a:select-all --preview "bat --color always --style numbers {2..}"'
+let l:fzf_files_options = '-m --bind f1:toggle-preview-wrap,f2:toggle-preview,ctrl-l:cancel,ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-a:select-all --preview "bat --color always --style numbers {2..}"'
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')

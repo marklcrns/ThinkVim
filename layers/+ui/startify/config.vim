@@ -23,8 +23,8 @@ let g:startify_custom_header =
 	\ startify#center(startify#fortune#cowsay('', '═','║','╔','╗','╝','╚'))
 
 let g:startify_bookmarks = [
-	\ { 'lp': '~/.thinkvim.d/local_plugins.yaml' },
-	\ { 'ls': '~/.thinkvim.d/local_settings.vim' },
+	\ { 'lp': '~/.config/nvim/.thinkvim.d/local_plugins.yaml' },
+	\ { 'ls': '~/.config/nvim/.thinkvim.d/local_settings.vim' },
 	\ { 'v': '~/.vim/.vimrc' },
 	\ { 'z': '~/.zshrc' },
 	\ { 'b': '~/.bashrc' },
