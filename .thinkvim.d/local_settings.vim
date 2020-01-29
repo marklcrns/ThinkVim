@@ -28,15 +28,14 @@ set scrolloff=5
 " Basic Mappings:
 "--------------------------------------------------
 
-" Quit withou saving
-nnoremap q :confirm q!<CR>
+" Quit without saving
+nnoremap <Leader>q :confirm q!<CR>
+nnoremap <Leader>Q :confirm qa!<CR>
 
-" Write all buffers and exit
+" Write
 " If there are buffers without a name, or that are readonly, bring up a confirm prompt
-nnoremap <leader>W :confirm wqall<CR>
-
-" Remaps macro record key since q has been remapped
-nnoremap Q q
+nnoremap <leader>w :w<CR>
+nnoremap <leader>W :wa<CR>
 
 " Prevent x from overriding what's in the clipboard.
 noremap x "_x
@@ -159,6 +158,13 @@ noremap <Leader><S-Tab> :bp<CR>
 noremap <C-x> :Bw<CR>
 noremap <LocalLeader><Tab> :Bw<CR>
 noremap <LocalLeader><S-Tab> :Bonly<CR>
+
+" Git mappings
+nnoremap dor :diffget RE<CR>
+nnoremap dob :diffget BA<CR>
+nnoremap dol :diffget LO<CR>
+" Quit nvim with an error code. Useful when aborting git mergetool or git commit
+nnoremap <Leader><Leader>q :cquit<CR>
 
 "--------------------------------------------------
 " Autocommands:
