@@ -63,7 +63,7 @@ if dein#tap('coc.nvim')
         " Remap for do codeAction of current line
         nmap <leader>ac  <Plug>(coc-codeaction)
         " Fix autofix problem of current line
-        nmap <leader>qf  <Plug>(coc-fix-current)
+        nmap <leader>cq  <Plug>(coc-fix-current)
         " Remap keys for gotos
         nmap <silent> gd <Plug>(coc-definition)
         nmap <silent> gy <Plug>(coc-type-definition)

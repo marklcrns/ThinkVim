@@ -5,6 +5,7 @@
 - { repo: tpope/vim-markdown, if: 0 }
 - { repo: iamcco/markdown-preview.nvim, if: 0 }
 - { repo: Yggdroot/indentLine, if: 0 }
+- { repo: rizzatti/dash.vim, if: 0 }
 
 # Normal Loading
 # ==========================================
