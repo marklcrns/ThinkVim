@@ -6,6 +6,7 @@ let g:neoformat_try_formatprg = 1
 let g:jsx_ext_required = 0
 let g:neoformat_enabled_javascript=['js_beautify', 'eslint_d', 'prettier']
 let g:neoformat_enabled_html=['prettier', 'html-beautify']
+let g:neoformat_enabled_htmldjango=['prettier', 'html-beautify']
 let g:neoformat_enabled_css=['css-beautify', 'stylelint', 'prettier']
 let g:neoformat_enabled_python = ['autopep8', 'yapf', 'black']
 

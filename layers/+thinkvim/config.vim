@@ -198,9 +198,9 @@ if dein#tap('goyo.vim')
 endif
 
 if dein#tap('defx.nvim')
-        nnoremap <silent> <Leader>e
+        nnoremap <silent> <Leader>ee
                \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-         nnoremap <silent> <Leader>F
+         nnoremap <silent> <Leader>ea
 				\ :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
 endif
 
