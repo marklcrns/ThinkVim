@@ -28,6 +28,9 @@ set scrolloff=5
 " Basic Mappings:
 "--------------------------------------------------
 
+" Delete buffer
+nnoremap q :bd<CR>
+
 " Quit without saving
 nnoremap <Leader>q :q!<CR>
 nnoremap <Leader>Q :qa!<CR>
@@ -36,6 +39,9 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wa<CR>
 " Save all and exit
 nnoremap <leader>S :confirm wqa!<CR>
+
+" Remaps macro record key since q has been remapped
+nnoremap Q q
 
 " Prevent x from overriding what's in the clipboard.
 noremap x "_x
@@ -173,6 +179,7 @@ noremap <Leader><S-Tab> :bp<CR>
 " Wipe current buffer
 noremap <C-x> :Bw<CR>
 noremap <LocalLeader><Tab> :Bw<CR>
+" Wipe all buffer except current
 noremap <LocalLeader><S-Tab> :Bonly<CR>
 
 " Git mappings

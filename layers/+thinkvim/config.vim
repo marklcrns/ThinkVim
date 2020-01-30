@@ -141,7 +141,7 @@ if dein#tap('vim-easygit')
 endif
 
 if dein#tap('magit.vim')
-	nnoremap <silent> mg :Magit<CR>
+	nnoremap <silent> <LocalLeader>mg :Magit<CR>
 endif
 
 if dein#tap('gina.vim')
