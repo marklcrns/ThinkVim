@@ -209,6 +209,7 @@
     let g:user_emmet_install_global = 0
     let g:user_emmet_install_command = 0
     let g:user_emmet_mode = 'i'
+    let g:user_emmet_leader_key = '<C-;>'
 
 - repo: luochen1990/rainbow
   on_ft: [python,javascript,javascriptreact,html,css,go,vim,toml]

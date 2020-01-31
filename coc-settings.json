@@ -66,7 +66,17 @@
     "prettier.tslintIntegration": true,
     "prettier.stylelintIntegration": true,
     //emmet
-    "emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"},
+    "html.filetypes": [
+        "htmldjango",
+        "html",
+        "handlebars"
+    ],
+    "emmet.includeLanguages": {
+      "htmldjango": "html",
+      "handlebars": "html",
+      "vue-html": "html",
+      "javascript": "javascriptreact"
+    },
     //imselect
     "imselect.enableStatusItem": false,
     //multiple curssors
@@ -75,15 +85,17 @@
     "cursors.cancelKey": "<esc>",
     //sessions
     "session.directory": "~/.cache/vim/session",
+
     // coc-explorer
-    "explorer.icon.expanded": "▾",
-    "explorer.icon.collapsed": "▸",
-    "explorer.width": 30,
-    "explorer.icon.enableNerdfont": true,
-    "explorer.keyMappings": {
-        "h" : "gotoParent",
-        "l" : "expandOrShrink"
-    },
+    // "explorer.icon.expanded": "▾",
+    // "explorer.icon.collapsed": "▸",
+    // "explorer.width": 30,
+    // "explorer.icon.enableNerdfont": true,
+    // "explorer.keyMappings": {
+    //     "h" : "gotoParent",
+    //     "l" : "expandOrShrink"
+    // },
+
     // golang
     "go.goplsOptions": {
         "usePlaceholders": true,

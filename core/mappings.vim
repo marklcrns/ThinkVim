@@ -28,8 +28,8 @@ imap <C-Q> <esc>:wq<CR>
 "insert a newline
 " inoremap <C-O> <Esc>o
 
-nnoremap  ]b :bp<CR>
-nnoremap  [b :bn<CR>
+nnoremap  [b :bp<CR>
+nnoremap  ]b :bn<CR>
 "delete buffer
 nnoremap <C-x>  :bd<CR>
 

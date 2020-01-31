@@ -71,8 +71,7 @@ function! s:find_node_executable(cmd)
 	return ''
 endfunction
 
-" HTML/HTMLDjango
-let g:neomake_html_enabled_makers = ['prettier']
-let g:neomake_htmldjango_enabled_makers = ['prettier']
+" HTML
+let g:neomake_html_enabled_makers = ['tidy']
 
 " vim: set ts=2 sw=2 tw=80 noet :

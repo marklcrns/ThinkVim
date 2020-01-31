@@ -89,10 +89,10 @@ inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-e><Esc>`^' : '
 inoremap <expr> <A-o> (pumvisible() <bar><bar> &insertmode) ? '<C-e><A-o>' : '<A-o>'
 
 " Drag current line/s vertically and auto-indent
-nnoremap <Leader>j :m+<CR>
-nnoremap <Leader>k :m-2<CR>
-vnoremap <Leader>k :m'<-2<CR>gv=gv
-vnoremap <Leader>j :m'>+<CR>gv=gv
+nnoremap <Leader><Leader>j :m+<CR>
+nnoremap <Leader><Leader>k :m-2<CR>
+vnoremap <Leader><Leader>k :m'<-2<CR>gv=gv
+vnoremap <Leader><Leader>j :m'>+<CR>gv=gv
 
 " Makes Relative Number jumps work with text wrap
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -117,6 +117,7 @@ nnoremap <silent> ]Q :clast<CR>
 " Splits
 noremap <Leader><C-h> :split<CR>
 noremap <Leader><C-v> :vsplit<CR>
+noremap <C-x> :close<CR>
 
 " Resize splits vertically
 nmap <Leader>[ :vertical resize -3<CR>
@@ -177,7 +178,6 @@ noremap <Leader><Tab> :bn<CR>
 noremap <Leader><S-Tab> :bp<CR>
 
 " Wipe current buffer
-noremap <C-x> :Bw<CR>
 noremap <LocalLeader><Tab> :Bw<CR>
 " Wipe all buffer except current
 noremap <LocalLeader><S-Tab> :Bonly<CR>
@@ -305,10 +305,6 @@ endif
 if dein#tap('neomake')
   nmap <LocalLeader>nm :Neomake<CR>
   nmap <LocalLeader>nx :NeomakeClean<CR>
-  nmap <LocalLeader>no :lopen<CR>
-  nmap <LocalLeader>nc :lclose<CR>
-  nmap [n :lprevious<CR>
-  nmap ]n :lnext<CR>
 endif
 
 if dein#tap('vim-fugitive')
