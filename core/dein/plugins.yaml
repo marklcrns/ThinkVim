@@ -145,8 +145,10 @@
 
 # Language{{{
 
-- { repo: honza/dockerfile.vim, on_ft: Dockerfile }
+# Cheat sheet: https://www.webfx.com/tools/emoji-cheat-sheet/
 - { repo: junegunn/vim-emoji, on_ft: [markdown,vim] }
+
+- { repo: honza/dockerfile.vim, on_ft: Dockerfile }
 
 - { repo: leafgarland/typescript-vim, on_ft: [typescriptreact,typescript] }
 - { repo: peitalin/vim-jsx-typescript, on_ft: [typescriptreact]}

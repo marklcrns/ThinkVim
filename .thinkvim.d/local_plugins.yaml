@@ -1,7 +1,6 @@
 # Disable Plugins
 # ==========================================
 
-- { repo: junegunn/vim-emoji, if: 0 }
 - { repo: tpope/vim-markdown, if: 0 }
 - { repo: iamcco/markdown-preview.nvim, if: 0 }
 - { repo: Yggdroot/indentLine, if: 0 }
@@ -175,7 +174,7 @@
 
 # Git
 - repo: tpope/vim-fugitive
-  on_cmd: [ Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse, Glog, Gllog, Ggrep ]
+  on_cmd: [ Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse, Glog, Gllog]
 
 - repo: tpope/vim-rhubarb
   depends: vim-fugitive

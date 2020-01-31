@@ -23,7 +23,7 @@ let g:coc_global_extensions =[
       \ 'coc-yaml',
       \ 'coc-template',
       \ 'coc-tabnine',
-        'coc-marketplace',
+      \ 'coc-marketplace',
       \ 'coc-gitignore',
       \ 'coc-emoji',
       \ 'coc-yank',

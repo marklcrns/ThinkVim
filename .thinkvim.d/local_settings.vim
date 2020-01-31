@@ -169,9 +169,10 @@ map <Localleader>ss :setlocal spell!<CR>
 
 " Toggle fold
 nnoremap <Leader><CR> za
-
 " Focus the current fold by closing all others
 nnoremap <Leader><Leader><CR> zMzvzt
+" Toggle fold all
+nnoremap <expr> <Leader><Leader><Leader><CR> &foldlevel ? 'zM' :'zR'
 
 " Navigate Through buffers
 noremap <Leader><Tab> :bn<CR>
