@@ -6,12 +6,6 @@
 " Basic Configuration:
 "--------------------------------------------------
 
-if has('folding')
-	set foldenable
-	set foldmethod=syntax
-	set foldlevelstart=99
-endif
-
 " Tabsize
 set tabstop=2
 set shiftwidth=2
@@ -19,10 +13,23 @@ set softtabstop=2
 set expandtab smarttab
 
 set nowrap
-
 set colorcolumn=80
 set cursorline
 set scrolloff=5
+set mouse=a
+
+if has('folding')
+	set foldenable
+	set foldmethod=syntax
+	set foldlevelstart=99
+endif
+
+" Nvim specific settings
+if !has('nvim')
+  set ttymouse=sgr
+  set cryptmethod=blowfish2
+  set ttyfast
+endif
 
 "--------------------------------------------------
 " Basic Mappings:
@@ -56,6 +63,9 @@ nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 " Keep selection while indenting
 vnoremap <silent> > ><cr>gv
 vnoremap <silent> < <<cr>gv
+
+" Select all
+nnoremap <silent> <C-a> ggVG
 
 " Select blocks after indenting in visual/select mode
 xnoremap < <gv

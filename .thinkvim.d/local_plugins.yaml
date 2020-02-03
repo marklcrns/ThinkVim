@@ -144,12 +144,12 @@
 - { repo: cakebaker/scss-syntax.vim, on_ft: [ scss, sass ]}
 - { repo: reedes/vim-wordy, on_cmd: [ Wordy, NextWordy, PrevWordy ]}
 
-- repo: benekastah/neomake
-  on_path: .*
-  on_cmd: [ Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo ]
-  hook_source: |
-    source $VIM_PATH/layers/+checkers/neomake/config.vim
-    call neomake#configure#automake('rwn', 300)
+# - repo: benekastah/neomake
+#   on_path: .*
+#   on_cmd: [ Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo ]
+#   hook_source: |
+#     source $VIM_PATH/layers/+checkers/neomake/config.vim
+#     call neomake#configure#automake('rwn', 300)
 
 # Misc
 - { repo: haya14busa/vim-asterisk, on_map: { nv: <Plug> }}
