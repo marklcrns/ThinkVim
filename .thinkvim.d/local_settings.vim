@@ -175,7 +175,10 @@ tnoremap <Esc> <C-\><C-n>
 nmap <LocalLeader>sw :set wrap!<CR>
 
 " Toggle spell check.
-map <Localleader>ss :setlocal spell!<CR>
+nmap <Localleader>ss :setlocal spell!<CR>
+
+" Conceallevel to 0
+nmap <LocalLeader>sc :set conceallevel=0<CR>
 
 " Toggle fold
 nnoremap <Leader><CR> za
@@ -278,7 +281,7 @@ endif
 
 " Vimwiki {{{
 if dein#tap('vimwiki')
-	nnoremap <silent> <Leader>vw :<C-u>VimwikiIndex<CR>
+	nnoremap <silent> <LocalLeader>vw :<C-u>VimwikiIndex<CR>
 endif
 " }}}
 

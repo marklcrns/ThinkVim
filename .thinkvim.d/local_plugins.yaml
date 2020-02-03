@@ -116,18 +116,8 @@
     let g:vimwiki_hl_headers = 1
     let g:vimwiki_hl_cb_checked = 1
     let g:vimwiki_autowriteall = 0
-  hook_source: |
-    let g:vimwiki_list = [
-    \   { 'diary_header': 'Diary',
-    \     'diary_link_fmt': '%Y-%m/%d',
-    \     'auto_toc': 1,
-    \     'path': '~/docs/wiki/',
-    \     'syntax': 'markdown',
-    \     'ext': '.md' },
-    \   { 'path': '~/docs/books/',
-    \     'syntax': 'markdown',
-    \     'ext': '.md' }
-    \ ]
+    let g:vimwiki_map_prefix = '<Leader>v'
+  hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
 
 - repo: Ron89/thesaurus_query.vim
   on_cmd:
