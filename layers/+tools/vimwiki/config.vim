@@ -11,6 +11,7 @@ let g:vimwiki_list = [
 \     'auto_export': 1,
 \     'automatic_nested_syntaxes':1,
 \     'template_path': '$HOME/Docs/wiki/template/',
+\     'template_default': 'markdown',
 \     'template_ext':'.html',
 \     'syntax': 'markdown',
 \     'ext': '.md',
