@@ -147,6 +147,11 @@ function! s:get_selection(cmdtype) "{{{
 	let @s = temp
 endfunction "}}}
 
+" Open current file with xdg-open
+nmap <silent><Leader>oo :!xdg-open "%:p"<CR>
+" Open current file in google chrome
+nmap <silent><Leader>og :!google-chrome "%:p"<CR>
+
 " Change current word in a repeatable manner
 nnoremap <leader>rn *``cgn
 nnoremap <leader>rN *``cgN
