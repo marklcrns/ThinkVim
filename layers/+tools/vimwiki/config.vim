@@ -3,20 +3,20 @@ let g:vimwiki_list = [
 \   { 'diary_header': 'Diary',
 \     'diary_link_fmt': '%Y-%m/%d',
 \     'auto_toc': 1,
-\     'path': '~/Docs/wiki/',
+\     'path': '~/Docs/wikidocs/wiki/',
 \     'syntax': 'markdown',
 \     'ext': '.md' },
-\   { 'path': '~/Docs/school/',
-\     'path_html': '~/Docs/school/html',
+\   { 'path': '~/Docs/wikidocs/school/',
+\     'path_html': '~/Docs/wikidocs/school/html',
 \     'auto_export': 1,
 \     'automatic_nested_syntaxes':1,
-\     'template_path': '$HOME/Docs/wiki/template/',
+\     'template_path': '$HOME/Docs/wikidocs/wiki/template/',
 \     'template_default': 'markdown',
 \     'template_ext':'.html',
 \     'syntax': 'markdown',
 \     'ext': '.md',
 \     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },
-\   { 'path': '~/Docs/references/',
+\   { 'path': '~/Docs/wikidocs/references/',
 \     'syntax': 'markdown',
 \     'ext': '.md' },
 \ ]
@@ -68,3 +68,6 @@ function! VimwikiLinkHandler(link)
     return 1
   endif
 endfunction
+
+autocmd FileType vimwiki nmap <Leader>vH :VimwikiAll2HTML<CR>
+

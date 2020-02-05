@@ -108,21 +108,59 @@ vnoremap <Leader><Leader>j :m'>+<CR>gv=gv
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
+" Move between tabs
+nnoremap <silent> [t :tabprevious<CR>
+nnoremap <silent> ]t :tabnext<CR>
+nnoremap <silent> ]]t :tablast<CR>
+nnoremap <silent> [[t :tabfirst<CR>
+
+" Move between buffers
+nnoremap <silent> [b :bnext<CR>
+nnoremap <silent> ]b :bprevious<CR>
+nnoremap <silent> ]]b :blast<CR>
+nnoremap <silent> [[b :bfirst<CR>
+
 " Move through the loclist
-nnoremap <silent> <LocalLeader>lo :lopen<CR>
-nnoremap <silent> <LocalLeader>lc :lclose<CR>
 nnoremap <silent> [l :lprevious<CR>
 nnoremap <silent> ]l :lnext<CR>
-nnoremap <silent> [L :lfirst<CR>
-nnoremap <silent> ]L :llast<CR>
+nnoremap <silent> [[l :lfirst<CR>
+nnoremap <silent> ]]l :llast<CR>
+
+" Toggle Locationlist
+nnoremap <LocalLeader>l :call LocationlistToggle()<CR>
+
+function! LocationlistToggle()
+    for i in range(1, winnr('$'))
+        let bnum = winbufnr(i)
+        if getbufvar(bnum, '&buftype') == 'locationlist'
+            lclose
+            return
+        endif
+    endfor
+
+    lopen
+endfunction
 
 " Move through the quickfix list
-nnoremap <silent> <LocalLeader>qo :copen<CR>
-nnoremap <silent> <LocalLeader>qc :cclose<CR>
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
-nnoremap <silent> [Q :cfirst<CR>
-nnoremap <silent> ]Q :clast<CR>
+nnoremap <silent> [[q :cfirst<CR>
+nnoremap <silent> ]]q :clast<CR>
+
+" Toggle Quickfix
+nnoremap <LocalLeader>q :call QuickfixToggle()<CR>
+
+function! QuickfixToggle()
+    for i in range(1, winnr('$'))
+        let bnum = winbufnr(i)
+        if getbufvar(bnum, '&buftype') == 'quickfix'
+            cclose
+            return
+        endif
+    endfor
+
+    copen
+endfunction
 
 " Splits
 noremap <Leader><C-h> :split<CR>
@@ -182,8 +220,15 @@ nmap <LocalLeader>sw :set wrap!<CR>
 " Toggle spell check.
 nmap <Localleader>ss :setlocal spell!<CR>
 
-" Conceallevel to 0
-nmap <LocalLeader>sc :set conceallevel=0<CR>
+" Toggle Conceallevel
+nmap <LocalLeader>sc :call ToggleConcealLevel()<CR>
+function! ToggleConcealLevel()
+  if &conceallevel
+    set conceallevel=0
+  else
+    set conceallevel=2
+  end
+endfunction
 
 " Toggle fold
 nnoremap <Leader><CR> za
@@ -333,6 +378,14 @@ if dein#tap('vim-fugitive')
 	nnoremap <silent> <Leader>gL :Glog -- %<CR>
 	nnoremap <silent> <Leader>gg :Ggrep<Space>
 	nnoremap <silent> <Leader>gG :Glog --grep= -- %<Left><Left><Left><Left><Left>
+endif
+
+if dein#tap('calendar.vim')
+  nnoremap <LocalLeader>cc :Calendar -first_day=monday<CR>
+  nnoremap <LocalLeader>ct :Calendar -view=clock<CR>
+  nnoremap <LocalLeader>cf :Calendar -view=year -first_day=monday<CR>
+  nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=monday<CR>
+  nnoremap <LocalLeader>ch :Calendar -view=year -split=horizontal -position=below -height=12 -first_day=monday<CR>
 endif
 
 "--------------------------------------------------
