@@ -1,4 +1,5 @@
 
+let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
 \   { 'diary_header': 'Diary',
 \     'diary_link_fmt': '%Y-%m/%d',
@@ -70,4 +71,16 @@ function! VimwikiLinkHandler(link)
 endfunction
 
 autocmd FileType vimwiki nmap <Leader>vH :VimwikiAll2HTML<CR>
+autocmd FileType vimwiki setlocal textwidth=80
+
+augroup SpellCheck
+  autocmd FileType vimwiki
+    \ autocmd! SpellCheck InsertEnter <buffer> setlocal spell
+augroup END
+
+" Toggle conceallevel on insert mode 
+autocmd FileType vimwiki
+  \ autocmd InsertEnter <buffer> setlocal conceallevel=0
+autocmd FileType vimwiki
+  \ autocmd InsertLeave <buffer> setlocal conceallevel=2
 

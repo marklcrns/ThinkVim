@@ -89,8 +89,8 @@ nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
 inoremap <Esc> <Esc>`^
 
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
-imap jw <Esc>`^
-imap wj <Esc>`^
+imap jj <Esc>`^
+imap kk <Esc>`^
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>
 
