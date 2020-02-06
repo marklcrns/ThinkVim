@@ -60,7 +60,7 @@
     "list.source.files.defaultOptions": ["--auto-preview"],
     "list.source.outline.defaultOptions": ["--auto-preview"],
     //prettier
-    "coc.preferences.formatOnSaveFiletypes": ["markdown"],
+    "coc.preferences.formatOnSaveFiletypes": [""],
     "prettier.statusItemText": "ⓟ ",
     "prettier.eslintIntegration": true,
     "prettier.tslintIntegration": true,

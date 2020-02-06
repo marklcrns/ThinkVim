@@ -64,15 +64,16 @@ nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 vnoremap <silent> > ><cr>gv
 vnoremap <silent> < <<cr>gv
 
-" Select all
-nnoremap <silent> <C-a> ggVG
-
 " Select blocks after indenting in visual/select mode
 xnoremap < <gv
 xnoremap > >gv|
 
 " Fix indentation
 nmap <Leader>ri gg=G
+
+" Ref: https://vi.stackexchange.com/a/690
+nmap <Leader>rE :%s/^/\=line('.').". "<CR>
+" To enumerate lines with macro: https://stackoverflow.com/a/32053439/11850077
 
 " Use backspace key for matchit.vim
 nmap <BS> %
@@ -174,6 +175,11 @@ nmap <Leader>] :vertical resize +3<CR>
 nmap <Leader>{ :resize -3<CR>
 nmap <Leader>} :resize +3<CR>
 
+" Set working directory to current file location for all windows
+nmap <LocalLeader>cd :cd %:p:h<CR>:pwd<CR>
+" Set working directory to current file location only for the current window
+nmap <LocalLeader>lcd :lcd %:p:h<CR>:pwd<CR>
+
 " C-r: Easier search and replace visual/select mode
 xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 
@@ -205,8 +211,8 @@ xnoremap <Leader>rr :s///g<Left><Left>
 xnoremap <Leader>rR :s///gc<Left><Left><Left>
 
 " Format paragraph (selected or not) to 80 character lines.
-nnoremap <Leader>rg gqap
-xnoremap <Leader>rg gqa
+nnoremap <Leader>rl gqap
+xnoremap <Leader>rl gqa
 
 " Duplicate paragraph
 nnoremap <leader>rp yap<S-}>p
@@ -386,6 +392,21 @@ if dein#tap('calendar.vim')
   nnoremap <LocalLeader>cf :Calendar -view=year -first_day=monday<CR>
   nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=monday<CR>
   nnoremap <LocalLeader>ch :Calendar -view=year -split=horizontal -position=below -height=12 -first_day=monday<CR>
+endif
+
+if dein#tap('vim-rooter')
+  " Change directory for the current window only
+  let g:rooter_use_lcd = 1
+  " Resolve symbolic link
+  let g:rooter_resolve_links = 1
+  " Stop echoing project directory
+  let g:rooter_silent_chdir = 1
+  " Change to current file's directory for non-project files
+  let g:rooter_change_directory_for_non_project_files = 'current'
+  " Disables automatic directory change
+  let g:rooter_manual_only = 1
+
+  nmap <LocalLeader>R :Rooter<CR>
 endif
 
 "--------------------------------------------------

@@ -23,20 +23,20 @@ let g:vimwiki_list = [
 \ ]
 
 " Custom link handler for external files
+" Use Vim to open external files with the 'vfile:' scheme.  E.g.:
+"   1) [[vfile:~/absolute_path/to/file/]]
+"   2) [[vfile:./relative_path/to/file]]
+" Use xdg-open to open external file with the 'file:' scheme. E.g:
+"   1) [[file:~/absolute_path/to/file/]]
+"   2) [[file:./relative_path/to/file]]
+" For markdown syntax
+"   Open with Vim
+"   1) [Description](vfile:~/absolute_path/to/file)
+"   2) [Description](vfile:./relative_path/to/file)
+"   Open with xdg-open
+"   1) [Description](file:~/absolute_path/to/file)
+"   2) [Description](file:./relative_path/to/file)
 function! VimwikiLinkHandler(link)
-  " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
-  "   1) [[vfile:~/absolute_path/to/file/]]
-  "   2) [[vfile:./relative_path/to/file]]
-  " Use xdg-open to open external file with the 'file:' scheme. E.g:
-  "   1) [[file:~/absolute_path/to/file/]]
-  "   2) [[file:./relative_path/to/file]]
-  " For markdown syntax
-  "   Open with Vim
-  "   1) [Description](vfile:~/absolute_path/to/file)
-  "   2) [Description](vfile:./relative_path/to/file)
-  "   Open with xdg-open
-  "   1) [Description](file:~/absolute_path/to/file)
-  "   2) [Description](file:./relative_path/to/file)
   let link = a:link
   if link =~# '^vfile:'
     let link_infos = vimwiki#base#resolve_link(link[1:])

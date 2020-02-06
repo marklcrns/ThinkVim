@@ -10,6 +10,7 @@
 # ==========================================
 
 - repo: christoomey/vim-tmux-navigator
+- repo: airblade/vim-rooter
 
 
 # Lazy Loading
