@@ -174,17 +174,17 @@
   on_ft: go
   hook_source: source  $VIM_PATH/layers/+lang/go/config.vim
 
-- repo: tpope/vim-markdown
-  on_ft: markdown
-  hook_add: |
-        let g:markdown_fenced_languages = [
-          \ 'html',
-          \ 'bash=sh',
-          \ 'css',
-          \ 'javascript',
-          \ 'jsx=javascriptreact',
-          \ 'go',
-          \]
+# - repo: tpope/vim-markdown
+#   on_ft: markdown
+#   hook_add: |
+#         let g:markdown_fenced_languages = [
+#           \ 'html',
+#           \ 'bash=sh',
+#           \ 'css',
+#           \ 'javascript',
+#           \ 'jsx=javascriptreact',
+#           \ 'go',
+#           \]
 # }}}
 
 # Coding{{{

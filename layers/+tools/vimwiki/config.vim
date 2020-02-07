@@ -1,25 +1,47 @@
 
+let g:vimwiki_folding = 'custom'
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
-\   { 'diary_header': 'Diary',
+\   { 'path': '~/Docs/wikidocs/wiki/',
+\     'path_html': '~/Docs/wikidocs/wiki/html',
+\     'diary_header': 'Diary',
 \     'diary_link_fmt': '%Y-%m/%d',
+\     'index': 'index',
 \     'auto_toc': 1,
-\     'path': '~/Docs/wikidocs/wiki/',
+\     'automatic_nested_syntaxes':1,
+\     'auto_export': 1,
+\     'template_path': '$HOME/Docs/wikidocs/template/',
+\     'template_default': 'markdown',
+\     'template_ext':'.html',
 \     'syntax': 'markdown',
-\     'ext': '.md' },
+\     'ext': '.md',
+\     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },
 \   { 'path': '~/Docs/wikidocs/school/',
 \     'path_html': '~/Docs/wikidocs/school/html',
-\     'auto_export': 1,
+\     'index': 'index',
+\     'auto_tags': 1,
+\     'auto_toc': 1,
 \     'automatic_nested_syntaxes':1,
-\     'template_path': '$HOME/Docs/wikidocs/wiki/template/',
+\     'auto_export': 1,
+\     'template_path': '$HOME/Docs/wikidocs/template/',
 \     'template_default': 'markdown',
 \     'template_ext':'.html',
 \     'syntax': 'markdown',
 \     'ext': '.md',
 \     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },
 \   { 'path': '~/Docs/wikidocs/references/',
+\     'path_html': '~/Docs/wikidocs/references/html',
+\     'index': 'index',
+\     'auto_tags': 1,
+\     'auto_toc': 1,
+\     'automatic_nested_syntaxes':1,
+\     'auto_export': 1,
+\     'template_path': '$HOME/Docs/wikidocs/template/',
+\     'template_default': 'markdown',
+\     'template_ext':'.html',
 \     'syntax': 'markdown',
-\     'ext': '.md' },
+\     'ext': '.md',
+\     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },
 \ ]
 
 " Custom link handler for external files
@@ -71,7 +93,10 @@ function! VimwikiLinkHandler(link)
 endfunction
 
 autocmd FileType vimwiki nmap <Leader>vH :VimwikiAll2HTML<CR>
+autocmd FileType vimwiki nmap <Leader>vc :VimwikiTOC<CR>
+autocmd FileType vimwiki nmap <Leader>vl :VimwikiGenerateLinks<CR>
 autocmd FileType vimwiki setlocal textwidth=80
+autocmd FileType vimwiki setlocal foldlevel=99
 
 augroup SpellCheck
   autocmd FileType vimwiki

@@ -318,6 +318,14 @@ if dein#tap('markdown-preview.nvim')
 endif
 " }}}
 
+" Vim Markdown Config {{{
+if dein#tap('markdown-preview.nvim')
+    nmap <LocalLeader>mtt :Toc<CR>
+    nmap <LocalLeader>mtv :Tocv<CR>
+    nmap <LocalLeader>mth :Toch<CR>
+endif
+" }}}
+
 " Accelerated-jk Config {{{
 if dein#tap('accelerated-jk')
     " conservative deceleration
@@ -338,6 +346,7 @@ endif
 " Vimwiki {{{
 if dein#tap('vimwiki')
 	nnoremap <silent> <LocalLeader>vw :<C-u>VimwikiIndex<CR>
+	nnoremap <silent> <LocalLeader>vi :<C-u>VimwikiDiaryIndex<CR>
 endif
 " }}}
 
