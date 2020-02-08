@@ -1,7 +1,6 @@
 # Disable Plugins
 # ==========================================
 
-- { repo: iamcco/markdown-preview.nvim, if: 0 }
 - { repo: Yggdroot/indentLine, if: 0 }
 - { repo: rizzatti/dash.vim, if: 0 }
 
@@ -10,7 +9,9 @@
 
 - repo: christoomey/vim-tmux-navigator
 - repo: airblade/vim-rooter
-
+- repo: itchyny/vim-gitbranch
+- repo: itchyny/lightline.vim
+  hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
 
 # Lazy Loading
 # ==========================================
@@ -54,16 +55,6 @@
 - repo: plasticboy/vim-markdown
   on_ft: markdown
   hook_source: source $VIM_PATH/layers/+lang/vim-markdown/config.vim
-
-- repo: iamcco/markdown-preview.nvim
-  on_ft: [markdown,pandoc.markdown,rmd]
-  build: 'cd app & yarn install'
-  hook_source: |
-      let g:mkdp_auto_start = 1
-      let g:mkdp_auto_close = 0
-      let g:mkdp_auto_start = 0
-      let g:mkdp_command_for_global = 1
-      let g:mkdp_open_to_the_world = 1
 
 # Languages
 - repo: othree/html5.vim
@@ -141,6 +132,10 @@
   hook_source: luafile $VIM_PATH/layers/+ui/colorizer/colorizer.lua
 
 # Git
+- repo: airblade/vim-gitgutter
+  on_path: .*
+  hook_source: source $VIM_PATH/layers/+tools/vim-gitgutter/config.vim
+
 - repo: tpope/vim-fugitive
   on_cmd: [ Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse, Glog, Gllog]
 

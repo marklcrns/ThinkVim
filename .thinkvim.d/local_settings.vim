@@ -180,17 +180,6 @@ nmap <LocalLeader>cd :cd %:p:h<CR>:pwd<CR>
 " Set working directory to current file location only for the current window
 nmap <LocalLeader>lcd :lcd %:p:h<CR>:pwd<CR>
 
-" C-r: Easier search and replace visual/select mode
-xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
-
-" Returns visually selected text
-function! s:get_selection(cmdtype) "{{{
-	let temp = @s
-	normal! gv"sy
-	let @/ = substitute(escape(@s, '\'.a:cmdtype), '\n', '\\n', 'g')
-	let @s = temp
-endfunction "}}}
-
 " Open current file with xdg-open
 nmap <silent><Leader>oo :!xdg-open "%:p"<CR>
 " Open current file in google chrome
@@ -207,8 +196,18 @@ vnoremap <expr> <leader>rN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 " Refactoring texts
 nnoremap <Leader>rr :%s///g<Left><Left>
 nnoremap <Leader>rR :%s///gc<Left><Left><Left>
-xnoremap <Leader>rr :s///g<Left><Left>
-xnoremap <Leader>rR :s///gc<Left><Left><Left>
+
+" <C-r>: Easier search and replace visual/select mode
+xnoremap <Leader>rr :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
+
+" Returns visually selected text
+function! s:get_selection(cmdtype) "{{{
+	let temp = @s
+	normal! gv"sy
+	let @/ = substitute(escape(@s, '\'.a:cmdtype), '\n', '\\n', 'g')
+	let @s = temp
+endfunction "}}}
+
 
 " Format paragraph (selected or not) to 80 character lines.
 nnoremap <Leader>rl gqap
@@ -216,6 +215,16 @@ xnoremap <Leader>rl gqa
 
 " Duplicate paragraph
 nnoremap <leader>rp yap<S-}>p
+
+" Ref: https://stackoverflow.com/a/17440797/11850077
+" Capitaliz each word of the selected
+vnoremap <Leader>rC :s/\<./\u&/g<CR>
+" Capitalize each word of current entire file
+nnoremap <Leader>rC :%s/\<./\u&/g<CR>
+" Lowercase each word of the selected
+vnoremap <Leader>rc :s/\<./\l&/g<CR>
+" Capitalize each word of current entire file
+nnoremap <Leader>rc :%s/\<./\l&/g<CR>
 
 " Allow <Esc> to exit terminal-mode back to normal:
 tnoremap <Esc> <C-\><C-n>
@@ -228,6 +237,7 @@ nmap <Localleader>ss :setlocal spell!<CR>
 
 " Toggle Conceallevel
 nmap <LocalLeader>sc :call ToggleConcealLevel()<CR>
+
 function! ToggleConcealLevel()
   if &conceallevel
     set conceallevel=0
@@ -252,7 +262,7 @@ noremap <LocalLeader><Tab> :Bw<CR>
 " Wipe all buffer except current
 noremap <LocalLeader><S-Tab> :Bonly<CR>
 
-" Git mappings
+" Git mappings for mergetools or diff mode
 nnoremap dor :diffget RE<CR>
 nnoremap dob :diffget BA<CR>
 nnoremap dol :diffget LO<CR>
@@ -274,19 +284,19 @@ autocmd VimResized * wincmd =
 "======================================================================
 
 " Spaceline {{{
-if dein#tap('spaceline.vim')
-    let g:spaceline_colorscheme = 'solarized_dark'
-    let g:spaceline_seperate_mode = 1
-    let g:spaceline_homemode_right = ''
-    let g:spaceline_filename_left  = ''
-    let g:spaceline_filesize_right = ''
-    let g:spaceline_gitinfo_left   = ''
-    let g:spaceline_gitinfo_right  = ''
-    let g:spaceline_cocexts_right  = ''
-    let g:spaceline_lineformat_right = ''
-    let g:spaceline_seperate_endseperate = ''
-    let g:spaceline_seperate_emptyseperate = ''
-endif
+" if dein#tap('spaceline.vim')
+"     let g:spaceline_colorscheme = 'solarized_dark'
+"     let g:spaceline_seperate_mode = 1
+"     let g:spaceline_homemode_right = ''
+"     let g:spaceline_filename_left  = ''
+"     let g:spaceline_filesize_right = ''
+"     let g:spaceline_gitinfo_left   = ''
+"     let g:spaceline_gitinfo_right  = ''
+"     let g:spaceline_cocexts_right  = ''
+"     let g:spaceline_lineformat_right = ''
+"     let g:spaceline_seperate_endseperate = ''
+"     let g:spaceline_seperate_emptyseperate = ''
+" endif
 " }}}
 
 " Vim tmux navigator {{{
@@ -319,7 +329,7 @@ endif
 " }}}
 
 " Vim Markdown Config {{{
-if dein#tap('markdown-preview.nvim')
+if dein#tap('vim-markdown')
     nmap <LocalLeader>mtt :Toc<CR>
     nmap <LocalLeader>mtv :Tocv<CR>
     nmap <LocalLeader>mth :Toch<CR>
@@ -363,14 +373,14 @@ endif
 " }}}
 
 if dein#tap('vim-quickhl')
-	nmap <Leader>mt <Plug>(quickhl-manual-this)
-	xmap <Leader>mt <Plug>(quickhl-manual-this)
+	nmap <Leader>ht <Plug>(quickhl-manual-this)
+	xmap <Leader>ht <Plug>(quickhl-manual-this)
 
-  nmap <Leader>mw <Plug>(quickhl-manual-this-whole-word)
-  xmap <Leader>mw <Plug>(quickhl-manual-this-whole-word)
+  nmap <Leader>hw <Plug>(quickhl-manual-this-whole-word)
+  xmap <Leader>hw <Plug>(quickhl-manual-this-whole-word)
 
-  nmap <Leader>mr <Plug>(quickhl-manual-reset)
-  xmap <Leader>mr <Plug>(quickhl-manual-reset)
+  nmap <Leader>hr <Plug>(quickhl-manual-reset)
+  xmap <Leader>hr <Plug>(quickhl-manual-reset)
 endif
 
 if dein#tap('thesaurus_query.vim')
@@ -418,12 +428,12 @@ if dein#tap('vim-rooter')
   nmap <LocalLeader>R :Rooter<CR>
 endif
 
+
 "--------------------------------------------------
 " Kite Configs
 "--------------------------------------------------
 
-" Kite status line
-set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
+" set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Enable autocompletion
 let g:kite_auto_complete=1

@@ -136,7 +136,7 @@ if dein#tap('vim-easygit')
 	nnoremap <silent> <Leader>gc :Gcommit<CR>
 	nnoremap <silent> <Leader>gb :Gblame<CR>
 	nnoremap <silent> <Leader>gB :Gbrowse<CR>
-	nnoremap <silent> <Leader>gS :Gstatus<CR>
+	nnoremap <silent> <Leader>gs :Gstatus<CR>
 	nnoremap <silent> <Leader>gp :Gpush<CR>
 endif
 

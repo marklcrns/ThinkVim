@@ -3,9 +3,10 @@
 
 # StartUp Plugins{{{
 - repo: Shougo/dein.vim
-- repo: taigacute/spaceline.vim
+# - repo: taigacute/spaceline.vim
 - repo: bagrat/vim-buffet
   hook_add: source  $VIM_PATH/layers/+ui/buffet/config.vim
+  depends: lightline.vim
 #}}}
 
 # Core Plugins{{{
@@ -229,9 +230,13 @@
 # Writing{{{
 - repo: iamcco/markdown-preview.nvim
   on_ft: [markdown,pandoc.markdown,rmd]
-  hook_post_source: 'call mkdp#util#install()'
+  build: 'cd app & yarn install'
   hook_source: |
       let g:mkdp_auto_start = 1
+      let g:mkdp_auto_close = 0
+      let g:mkdp_auto_start = 0
+      let g:mkdp_command_for_global = 1
+      let g:mkdp_open_to_the_world = 1
 
 - repo: junegunn/goyo.vim
   on_cmd: Goyo

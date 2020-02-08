@@ -1,4 +1,3 @@
-
 let g:buffet_always_show_tabline = 0
 let g:buffet_use_devicons = 1
 let g:buffet_show_index = 1
