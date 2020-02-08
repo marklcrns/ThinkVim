@@ -6,8 +6,8 @@ if dein#tap('denite.nvim')
         noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
         noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
 
-        nnoremap <silent> <Leader>gl :<C-u>Denite gitlog:all<CR>
-        nnoremap <silent> <Leader>gh :<C-u>Denite gitbranch<CR>
+        nnoremap <silent> <Leader>dgl :<C-u>Denite gitlog:all<CR>
+        nnoremap <silent> <Leader>dgh :<C-u>Denite gitbranch<CR>
         function! s:my_denite_outline(filetype) abort
         execute 'Denite' a:filetype ==# 'go' ? "decls:'%:p'" : 'outline'
         endfunction
@@ -136,8 +136,8 @@ if dein#tap('vim-easygit')
 	nnoremap <silent> <Leader>gc :Gcommit<CR>
 	nnoremap <silent> <Leader>gb :Gblame<CR>
 	nnoremap <silent> <Leader>gB :Gbrowse<CR>
-	nnoremap <silent> <Leader>gs :Gstatus<CR>
-	nnoremap <silent> <Leader>gp :Gpush<CR>
+	" nnoremap <silent> <Leader>gs :Gstatus<CR>
+	" nnoremap <silent> <Leader>gp :Gpush<CR>
 endif
 
 if dein#tap('magit.vim')
@@ -145,7 +145,9 @@ if dein#tap('magit.vim')
 endif
 
 if dein#tap('gina.vim')
-	" nnoremap <silent><Leader>gp :Gina push<CR>
+	nnoremap <silent> <Leader>gp :Gina push<CR>
+	nnoremap <silent> <Leader>gs :Gina status<CR>
+	nnoremap <silent> <Leader>Gl :Gina log<CR>
 endif
 
 if dein#tap('vim-mundo')

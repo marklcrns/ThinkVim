@@ -142,3 +142,6 @@
 - repo: tpope/vim-rhubarb
   depends: vim-fugitive
   on_cmd: Gbrowse
+
+- repo: neoclide/denite-git
+  on_cmd: Denite
