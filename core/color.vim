@@ -85,7 +85,6 @@ hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
 hi WebBrowser ctermfg=204 guifg=#56B6C2
 hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
-
 " yellow
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 "GetColorSynatxGroup
@@ -94,15 +93,10 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-
 " Janah Color Scheme
 " ---------------------------------------------------------
 " Repo: https://github.com/mhinz/vim-janah
-
-" Comments {{{
 highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-" }}}
-
 
 " Plugin: vim-indent-guides {{{
 " Ref: https://github.com/rafi/vim-config/blob/master/themes/rafi-2016.vim

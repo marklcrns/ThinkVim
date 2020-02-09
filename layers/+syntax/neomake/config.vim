@@ -69,9 +69,16 @@ function! s:find_node_executable(cmd)
 		let l:cwd = resolve(l:cwd . '/..')
 	endwhile
 	return ''
-endfunction
+	endfunction
 
 " HTML
 let g:neomake_html_enabled_makers = ['tidy']
+
+" UI
+let g:neomake_error_sign = {'text': '⚠', 'texthl': 'ErrorMsg'}
+let g:neomake_warning_sign = {'text': '⌁', 'texthl': 'WarningSyntax'}
+let g:neomake_message_sign = {'text': '⌂', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign = {'text': '⊹', 'texthl': 'NeomakeInfoSign'}
+highlight! WarningSyntax ctermfg=58 guifg=#7d7629
 
 " vim: set ts=2 sw=2 tw=80 noet :

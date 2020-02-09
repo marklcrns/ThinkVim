@@ -21,23 +21,25 @@ if get(g:,'gruvbox_transp_bg',1)
  set fcs=eob:\           " hide ~
 endif
 if has('mac')
-	let g:clipboard = {
-		\   'name': 'macOS-clipboard',
-		\   'copy': {
-		\      '+': 'pbcopy',
-		\      '*': 'pbcopy',
-		\    },
-		\   'paste': {
-		\      '+': 'pbpaste',
-		\      '*': 'pbpaste',
-		\   },
-		\   'cache_enabled': 0,
-		\ }
+    let g:clipboard = {
+        \   'name': 'macOS-clipboard',
+        \   'copy': {
+        \      '+': 'pbcopy',
+        \      '*': 'pbcopy',
+        \    },
+        \   'paste': {
+        \      '+': 'pbpaste',
+        \      '*': 'pbpaste',
+        \   },
+        \   'cache_enabled': 0,
+        \ }
 endif
 
+" Set clipboard register
 if has('clipboard')
-	set clipboard& clipboard+=unnamedplus
+    set clipboard& clipboard+=unnamedplus
 endif
+
 set history=2000
 set number
 set timeout ttimeout
@@ -71,6 +73,11 @@ set completeopt-=preview
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
+set nowrap
+set colorcolumn=80
+set mouse=a         " Enable mouse support
+set scrolloff=5     " Keeps some screen visible while scrolling
+set cursorline      " Highlights entire line of curent cursor position"
 set ignorecase      " Search ignoring case
 set smartcase       " Keep case when searching with *
 set infercase       " Adjust case in insert completion mode
@@ -98,6 +105,13 @@ set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set viewdir=$DATA_PATH/view/
 set nospell spellfile=$VIM_PATH/spell/en.utf-8.add
 
+" Nvim specific settings
+if !has('nvim')
+  set ttymouse=sgr
+  set cryptmethod=blowfish2
+  set ttyfast
+endif
+
 " History saving
 set history=1000
 if has('nvim')
@@ -108,36 +122,47 @@ endif
 
 " If sudo, disable vim swap/backup/undo/shada/viminfo writing
 if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
-		\ && $HOME !=# expand('~'.$USER)
-		\ && $HOME ==# expand('~'.$SUDO_USER)
+        \ && $HOME !=# expand('~'.$USER)
+        \ && $HOME ==# expand('~'.$SUDO_USER)
 
-	set noswapfile
-	set nobackup
-	set nowritebackup
-	set noundofile
-	if has('nvim')
-		set shada="NONE"
-	else
-		set viminfo="NONE"
-	endif
+    set noswapfile
+    set nobackup
+    set nowritebackup
+    set noundofile
+    if has('nvim')
+        set shada="NONE"
+    else
+        set viminfo="NONE"
+    endif
 endif
 
 " Secure sensitive information, disable backup files in temp directories
 if exists('&backupskip')
-	set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*
-	set backupskip+=.vault.vim
+    set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*
+    set backupskip+=.vault.vim
 endif
 
 " Disable swap/undo/viminfo/shada files in temp directories or shm
 augroup MyAutoCmd
-	autocmd!
-	silent! autocmd BufNewFile,BufReadPre
-		\ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
-		\ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
+    autocmd!
+    silent! autocmd BufNewFile,BufReadPre
+        \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
+        \ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
 augroup END
 
 if has('folding')
-	set foldenable
-	set foldmethod=syntax
-	set foldlevelstart=99
+    set foldenable
+    set foldmethod=syntax
+    set foldlevelstart=99
 endif
+
+"--------------------------------------------------
+" Autocommands:
+"--------------------------------------------------
+
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Auto-resize splits when Vim gets resized.
+autocmd VimResized * wincmd =
+
