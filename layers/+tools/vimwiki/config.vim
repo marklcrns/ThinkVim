@@ -3,16 +3,11 @@ let g:vimwiki_folding = 'custom'
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
 \   { 'path': '~/Docs/wikidocs/wiki/',
-\     'path_html': '~/Docs/wikidocs/wiki/html',
 \     'diary_header': 'Diary',
 \     'diary_link_fmt': '%Y-%m/%d',
 \     'index': 'index',
 \     'auto_toc': 1,
 \     'automatic_nested_syntaxes':1,
-\     'auto_export': 1,
-\     'template_path': '$HOME/Docs/wikidocs/template/',
-\     'template_default': 'markdown',
-\     'template_ext':'.html',
 \     'syntax': 'markdown',
 \     'ext': '.md',
 \     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },

@@ -2,6 +2,7 @@
 if has('termguicolors')
 	set termguicolors
 endif
+
 set nobackup
 set noswapfile
 set autoread
@@ -9,17 +10,21 @@ set autowrite
 set confirm
 set splitbelow
 set bsdir=buffer
+
 if has('vim_starting')
 	set encoding=UTF-8
 	scriptencoding UTF-8
 endif
+
 set laststatus=2
 set showtabline=2
 set statusline=-        " hide file name in statusline
 set fillchars+=vert:\|  " add a bar for vertical splits
+
 if get(g:,'gruvbox_transp_bg',1)
- set fcs=eob:\           " hide ~
+    set fcs=eob:\           " hide ~
 endif
+
 if has('mac')
     let g:clipboard = {
         \   'name': 'macOS-clipboard',
@@ -56,13 +61,14 @@ set backspace=indent,eol,start
 " ----------------
 " set textwidth=80    " Text width maximum chars before wrapping
 set expandtab     " Don't expand tabs to spaces.
-set tabstop=4       " The number of spaces a tab is
-set softtabstop=4   " While performing editing operations
-set shiftwidth=4    " Number of spaces to use in auto(indent)
+set tabstop=2       " The number of spaces a tab is
+set softtabstop=2   " While performing editing operations
+set shiftwidth=2   " Number of spaces to use in auto(indent)
 set smarttab        " Tab insert blanks according to 'shiftwidth'
 set autoindent      " Use same indenting on new lines
 set smartindent     " Smart autoindenting on new lines
 set shiftround      " Round indent to multiple of 'shiftwidth'
+set nowrap
 " }}}
 set hidden
 set shortmess=aFc
@@ -73,7 +79,6 @@ set completeopt-=preview
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
-set nowrap
 set colorcolumn=80
 set mouse=a         " Enable mouse support
 set scrolloff=5     " Keeps some screen visible while scrolling
@@ -107,9 +112,9 @@ set nospell spellfile=$VIM_PATH/spell/en.utf-8.add
 
 " Nvim specific settings
 if !has('nvim')
-  set ttymouse=sgr
-  set cryptmethod=blowfish2
-  set ttyfast
+    set ttymouse=sgr
+    set cryptmethod=blowfish2
+    set ttyfast
 endif
 
 " History saving

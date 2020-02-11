@@ -23,13 +23,17 @@ let g:startify_custom_header =
 	\ startify#center(startify#fortune#cowsay('', '═','║','╔','╗','╝','╚'))
 
 let g:startify_bookmarks = [
-	\ { 'lp': '~/.config/nvim/.thinkvim.d/local_plugins.yaml' },
-	\ { 'ls': '~/.config/nvim/.thinkvim.d/local_settings.vim' },
 	\ { 'v': '~/.vim/.vimrc' },
 	\ { 'z': '~/.zshrc' },
 	\ { 'b': '~/.bashrc' },
 	\ { 'a': '~/.bash_aliases' },
 	\ { 't': '~/.tmux.conf' },
+	\ { 'vg': '~/.config/nvim/core/general.vim' },
+	\ { 'vm': '~/.config/nvim/core/mappings.vim' },
+	\ { 'vp': '~/.config/nvim/core/dein/plugins.yaml' },
+	\ { 'vc': '~/.config/nvim/layers/+thinkvim/config.vim' },
+	\ { 'lp': '~/.config/nvim/.thinkvim.d/local_plugins.yaml' },
+	\ { 'ls': '~/.config/nvim/.thinkvim.d/local_settings.vim' },
 	\ ]
 
 let s:footer = [

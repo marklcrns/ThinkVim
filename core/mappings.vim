@@ -163,22 +163,6 @@ noremap <LocalLeader><Tab> :Bw<CR>
 " Wipe all buffer except current
 noremap <LocalLeader><S-Tab> :Bonly<CR>
 
-" settings for resize splitted window
-nmap <C-w>[ :vertical resize -3<CR>
-nmap <C-w>] :vertical resize +3<CR>
-
-" Splits
-noremap <Leader><C-h> :split<CR>
-noremap <Leader><C-v> :vsplit<CR>
-noremap <C-x> :close<CR>
-
-" Resize splits vertically
-nmap <Leader>[ :vertical resize -3<CR>
-nmap <Leader>] :vertical resize +3<CR>
-" Resize splites horizontally
-nmap <Leader>{ :resize -3<CR>
-nmap <Leader>} :resize +3<CR>
-
 " Use backspace key for matchit.vim
 nmap <BS> %
 xmap <BS> %
@@ -232,6 +216,18 @@ nnoremap <Leader>rC :%s/\<./\u&/g<CR>
 vnoremap <Leader>rc :s/\<./\l&/g<CR>
 " Capitalize each word of current entire file
 nnoremap <Leader>rc :%s/\<./\l&/g<CR>
+
+" Splits
+noremap sh :split<CR>
+noremap sv :vsplit<CR>
+noremap sx :close<CR>
+
+" Resize splits vertically
+nmap s[ :vertical resize -3<CR>
+nmap s] :vertical resize +3<CR>
+" Resize splites horizontally
+nmap s{ :resize -3<CR>
+nmap s} :resize +3<CR>
 
 " Toggle text wrap
 nmap <LocalLeader>sw :set wrap!<CR>

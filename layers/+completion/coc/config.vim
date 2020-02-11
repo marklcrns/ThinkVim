@@ -45,7 +45,7 @@ inoremap <silent><expr> <Tab>
       \ coc#expandableOrJumpable() ?
       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1

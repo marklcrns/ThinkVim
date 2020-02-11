@@ -184,7 +184,7 @@
 # ---------------------------------------
 - repo: plasticboy/vim-markdown
   on_ft: markdown
-  hook_source: source $VIM_PATH/layers/+lang/vim-markdown/config.vim
+  hook_source: source $VIM_PATH/layers/+lang/markdown/vim-markdown/config.vim
 
 - repo: iamcco/markdown-preview.nvim
   on_ft: [markdown,pandoc.markdown,rmd]
@@ -216,9 +216,6 @@
 
 - repo: raimon49/requirements.txt.vim
   on_ft: requirements
-
-- repo: metakirby5/codi.vim
-  on_cmd: Codi
 
 # TOML
 # ----------------------------------------
@@ -310,6 +307,10 @@
         call which_key#register(';', 'g:which_key_localmap')
         call which_key#register(']', 'g:which_key_rsbgmap')
         call which_key#register('[', 'g:which_key_lsbgmap')
+
+- repo: metakirby5/codi.vim
+  on_cmd: Codi
+  hook_source: source $VIM_PATH/layers/+tools/codi/config.vim
 
 - repo: vimwiki/vimwiki
   on_map: { n: <Plug> }
