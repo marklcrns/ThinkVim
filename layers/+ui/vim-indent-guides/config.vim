@@ -4,11 +4,11 @@ let g:indent_guides_autocmds_enabled = 0
 let g:indent_guides_default_mapping = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_indent_levels = 25
-let g:indent_exclude = [ 'help', 'denite', 'codi' ]
+let g:indent_exclude = [ 'help', 'denite', 'codi', 'vista', 'coc' ]
 let g:indent_guides_exclude_filetypes =
     \ [ 'help', 'terminal', 'defx', 'denite', 'nerdtree',
     \ 'startify', 'tagbar', 'vista_kind', 'vista', 'fzf',
-    \ 'codi', 'which_key', 'calendar' ]
+    \ 'codi', 'which_key', 'calendar', 'coc' ]
 augroup user_plugin_indentguides
   autocmd!
   autocmd BufEnter *

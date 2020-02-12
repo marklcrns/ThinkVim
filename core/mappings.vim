@@ -14,6 +14,9 @@ xnoremap p pgvy
 "yank to end
 nnoremap Y y$
 
+" Format and indent pasted text automatically
+nnoremap p p=`]
+
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
@@ -83,8 +86,8 @@ nnoremap <silent> ]]t :tablast<CR>
 nnoremap <silent> [[t :tabfirst<CR>
 
 " Move between buffers
-nnoremap <silent> [b :bnext<CR>
-nnoremap <silent> ]b :bprevious<CR>
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> ]]b :blast<CR>
 nnoremap <silent> [[b :bfirst<CR>
 

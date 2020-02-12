@@ -82,8 +82,21 @@ if dein#tap('coc.nvim')
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
+
   " Use K for show documentation in float window
-  nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+  " nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+
+  " Use K to show documentation in preview for vim window and float for nvim
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim', 'help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      let l:found = CocAction('doHover')
+    endif
+  endfunction
+
   " use <c-space> for trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
   nmap [g <Plug>(coc-git-prevchunk)
@@ -108,8 +121,8 @@ if dein#tap('coc.nvim')
     return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
   endfunc
 
-  nnoremap <silent> <leader>cm ::CocSearch -w 
-  nnoremap <silent> <leader>cw ::CocSearch  
+  nnoremap <silent> <leader>cm ::CocSearch -w
+  nnoremap <silent> <leader>cw ::CocSearch
   " use normal command like `<leader>xi(`
   nmap <leader>x  <Plug>(coc-cursors-operator)
   " coc-explorer
@@ -389,11 +402,13 @@ if dein#tap('vim-fugitive')
 endif
 
 if dein#tap('calendar.vim')
-  nnoremap <LocalLeader>cc :Calendar -first_day=monday<CR>
   nnoremap <LocalLeader>ct :Calendar -view=clock<CR>
+  nnoremap <LocalLeader>cc :Calendar -first_day=monday<CR>
+  nnoremap <LocalLeader>cd :Calendar -view=day<CR>
+  nnoremap <LocalLeader>cw :Calendar -view=week<CR>
   nnoremap <LocalLeader>cf :Calendar -view=year -first_day=monday<CR>
   nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=monday<CR>
-  nnoremap <LocalLeader>ch :Calendar -view=year -split=horizontal -position=below -height=12 -first_day=monday<CR>
+  nnoremap <LocalLeader>ch :Calendar -view=day -split=horizontal -position=below -height=12<CR>
 endif
 
 if dein#tap('vim-rooter')

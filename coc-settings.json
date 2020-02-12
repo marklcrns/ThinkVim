@@ -109,5 +109,6 @@
     // python
     "python.jediEnabled": false,
     // add your languageServer into this list
-    "languageserver": {}
+    "languageserver": {},
+    "java.errors.incompleteClasspath.severity": "ignore"
 }

@@ -98,7 +98,7 @@ augroup SpellCheck
     \ autocmd! SpellCheck InsertEnter <buffer> setlocal spell
 augroup END
 
-" Toggle conceallevel on insert mode 
+" Toggle conceallevel on and after insert mode
 autocmd FileType vimwiki
   \ autocmd InsertEnter <buffer> setlocal conceallevel=0
 autocmd FileType vimwiki

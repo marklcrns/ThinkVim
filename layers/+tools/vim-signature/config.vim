@@ -1,5 +1,6 @@
 
 let g:SignatureIncludeMarks = 'abcdefghijkloqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+let g:SignatureIncludeMarkers = repeat('⚐', 10)
 let g:SignatureMap = {
     \ 'Leader':            'm',
     \ 'ListBufferMarks':   'm/',

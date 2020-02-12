@@ -88,6 +88,10 @@
 - repo: machakann/vim-sandwich
   on_map: { vnx: [<Plug>(operator-sandwich-,<Plug>(textobj-sandwich-]}
 
+- repo: Raimondi/delimitMate
+  on_event: InsertEnter
+  hook_source: source $VIM_PATH/layers/+syntax/delimitMate/config.vim
+
 # Coding tools
 # ----------------------------------------
 - repo: junegunn/vim-easy-align
@@ -168,6 +172,16 @@
     let g:html5_rdfa_attributes_complete = 0
     let g:html5_microdata_attributes_complete = 0
     let g:html5_aria_attributes_complete = 0
+
+# Java
+# ----------------------------------------
+- repo: tpope/vim-classpath
+  on_ft: java
+- repo: rustushki/JavaImp.vim
+  on_ft: java
+  hook_source: |
+    let g:JavaImpPaths =
+      \ $HOME . "/Projects/Dev/School/CISC-190/bookClasses/*" .
 
 # Javascript
 # ----------------------------------------
@@ -346,7 +360,6 @@
     let g:SignaturePurgeConfirmation = 0
     let g:SignatureMarkTextHLDynamic = 1
     let g:SignatureMarkerTextHLDynamic = 1
-    let g:SignatureIncludeMarkers = repeat('⚐', 10)
   hook_source: source $VIM_PATH/layers/+tools/vim-signature/config.vim
 
 - repo: Ron89/thesaurus_query.vim
@@ -436,7 +449,7 @@
 
 - repo: Shougo/defx.nvim
   on_cmd: Defx
-  hook_source: source  $VIM_PATH/layers/+ui/defx/config.vim
+  hook_source: source $VIM_PATH/layers/+ui/defx/config.vim
 
 - repo: kristijanhusak/defx-icons
   on_source: defx.nvim
