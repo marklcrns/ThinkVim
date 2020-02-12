@@ -30,11 +30,6 @@ augroup user_plugin_filetype "{{{
   " Magit
   autocmd User VimagitEnterCommit startinsert
 
-  " Markdown
-  " Auto-wrap text at textwidth 80 after pasting for long lines
-  " Depends on `gp` normal mapping. For more info `:verbose nmap gp`
-  autocmd FileType markdown,vimwiki imap <A-p> <A-p><Esc>gpgqa<Esc>A
-
   " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
   autocmd FileType css,javascript,javascriptreact setlocal backupcopy=yes
 augroup END "}}}
