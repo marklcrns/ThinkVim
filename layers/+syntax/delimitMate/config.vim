@@ -11,3 +11,4 @@ let delimitMate_excluded_regions = "Comment,String"
 au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 au FileType md,vimwiki let b:delimitMate_quotes = "\" `"
 au FileType python,javascript let b:delimitMate_nesting_quotes = ['"']
+au FileType vim let b:delimitMate_quotes = "'"

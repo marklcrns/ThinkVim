@@ -16,6 +16,10 @@ nnoremap Y y$
 
 " Format and indent pasted text automatically
 nnoremap p p=`]
+nnoremap P P=`]
+
+" Select last paste
+nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
@@ -23,9 +27,6 @@ vmap y ygv<Esc>
 " Yank buffer's absolute path to clipboard
 nnoremap <Leader>y :let @+=expand("%:~:.")<CR>:echo 'Yanked relative path'<CR>
 nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
-
-" Select last paste
-nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
 " Write buffer (save)
 nnoremap <leader>w :w<CR>
@@ -172,6 +173,7 @@ xmap <BS> %
 
 " Remove spaces at the end of lines
 nnoremap <silent><Leader>rs :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+vnoremap <silent><Leader>rs :<C-u>silent! keeppatterns substitute/\s\+$//e<CR>
 
 " Format paragraph (selected or not) to 80 character lines.
 nnoremap <Leader>rl gqap

@@ -162,8 +162,8 @@ if dein#tap('vim-easygit')
   nnoremap <Leader>gc :Gcommit<CR>
   nnoremap <Leader>gb :Gblame<CR>
   nnoremap <Leader>gB :Gbrowse<CR>
+  nnoremap <Leader>gp :Gpush<CR>
   " nnoremap <Leader>gs :Gstatus<CR>
-  " nnoremap <Leader>gp :Gpush<CR>
 endif
 
 if dein#tap('magit.vim')
@@ -172,9 +172,9 @@ endif
 
 if dein#tap('gina.vim')
   nnoremap <Leader>ga :Gina add .<CR>
-  nnoremap <Leader>gp :Gina push<CR>
   nnoremap <Leader>gs :Gina status<CR>
   nnoremap <Leader>Gl :Gina log<CR>
+  " nnoremap <Leader>gp :Gina push<CR>
 endif
 
 if dein#tap('vim-mundo')
