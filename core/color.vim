@@ -103,4 +103,7 @@ highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cte
 " ---------------------------------------------------------
 highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
 highlight IndentGuidesEven guibg=#303030 ctermbg=236
+
+" Conceal
+hi Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
 " }}}
