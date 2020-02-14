@@ -44,27 +44,25 @@ augroup end
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Snippets jump
-let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_next = '<CR>'
 let g:coc_snippet_prev = '<S-Tab>'
 
 inoremap <silent><expr> <Tab>
   \ pumvisible() ? coc#_select_confirm() :
-  \ coc#expandableOrJumpable() ?
+  \ coc#expandableOrJumpable()  ?
   \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
   \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
 
-" inoremap <silent><expr> <Tab>
-"  \ pumvisible() ? "\<C-n>" :
-"  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"  \ <SID>check_back_space() ? "\<Tab>" :
-"  \ coc#refresh()
-
-
 " Integration with delimitMate plugin
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :
-	\ delimitMate#WithinEmptyPair() ? "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-	\"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :
+"  \ delimitMate#WithinEmptyPair() ? "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+"  \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR>
+  \ coc#jumpable()  ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ delimitMate#WithinEmptyPair() ? "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+  \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1

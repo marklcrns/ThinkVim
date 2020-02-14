@@ -3,40 +3,45 @@ let g:vimwiki_folding = 'custom'
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
 \   { 'path': '~/Docs/wikidocs/wiki/',
+\     'path_html': '~/Docs/wikidocs/wiki/html',
 \     'diary_header': 'Diary',
 \     'diary_link_fmt': '%Y-%m/%d',
 \     'index': 'index',
-\     'auto_toc': 1,
+\     'auto_tags': 1,
+\     'auto_toc': 0,
 \     'automatic_nested_syntaxes':1,
 \     'syntax': 'markdown',
 \     'ext': '.md',
-\     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },
+\     'template_path': '~/.pandoc/templates/html5/github/',
+\     'template_default': 'GitHub',
+\     'template_ext':'.html5',
+\     'custom_wiki2html': '~/bin/wiki2html.sh' },
 \   { 'path': '~/Docs/wikidocs/school/',
 \     'path_html': '~/Docs/wikidocs/school/html',
 \     'index': 'index',
 \     'auto_tags': 1,
-\     'auto_toc': 1,
+\     'auto_toc': 0,
 \     'automatic_nested_syntaxes':1,
 \     'auto_export': 1,
-\     'template_path': '$HOME/Docs/wikidocs/template/',
-\     'template_default': 'markdown',
-\     'template_ext':'.html',
 \     'syntax': 'markdown',
 \     'ext': '.md',
-\     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },
+\     'template_path': '~/.pandoc/templates/html5/github/',
+\     'template_default': 'GitHub',
+\     'template_ext':'.html5',
+\     'custom_wiki2html': '~/bin/wiki2html.sh' },
 \   { 'path': '~/Docs/wikidocs/references/',
 \     'path_html': '~/Docs/wikidocs/references/html',
 \     'index': 'index',
 \     'auto_tags': 1,
-\     'auto_toc': 1,
+\     'auto_toc': 0,
 \     'automatic_nested_syntaxes':1,
 \     'auto_export': 1,
-\     'template_path': '$HOME/Docs/wikidocs/template/',
-\     'template_default': 'markdown',
-\     'template_ext':'.html',
 \     'syntax': 'markdown',
 \     'ext': '.md',
-\     'custom_wiki2html': '$HOME/bin/wiki2html.sh' },
+\     'template_path': '~/.pandoc/templates/html5/github/',
+\     'template_default': 'GitHub',
+\     'template_ext':'.html5',
+\     'custom_wiki2html': '~/bin/wiki2html.sh' },
 \ ]
 
 " Custom link handler for external files
@@ -107,5 +112,3 @@ autocmd FileType vimwiki
 " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
 " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
 autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgqgv0$
-
-
