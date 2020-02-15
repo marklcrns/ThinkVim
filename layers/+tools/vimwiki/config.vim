@@ -2,8 +2,8 @@
 let g:vimwiki_folding = 'custom'
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
-\   { 'path': '~/Docs/wikidocs/wiki/',
-\     'path_html': '~/Docs/wikidocs/wiki/html',
+\   { 'path': '~/Docs/wiki/wiki/md/',
+\     'path_html': '~/Docs/wiki/wiki/html',
 \     'diary_header': 'Diary',
 \     'diary_link_fmt': '%Y-%m/%d',
 \     'index': 'index',
@@ -16,8 +16,8 @@ let g:vimwiki_list = [
 \     'template_default': 'GitHub',
 \     'template_ext':'.html5',
 \     'custom_wiki2html': '~/bin/wiki2html.sh' },
-\   { 'path': '~/Docs/wikidocs/school/',
-\     'path_html': '~/Docs/wikidocs/school/html',
+\   { 'path': '~/Docs/wiki/school/md',
+\     'path_html': '~/Docs/wiki/school/html',
 \     'index': 'index',
 \     'auto_tags': 1,
 \     'auto_toc': 0,
@@ -29,8 +29,8 @@ let g:vimwiki_list = [
 \     'template_default': 'GitHub',
 \     'template_ext':'.html5',
 \     'custom_wiki2html': '~/bin/wiki2html.sh' },
-\   { 'path': '~/Docs/wikidocs/references/',
-\     'path_html': '~/Docs/wikidocs/references/html',
+\   { 'path': '~/Docs/wiki/references/md',
+\     'path_html': '~/Docs/wiki/references/html',
 \     'index': 'index',
 \     'auto_tags': 1,
 \     'auto_toc': 0,
@@ -112,3 +112,4 @@ autocmd FileType vimwiki
 " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
 " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
 autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgqgv0$
+
