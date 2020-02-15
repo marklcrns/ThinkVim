@@ -2,7 +2,7 @@
 " NOTES: When uninstalled, set back to showmode to see status line modes
 set noshowmode
 let g:lightline = {
-  \ 'colorscheme': 'one',
+  \ 'colorscheme': 'ayu_mirage',
   \ 'component': {
   \   'lineinfo': '%3l:%-2v',
   \ },
