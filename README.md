@@ -67,15 +67,17 @@
 9. pip install neovim
 10. deactivate
 
-# Linters
+# Recommended Linters
 1. npm install -g eslint
 2. cd ~/.config/nvim
 3. source ./env/python3/env/bin/activate
 4. pip install flake pylint autopep8
-5. deactivate
+5. pip3 install flake pylint autopep8
+6. deactivate
 ```
 
-- Note: If your system sets \$XDG_CONFIG_HOME, use that instead of ~/.config in the code above. Nvim follows the XDG base-directories convention.
+- Shell lint: [shellcheck.net](https://www.shellcheck.net/)
+- HTML Tidy: [html-tidy.org](http://www.html-tidy.org/)
 
 **_2._** open the nvim ,it will auto install dein and plugins,when the plugins install success,it will install coc extensions.
 

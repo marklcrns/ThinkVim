@@ -71,12 +71,20 @@ if dein#tap('coc.nvim')
   vmap <leader>cf  <Plug>(coc-format-selected)
   nmap <leader>cf  <Plug>(coc-format-selected)
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  xmap <leader>ca  <Plug>(coc-codeaction-selected)
-  nmap <leader>ca  <Plug>(coc-codeaction-selected)
+  " Remap for do codeAction of selected region
+  function! s:cocActionsOpenFromSelected(type) abort
+    execute 'CocCommand actions.open ' . a:type
+  endfunction
+  xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+  nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+  " xmap <leader>a  <Plug>(coc-codeaction-selected)
+  " nmap <leader>a  <Plug>(coc-codeaction-selected)
   " Remap for do codeAction of current line
   nmap <leader>ac  <Plug>(coc-codeaction)
   " Fix autofix problem of current line
   nmap <leader>cq  <Plug>(coc-fix-current)
+  " Insert current filetype template on cursor
+  nmap <leader>ct <Plug>(coc-template)
   " Remap keys for gotos
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
@@ -189,11 +197,19 @@ endif
 if dein#tap('caw.vim')
   function! InitCaw() abort
     if ! &l:modifiable
+      silent! nunmap <buffer> <Leader>V
+      silent! xunmap <buffer> <Leader>V
+      silent! nunmap <buffer> <Leader>v
+      silent! xunmap <buffer> <Leader>v
       silent! nunmap <buffer> gc
       silent! xunmap <buffer> gc
       silent! nunmap <buffer> gcc
       silent! xunmap <buffer> gcc
     else
+      xmap <buffer> <Leader>VV <Plug>(caw:wrap:toggle)
+      nmap <buffer> <Leader>VV <Plug>(caw:wrap:toggle)
+      xmap <buffer> <Leader>vv <Plug>(caw:hatpos:toggle)
+      nmap <buffer> <Leader>vv <Plug>(caw:hatpos:toggle)
       nmap <buffer> gc <Plug>(caw:prefix)
       xmap <buffer> gc <Plug>(caw:prefix)
       nmap <buffer> gcc <Plug>(caw:hatpos:toggle)
@@ -203,7 +219,6 @@ if dein#tap('caw.vim')
   autocmd FileType * call InitCaw()
   call InitCaw()
 endif
-
 
 if dein#tap('comfortable-motion.vim')
   nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
@@ -227,7 +242,6 @@ if dein#tap('defx.nvim')
   nnoremap <silent> <Leader>ea
         \ :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
 endif
-
 
 if dein#tap('vim-startify')
   nnoremap <silent> <leader>s :Startify<CR>
@@ -355,8 +369,27 @@ if dein#tap('accelerated-jk')
 endif
 
 if dein#tap('vimwiki')
-  nnoremap <silent> <LocalLeader>vw :<C-u>VimwikiIndex<CR>
-  nnoremap <silent> <LocalLeader>vi :<C-u>VimwikiDiaryIndex<CR>
+  nnoremap <silent> <Leader>dd :<C-u>VimwikiIndex<CR>
+endif
+
+if dein#tap('vimux')
+  " Prompt for a command to run
+  map <Leader>vc :VimuxPromptCommand<CR>
+
+  " Run last command executed by VimuxRunCommand
+  map <Leader>vl :VimuxRunLastCommand<CR>
+
+  " Inspect runner pane
+  map <Leader>vi :VimuxInspectRunner<CR>
+
+  " Close vim tmux runner opened by VimuxRunCommand
+  map <Leader>vq :VimuxCloseRunner<CR>
+
+  " Interrupt any command running in the runner pane
+  map <Leader>vx :VimuxInterruptRunner<CR>
+
+  " Zoom the runner pane (use <bind-key> z to restore runner pane)
+  map <Leader>vf :VimuxZoomRunner<CR>
 endif
 
 if dein#tap('vim-wordy')

@@ -2,7 +2,7 @@
 " Don't load the defx-git plugin file, not needed
 let b:defx_git_loaded = 1
 
-"CoC configlet 
+"CoC configlet
 let g:coc_status_error_sign = '•'
 let g:coc_status_warning_sign = '•'
 let g:coc_global_extensions =[
@@ -29,6 +29,11 @@ let g:coc_global_extensions =[
       \ 'coc-gitignore',
       \ 'coc-emoji',
       \ 'coc-yank',
+      \ 'coc-template',
+      \ 'coc-kite',
+      \ 'coc-todolist',
+      \ 'coc-spell-checker',
+      \ 'coc-actions',
       \ 'coc-go']
 
 augroup MyAutoCmd
@@ -73,8 +78,8 @@ endfunction
 inoremap <silent><expr> <C-Space> coc#refresh()
 
 " Movement within 'ins-completion-menu'
-imap <expr><C-j>   pumvisible() ? "\<Down>" : "\<C-j>"
-imap <expr><C-k>   pumvisible() ? "\<Up>" : "\<C-k>"
+imap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>"
+imap <expr><C-k> pumvisible() ? "\<Up>" : "\<C-k>"
 
 " Scroll pages in menu
 inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>"

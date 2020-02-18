@@ -9,7 +9,7 @@ set autoread
 set autowrite
 set confirm
 set splitbelow
-set bsdir=buffer
+set browsedir=buffer
 
 if has('vim_starting')
 	set encoding=UTF-8
@@ -22,7 +22,7 @@ set statusline=-        " hide file name in statusline
 set fillchars+=vert:\|  " add a bar for vertical splits
 
 if get(g:,'gruvbox_transp_bg',1)
-    set fcs=eob:\           " hide ~
+    set fillchars=eob:\           " hide ~
 endif
 
 if has('mac')
@@ -82,7 +82,7 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 set colorcolumn=80
 set mouse=a         " Enable mouse support
 set scrolloff=5     " Keeps some screen visible while scrolling
-set cursorline      " Highlights entire line of curent cursor position"
+set cursorline      " Highlights entire line of current cursor position"
 set ignorecase      " Search ignoring case
 set smartcase       " Keep case when searching with *
 set infercase       " Adjust case in insert completion mode

@@ -14,7 +14,7 @@ xnoremap p pgvy
 "yank to end
 nnoremap Y y$
 
-" Format and indent pasted text automatically
+" Format and indent pasted text automatically. Also select pasted texts after
 nnoremap p p=`]
 nnoremap P P=`]
 
@@ -31,7 +31,7 @@ nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
 " Write buffer (save)
 nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wa<CR>
-imap <C-S> <esc>:w<CR>
+" imap <C-S> <esc>:w<CR>
 imap <C-Q> <esc>:wq<CR>
 
 " Quit without saving
@@ -49,6 +49,7 @@ imap jj <Esc>`^
 imap kk <Esc>`^
 imap jk <Esc>`^
 imap kj <Esc>`^
+
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>
 
@@ -104,15 +105,15 @@ nnoremap <silent> ]]l :llast<CR>
 nnoremap <LocalLeader>l :call LocationlistToggle()<CR>
 
 function! LocationlistToggle()
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'locationlist'
-            lclose
-            return
-        endif
-    endfor
+  for i in range(1, winnr('$'))
+    let bnum = winbufnr(i)
+    if getbufvar(bnum, '&buftype') == 'locationlist'
+      lclose
+      return
+    endif
+  endfor
 
-    lopen
+  lopen
 endfunction
 
 " Move through the quickfix list
@@ -125,15 +126,15 @@ nnoremap <silent> ]]q :clast<CR>
 nnoremap <LocalLeader>q :call QuickfixToggle()<CR>
 
 function! QuickfixToggle()
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'quickfix'
-            cclose
-            return
-        endif
-    endfor
+  for i in range(1, winnr('$'))
+    let bnum = winbufnr(i)
+    if getbufvar(bnum, '&buftype') == 'quickfix'
+      cclose
+      return
+    endif
+  endfor
 
-    copen
+  copen
 endfunction
 
 "Switch window
@@ -196,22 +197,30 @@ vnoremap <expr> <leader>rN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 nnoremap <Leader>rr :%s///g<Left><Left>
 nnoremap <Leader>rR :%s///gc<Left><Left><Left>
 
+" The same as above but instead of acting on the whole file it will be
+" restricted to the previously visually selected range. You can do that by
+" pressing *, visually selecting the range you want it to apply to and then
+" press a key below to replace all instances of it in the current selection.
+xnoremap <Leader>rr :s///g<Left><Left>
+xnoremap <Leader>rR :s///gc<Left><Left><Left>
+
 " <C-r>: Easier search and replace in visual mode
-xnoremap <Leader>rr :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
+xnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 
 " Ref: https://vi.stackexchange.com/a/690
 nmap <Leader>rE :%s/^/\=line('.').". "<CR>
 " To enumerate lines with macro: https://stackoverflow.com/a/32053439/11850077
+" To enumerate lines with few commands: https://stackoverflow.com/a/48408001/11850077
 
 " Fix indentation
 nmap <Leader>ri gg=G
 
 " Returns visually selected text
 function! s:get_selection(cmdtype) "{{{
-	let temp = @s
-	normal! gv"sy
-	let @/ = substitute(escape(@s, '\'.a:cmdtype), '\n', '\\n', 'g')
-	let @s = temp
+  let temp = @s
+  normal! gv"sy
+  let @/ = substitute(escape(@s, '\'.a:cmdtype), '\n', '\\n', 'g')
+  let @s = temp
 endfunction "}}}
 
 " Ref: https://stackoverflow.com/a/17440797/11850077
@@ -228,6 +237,9 @@ nnoremap <Leader>rc :%s/\<./\l&/g<CR>
 noremap sh :split<CR>
 noremap sv :vsplit<CR>
 noremap sx :close<CR>
+" Deletes buffer but keeps the split
+" Ref: https://stackoverflow.com/a/19619038/11850077
+noremap sd :b#<bar>bd#<CR>
 
 " Resize splits vertically
 nmap s[ :vertical resize -3<CR>
@@ -252,6 +264,11 @@ function! ToggleConcealLevel()
     set conceallevel=2
   end
 endfunction
+
+" Jumps to previously mispelled word and fixes it with the first in the
+" suggestion
+" Ref: https://castel.dev/post/lecture-notes-1/
+inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Drag current line/s vertically and auto-indent
 nnoremap <Leader><Leader>j :m+<CR>
@@ -292,11 +309,11 @@ nnoremap <expr> <Leader><Leader><Leader><CR> &foldlevel ? 'zM' :'zR'
 
 " Improve scroll, credits: https://github.com/Shougo
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
-	\ 'zt' : (winline() == 1) ? 'zb' : 'zz'
+      \ 'zt' : (winline() == 1) ? 'zb' : 'zz'
 noremap <expr> <C-f> max([winheight(0) - 2, 1])
-	\ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
+      \ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
 noremap <expr> <C-b> max([winheight(0) - 2, 1])
-	\ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
+      \ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
 noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
 noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 

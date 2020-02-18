@@ -66,27 +66,27 @@
 # Linters & Formaters
 # ----------------------------------------
 - repo: sbdchd/neoformat
-  on_cmd: [Neoformat,Neoformat!]
+  on_cmd: [Neoformat, Neoformat!]
   hook_source: source  $VIM_PATH/layers/+syntax/neoformat/config.vim
 
-# - repo: benekastah/neomake
-#   on_path: .*
-#   on_cmd: [ Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo ]
-#   hook_source: |
-#     source $VIM_PATH/layers/+syntax/neomake/config.vim
-#     call neomake#configure#automake('rwn', 300)
+- repo: benekastah/neomake
+  on_path: .*
+  on_cmd: [Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo]
+  hook_source: |
+    source $VIM_PATH/layers/+syntax/neomake/config.vim
+    call neomake#configure#automake('rwn', 300)
 
 # Syntax Helpers
 # ----------------------------------------
 - repo: luochen1990/rainbow
-  on_ft: [python,javascript,javascriptreact,html,css,go,vim,toml]
+  on_ft: [python, javascript, javascriptreact, html, css, go, vim, toml]
   hook_source: let g:rainbow_active = 0
 
 - repo: tyru/caw.vim
   on_map: { nx: <Plug> }
 
 - repo: machakann/vim-sandwich
-  on_map: { vnx: [<Plug>(operator-sandwich-,<Plug>(textobj-sandwich-]}
+  on_map: { vnx: [<Plug>(operator-sandwich-, <Plug>(textobj-sandwich-]}
 
 - repo: Raimondi/delimitMate
   on_event: InsertEnter
@@ -95,7 +95,7 @@
 # Coding tools
 # ----------------------------------------
 - repo: junegunn/vim-easy-align
-  on_ft: [vim,json,go,html,js,jsx,py,css,less,tmpl,toml,xml,sql,Dockerfile]
+  on_ft: [vim, json, go, html, js, jsx, py, css, less, tmpl, toml, xml, sql, Dockerfile]
 
 - repo: AndrewRadev/splitjoin.vim
   on_map: { n: <Plug>Splitjoin }
@@ -139,8 +139,7 @@
   hook_source: source $VIM_PATH/layers/+git/vim-gitgutter/config.vim
 
 - repo: tpope/vim-fugitive
-  on_cmd: [ Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse, Glog, Gllog]
-
+  on_cmd: [Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse, Glog, Gllog]
 - repo: tpope/vim-rhubarb
   depends: vim-fugitive
   on_cmd: Gbrowse
@@ -155,8 +154,7 @@
 - repo: hail2u/vim-css3-syntax
   on_ft: css
 - repo: cakebaker/scss-syntax.vim
-  on_ft: [ scss, sass ]
-
+  on_ft: [scss, sass]
 # Go
 # ----------------------------------------
 - repo: fatih/vim-go
@@ -177,11 +175,6 @@
 # ----------------------------------------
 - repo: tpope/vim-classpath
   on_ft: java
-- repo: rustushki/JavaImp.vim
-  on_ft: java
-  hook_source: |
-    let g:JavaImpPaths =
-      \ $HOME . "/Projects/Dev/School/CISC-190/bookClasses/*" .
 
 # Javascript
 # ----------------------------------------
@@ -201,7 +194,7 @@
   hook_source: source $VIM_PATH/layers/+lang/markdown/vim-markdown/config.vim
 
 - repo: iamcco/markdown-preview.nvim
-  on_ft: [markdown,pandoc.markdown,rmd]
+  on_ft: [markdown, pandoc.markdown, rmd]
   build: 'cd app & yarn install'
   hook_source: |
       let g:mkdp_auto_start = 1
@@ -211,8 +204,7 @@
       let g:mkdp_open_to_the_world = 1
 
 - repo: junegunn/vim-emoji
-  on_ft: [markdown,vim]
-
+  on_ft: [markdown, vim]
 # Python
 # ----------------------------------------
 - repo: vim-python/python-syntax
@@ -252,7 +244,7 @@
 # YAML
 # ----------------------------------------
 - repo: pearofducks/ansible-vim
-  on_ft: [ yaml.ansible, ansible_hosts ]
+  on_ft: [yaml.ansible, ansible_hosts]
 # }}}
 
 
@@ -264,7 +256,7 @@
   hook_source: source $VIM_PATH/layers/+tools/calendar/config.vim
 
 - repo: t9md/vim-choosewin
-  on_map: { n: <Plug> }
+  on_map: {n: <Plug>}
   hook_source: source  $VIM_PATH/layers/+tools/choosewin/config.vim
 
 - repo: Shougo/denite.nvim
@@ -300,7 +292,7 @@
 
 - repo: vimwiki/vimwiki
   on_map: { n: <Plug> }
-  on_cmd: [VimwikiIndex, VimwikiUISelect, VimwikiDiaryIndex]
+  on_cmd: [VimwikiIndex, VimwikiUISelect]
   hook_add: |
     let g:vimwiki_use_calendar = 1
     let g:vimwiki_hl_headers = 1
@@ -326,15 +318,24 @@
   on_cmd: Codi
   hook_source: source $VIM_PATH/layers/+tools/codi/config.vim
 
+- repo: benmills/vimux
+  on_cmd:
+    - VimuxPromptCommand
+    - VimuxRunLastCommand
+    - VimuxInspectRunner
+    - VimuxCloseRunner
+    - VimuxInterruptRunner
+    - VimuxZoomRunner
+  hook_source: let g:VimuxOrientation = 'v'
+
 - repo: vimwiki/vimwiki
   on_map: { n: <Plug> }
-  on_cmd: [ VimwikiIndex, VimwikiUISelect, VimwikiDiaryIndex ]
   hook_add: |
     let g:vimwiki_use_calendar = 1
     let g:vimwiki_hl_headers = 1
     let g:vimwiki_hl_cb_checked = 1
     let g:vimwiki_autowriteall = 0
-    let g:vimwiki_map_prefix = '<Leader>v'
+    let g:vimwiki_map_prefix = '<Leader>d'
   hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
 
 - repo: honza/dockerfile.vim

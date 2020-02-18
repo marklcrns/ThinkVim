@@ -71,8 +71,13 @@ function! s:find_node_executable(cmd)
 	return ''
 	endfunction
 
-" HTML
+" HTML & HTMLDJANGO
 let g:neomake_html_enabled_makers = ['tidy']
+let g:neomake_htmldjango_tidy_maker = {
+	\ 'args': ['-e', '-q', '--gnu-emacs', 'true'],
+	\ 'errorformat': '%W%f:%l:%c: Warning: %m',
+	\ }
+let g:neomake_htmldjango_enabled_makers = ['tidy']
 
 " UI
 let g:neomake_error_sign = {'text': '⚠', 'texthl': 'ErrorMsg'}
