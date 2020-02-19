@@ -151,9 +151,9 @@ endif
 
 if dein#tap('vim-easy-align')
   " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap ga <Plug>(EasyAlign)
+  xmap <Leader>ra <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap ga <Plug>(EasyAlign)
+  nmap <Leader>ra <Plug>(EasyAlign)
 endif
 
 

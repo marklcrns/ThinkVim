@@ -95,7 +95,22 @@
 # Coding tools
 # ----------------------------------------
 - repo: junegunn/vim-easy-align
-  on_ft: [vim, json, go, html, js, jsx, py, css, less, tmpl, toml, xml, sql, Dockerfile]
+  on_ft:
+    - vim
+    - json
+    - go
+    - html
+    - js
+    - jsx
+    - py
+    - css
+    - java
+    - less
+    - tmpl
+    - toml
+    - xml
+    - sql
+    - Dockerfile
 
 - repo: AndrewRadev/splitjoin.vim
   on_map: { n: <Plug>Splitjoin }

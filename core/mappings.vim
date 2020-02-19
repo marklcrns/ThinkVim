@@ -306,6 +306,23 @@ nnoremap <Leader><CR> za
 nnoremap <Leader><Leader><CR> zMzvzt
 " Toggle fold all
 nnoremap <expr> <Leader><Leader><Leader><CR> &foldlevel ? 'zM' :'zR'
+" Jumping to next closed fold
+" Ref: https://stackoverflow.com/a/9407015/11850077
+nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>
+nnoremap <silent> <leader>zk :call NextClosedFold('k')<cr>
+function! NextClosedFold(dir)
+  let cmd = 'norm!z' . a:dir
+  let view = winsaveview()
+  let [l0, l, open] = [0, view.lnum, 1]
+  while l != l0 && open
+    exe cmd
+    let [l0, l] = [l, line('.')]
+    let open = foldclosed(l) < 0
+  endwhile
+  if open
+    call winrestview(view)
+  endif
+endfunction
 
 " Improve scroll, credits: https://github.com/Shougo
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?

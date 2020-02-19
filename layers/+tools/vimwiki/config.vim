@@ -92,9 +92,9 @@ function! VimwikiLinkHandler(link)
   endif
 endfunction
 
-autocmd FileType vimwiki nmap <Leader>vH :VimwikiAll2HTML<CR>
-autocmd FileType vimwiki nmap <Leader>vc :VimwikiTOC<CR>
-autocmd FileType vimwiki nmap <Leader>vl :VimwikiGenerateLinks<CR>
+autocmd FileType vimwiki nmap <Leader>dH :VimwikiAll2HTML<CR>
+autocmd FileType vimwiki nmap <Leader>dc :VimwikiTOC<CR>
+autocmd FileType vimwiki nmap <Leader>dl :VimwikiGenerateLinks<CR>
 autocmd FileType vimwiki setlocal textwidth=80
 autocmd FileType vimwiki setlocal foldlevel=99
 
