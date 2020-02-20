@@ -220,6 +220,18 @@
 
 - repo: junegunn/vim-emoji
   on_ft: [markdown, vim]
+
+# LaTeX
+# ---------------------------------------
+- repo: lervag/vimtex
+  on_ft: [tex, latex, plaintex]
+  hook_source: source $VIM_PATH/layers/+lang/latex/vimtex/config.vim
+
+- repo: KeitaNakamura/tex-conceal.vim
+  on_ft: [tex, latex, plaintex]
+  hook_source: |
+    let g:tex_conceal='abdmg'
+
 # Python
 # ----------------------------------------
 - repo: vim-python/python-syntax

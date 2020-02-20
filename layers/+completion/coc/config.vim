@@ -34,6 +34,7 @@ let g:coc_global_extensions =[
       \ 'coc-todolist',
       \ 'coc-spell-checker',
       \ 'coc-actions',
+      \ 'coc-vimtex',
       \ 'coc-go']
 
 augroup MyAutoCmd

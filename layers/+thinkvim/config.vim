@@ -353,6 +353,10 @@ if dein#tap('vim-markdown')
   nmap <LocalLeader>mth :Toch<CR>
 endif
 
+if dein#tap('vimtex')
+  nnoremap <Leader>fl :call vimtex#fzf#run()<cr>
+endif
+
 if dein#tap('accelerated-jk')
   " conservative deceleration
   let g:accelerated_jk_enable_deceleration = 1
@@ -369,7 +373,8 @@ if dein#tap('accelerated-jk')
 endif
 
 if dein#tap('vimwiki')
-  nnoremap <silent> <Leader>dd :<C-u>VimwikiIndex<CR>
+  nnoremap <silent> <Leader>Dw :<C-u>VimwikiIndex<CR>
+  nnoremap <silent> <Leader>Di :<C-u>VimwikiDiaryIndex<CR>
 endif
 
 if dein#tap('vimux')

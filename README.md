@@ -85,7 +85,7 @@
 
 ### Delete Kite Completion (Optional for non linux or mac)
 
-- `rm -r ~/.config/nvim/pck`
+- `rm -r ~/.config/nvim/pack`
 
 ## PluginsDetail
 
