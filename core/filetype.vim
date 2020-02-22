@@ -13,7 +13,8 @@ augroup user_plugin_filetype "{{{
 
   autocmd Syntax * if 5000 < line('$') | syntax sync minlines=200 | endif
 
-  autocmd FileType css setlocal equalprg=csstidy\ -\ --silent=true
+  " autocmd FileType css setlocal equalprg=csstidy\ -\ --silent=true
+  " autocmd FileType css setlocal equalprg=css-beautify
 
   autocmd BufWritePre *.js,*.jsx,*.less,*.css,*.html Neoformat
 

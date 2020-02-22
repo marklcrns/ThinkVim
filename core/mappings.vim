@@ -47,8 +47,6 @@ inoremap <Esc> <Esc>`^
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
 imap jj <Esc>`^
 imap kk <Esc>`^
-imap jk <Esc>`^
-imap kj <Esc>`^
 
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>
@@ -245,8 +243,8 @@ noremap sd :b#<bar>bd#<CR>
 nmap s[ :vertical resize -3<CR>
 nmap s] :vertical resize +3<CR>
 " Resize splites horizontally
-nmap s{ :resize -3<CR>
-nmap s} :resize +3<CR>
+nmap S{ :resize -3<CR>
+nmap S} :resize +3<CR>
 
 " Toggle text wrap
 nmap <LocalLeader>sw :set wrap!<CR>

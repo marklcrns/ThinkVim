@@ -68,7 +68,7 @@
 10. deactivate
 
 # Recommended Linters
-1. npm install -g eslint
+1. npm install -g eslint stylelint prettier
 2. cd ~/.config/nvim
 3. source ./env/python3/env/bin/activate
 4. pip install flake pylint autopep8

@@ -65,6 +65,8 @@
     "prettier.eslintIntegration": true,
     "prettier.tslintIntegration": true,
     "prettier.stylelintIntegration": true,
+    // css
+    "css.enable": true,
     //emmet
     "html.filetypes": [
         "htmldjango",

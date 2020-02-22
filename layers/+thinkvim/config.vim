@@ -1,49 +1,5 @@
 "Plugin key settings
 
-if dein#tap('denite.nvim')
-  nnoremap <silent><LocalLeader>d :<C-u>Denite menu<CR>
-  noremap zl :<C-u>call <SID>my_denite_outline(&filetype)<CR>
-  noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
-  noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
-
-  nnoremap <silent> <Leader>dgl :<C-u>Denite gitlog:all<CR>
-  nnoremap <silent> <Leader>dgh :<C-u>Denite gitbranch<CR>
-  function! s:my_denite_outline(filetype) abort
-    execute 'Denite' a:filetype ==# 'go' ? "decls:'%:p'" : 'outline'
-  endfunction
-  function! s:my_denite_decls(filetype) abort
-    if a:filetype ==# 'go'
-      Denite decls
-    else
-      call denite#util#print_error('decls does not support filetypes except go')
-    endif
-  endfunction
-  function! s:my_denite_file_rec_goroot() abort
-    if !executable('go')
-      call denite#util#print_error('`go` executable not found')
-      return
-    endif
-    let out = system('go env | grep ''^GOROOT='' | cut -d\" -f2')
-    let goroot = substitute(out, '\n', '', '')
-    call denite#start(
-          \ [{'name': 'file/rec', 'args': [goroot]}],
-          \ {'input': '.go'})
-  endfunction
-endif
-
-if dein#tap('vim-buffet')
-  nmap <leader>1 <Plug>BuffetSwitch(1)
-  nmap <leader>2 <Plug>BuffetSwitch(2)
-  nmap <leader>3 <Plug>BuffetSwitch(3)
-  nmap <leader>4 <Plug>BuffetSwitch(4)
-  nmap <leader>5 <Plug>BuffetSwitch(5)
-  nmap <leader>6 <Plug>BuffetSwitch(6)
-  nmap <leader>7 <Plug>BuffetSwitch(7)
-  nmap <leader>8 <Plug>BuffetSwitch(8)
-  nmap <leader>9 <Plug>BuffetSwitch(9)
-  nmap <leader>0 <Plug>BuffetSwitch(10)
-endif
-
 if dein#tap('coc.nvim')
   " Using CocList
   " Show all diagnostics
@@ -71,7 +27,6 @@ if dein#tap('coc.nvim')
   vmap <leader>cf  <Plug>(coc-format-selected)
   nmap <leader>cf  <Plug>(coc-format-selected)
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  " Remap for do codeAction of selected region
   function! s:cocActionsOpenFromSelected(type) abort
     execute 'CocCommand actions.open ' . a:type
   endfunction
@@ -138,6 +93,94 @@ if dein#tap('coc.nvim')
         \ ' --toggle' .
         \ ' --sources=buffer+,file+' .
         \ ' --file-columns=git,selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
+
+  inoremap <silent><expr> <Tab>
+        \ pumvisible() ? coc#_select_confirm() :
+        \ coc#expandableOrJumpable()  ?
+        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+
+  " Integration with delimitMate plugin
+  inoremap <silent><expr> <CR>
+        \ delimitMate#WithinEmptyPair() ?
+        \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+        \ coc#jumpable() ?
+        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  " Use <c-space> to trigger completion.
+  inoremap <silent><expr> <C-Space> coc#refresh()
+
+  " Movement within 'ins-completion-menu'
+  imap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>"
+  imap <expr><C-k> pumvisible() ? "\<Up>" : "\<C-k>"
+
+  " Scroll pages in menu
+  inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>"
+  inoremap <expr><C-b> pumvisible() ? "\<PageUp>" : "\<Left>"
+  imap     <expr><C-d> pumvisible() ? "\<PageDown>" : "\<C-d>"
+  imap     <expr><C-u> pumvisible() ? "\<PageUp>" : "\<C-u>"
+
+  nnoremap <expr><C-n> coc#util#has_float() ?
+        \ coc#util#float_scrollable() ?
+        \ coc#util#float_scroll(1)
+        \ : ""
+        \ : "\<C-n>"
+  nnoremap <expr><C-p> coc#util#has_float() ?
+        \ coc#util#float_scrollable() ?
+        \ coc#util#float_scroll(0)
+        \ : ""
+        \ : "\<C-p>"
+endif
+
+if dein#tap('denite.nvim')
+  nnoremap <silent><LocalLeader>d :<C-u>Denite menu<CR>
+  noremap zl :<C-u>call <SID>my_denite_outline(&filetype)<CR>
+  noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
+  noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
+
+  nnoremap <silent> <Leader>dgl :<C-u>Denite gitlog:all<CR>
+  nnoremap <silent> <Leader>dgh :<C-u>Denite gitbranch<CR>
+  function! s:my_denite_outline(filetype) abort
+    execute 'Denite' a:filetype ==# 'go' ? "decls:'%:p'" : 'outline'
+  endfunction
+  function! s:my_denite_decls(filetype) abort
+    if a:filetype ==# 'go'
+      Denite decls
+    else
+      call denite#util#print_error('decls does not support filetypes except go')
+    endif
+  endfunction
+  function! s:my_denite_file_rec_goroot() abort
+    if !executable('go')
+      call denite#util#print_error('`go` executable not found')
+      return
+    endif
+    let out = system('go env | grep ''^GOROOT='' | cut -d\" -f2')
+    let goroot = substitute(out, '\n', '', '')
+    call denite#start(
+          \ [{'name': 'file/rec', 'args': [goroot]}],
+          \ {'input': '.go'})
+  endfunction
+endif
+
+if dein#tap('vim-buffet')
+  nmap <leader>1 <Plug>BuffetSwitch(1)
+  nmap <leader>2 <Plug>BuffetSwitch(2)
+  nmap <leader>3 <Plug>BuffetSwitch(3)
+  nmap <leader>4 <Plug>BuffetSwitch(4)
+  nmap <leader>5 <Plug>BuffetSwitch(5)
+  nmap <leader>6 <Plug>BuffetSwitch(6)
+  nmap <leader>7 <Plug>BuffetSwitch(7)
+  nmap <leader>8 <Plug>BuffetSwitch(8)
+  nmap <leader>9 <Plug>BuffetSwitch(9)
+  nmap <leader>0 <Plug>BuffetSwitch(10)
 endif
 
 if dein#tap('fzf.vim')
