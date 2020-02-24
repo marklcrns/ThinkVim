@@ -31,6 +31,11 @@ augroup user_plugin_filetype "{{{
   " Magit
   autocmd User VimagitEnterCommit startinsert
 
+  " Temporary
+  autocmd BufWritePost *.java !javac %
+  autocmd BufWritePost *.java VimuxInterruptRunner
+  autocmd BufWritePost *.java VimuxRunLastCommand
+
   " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
   autocmd FileType css,javascript,javascriptreact setlocal backupcopy=yes
 augroup END "}}}

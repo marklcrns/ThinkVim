@@ -276,7 +276,7 @@ if dein#tap('python_match.vim')
 endif
 
 if dein#tap('goyo.vim')
-  nnoremap <Leader>G :Goyo<CR>
+  nnoremap <Leader>G :Goyo 100<CR>
 endif
 
 if dein#tap('defx.nvim')
@@ -416,8 +416,8 @@ if dein#tap('accelerated-jk')
 endif
 
 if dein#tap('vimwiki')
-  nnoremap <silent> <Leader>Dw :<C-u>VimwikiIndex<CR>
-  nnoremap <silent> <Leader>Di :<C-u>VimwikiDiaryIndex<CR>
+  nnoremap <silent> <Leader>dW :<C-u>VimwikiIndex<CR>
+  nnoremap <silent> <Leader>dI :<C-u>VimwikiDiaryIndex<CR>
 endif
 
 if dein#tap('vimux')
