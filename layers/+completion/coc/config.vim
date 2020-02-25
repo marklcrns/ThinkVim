@@ -1,4 +1,3 @@
-
 " Don't load the defx-git plugin file, not needed
 let b:defx_git_loaded = 1
 
@@ -52,3 +51,30 @@ augroup end
 " Snippets jump
 let g:coc_snippet_next = '<CR>'
 let g:coc_snippet_prev = '<S-Tab>'
+
+" Use <TAB> for select text for visual placeholder of snippet.
+" Visual mode and other Ultisnips tricks tutorial blog
+" https://yufanlu.net/2016/10/30/ultisnips/
+vmap <TAB> <Plug>(coc-snippets-select)
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable()  ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+" Integration with delimitMate plugin
+inoremap <silent><expr> <CR>
+      \ delimitMate#WithinEmptyPair() ?
+      \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+      \ coc#jumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+

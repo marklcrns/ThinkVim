@@ -79,8 +79,6 @@
       "vue-html": "html",
       "javascript": "javascriptreact"
     },
-    //imselect
-    "imselect.enableStatusItem": false,
     //multiple curssors
     "cursors.nextKey": "<C-n>",
     "cursors.previousKey": "<C-p>",
@@ -116,18 +114,15 @@
     "languageserver": {},
 
     //-------- Code Spell Checker Configuration --------
+    // Enable / Disable the spell checker.
+    "cSpell.enabled": true,
     // The Language local to use when spell checking. "en" and "en-GB" are currently supported.
     "cSpell.language": "en",
-    // Controls the maximum number of spelling errors per document.
-    "cSpell.maxNumberOfProblems": 100,
-    // Controls the number of suggestions shown.
-    "cSpell.numSuggestions": 8,
-    // The minimum length of a word before checking it against a dictionary.
-    "cSpell.minWordLength": 4,
     // Specify file types to spell check.
     "cSpell.enabledLanguageIds": [
       "csharp",
       "go",
+      "java",
       "javascript",
       "javascriptreact",
       "markdown",
@@ -135,10 +130,21 @@
       "plaintext",
       "typescript",
       "typescriptreact",
-      "yml"
+      "yml",
+      "python",
+      "html",
+      "css",
+      "less",
+      "scss",
+      "vim",
+      "text",
     ],
-    // Enable / Disable the spell checker.
-    "cSpell.enabled": true,
+    // Controls the maximum number of spelling errors per document.
+    "cSpell.maxNumberOfProblems": 100,
+    // Controls the number of suggestions shown.
+    "cSpell.numSuggestions": 8,
+    // The minimum length of a word before checking it against a dictionary.
+    "cSpell.minWordLength": 4,
     // Display the spell checker status on the status bar.
     "cSpell.showStatus": true,
     // Words to add to dictionary for a workspace.
@@ -146,7 +152,10 @@
     // Enable / Disable compound words like 'errormessage'
     "cSpell.allowCompoundWords": false,
     // Words to be ignored and not suggested.
-    "cSpell.ignoreWords": ["behaviour"],
+    "cSpell.ignoreWords": [
+      "colour",
+      "behaviour"
+    ],
     // User words to add to dictionary.  Should only be in the user settings.
     "cSpell.userWords": [
       "Lucernas"
@@ -168,4 +177,13 @@
     "cSpell.flagWords": ["hte"],
     // Set the delay before spell checking the document. Default is 50.
     "cSpell.spellCheckDelayMs": 50,
+
+    // Coc-actions
+    "coc-actions.hideCursor": true,
+    "coc-actions.useCursorLine": false,
+    "coc-actions.showActionKind": true
+
+    // snippets
+    "snippets.ultisnips.enable": true,
+    "snippets.ultisnips.pythonVersion": 3
 }

@@ -94,29 +94,6 @@ if dein#tap('coc.nvim')
         \ ' --sources=buffer+,file+' .
         \ ' --file-columns=git,selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
 
-  inoremap <silent><expr> <Tab>
-        \ pumvisible() ? coc#_select_confirm() :
-        \ coc#expandableOrJumpable()  ?
-        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
-
-  " Integration with delimitMate plugin
-  inoremap <silent><expr> <CR>
-        \ delimitMate#WithinEmptyPair() ?
-        \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-        \ coc#jumpable() ?
-        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
-
-  " Use <c-space> to trigger completion.
-  inoremap <silent><expr> <C-Space> coc#refresh()
-
   " Movement within 'ins-completion-menu'
   imap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>"
   imap <expr><C-k> pumvisible() ? "\<Up>" : "\<C-k>"
@@ -416,8 +393,8 @@ if dein#tap('accelerated-jk')
 endif
 
 if dein#tap('vimwiki')
-  nnoremap <silent> <Leader>dW :<C-u>VimwikiIndex<CR>
-  nnoremap <silent> <Leader>dI :<C-u>VimwikiDiaryIndex<CR>
+  nnoremap <silent> <Leader>DW :<C-u>VimwikiIndex<CR>
+  nnoremap <silent> <Leader>DI :<C-u>VimwikiDiaryIndex<CR>
 endif
 
 if dein#tap('vimux')
