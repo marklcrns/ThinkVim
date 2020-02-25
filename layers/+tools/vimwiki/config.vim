@@ -1,4 +1,9 @@
 
+let g:vimwiki_use_calendar = 1
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_autowriteall = 0
+let g:vimwiki_map_prefix = '<Leader>d'
 let g:vimwiki_folding = 'custom'
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
@@ -101,3 +106,23 @@ autocmd FileType vimwiki
 " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
 autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgqgv0$
 
+" Integration with delimitMate and coc plugin
+autocmd FileType vimwiki inoremap <silent><expr> <Tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable()  ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ vimwiki#tbl#kbd_tab()
+
+autocmd Filetype vimwiki inoremap <silent><expr> <S-TAB>
+      \ delimitMate#WithinEmptyPair() ?
+      \ delimitMate#JumpAny() :
+      \ vimwiki#tbl#kbd_shift_tab()
+
+autocmd Filetype vimwiki inoremap <silent><expr> <CR>
+      \ delimitMate#WithinEmptyPair() ?
+      \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+      \ coc#jumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ "\<ESC>:VimwikiReturn 3 5\<CR>"
+
+autocmd Filetype vimwiki inoremap <S-CR> :VimwikiReturn 4 1<CR>

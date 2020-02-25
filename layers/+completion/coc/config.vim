@@ -1,3 +1,4 @@
+
 " Don't load the defx-git plugin file, not needed
 let b:defx_git_loaded = 1
 
@@ -57,7 +58,7 @@ let g:coc_snippet_prev = '<S-Tab>'
 " https://yufanlu.net/2016/10/30/ultisnips/
 vmap <TAB> <Plug>(coc-snippets-select)
 
-inoremap <silent><expr> <Tab>
+imap <silent><expr> <Tab>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable()  ?
       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -65,7 +66,7 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 " Integration with delimitMate plugin
-inoremap <silent><expr> <CR>
+imap <silent><expr> <CR>
       \ delimitMate#WithinEmptyPair() ?
       \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
       \ coc#jumpable() ?
@@ -76,5 +77,4 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 

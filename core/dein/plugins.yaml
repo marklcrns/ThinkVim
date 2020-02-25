@@ -320,13 +320,7 @@
 - repo: vimwiki/vimwiki
   on_map: { n: <Plug> }
   on_cmd: [VimwikiIndex, VimwikiUISelect]
-  hook_add: |
-    let g:vimwiki_use_calendar = 1
-    let g:vimwiki_hl_headers = 1
-    let g:vimwiki_hl_cb_checked = 1
-    let g:vimwiki_autowriteall = 0
-    let g:vimwiki_map_prefix = '<Leader>v'
-  hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
+  hook_add: source $VIM_PATH/layers/+tools/vimwiki/config.vim
 
 - repo: liuchengxu/vista.vim
   on_cmd: [Vista,Vista!,Vista!!]
