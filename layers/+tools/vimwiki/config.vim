@@ -85,44 +85,65 @@ function! VimwikiLinkHandler(link)
   endif
 endfunction
 
-autocmd FileType vimwiki nmap <Leader>dH :VimwikiAll2HTML<CR>
-autocmd FileType vimwiki nmap <Leader>dc :VimwikiTOC<CR>
-autocmd FileType vimwiki nmap <Leader>dl :VimwikiGenerateLinks<CR>
-autocmd FileType vimwiki setlocal textwidth=80
-autocmd FileType vimwiki setlocal foldlevel=99
 
 augroup SpellCheck
   autocmd FileType vimwiki
     \ autocmd! SpellCheck InsertEnter <buffer> setlocal spell
 augroup END
 
-" Toggle conceallevel on and after insert mode
-autocmd FileType vimwiki
-  \ autocmd InsertEnter <buffer> setlocal conceallevel=0
-autocmd FileType vimwiki
-  \ autocmd InsertLeave <buffer> setlocal conceallevel=2
+augroup VimwikiEditMode
+  autocmd!
+  autocmd FileType vimwiki setlocal textwidth=80
+  autocmd FileType vimwiki setlocal foldlevel=99
+  " Toggle conceallevel on and after insert mode
+  autocmd FileType vimwiki
+    \ autocmd InsertEnter <buffer> setlocal conceallevel=0
+  autocmd FileType vimwiki
+    \ autocmd InsertLeave <buffer> setlocal conceallevel=2
+  " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
+  " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
+  autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgq$a
+  " autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgqgv0$
+augroup END
 
-" Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
-" Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
-autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgqgv0$
 
-" Integration with delimitMate and coc plugin
-autocmd FileType vimwiki inoremap <silent><expr> <Tab>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable()  ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ vimwiki#tbl#kbd_tab()
+augroup VimwikiRemappings
+  autocmd!
+  autocmd FileType vimwiki nmap <Leader>dH :VimwikiAll2HTML<CR>
+  autocmd FileType vimwiki nmap <Leader>dc :VimwikiTOC<CR>
+  autocmd FileType vimwiki nmap <Leader>dl :VimwikiGenerateLinks<CR>
+  " Integration with delimitMate and coc plugin
+  autocmd FileType vimwiki inoremap <silent><expr> <TAB>
+        \ pumvisible() ? coc#_select_confirm() :
+        \ coc#expandableOrJumpable()  ?
+        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ vimwiki#tbl#kbd_tab()
 
-autocmd Filetype vimwiki inoremap <silent><expr> <S-TAB>
-      \ delimitMate#WithinEmptyPair() ?
-      \ delimitMate#JumpAny() :
-      \ vimwiki#tbl#kbd_shift_tab()
+  autocmd Filetype vimwiki inoremap <silent><expr> <S-TAB>
+        \ vimwiki#tbl#kbd_shift_tab()
 
-autocmd Filetype vimwiki inoremap <silent><expr> <CR>
-      \ delimitMate#WithinEmptyPair() ?
-      \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-      \ coc#jumpable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ "\<ESC>:VimwikiReturn 3 5\<CR>"
+  autocmd Filetype vimwiki inoremap <silent><expr> <CR>
+        \ delimitMate#WithinEmptyPair() ?
+        \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+        \ coc#jumpable() ?
+        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ "\<ESC>:VimwikiReturn 3 5\<CR>"
 
-autocmd Filetype vimwiki inoremap <S-CR> :VimwikiReturn 4 1<CR>
+  autocmd Filetype vimwiki inoremap <S-CR> :VimwikiReturn 4 1<CR>
+augroup END
+
+
+" Quick fix hack on <CR> and <S-CR> being remapped when comming back to a session
+if !hasmapto('VimwikiReturn', 'i')
+  if maparg('<CR>', 'i') !~? '<Esc>:VimwikiReturn'
+    inoremap <silent><expr> <CR>
+          \ delimitMate#WithinEmptyPair() ?
+          \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+          \ coc#jumpable() ?
+          \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+          \ "\<ESC>:VimwikiReturn 3 5\<CR>"
+  endif
+  if maparg('<S-CR>', 'i') !~? '<Esc>:VimwikiReturn'
+    inoremap <silent><buffer> <S-CR> <Esc>:VimwikiReturn 4 1<CR>
+  endif
+endif

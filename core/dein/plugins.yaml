@@ -97,6 +97,8 @@
 - repo: junegunn/vim-easy-align
   on_ft:
     - vim
+    - md
+    - vimwiki
     - json
     - go
     - html
@@ -320,7 +322,7 @@
 - repo: vimwiki/vimwiki
   on_map: { n: <Plug> }
   on_cmd: [VimwikiIndex, VimwikiUISelect]
-  hook_add: source $VIM_PATH/layers/+tools/vimwiki/config.vim
+  hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
 
 - repo: liuchengxu/vista.vim
   on_cmd: [Vista,Vista!,Vista!!]

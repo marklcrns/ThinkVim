@@ -174,6 +174,10 @@ if dein#tap('vim-easy-align')
   xmap <Leader>ra <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap <Leader>ra <Plug>(EasyAlign)
+  " Start Live-interactive EasyAlign in visual mode (e.g. vipga)
+  xmap <Leader>rA <Plug>(LiveEasyAlign)
+  " Start Live-interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap <Leader>rA <Plug>(LiveEasyAlign)
 endif
 
 

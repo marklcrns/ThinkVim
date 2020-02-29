@@ -58,7 +58,7 @@ let g:coc_snippet_prev = '<S-Tab>'
 " https://yufanlu.net/2016/10/30/ultisnips/
 vmap <TAB> <Plug>(coc-snippets-select)
 
-imap <silent><expr> <Tab>
+inoremap <silent><expr> <Tab>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable()  ?
       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -66,12 +66,12 @@ imap <silent><expr> <Tab>
       \ coc#refresh()
 
 " Integration with delimitMate plugin
-imap <silent><expr> <CR>
-      \ delimitMate#WithinEmptyPair() ?
-      \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-      \ coc#jumpable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR>
+     \ delimitMate#WithinEmptyPair() ?
+     \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+     \ coc#jumpable() ?
+     \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+     \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1

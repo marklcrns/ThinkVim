@@ -24,10 +24,6 @@ let g:vimtex_compiler_latexmk = {
       \ ],
       \}
 
-" let g:vimtex_compiler_latexmk = {
-"      \ 'build_dir' : 'build',
-"      \}
-
 " TOC settings
 let g:vimtex_toc_config = {
       \ 'name' : 'TOC',

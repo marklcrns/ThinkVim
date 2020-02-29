@@ -158,7 +158,8 @@
     ],
     // User words to add to dictionary.  Should only be in the user settings.
     "cSpell.userWords": [
-      "Lucernas"
+      "Lucernas",
+      "nums"
     ],
     // Specify paths/files to ignore.
     "cSpell.ignorePaths": [
@@ -181,7 +182,7 @@
     // Coc-actions
     "coc-actions.hideCursor": true,
     "coc-actions.useCursorLine": false,
-    "coc-actions.showActionKind": true
+    "coc-actions.showActionKind": true,
 
     // snippets
     "snippets.ultisnips.enable": true,

@@ -60,6 +60,9 @@ vnoremap <silent> < <<cr>gv
 xnoremap < <gv
 xnoremap > >gv|
 
+" Select last inserted characters
+inoremap <C-v> <ESC>v`[
+
 " insert keymap like emacs
 inoremap <C-w> <C-[>diwa
 inoremap <C-h> <BS>
@@ -101,7 +104,7 @@ nnoremap <silent> [[l :lfirst<CR>
 nnoremap <silent> ]]l :llast<CR>
 
 " Toggle Locationlist
-nnoremap <LocalLeader>l :call LocationlistToggle()<CR>
+nnoremap <LocalLeader>L :call LocationlistToggle()<CR>
 
 function! LocationlistToggle()
   for i in range(1, winnr('$'))
@@ -122,7 +125,7 @@ nnoremap <silent> [[q :cfirst<CR>
 nnoremap <silent> ]]q :clast<CR>
 
 " Toggle Quickfix
-nnoremap <LocalLeader>q :call QuickfixToggle()<CR>
+nnoremap <LocalLeader>Q :call QuickfixToggle()<CR>
 
 function! QuickfixToggle()
   for i in range(1, winnr('$'))
@@ -264,7 +267,7 @@ function! ToggleConcealLevel()
   end
 endfunction
 
-" Jumps to previously mispelled word and fixes it with the first in the
+" Jumps to previously misspelled word and fixes it with the first in the
 " suggestion
 " Ref: https://castel.dev/post/lecture-notes-1/
 inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
