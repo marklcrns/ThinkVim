@@ -10,7 +10,7 @@ let g:lightline = {
   \   'cocstatus': 'coc#status',
   \   'currentfunction': 'CocCurrentFunction',
   \   'readonly': 'LightlineReadonly',
-  \   'gitbranch': 'CustomGitBranch',
+  \   'gitstatus': 'LightlineGitStatus',
   \   'gutentags': 'gutentags#statusline',
   \   'method' : 'NearestMethodOrFunction'
   \ },
@@ -18,7 +18,7 @@ let g:lightline = {
   \ 'subseparator': { 'left': '', 'right': '' },
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
+  \             [ 'gitstatus', 'readonly', 'filename', 'modified' ],
   \             [ 'cocstatus', 'method' ] ],
   \  'right': [ [ 'percent', 'lineinfo' ],
   \            [ 'currentfunction' ], [ 'gutentags' ] ]
@@ -38,16 +38,9 @@ function! LightlineReadonly()
 	return &readonly ? '' : ''
 endfunction
 
-function! CustomGitBranch()
-  " Returns git branch name, using different gitbranch or fugitive
-  if exists('*gitbranch#name')
-    let branch = gitbranch#name()
-    return branch !=# '' ? ''.branch : ''
-  elseif exists('fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ''.branch : ''
-  endif
-  return ''
+function! LightlineGitStatus() abort
+  let status = get(g:, 'coc_git_status', '')
+  return status
 endfunction
 
 " Gutentags Statusline
@@ -67,4 +60,18 @@ let g:lightline.enable = {
     \ 'statusline': 1,
     \ 'tabline': 0
     \ }
+
+
+" Deprecated. Integration with fugitive and itchyny/vim-gitbranch
+" function! CustomGitBranch()
+"   " Returns git branch name, using different gitbranch or fugitive
+"   if exists('*gitbranch#name')
+"     let branch = gitbranch#name()
+"     return branch !=# '' ? ''.branch : ''
+"   elseif exists('fugitive#head')
+"     let branch = fugitive#head()
+"     return branch !=# '' ? ''.branch : ''
+"   endif
+"   return ''
+" endfunction
 

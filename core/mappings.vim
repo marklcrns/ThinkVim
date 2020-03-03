@@ -256,14 +256,25 @@ nmap <LocalLeader>sw :set wrap!<CR>
 " Toggle spell check.
 nmap <Localleader>ss :setlocal spell!<CR>
 
-" Toggle Conceallevel
+" Toggle conceallevel
 nmap <LocalLeader>sc :call ToggleConcealLevel()<CR>
+
+" Toggle gutter
+nmap <LocalLeader>sg :call ToggleGutter()<CR>
 
 function! ToggleConcealLevel()
   if &conceallevel
     set conceallevel=0
   else
     set conceallevel=2
+  end
+endfunction
+
+function! ToggleGutter()
+  if &signcolumn == 'yes'
+    set signcolumn=no
+  else
+    set signcolumn=yes
   end
 endfunction
 

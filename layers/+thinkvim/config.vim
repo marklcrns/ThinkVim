@@ -163,7 +163,7 @@ endif
 if dein#tap('fzf.vim')
   nnoremap <silent> <leader>ff :call Fzf_dev()<CR>
   nnoremap <silent> <leader>fr :Rg<CR>
-  nnoremap <silent> <leader>fg :GGrep<CR>
+  nnoremap <silent> <leader>fg :Ggrep<CR>
   nnoremap <silent> <leader>fc :Colors<CR>
   nnoremap <silent> <leader>fb :Buffers<CR>
   nnoremap <silent> <leader>fw :Rg <C-R><C-W><CR>
@@ -257,7 +257,7 @@ if dein#tap('python_match.vim')
 endif
 
 if dein#tap('goyo.vim')
-  nnoremap <Leader>G :Goyo 100<CR>
+  nnoremap <Leader>G :Goyo<CR>
 endif
 
 if dein#tap('defx.nvim')

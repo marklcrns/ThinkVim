@@ -171,3 +171,33 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Auto-resize splits when Vim gets resized.
 autocmd VimResized * wincmd =
 
+" Auto capitalization in start of sentences
+" Ref: https://davidxmoody.com/2014/vim-auto-capitalisation/
+" func! WordProcessorMode()
+"   " Load Markdown syntax highlighting but with custom hashtag support
+"   " set filetype=mkd
+"   " syn match htmlBoldItalic "#[-_a-zA-Z0-9]\+"
+"
+"   " Other options
+"   " set nonumber
+"   " set wrap
+"   " set linebreak
+"   " set breakat=\ 
+"   " set display=lastline
+"   " set tabstop=4
+"   " set softtabstop=4
+"   " set shiftwidth=4
+"   " set formatoptions=
+"   " set spell spelllang=en_gb
+"
+"   " Auto-capitalize script
+"   augroup SENTENCES
+"     au!
+"     autocmd InsertCharPre * if search('\v(%^|[.!?]\_s+|\_^\-\s|\_^title\:\s|\n\n)%#', 'bcnw') != 0 | let v:char = toupper(v:char) | endif
+"   augroup END
+" endfu
+"
+" com! WP call WordProcessorMode()
+" au BufNewFile,BufRead *.mkd call WordProcessorMode()
+" au BufNewFile,BufRead *.md call WordProcessorMode()
+" au BufNewFile,BufRead *.txt call WordProcessorMode()

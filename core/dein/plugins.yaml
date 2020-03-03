@@ -19,10 +19,6 @@
 - repo: honza/vim-snippets
   depends : coc.nvim
 
-# Git
-# ----------------------------------------
-- repo: itchyny/vim-gitbranch
-
 # UI
 # ----------------------------------------
 - repo: itchyny/lightline.vim
@@ -145,18 +141,26 @@
   on_cmd: Gina
 
 - repo: chemzqm/vim-easygit
-  on_cmd: [Gcd, Glcd, Gcommit, Gblame, Gstatus, Gdiff, Gstatus, Gpush]
+  on_cmd: [Gcd, Glcd, Gcommit, Gstatus, Gdiff, Gstatus, Gpush]
   hook_source: let g:easygit_enable_command = 1
 
 - repo: kristijanhusak/defx-git
   on_source: defx.nvim
   hook_source: source  $VIM_PATH/layers/+ui/defx/+defx-git.vim
-- repo: airblade/vim-gitgutter
-  on_path: .*
-  hook_source: source $VIM_PATH/layers/+git/vim-gitgutter/config.vim
 
 - repo: tpope/vim-fugitive
-  on_cmd: [Gdiffsplit!, Gdifsplit, Gvdiffsplit, Gvdiffsplit!, Git mergetool, Git difftool, Gbrowse, Glog, Gllog]
+  on_cmd:
+    - Gdiffsplit!
+    - Gdifsplit
+    - Gvdiffsplit
+    - Gvdiffsplit!
+    - Git mergetool
+    - Git difftool
+    - Gbrowse
+    - Glog
+    - Gllog
+    - Gblame
+
 - repo: tpope/vim-rhubarb
   depends: vim-fugitive
   on_cmd: Gbrowse
@@ -297,7 +301,7 @@
 
 - repo: junegunn/goyo.vim
   on_cmd: Goyo
-  hook_source: source  $VIM_PATH/layers/+tools/goyo/config.vim
+  hook_source: source $VIM_PATH/layers/+tools/goyo/config.vim
 
 - repo: junegunn/Limelight.vim
   on_cmd: Limelight
@@ -310,7 +314,7 @@
 
 - repo: junegunn/fzf.vim
   depends: fzf
-  on_cmd: [Colors,Rg,Buffers]
+  on_cmd: [Colors, Rg, Buffers]
   on_func: Fzf_dev
   hook_source: source $VIM_PATH/layers/+tools/fzf/config.vim
 
@@ -375,7 +379,6 @@
         let g:quickrun_no_default_key_mappings = 1
 
 - repo: kshenoy/vim-signature
-  depends: vim-gitgutter
   on_path: .*
   hook_add: |
     let g:SignatureForceRemoveGlobal = 0
@@ -530,3 +533,12 @@
 #   depends: vim-textobj-user
 #   on_map: { ox: <Plug> }
 #   hook_add:  let g:textobj_multiblock_no_default_key_mappings = 1
+
+# Git
+# ----------------------------------------
+# - repo: itchyny/vim-gitbranch
+
+# - repo: airblade/vim-gitgutter
+#   on_path: .*
+#   hook_source: source $VIM_PATH/layers/+git/vim-gitgutter/config.vim
+
