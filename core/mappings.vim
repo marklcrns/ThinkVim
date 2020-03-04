@@ -347,3 +347,12 @@ noremap <expr> <C-b> max([winheight(0) - 2, 1])
 noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
 noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
+" Compile current java file
+autocmd FileType java nnoremap <buffer><silent><Leader>jc :!javac %<CR>
+" Autocompile Java and run last Vimux command
+autocmd FileType java nnoremap <buffer><silent><Leader>jj :call JavaCompile()<CR>
+function! JavaCompile()
+  exec '!javac %'
+  exec 'VimuxInterruptRunner'
+  exec 'VimuxRunLastCommand'
+endfunction
