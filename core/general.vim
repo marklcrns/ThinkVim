@@ -72,7 +72,7 @@ set nowrap
 " }}}
 set hidden
 set shortmess=aFc
-set signcolumn=yes
+set signcolumn=yes:2
 set completefunc=emoji#complete
 set completeopt =longest,menu
 set completeopt-=preview

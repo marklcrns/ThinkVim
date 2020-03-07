@@ -47,7 +47,6 @@ inoremap <Esc> <Esc>`^
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
 imap jj <Esc>`^
 imap kk <Esc>`^
-imap ww <Esc>`^
 
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>

@@ -1,0 +1,746 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+# Mathjax snippets reference:
+# https://github.com/gillescastel/latex-snippets/blob/master/tex.snippets
+
+global !p
+# Mathjax matrix
+boundaries = {
+	"b": ["[", "]"],
+	"B": ["{", "}"],
+	"p": ["(", ")"],
+	"v": ["|", "|"],
+	"V": ["||", "||"]
+}
+endglobal
+
+# ====================Vimwiki/Markdown Snippets====================
+
+snippet h1 "Header 1" bA
+# $1
+$0
+endsnippet
+
+snippet h2 "Header 2" bA
+## $1
+$0
+endsnippet
+
+snippet h3 "Header 3" bA
+### $1
+$0
+endsnippet
+
+snippet h4 "Header 4" bA
+#### $1
+$0
+endsnippet
+
+snippet h5 "Header 5" bA
+##### $1
+$0
+endsnippet
+
+snippet h6 "Header 6" bA
+###### $1
+$0
+endsnippet
+
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet
+
+snippet mcom "Markdown comment" b
+[$1]: # $0
+endsnippet
+
+snippet hcom "Markdown comment" b
+<!--- $1 --->$0
+endsnippet
+
+snippet l "Link tag"
+[$1](${0:${VISUAL}})
+endsnippet
+
+snippet f "File Link tag"
+[$1](file:../../../$2)$0
+endsnippet
+
+snippet vf "Open file link into vim"
+[$1](vfile:../../../$2)$0
+endsnippet
+
+snippet img "Image tag for files"
+![$1](file:../../../$2)$0
+endsnippet
+
+snippet uimg "Image tag for urls"
+![$1]($2)$0
+endsnippet
+
+snippet pre "Html code block tag"
+<pre>
+$0
+</pre>
+endsnippet
+
+snippet bo "Markdown Bold tag"
+**${1:${VISUAL}}**$0
+endsnippet
+
+snippet it "Markdown Italic tag"
+_${1:${VISUAL}}_$0
+endsnippet
+
+snippet hbo "Html bold tag"
+<b>${1:${VISUAL}}</b>$0
+endsnippet
+
+snippet hit "Html italic tag"
+<i>${1:${VISUAL}}</i>$0
+endsnippet
+
+snippet meta "Metas template" bA
+---
+title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
+author: ${2:`whoami`}
+date: `date '+%Y-%m-%d'`
+---
+
+
+$0
+endsnippet
+
+snippet head "Vimwiki header" b
+---
+title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
+author: ${2:`whoami`}
+date: `date '+%Y-%m-%d'`
+---
+
+
+# $0
+
+References
+=====
+endsnippet
+
+snippet todo "Todo list template" bA
+# To-do `!p snip.rv = fn.rstrip('.md')`
+
+- [ ] $0
+endsnippet
+
+snippet scratch "Scratch Notes" bA
+# Scratch
+
+- 
+endsnippet
+
+snippet task "Todo checkbox" bA
+- [ ] $0
+endsnippet
+
+snippet fence "Fenced code block" bA
+\`\`\`${0}
+\`\`\`
+endsnippet
+
+
+snippet '(\d+)t' "Markdown table (n)t" brA
+`!p
+t_column_ct = int(match.string[0:-1])
+t_header = "| $0  "
+t_sep = "|---"
+t_body = "|   "
+t_header = t_header + ("|   " * (t_column_ct - 1)) + "|"
+t_sep = t_sep + ("|---" * (t_column_ct - 1)) + "|"
+t_body = t_body + ("|   " * (t_column_ct - 1)) + "|"
+snip.rv = t_header + "\n" + t_sep + "\n" + t_body
+`
+endsnippet
+
+snippet t2 "Table with 2 columns" b
+| $0 |   |
+|---|---|
+|   |   |
+endsnippet
+
+snippet t3 "Table with 3 columns" b
+| $0 |   |   |
+|---|---|---|
+|   |   |   |
+endsnippet
+
+snippet t4 "Table with 4 columns" b
+| $0 |   |   |   |
+|---|---|---|---|
+|   |   |   |   |
+endsnippet
+
+snippet t5 "Table with 5 columns" b
+| $0 |   |   |   |
+|---|---|---|---|
+|   |   |   |   |
+endsnippet
+
+snippet t6 "Table with 6 columns" b
+| $0 |   |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+endsnippet
+
+# ==========Note taking snippets========== #
+snippet tstamp "Video lecture timestamps" bA
+Timestamps
+
+	$0
+endsnippet
+
+snippet ttime "Video lecture timestamp item" iA
+- ${1:title} ${2:1:00}
+$0
+endsnippet
+
+snippet def "Word or phrase definition" bA
+**${1:${VISUAL}}**
+
+- $0
+endsnippet
+
+# ==========Math Note taking snippets========== #
+snippet tprob "Video lecture Timestamp math problem" bA
+- Problem ${1:1} ${2:1:00}
+* $$3$
+$0
+endsnippet
+
+# ====================Mathjax Snippets with Mathjax====================
+
+snippet btex "Mathjax block" bA
+$$
+${1:${VISUAL}}
+$$
+endsnippet
+
+snippet tex "Mathjax in-line" wiA
+$${1:${VISUAL}}$$0
+endsnippet
+
+snippet sbold "Mathjax bold symbol" iA
+\boldsymbol{${1:${VISUAL}}}$0
+endsnippet
+
+snippet mbold "Mathjax math bold" iA
+\mathbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet mital "Mathjax math bold" iA
+\mathbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet '(\d+)==' "Mathjax block align equations" brA
+\begin{align*}
+`!p
+lines = match.group(1)
+res = ""
+placeholder = 1
+for column in range(0, int(lines)):
+	res = res + f"${placeholder} &= ${placeholder + 1} \\\\\\\\\n"
+	placeholder = placeholder + 2
+snip.rv = res[:-6] + "\n"
+`
+\end{align*}$0
+endsnippet
+
+# Fractions
+# ============================================================
+snippet 'f/' "Mathjax tiny fraction" iA
+\\tfrac{${1:${VISUAL}}}{$2}$0
+endsnippet
+
+snippet 'F/' "Mathjax fraction" iA
+\\frac{${1:${VISUAL}}}{$2}$0
+endsnippet
+
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Mathjax auto fraction" wr
+\\tfrac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+priority 1000
+snippet '^.*\)/' "Mathjax () fraction" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i-=1
+snip.rv = stripped[0:i] + "\\tfrac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+# Exponents, Super/Subscripts
+# ============================================================
+
+snippet '([A-Za-z0-9])^' "Mathjax exponent/superscript" bwrA
+`!p snip.rv = match.group(1)`^{$1}$0
+endsnippet
+
+snippet '([A-Za-z0-9])_' "Mathjax auto subscript" bwrA
+`!p snip.rv = match.group(1)`_{$1}$0
+endsnippet
+
+# snippet '([A-Za-z])_(\d\d)' "Mathjax auto subscript2" wrA
+# `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+# endsnippet
+
+snippet sqrt "Mathjax square root" iA
+\sqrt{${1:${VISUAL}}} $0
+endsnippet
+
+snippet nrt "Mathjax root of n" iA
+\sqrt[${1:n}]{${2:ab}}$0
+endsnippet
+
+snippet log "Mathjax logarithm function" i
+\log_{$1}$0
+endsnippet
+
+snippet clog "Mathjax common logarithm function" i
+\log
+endsnippet
+
+snippet lne "Mathjax natural log e" i
+\ln_{${1:e}}$0
+endsnippet
+
+snippet ln "Mathjax natural log" i
+\ln
+endsnippet
+
+snippet sr "Mathjax ^2" i
+^2
+endsnippet
+
+snippet cb "Mathjax ^3" i
+^3
+endsnippet
+
+# Symbols
+# ============================================================
+snippet 'iff' "Mathjax if and only if sign" i
+\iff
+endsnippet
+
+snippet 'pm' "Mathjax plus minus sign" i
+\pm
+endsnippet
+
+snippet pi "Mathjax pi symbol" i
+\pi
+endsnippet
+
+snippet thet "Mathjax theta symbol" i
+\theta
+endsnippet
+
+snippet alph "Mathjax alpha symbol" i
+\alpha
+endsnippet
+
+snippet beta "Mathjax beta symbol" i
+\beta
+endsnippet
+
+snippet gamm "Mathjax gamma symbol" i
+\gamma
+endsnippet
+
+snippet delt "Mathjax delta symbol" i
+\delta
+endsnippet
+
+snippet eps "Mathjax epsilon symbol" i
+\epsilon
+endsnippet
+
+snippet vareps "Mathjax varepsilon symbol" i
+\varepsilon
+endsnippet
+
+snippet zeta "Mathjax zeta symbol" i
+\zeta
+endsnippet
+
+snippet lamb "Mathjax lambda symbol" i
+\lambda
+endsnippet
+
+snippet '....' "Mathjax ldots" iA
+\ldots
+endsnippet
+
+snippet tf "Mathjax therefore dots" i
+\therefore
+endsnippet
+
+snippet bc "Mathjax because dots" i
+\because
+endsnippet
+
+snippet <= "Mathjax less than or equals to" i
+\le
+endsnippet
+
+snippet >= "Mathjax greater than or equals to" i
+\ge
+endsnippet
+
+snippet <=> "Mathjax <=> Arrow" i
+\Longleftrightarrow
+endsnippet
+
+snippet => "Mathjax implies" i
+\implies
+endsnippet
+
+snippet =< "Mathjax implied by" i
+\impliedby
+endsnippet
+
+snippet != "Mathjax not equals to" iA
+\neq
+endsnippet
+
+snippet ooo "Mathjax infinity" iA
+\infty
+endsnippet
+
+snippet PP "Mathjax prime numbers" iA
+\mathbb{P}
+endsnippet
+
+snippet NN "Mathjax natural numbers" iA
+\mathbb{N}
+endsnippet
+
+snippet ZZ "Mathjax integer numbers" iA
+\mathbb{Z}
+endsnippet
+
+snippet II "Mathjax irrational numbers" iA
+\mathbb{I}
+endsnippet
+
+snippet QQ "Mathjax rational numbers" iA
+\mathbb{Q}
+endsnippet
+
+snippet RR "Mathjax real numbers" iA
+\mathbb{R}
+endsnippet
+
+snippet CC "Mathjax complex numbers" iA
+\mathbb{C}
+endsnippet
+
+snippet SS "Mathjax section" iA
+\S
+endsnippet
+
+snippet EE "Mathjax exists" iA
+\exists
+endsnippet
+
+snippet AA "forall" iA
+\forall
+endsnippet
+
+snippet nabl "nabla" iA
+\nabla
+endsnippet
+
+snippet xx "cross" iA
+\times
+endsnippet
+
+snippet '***' "cdot" iA
+\cdot
+endsnippet
+
+priority 100
+snippet -> "to" iA
+\to
+endsnippet
+
+snippet !> "mapsto" iA
+\mapsto
+endsnippet
+
+snippet '\\\' "setminus" iA
+\setminus
+endsnippet
+
+snippet >> ">>" iA
+\gg
+endsnippet
+
+snippet << "<<" iA
+\ll
+endsnippet
+
+snippet uar "Mathjax uparrow" i
+\uparrow
+endsnippet
+
+snippet dar "Mathjax downarrow" i
+\downarrow
+endsnippet
+
+snippet udar "Mathjax updownarrow" i
+\updownarrow
+endsnippet
+
+snippet ~~~ "~" iA
+\sim
+endsnippet
+
+priority 1000
+snippet \|| "Mathjax parallel sign" iA
+\parallel
+endsnippet
+
+snippet |\ "Mathjax mid sign" iA
+\mid
+endsnippet
+
+snippet subs "subset" i
+\subset
+endsnippet
+
+snippet notin "not in " iA
+\not\in
+endsnippet
+
+snippet in "in" i
+\in
+endsnippet
+
+snippet Nn "cap" iA
+\cap
+endsnippet
+
+snippet UU "cup" iA
+\cup
+endsnippet
+
+snippet uuu "bigcup" iA
+\bigcup_{${1:i \in ${2: I}}} $0
+endsnippet
+
+snippet nnn "bigcap" iA
+\bigcap_{${1:i \in ${2: I}}} $0
+endsnippet
+
+snippet OO "emptyset" iA
+\emptyset
+endsnippet
+
+snippet <! "normal" iA
+\triangleleft
+endsnippet
+
+snippet <> "hokje" iA
+\diamond
+endsnippet
+
+priority 300
+snippet dint "integral" wA
+\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
+endsnippet
+
+snippet sum "Mathjax sum symbol" w
+\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+endsnippet
+
+snippet taylor "taylor" w
+\sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
+endsnippet
+
+snippet lim "limit" w
+\lim_{${1:n} \to ${2:\infty}} 
+endsnippet
+
+snippet limsup "limsup" w
+\limsup_{${1:n} \to ${2:\infty}} 
+endsnippet
+
+snippet prod "product" w
+\prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
+endsnippet
+
+snippet part "d/dx" w
+\frac{\partial ${1:V}}{\partial ${2:x}} $0
+endsnippet
+
+snippet norm "norm" i
+\|$1\|$0
+endsnippet
+
+snippet mcal "mathcal" iA
+\mathcal{$1}$0
+endsnippet
+
+snippet invs "inverse" iA
+^{-1}
+endsnippet
+
+snippet compl "Mathjax complement" iA
+^{c}
+endsnippet
+
+# Matrices, absolute value and parenthises
+# ============================================================
+snippet 'big\(\)' "Mathjax big ()" biwr
+\big\\( ${1:${VISUAL}} \big\\)$0
+endsnippet
+
+snippet 'big{}' "Mathjax big {}" biwr
+\big\\{ ${1:${VISUAL}} \big\\}$0
+endsnippet
+
+snippet abs "Mathjax absolute value" i
+\left | $0 \right |
+endsnippet
+
+snippet dabs "Mathjax absolute value" i
+\left \| $0 \right \|
+endsnippet
+
+snippet txt "Mathjax text" iA
+\text{${1:${VISUAL}}}$0
+endsnippet
+
+snippet bmat "Mathjax in-line brackets matrix" wbA
+\begin{bmatrix} $0 \end{bmatrix}
+endsnippet
+
+snippet Bmat "Mathjax in-line curly braces matrix" wbA
+\begin{Bmatrix} $0 \end{Bmatrix}
+endsnippet
+
+snippet pmat "Mathjax in-line parenthesis matrix" wbA
+\begin{pmatrix} $0 \end{pmatrix}
+endsnippet
+
+snippet vmat "Mathjax in-line determinant matrix" wbA
+\begin{vmatrix} $0 \end{vmatrix}
+endsnippet
+
+snippet Vmat "Mathjax in-line double absolute values matrix" wbA
+\begin{Vmatrix} $0 \end{Vmatrix}
+endsnippet
+
+# type "((l|r)|(b))n,nm" Where either `l or r` as separators, `b` as the
+# boundary type , and `n,n` as the matrix size (rows, column). No spaces and
+# ignore parenthesis, and can't have both separators and boundary together.
+snippet '\b(i)?(((l)?(r)?)(b|B|v|V|p?))(\d+,\d+)m' "Mathjax matrices" rA
+`!p
+inline = match.group(1)
+left = match.group(4) # left matrix separator
+right = match.group(5) # right matrix separator
+boundary = match.group(6) # boundary type
+
+# Determine if in-line or block
+if inline:
+	inline = " "
+else:
+	inline = "\n"
+
+if left or right:
+	# Left boundary with right separator. Default boundary is "|"
+	if left and right == None:
+		if boundary:
+			left = "\\left" + boundaries[f"{boundary}"][0]
+			right = "\\right|"
+		else:
+			left = "\\left|"
+			right = "\\right|"
+	# Right boundary only
+	elif left == None and right:
+		if boundary:
+			left = "\\left."
+			right = "\\right" + boundaries[f"{boundary}"][1]
+		else:
+			left = "\\left."
+			right = "\\right|"
+	# Left and right separator
+	elif left and right:
+		if boundary:
+			left = "\\left" + boundaries[f"{boundary}"][0]
+			right = "\\right" + boundaries[f"{boundary}"][1]
+		else:
+			left = "\\left|"
+			right = "\\right|"
+	# Remove boundary
+	boundary = ""
+elif boundary:
+	# No separator
+	left = ""
+	right = ""
+else:
+	# No boundary and separator
+	left = ""
+	right = ""
+	boundary = ""
+# Matrix size
+size = match.group(7).split(",")
+# LaTeX matrix wrapper
+begin = left + "\\begin{" + boundary + "matrix}" + inline
+end = inline + "\\end{" + boundary + "matrix}" + right + "$0"
+result = "" # result value
+placeholder = 1 # placeholder number for snippet jumps
+
+for column in range(0, int(size[0])):
+	result = result + "${" + f"{placeholder}:{placeholder}" + "}"
+	placeholder = placeholder + 1
+	for row in range(1, int(size[1])):
+		result = result + " & ${" f"{placeholder}:{placeholder}" + "}"
+		placeholder = placeholder + 1
+	result = result + " \\\\\\\\" + inline
+
+# removes unnecessary backslashes and wraps with LaTeX matrix wrapper
+snip.rv = begin + result[:-6] + end
+`
+endsnippet
+

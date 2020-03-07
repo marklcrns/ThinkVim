@@ -1,5 +1,5 @@
 let g:goyo_width=100 "(default: 80)
-let g:goyo_height=90 "(default: 85%)
+let g:goyo_height=100 "(default: 85%)
 let g:goyo_linenr=1 "(default: 0)
 
 " Disable visual candy in Goyo mode
@@ -35,7 +35,7 @@ function! s:goyo_leave()
     silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
 	endif
 
-	set signcolumn=yes
+	set signcolumn=yes:2
 	set showmode
 	set showcmd
 	set scrolloff=5

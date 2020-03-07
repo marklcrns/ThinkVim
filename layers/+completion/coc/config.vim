@@ -50,8 +50,8 @@ augroup end
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Snippets jump
-let g:coc_snippet_next = '<CR>'
-let g:coc_snippet_prev = '<S-Tab>'
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
 
 " Use <TAB> for select text for visual placeholder of snippet.
 " Visual mode and other Ultisnips tricks tutorial blog
@@ -59,22 +59,19 @@ let g:coc_snippet_prev = '<S-Tab>'
 vmap <TAB> <Plug>(coc-snippets-select)
 
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable()  ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? coc#_select_confirm() :
+    \ coc#expandableOrJumpable()  ?
+    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 
 " Integration with delimitMate plugin
 inoremap <silent><expr> <CR>
-     \ delimitMate#WithinEmptyPair() ?
-     \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-     \ coc#jumpable() ?
-     \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-     \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    \ delimitMate#WithinEmptyPair() ?
+    \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+    \ "\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
