@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
-let g:netrw_dirhist_6='/home/marklcrns/.config/coc/ultisnips'
-let g:netrw_dirhist_5='/home/marklcrns/.cache/vim/dein/repos/github.com'
-let g:netrw_dirhist_4='/home/marklcrns/.config/coc/ultisnips'
-let g:netrw_dirhist_3='/home/marklcrns/Docs/wiki/.git'
-let g:netrw_dirhist_2='/home/marklcrns/.cache/vim'
-let g:netrw_dirhist_1='/home/marklcrns/Docs/wiki/references/md/vim/plugins'

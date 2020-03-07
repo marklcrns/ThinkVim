@@ -69,11 +69,14 @@
 
 # Recommended Linters
 1. npm install -g eslint stylelint prettier
-2. cd ~/.config/nvim
-3. source ./env/python3/env/bin/activate
-4. pip install flake pylint autopep8
-5. pip3 install flake pylint autopep8
+2. pip3 install vim-vint
+3. cd ~/.config/nvim
+4. source ./env/python/env/bin/activate
+5. pip install flake8 pylint autopep8
 6. deactivate
+7. source ./env/python3/env/bin/activate
+8. pip3 install flake8 pylint autopep8
+9. deactivate
 ```
 
 - Shell lint: [shellcheck.net](https://www.shellcheck.net/)

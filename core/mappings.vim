@@ -309,6 +309,8 @@ nnoremap dol :diffget LO<CR>
 " Quit nvim with an error code. Useful when aborting git mergetool or git commit
 nnoremap <Leader><Leader>q :cquit<CR>
 
+nnoremap <Leader>dif :vert diffsplit $HOME/
+
 " Allow <Esc> to exit terminal-mode back to normal:
 tnoremap <Esc> <C-\><C-n>
 
