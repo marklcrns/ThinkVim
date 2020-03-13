@@ -125,12 +125,6 @@ augroup VimwikiCustomMappings
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <S-tab>
         \ vimwiki#tbl#kbd_shift_tab()
 
-  autocmd Filetype vimwiki inoremap <silent><buffer><expr> <C-j>
-        \ vimwiki#tbl#kbd_tab()
-
-  autocmd Filetype vimwiki inoremap <silent><buffer><expr> <C-k>
-        \ vimwiki#tbl#kbd_shift_tab()
-
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <CR>
         \ delimitMate#WithinEmptyPair() ?
         \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :

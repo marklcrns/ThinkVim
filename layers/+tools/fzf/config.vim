@@ -69,8 +69,7 @@ endfunction
 
 " Files + devicons
 function! Fzf_dev()
-
-let l:fzf_files_options = ' -m --bind f1:toggle-preview-wrap,f2:toggle-preview,ctrl-l:cancel,ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-a:select-all --preview "bat --color always --style numbers {2..}"'
+  let l:fzf_files_options = ' -m --bind f1:toggle-preview-wrap,f2:toggle-preview,ctrl-l:cancel,ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-a:select-all --preview "bat --color always --style numbers {2..}"'
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')

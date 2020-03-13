@@ -89,10 +89,10 @@ if dein#tap('coc.nvim')
   " use normal command like `<leader>xi(`
   nmap <leader>x  <Plug>(coc-cursors-operator)
   " coc-explorer
-  noremap <silent> <leader>ce :execute 'CocCommand explorer' .
-        \ ' --toggle' .
-        \ ' --sources=buffer+,file+' .
-        \ ' --file-columns=git,selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
+  " noremap <silent> <leader>ce :execute 'CocCommand explorer' .
+  "      \ ' --toggle' .
+  "      \ ' --sources=buffer+,file+' .
+  "      \ ' --file-columns=git,selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
 
   " Movement within 'ins-completion-menu'
   imap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>"
@@ -465,11 +465,11 @@ endif
 
 if dein#tap('calendar.vim')
   nnoremap <LocalLeader>ct :Calendar -view=clock<CR>
-  nnoremap <LocalLeader>cc :Calendar -first_day=monday<CR>
+  nnoremap <LocalLeader>cc :Calendar -first_day=sunday<CR>
   nnoremap <LocalLeader>cd :Calendar -view=day<CR>
   nnoremap <LocalLeader>cw :Calendar -view=week<CR>
-  nnoremap <LocalLeader>cf :Calendar -view=year -first_day=monday<CR>
-  nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=monday<CR>
+  nnoremap <LocalLeader>cf :Calendar -view=year -first_day=sunday<CR>
+  nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=sunday<CR>
   nnoremap <LocalLeader>ch :Calendar -view=day -split=horizontal -position=below -height=12<CR>
 endif
 

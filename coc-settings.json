@@ -115,7 +115,7 @@
 
   //-------- Code Spell Checker Configuration --------
   // Enable / Disable the spell checker.
-  "cSpell.enabled": true,
+  "cSpell.enabled": false,
   // The Language local to use when spell checking. "en" and "en-GB" are currently supported.
   "cSpell.language": "en",
   // Specify file types to spell check.

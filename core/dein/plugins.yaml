@@ -221,12 +221,7 @@
 - repo: iamcco/markdown-preview.nvim
   on_ft: [markdown, pandoc.markdown, rmd]
   build: 'cd app & yarn install'
-  hook_source: |
-      let g:mkdp_auto_start = 1
-      let g:mkdp_auto_close = 0
-      let g:mkdp_auto_start = 0
-      let g:mkdp_command_for_global = 1
-      let g:mkdp_open_to_the_world = 1
+  hook_source: source $VIM_PATH/layers/+lang/markdown/markdown-preview.nvim/config.vim
 
 - repo: junegunn/vim-emoji
   on_ft: [markdown, vim]

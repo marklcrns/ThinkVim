@@ -11,12 +11,23 @@ noremap X "_x
 " Prevent selecting and pasting from overwriting what you originally copied.
 xnoremap p pgvy
 
-"yank to end
+" yank to end
 nnoremap Y y$
 
-" Format and indent pasted text automatically. Also select pasted texts after
-nnoremap p p=`]
-nnoremap P P=`]
+" Duplicate current line
+inoremap <C-y> <ESC>yypA
+
+fun! AutoIndentPaste()
+  " Don't apply on these filetypes
+  if &filetype =~ 'markdown\|vimwiki\|text|\snippets\|tex'
+    return
+  endif
+  " Format and indent pasted text automatically. Also select pasted texts after
+  nnoremap <buffer> p p=`]
+  nnoremap <buffer> P P=`]
+endfun
+
+autocmd BufWritePre * call AutoIndentPaste()
 
 " Select last paste
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
@@ -47,6 +58,8 @@ inoremap <Esc> <Esc>`^
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
 imap jj <Esc>`^
 imap kk <Esc>`^
+smap jj <Esc>`^
+smap kk <Esc>`^
 
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>

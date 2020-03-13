@@ -65,11 +65,11 @@ inoremap <silent><expr> <Tab>
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
 
-" Integration with delimitMate plugin
+" Integration with delimitMate plugin. Also ignores completion.
 inoremap <silent><expr> <CR>
     \ delimitMate#WithinEmptyPair() ?
     \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-    \ "\<CR>"
+    \ pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
