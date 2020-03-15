@@ -91,7 +91,7 @@ snippet vf "Open file link into vim"
 endsnippet
 
 snippet img "Image tag for files" w
-![$1](file:../../../$2)$0
+![$1](../../../$2)$0
 endsnippet
 
 snippet uimg "Image tag for urls" w
@@ -287,8 +287,37 @@ endsnippet
 
 # ==========Math Note taking snippets========== #
 snippet tprob "Video lecture Timestamp math problem" bA
-- Problem ${1:1} ${2:1:00}
+- Problem ${1:1} (${2:1:00})
 * $$3$
+$0
+endsnippet
+
+# Usage: [3-5]?vidlec
+snippet '([3-5])?vidlec' "Math video lecture snippet" brA
+`!p
+header_ct = match.group(1)
+
+if not header_ct:
+	header_ct = 3
+else:
+	header_ct = int(header_ct)
+
+snip.rv = header_ct * "#"
+` Video Lecture$1
+
+	- [VIDEO$1: $2]($3)
+
+`!p
+header_ct = match.group(1)
+
+if not header_ct:
+	header_ct = 4
+else:
+	header_ct = int(header_ct) + 1
+
+snip.rv = header_ct * "#"
+` Video Lecture$1 Notes
+
 $0
 endsnippet
 
@@ -426,12 +455,12 @@ snippet (\d+|[a-kx-z])deg "Mathjax degrees symbol" irA
 `!p snip.rv = match.group(1)`^{\circ}
 endsnippet
 
-snippet (\d+)pi "Mathjax auto pi symbol" irA
-`!p snip.rv = match.group(1)`\pi
+snippet pi "Mathjax pi symbol" iw
+\pi
 endsnippet
 
-snippet pi "Mathjax pi symbol" i
-\pi
+snippet (\d+)pi "Mathjax auto pi symbol" irA
+`!p snip.rv = match.group(1)`\pi
 endsnippet
 
 snippet 'iff' "Mathjax if and only if sign" i

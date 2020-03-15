@@ -11,7 +11,7 @@ noremap X "_x
 " Prevent selecting and pasting from overwriting what you originally copied.
 xnoremap p pgvy
 
-" yank to end
+" Yank to end
 nnoremap Y y$
 
 " Duplicate current line
@@ -163,6 +163,20 @@ endfunction
 " nnoremap k gk
 " vnoremap j gj
 " vnoremap k gk
+
+" Cycle through vim register +abjkx.
+" Register `+` as the system clipboard and `x` as temp holder
+" `rj` cycles forward, `rk` cycles backward
+nnoremap <Leader>rj :let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
+nnoremap <Leader>rk :let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+" Paste register `+` then cycle through registers
+nnoremap <Leader>rJ p:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
+nnoremap <Leader>rK p:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+" Copy selected then cycle through registers
+vnoremap <Leader>rj y<ESC>:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
+vnoremap <Leader>rk y<ESC>:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+" Display register +abjk
+nnoremap <Leader>rg :reg +abjk<CR>
 
 " Makes Relative Number jumps work with text wrap
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
