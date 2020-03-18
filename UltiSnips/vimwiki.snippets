@@ -143,7 +143,7 @@ endsnippet
 snippet meta "Metas template" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
-summary: ${2:CONTENT SUMMARY}
+summary: $2
 author: ${3:`whoami`}
 date: `date '+%Y-%m-%d'`
 ---
@@ -155,7 +155,7 @@ endsnippet
 snippet head "Vimwiki header" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
-summary: ${2:CONTENT SUMMARY}
+summary: $2
 author: ${3:`whoami`}
 date: `date '+%Y-%m-%d'`
 ---
@@ -384,7 +384,7 @@ endsnippet
 snippet econhead "Vimwiki ECON 121 header" bA
 ---
 title: ECON 121 Chapter ${1:0}
-summary: ${2:CONTENT SUMMARY}
+summary: $2
 author: ${3:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
 ---
