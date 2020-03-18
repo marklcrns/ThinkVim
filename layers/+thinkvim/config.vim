@@ -443,6 +443,7 @@ endif
 
 if dein#tap('thesaurus_query.vim')
   nnoremap <silent> <Leader>K :<C-u>ThesaurusQueryReplaceCurrentWord<CR>
+  vnoremap <silent> <Leader>K y:ThesaurusQueryReplace <C-r>"<CR>
 endif
 
 if dein#tap('neoformat')

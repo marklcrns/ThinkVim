@@ -41,7 +41,7 @@ nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
 
 " Write buffer (save)
 nnoremap <leader>w :w<CR>
-nnoremap <leader>W :wa<CR>
+vnoremap <leader>w :<Esc>w<CR>
 " imap <C-S> <esc>:w<CR>
 imap <C-Q> <esc>:wq<CR>
 
@@ -212,6 +212,10 @@ xnoremap <Leader>rl gqa
 
 " Duplicate paragraph
 nnoremap <leader>rp yap<S-}>p
+
+" Duplicate selected line
+" Ref: https://stackoverflow.com/a/3806683/11850077
+vnoremap <Leader>rp y`]p
 
 " Change current word in a repeatable manner
 nnoremap <leader>rn *``cgn
