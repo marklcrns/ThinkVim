@@ -98,8 +98,16 @@ snippet uimg "Image tag for urls" w
 ![$1]($2)
 endsnippet
 
-snippet ref "Markdown anchor link" bA
+snippet ref "Markdown anchor link" w
 [${1:${VISUAL}}]($0#$1)
+endsnippet
+
+snippet '([A-Za-z-]*)\&ref$' "Word or pharse definition auto" wrA
+[`!p
+snip.rv = match.group(1).replace("-", " ").capitalize()
+`]($1#`!p
+snip.rv = match.group(1).lower()
+`)$0
 endsnippet
 
 snippet anc "Html anchor" bA
@@ -135,7 +143,8 @@ endsnippet
 snippet meta "Metas template" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
-author: ${2:`whoami`}
+summary: ${2:CONTENT SUMMARY}
+author: ${3:`whoami`}
 date: `date '+%Y-%m-%d'`
 ---
 
@@ -146,7 +155,8 @@ endsnippet
 snippet head "Vimwiki header" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
-author: ${2:`whoami`}
+summary: ${2:CONTENT SUMMARY}
+author: ${3:`whoami`}
 date: `date '+%Y-%m-%d'`
 ---
 
@@ -342,11 +352,40 @@ snip.rv = header_ct * "#"
 $0
 endsnippet
 
-# ==========ECON Note taking snippets========== #
-snippet econhead "Vimwiki header" bA
+# ==========CISC 190 Note taking snippets========== #
+snippet cischead "Vimwiki CISC 190 Module header" bA
+---
+title: CISC 190 Module ${1:0}
+summary: Module $1 notes and exercises
+author: ${3:Mark Lucernas}
+date: `date '+%Y-%m-%d'`
+---
+
+
+# Module $1: $0
+
+## Notes
+
+	- [Module $1](../notes/m-$1) -- Chapter 
+
+## Homeworks
+
+### Read and Try
+
+### Technical Interview Practice
+
+### Explain
+
+### Reflect
+
+endsnippet
+
+# ==========ECON 121 Note taking snippets========== #
+snippet econhead "Vimwiki ECON 121 header" bA
 ---
 title: ECON 121 Chapter ${1:0}
-author: ${2:Mark Lucernas}
+summary: ${2:CONTENT SUMMARY}
+author: ${3:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
 ---
 

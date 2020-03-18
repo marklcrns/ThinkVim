@@ -18,9 +18,9 @@ if dein#tap('coc.nvim')
   nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
   " Resume latest coc list
   nnoremap <silent> <leader>cr  :<C-u>CocListResume<CR>
-  " Use `[c` and `]c` for navigate diagnostics
-  nmap <silent> ]c <Plug>(coc-diagnostic-prev)
-  nmap <silent> [c <Plug>(coc-diagnostic-next)
+  " Use `[d` and `]d` for navigate diagnostics
+  nmap <silent> [d <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]d <Plug>(coc-diagnostic-next)
   " Remap for rename current word
   nmap <leader>cn <Plug>(coc-rename)
   " Remap for format selected region
@@ -404,19 +404,14 @@ endif
 if dein#tap('vimux')
   " Prompt for a command to run
   map <Leader>vc :VimuxPromptCommand<CR>
-
   " Run last command executed by VimuxRunCommand
   map <Leader>vl :VimuxRunLastCommand<CR>
-
   " Inspect runner pane
   map <Leader>vi :VimuxInspectRunner<CR>
-
   " Close vim tmux runner opened by VimuxRunCommand
   map <Leader>vq :VimuxCloseRunner<CR>
-
   " Interrupt any command running in the runner pane
   map <Leader>vx :VimuxInterruptRunner<CR>
-
   " Zoom the runner pane (use <bind-key> z to restore runner pane)
   map <Leader>vf :VimuxZoomRunner<CR>
 endif

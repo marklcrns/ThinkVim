@@ -342,6 +342,10 @@ nnoremap <Leader><Leader>q :cquit<CR>
 
 nnoremap <Leader>dif :vert diffsplit $HOME/
 
+" Fixes `[c` and `]c` not working
+nnoremap [c [c
+nnoremap ]c ]c
+
 " Allow <Esc> to exit terminal-mode back to normal:
 tnoremap <Esc> <C-\><C-n>
 
