@@ -140,7 +140,7 @@ snippet hit "Html italic tag" wA
 <i>${1:${VISUAL}}</i>$0
 endsnippet
 
-snippet meta "Metas template" bA
+snippet meta "Meta deta template" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
 summary: $2
@@ -152,7 +152,7 @@ date: `date '+%Y-%m-%d'`
 $0
 endsnippet
 
-snippet head "Vimwiki header" bA
+snippet temp "Vimwiki document template" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
 summary: $2
@@ -166,6 +166,8 @@ date: `date '+%Y-%m-%d'`
 
 References
 ---
+
+	- 
 
 endsnippet
 
@@ -266,12 +268,47 @@ snippet ttime "Video lecture timestamp item" iA
 $0
 endsnippet
 
+# VERSION 1
 # Usage: (00:00:00|00:00)[youtube-url]y
-snippet '\(((\d{1,2}:)?(\d{1,2}):(\d{2}))\)((https:\/\/www\.|www\.)?youtube.com.*)y' "Youtube video lecture time stamp with link" wrA
-[(`!p snip.rv = match.group(1)`)](`!p
-hours = match.group(2)
+#snippet '\(((\d{1,2}:)?(\d{1,2}):(\d{2}))\)((https:\/\/www\.|www\.)?youtube.com.*)y' "Youtube video lecture time stamp with link" wrA
+#[(`!p snip.rv = match.group(1)`)](`!p
+#hours = match.group(2)
+#
+## check if hours exist
+#if hours:
+#	hours = int(hours).rstrip(":")
+#else:
+#	hours = 0
+#
+#minutes = int(match.group(3))
+#seconds = int(match.group(4))
+#
+#url = match.group(5)
+#link = ""
+## strip unnecessary url features
+#for i in range(0, len(url)):
+#	if url[i] != "&":
+#		link += url[i]
+#	else:
+#		break
+#
+## check if valid link
+#if "www" not in link:
+#	link = "https://www." + link
+#elif "https://" not in link:
+#  link = "https://" + link
+#
+## convert time to seconds then append to link
+#snip.rv = link + "&t=" + str((hours * 60) + (minutes * 60) + seconds)
+#`)
+#endsnippet
 
+# VERSION 2
+# Usage: (00:00:00|00:00)[youtube-url]y
+snippet '((\d{1,2}:)?(\d{1,2}):(\d{2}))((https:\/\/www\.|www\.)?youtube.com\/)((embed\/)?(.*))' "Youtube video lecture time stamp with link" wrA
+[(`!p snip.rv = match.group(1)`)](`!p
 # check if hours exist
+hours = match.group(2)
 if hours:
 	hours = int(hours).rstrip(":")
 else:
@@ -279,25 +316,69 @@ else:
 
 minutes = int(match.group(3))
 seconds = int(match.group(4))
-
-url = match.group(5)
+home_url = match.group(5)
+http_url = match.group(6)
+video_url = match.group(7)
+embed = match.group(8)
+video_id = match.group(9)
 link = ""
-# strip unnecessary url features
-for i in range(0, len(url)):
-	if url[i] != "&":
-		link += url[i]
+
+# check if valid home url
+if "www" not in http_url:
+	link = "https://www." + home_url
+elif "https://" not in http_url:
+	link = "https://" + home_url
+else:
+	link = home_url
+
+# check if video_url is embedded
+if embed:
+	# exclude embed and replace with the standard "watch?v="
+	video_url = "watch?v=" + video_id
+
+# strip unnecessary video_url features
+for i in range(0, len(video_url)):
+	if video_url[i] != "&":
+		link += video_url[i]
 	else:
 		break
 
-# check if valid link
-if "www" not in link:
-	link = "https://www." + link
-elif "https://" not in link:
-  link = "https://" + link
-
-# convert time to seconds then append to link
+# convert timestamp to seconds then append to link
 snip.rv = link + "&t=" + str((hours * 60) + (minutes * 60) + seconds)
 `)
+endsnippet
+
+snippet '((https:\/\/www\.|www\.)?youtube.com\/)((embed\/)?(.*))l' "Clean and create Youtube link" wrA
+[VIDEO: $1](`!p
+home_url = match.group(1)
+http_url = match.group(2)
+video_url = match.group(3)
+embed = match.group(4)
+video_id = match.group(5)
+link = ""
+
+# check if valid home url
+if "www" not in http_url:
+	link = "https://www." + home_url
+elif "https://" not in http_url:
+	link = "https://" + home_url
+else:
+	link = home_url
+
+# check if video_url is embedded
+if embed:
+	# exclude embed and replace with the standard "watch?v="
+	video_url = "watch?v=" + video_id
+
+# strip unnecessary video_url features
+for i in range(0, len(video_url)):
+	if video_url[i] != "&":
+		link += video_url[i]
+	else:
+		break
+
+snip.rv = link
+`)$0
 endsnippet
 
 snippet def "Word or phrase definition" bA
@@ -352,8 +433,37 @@ snip.rv = header_ct * "#"
 $0
 endsnippet
 
+# ==========MATH 141 Note taking snippets========== #
+snippet mathtemp "Vimwiki ECON 121 document template" bA
+---
+title: MATH 141 Chapter ${1:0} Notes
+summary: $2
+author: ${3:Mark Lucernas}
+date: `date '+%Y-%m-%d'`
+---
+
+# Chapter $1: $2
+
+## $1.1 $4
+
+## $1.2 $5
+
+## $1.3 $6
+
+## $1.4 $7
+
+## $1.5 $8
+
+
+References
+---
+
+	- 
+
+endsnippet
+
 # ==========CISC 190 Note taking snippets========== #
-snippet cischead "Vimwiki CISC 190 Module header" bA
+snippet cisctemp "Vimwiki CISC 190 Module document template" bA
 ---
 title: CISC 190 Module ${1:0}
 summary: Module $1 notes and exercises
@@ -381,7 +491,7 @@ date: `date '+%Y-%m-%d'`
 endsnippet
 
 # ==========ECON 121 Note taking snippets========== #
-snippet econhead "Vimwiki ECON 121 header" bA
+snippet econtemp "Vimwiki ECON 121 document template" bA
 ---
 title: ECON 121 Chapter ${1:0}
 summary: $2
@@ -879,7 +989,7 @@ snippet invs "inverse" iA
 ^{-1}
 endsnippet
 
-snippet compl "Mathjax complement" iA
+snippet comp "Mathjax complement" i
 ^{c}
 endsnippet
 
