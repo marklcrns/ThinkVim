@@ -385,6 +385,8 @@ noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
 " Compile current java file
 autocmd FileType java nnoremap <buffer><silent><Leader>jc :!javac %<CR>
+" Save, complie, and run java file in current buffer <C-c> to exit program
+autocmd FileType java nnoremap <buffer><silent><Leader>jr :w<CR>:!javac % && java %:r<CR>
 " Autocompile Java and run last Vimux command
 autocmd FileType java nnoremap <buffer><silent><Leader>jj :call JavaCompile()<CR>
 function! JavaCompile()

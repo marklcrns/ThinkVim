@@ -143,9 +143,9 @@ endsnippet
 snippet meta "Meta deta template" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
-summary: $2
-author: ${3:`whoami`}
+author: ${2:`whoami`}
 date: `date '+%Y-%m-%d'`
+summary: $3
 ---
 
 
@@ -155,9 +155,9 @@ endsnippet
 snippet temp "Vimwiki document template" bA
 ---
 title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ')`}
-summary: $2
-author: ${3:`whoami`}
+author: ${2:`whoami`}
 date: `date '+%Y-%m-%d'`
+summary: $3
 ---
 
 
@@ -172,12 +172,21 @@ References
 endsnippet
 
 snippet todo "Todo list template" bA
+---
+title: To-do list for `!p snip.rv = fn.rstrip('.md')`
+author: Mark Lucernas
+date: `date '+%Y-%m-%d'`
+summary: `date '+%A'`
+---
+
+
 # To-do `!p snip.rv = fn.rstrip('.md')`
 
 - [ ] $0
+
 endsnippet
 
-snippet scratch "Scratch Notes" bA
+snippet xnotes "Scratch Notes" bA
 # Scratch
 
 - 
@@ -348,13 +357,13 @@ snip.rv = link + "&t=" + str((hours * 60) + (minutes * 60) + seconds)
 `)
 endsnippet
 
-snippet '((https:\/\/www\.|www\.)?youtube.com\/)((embed\/)?(.*))l' "Clean and create Youtube link" wrA
-[VIDEO: $1](`!p
-home_url = match.group(1)
-http_url = match.group(2)
-video_url = match.group(3)
-embed = match.group(4)
-video_id = match.group(5)
+snippet '(\()?((https:\/\/www\.|www\.)?youtube.com\/)((embed\/)?(.*))l' "Clean and create Youtube link" wrA
+`!p
+home_url = match.group(2)
+http_url = match.group(3)
+video_url = match.group(4)
+embed = match.group(5)
+video_id = match.group(6)
 link = ""
 
 # check if valid home url
@@ -377,8 +386,12 @@ for i in range(0, len(video_url)):
 	else:
 		break
 
-snip.rv = link
-`)$0
+# If inside markdown link wrapper, don't wrap, else, wrap it.
+if match.group(1):
+  snip.rv = match.group(1) + link
+else:
+  snip.rv = "[VIDEO $1: $2](" + link + ")$0"
+`
 endsnippet
 
 snippet def "Word or phrase definition" bA
@@ -387,14 +400,18 @@ snippet def "Word or phrase definition" bA
 	- $0
 endsnippet
 
-snippet '(.*)\&def$' "Word or pharse definition auto" brA
+# Usage: definition name&def or **Definition name**&def
+snippet '(\*\*)?([^._*()\[\]#$]+)(\*\*)?&def$' "Word or pharse definition auto" brA
 <a name="`!p
-snip.rv = match.group(1).lower().replace(" ", "-")
+snip.rv = match.group(2).lower().replace(" ", "-")
 `">**`!p
-snip.rv = match.group(1).capitalize()
-`**</a>
-
-	- $0
+snip.rv = match.group(2).capitalize()
+`**</a>`!p
+if match.group(1) and match.group(3):
+  snip.rv = ""
+else:
+  snip.rv = "\n\n  - $0"
+`
 endsnippet
 
 # ==========Math Note taking snippets========== #
@@ -437,9 +454,9 @@ endsnippet
 snippet mathtemp "Vimwiki ECON 121 document template" bA
 ---
 title: MATH 141 Chapter ${1:0} Notes
-summary: $2
-author: ${3:Mark Lucernas}
+author: ${2:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
+summary: $3
 ---
 
 # Chapter $1: $2
@@ -466,9 +483,9 @@ endsnippet
 snippet cisctemp "Vimwiki CISC 190 Module document template" bA
 ---
 title: CISC 190 Module ${1:0}
-summary: Module $1 notes and exercises
-author: ${3:Mark Lucernas}
+author: ${2:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
+summary: Module $1 notes and exercises
 ---
 
 
@@ -494,9 +511,9 @@ endsnippet
 snippet econtemp "Vimwiki ECON 121 document template" bA
 ---
 title: ECON 121 Chapter ${1:0}
-summary: $2
-author: ${3:Mark Lucernas}
+author: ${2:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
+summary: $3
 ---
 
 
@@ -682,7 +699,7 @@ snippet 'pm' "Mathjax plus minus sign" i
 \pm
 endsnippet
 
-snippet thet "Mathjax theta symbol" i
+snippet 0- "Mathjax theta symbol" iA
 \theta
 endsnippet
 
@@ -1006,7 +1023,7 @@ snippet nphan "Mathjax negative phantom placeholder" wA
 endsnippet
 
 snippet #col "Mathjax text color" wA
-\color{$1}$0
+\color{#$1}{$2}$0
 endsnippet
 
 # Matrices, absolute value and parenthises
