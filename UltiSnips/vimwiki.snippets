@@ -173,10 +173,29 @@ endsnippet
 
 snippet todo "Todo list template" bA
 ---
-title: To-do list for `!p snip.rv = fn.rstrip('.md')`
+title: To-do list for `!p
+date = fn.rstrip('.md')
+snip.rv = date
+`
 author: Mark Lucernas
-date: `date '+%Y-%m-%d'`
-summary: `date '+%A'`
+date: `!p
+import datetime
+date = fn.rstrip('.md')
+date = date.split("-")
+date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
+snip.rv = str(date).split()[0]
+`
+summary: `!p
+weekdays = {
+	"0": "Monday",
+	"1": "Tuesday",
+	"2": "Wednesday",
+	"3": "Thursday",
+	"4": "Friday",
+	"5": "Saturday",
+	"6": "Sunday"
+}
+snip.rv = weekdays[str(date.weekday())]`
 ---
 
 
@@ -274,12 +293,11 @@ endsnippet
 
 snippet ttime "Video lecture timestamp item" iA
 - ${1:title} ${2:1:00}
-$0
 endsnippet
 
 # VERSION 1
 # Usage: (00:00:00|00:00)[youtube-url]y
-#snippet '\(((\d{1,2}:)?(\d{1,2}):(\d{2}))\)((https:\/\/www\.|www\.)?youtube.com.*)y' "Youtube video lecture time stamp with link" wrA
+#snippet '\(((\d{1,2}:)?(\d{1,2}):(\d{2}))\)((https:\/\/www\.|www\.)?youtube.com.*)&y' "Youtube video lecture time stamp with link" wrA
 #[(`!p snip.rv = match.group(1)`)](`!p
 #hours = match.group(2)
 #
@@ -312,9 +330,10 @@ endsnippet
 #`)
 #endsnippet
 
+# TODO: Truncate regex match to fix "maxmempattern" error
 # VERSION 2
 # Usage: (00:00:00|00:00)[youtube-url]y
-snippet '((\d{1,2}:)?(\d{1,2}):(\d{2}))((https:\/\/www\.|www\.)?youtube.com\/)((embed\/)?(.*))' "Youtube video lecture time stamp with link" wrA
+snippet '((\d{1,2}:)?(\d{1,2}):(\d{2}))((https:\/\/)?(www\.)?(you.+\/))((embed\/)?(.*))&y' "Youtube video lecture time stamp with link" wrA
 [(`!p snip.rv = match.group(1)`)](`!p
 # check if hours exist
 hours = match.group(2)
@@ -327,18 +346,24 @@ minutes = int(match.group(3))
 seconds = int(match.group(4))
 home_url = match.group(5)
 http_url = match.group(6)
-video_url = match.group(7)
-embed = match.group(8)
-video_id = match.group(9)
+www_url = match.group(7)
+domain_url = match.group(8)
+video_url = match.group(9)
+embed = match.group(10)
+video_id = match.group(11)
 link = ""
 
 # check if valid home url
-if "www" not in http_url:
-	link = "https://www." + home_url
-elif "https://" not in http_url:
-	link = "https://" + home_url
-else:
-	link = home_url
+#if not http_url or not www_url:
+#  if not http_url and not www_url:
+#    link = "https://www." + domain_url
+#  if not http_url:
+#    link = "https://" + www_url + domain_url
+#  if not www_url:
+#    link = http_url + "www." + domain_url
+#else:
+#	link = http_url + www_url + domain_url
+link = "https://www.youtube.com/"
 
 # check if video_url is embedded
 if embed:
@@ -357,22 +382,28 @@ snip.rv = link + "&t=" + str((hours * 60) + (minutes * 60) + seconds)
 `)
 endsnippet
 
-snippet '(\()?((https:\/\/www\.|www\.)?youtube.com\/)((embed\/)?(.*))l' "Clean and create Youtube link" wrA
+snippet '(\()?((https:\/\/)?(www\.)?(you.+\/))((embed\/)?(.*))&y' "Clean and create Youtube link" wrA
 `!p
 home_url = match.group(2)
 http_url = match.group(3)
-video_url = match.group(4)
-embed = match.group(5)
-video_id = match.group(6)
+www_url = match.group(4)
+domain_url = match.group(5)
+video_url = match.group(6)
+embed = match.group(7)
+video_id = match.group(8)
 link = ""
 
 # check if valid home url
-if "www" not in http_url:
-	link = "https://www." + home_url
-elif "https://" not in http_url:
-	link = "https://" + home_url
-else:
-	link = home_url
+#if not http_url or not www_url:
+#  if not http_url and not www_url:
+#    link = "https://www." + domain_url
+#  if not http_url:
+#    link = "https://" + www_url + domain_url
+#  if not www_url:
+#    link = http_url + "www." + domain_url
+#else:
+#	link = http_url + www_url + domain_url
+link = "https://www.youtube.com/"
 
 # check if video_url is embedded
 if embed:
@@ -632,7 +663,7 @@ endsnippet
 # Exponents, Superscript, Subscript
 # ============================================================
 
-snippet '(([A-Za-z0-9])|(\(.+\))|(\{.+\}))\^' "Mathjax auto exponent/superscript" bwrA
+snippet '(([A-Za-z0-9]+)|(\(.+\))|(\{.+\})|)\^' "Mathjax auto exponent/superscript" bwrA
 `!p snip.rv = match.group(1)`^{$1}$0
 endsnippet
 
@@ -1022,8 +1053,8 @@ snippet nphan "Mathjax negative phantom placeholder" wA
 \phantom{-}$0
 endsnippet
 
-snippet #col "Mathjax text color" wA
-\color{#$1}{$2}$0
+snippet #col "Mathjax text color" iA
+\color{#$1}{${2:${VISUAL}}}$0
 endsnippet
 
 # Matrices, absolute value and parenthises
