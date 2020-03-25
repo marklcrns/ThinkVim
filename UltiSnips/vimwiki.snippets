@@ -91,7 +91,7 @@ snippet vf "Open file link into vim"
 endsnippet
 
 snippet img "Image tag for files" w
-![$1](../../../$0)
+![$1](file:../../../$0)
 endsnippet
 
 snippet uimg "Image tag for urls" w
@@ -102,11 +102,12 @@ snippet ref "Markdown anchor link" w
 [${1:${VISUAL}}]($0#$1)
 endsnippet
 
-snippet '([A-Za-z-]*)\&ref$' "Word or pharse definition auto" wrA
+# Usage: &name-of-link&ref
+snippet '&?([A-Za-z- ]+)\&ref' "Word or pharse definition auto" wrA
 [`!p
-snip.rv = match.group(1).replace("-", " ").capitalize()
+snip.rv = match.group(1).replace("-", " ")
 `]($1#`!p
-snip.rv = match.group(1).lower()
+snip.rv = match.group(1).replace(" ", "-").lower()
 `)$0
 endsnippet
 
@@ -431,13 +432,13 @@ snippet def "Word or phrase definition" bA
 	- $0
 endsnippet
 
-# Usage: definition name&def or **Definition name**&def
-snippet '(\*\*)?([^._*()\[\]#$]+)(\*\*)?&def$' "Word or pharse definition auto" brA
+# Usage: &definition name&def or **Definition name**&def
+snippet '&?(\*\*)?([^._*()\[\]#$]+)(\*\*)?&def$' "Word or pharse definition auto" wrA
 <a name="`!p
-snip.rv = match.group(2).lower().replace(" ", "-")
+snip.rv = match.group(2).replace(" ", "-").lower()
 `">**`!p
 snip.rv = match.group(2).capitalize()
-`**</a>`!p
+`$1**</a>`!p
 if match.group(1) and match.group(3):
   snip.rv = ""
 else:
@@ -503,8 +504,9 @@ summary: $3
 ## $1.5 $8
 
 
-References
----
+<br>
+
+# References
 
 	- 
 
@@ -569,8 +571,9 @@ summary: $3
 ### $1.2.2
 
 
-References
----
+<br>
+
+# References
 
 Text Books
 
@@ -582,17 +585,17 @@ endsnippet
 
 # ====================Mathjax Snippets with Mathjax====================
 
-snippet btex "Mathjax block" bA
+snippet b$$ "Mathjax block" bA
 $$
 ${1:${VISUAL}}
 $$
 endsnippet
 
-snippet tex "Mathjax in-line" wA
+snippet $$ "Mathjax in-line" wA
 $${1:${VISUAL}}$$0
 endsnippet
 
-snippet txt "Mathjax text" wA
+snippet @@ "Mathjax text" wA
 \text{${1:${VISUAL}}}$0
 endsnippet
 
@@ -748,6 +751,10 @@ endsnippet
 
 snippet delt "Mathjax delta symbol" i
 \delta
+endsnippet
+
+snippet Delt "Mathjax Delta symbol" i
+\Delta
 endsnippet
 
 snippet eps "Mathjax epsilon symbol" i
@@ -1053,7 +1060,7 @@ snippet nphan "Mathjax negative phantom placeholder" wA
 \phantom{-}$0
 endsnippet
 
-snippet #col "Mathjax text color" iA
+snippet col# "Mathjax text color" iA
 \color{#$1}{${2:${VISUAL}}}$0
 endsnippet
 
