@@ -23,3 +23,20 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet temp "Java basic template" bA
+/*
+ * Filename: `!p snip.rv = fn`
+ *
+ * Created by: Mark Lucernas
+ *
+ * Date: `date '+%Y-%m-%d'`
+ */
+
+public class `!p snip.rv = fn.rstrip('.java')`
+{
+	public static void main(String[] args) {
+		$0
+	}
+}
+endsnippet

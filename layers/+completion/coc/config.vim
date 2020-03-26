@@ -69,7 +69,7 @@ inoremap <silent><expr> <Tab>
 inoremap <silent><expr> <CR>
     \ delimitMate#WithinEmptyPair() ?
     \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-    \ pumvisible() ? "\<C-]>" : "\<C-g>u\<CR>"
+    \ pumvisible() ? "\<C-]>\<CR>" : "\<C-g>u\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1

@@ -128,7 +128,7 @@ augroup VimwikiCustomMappings
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <CR>
         \ delimitMate#WithinEmptyPair() ?
         \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-        \ pumvisible() ? "\<C-]>" : "\<ESC>:VimwikiReturn 1 5\<CR>"
+        \ pumvisible() ? "\<C-]>\<CR>" : "\<ESC>:VimwikiReturn 1 5\<CR>"
 
   autocmd Filetype vimwiki inoremap <silent><buffer><S-CR> :VimwikiReturn 4 1<CR>
 augroup END
@@ -139,7 +139,7 @@ if !hasmapto('VimwikiReturn', 'i')
     inoremap <silent><buffer><expr> <CR>
           \ delimitMate#WithinEmptyPair() ?
           \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-          \ pumvisible() ? "\<C-]>" : "\<ESC>:VimwikiReturn 1 5\<CR>"
+          \ pumvisible() ? "\<C-]>\<CR>" : "\<ESC>:VimwikiReturn 1 5\<CR>"
   endif
   if maparg('<S-CR>', 'i') !~? '<Esc>:VimwikiReturn'
     inoremap <silent><buffer> <S-CR> <Esc>:VimwikiReturn 4 1<CR>
