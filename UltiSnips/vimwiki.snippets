@@ -177,16 +177,14 @@ snippet todo "Todo list template" bA
 ---
 title: To-do list for `!p
 date = fn.rstrip('.md')
-snip.rv = date
-`
+snip.rv = date `
 author: Mark Lucernas
 date: `!p
 import datetime
 date = fn.rstrip('.md')
 date = date.split("-")
 date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
-snip.rv = str(date).split()[0]
-`
+snip.rv = str(date).split()[0] `
 summary: `!p
 weekdays = {
 	"0": "Monday",

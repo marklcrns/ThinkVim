@@ -14,8 +14,8 @@ xnoremap p pgvy
 " Yank to end
 nnoremap Y y$
 
-" Duplicate current line
-inoremap <C-y> <ESC>yypA
+" Duplicate current line then enter line substitution
+inoremap <C-y> <ESC>yypV:s//g<Left><Left>
 
 fun! AutoIndentPaste()
   " Don't apply on these filetypes

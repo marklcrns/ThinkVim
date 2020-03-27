@@ -172,6 +172,9 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Auto-resize splits when Vim gets resized.
 autocmd VimResized * wincmd =
 
+" autoread file to check and update new changes in current buffer
+autocmd FocusGained,BufEnter * :checktime
+
 " Auto capitalization in start of sentences
 " Ref: https://davidxmoody.com/2014/vim-auto-capitalisation/
 " func! WordProcessorMode()
