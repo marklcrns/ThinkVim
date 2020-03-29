@@ -7,35 +7,35 @@ let g:vimwiki_map_prefix = '<Leader>d'
 let g:vimwiki_folding = 'custom'
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
-\   { 'path': '~/Docs/wiki/wiki/md/',
-\     'path_html': '~/Docs/wiki/wiki/html',
-\     'diary_header': 'Diary',
-\     'diary_link_fmt': '%Y-%m/%d',
-\     'index': 'index',
-\     'auto_tags': 1,
-\     'auto_toc': 0,
-\     'auto_export': 1,
-\     'automatic_nested_syntaxes':1,
-\     'syntax': 'markdown',
-\     'ext': '.md',
-\     'template_path': '~/.pandoc/templates/html5/github/',
-\     'template_default': 'GitHub',
-\     'template_ext':'.html5',
-\     'custom_wiki2html': '~/bin/wiki2html.sh' },
-\   { 'path': '~/Docs/wiki/school/md',
-\     'path_html': '~/Docs/wiki/school/html',
-\     'index': 'index',
-\     'auto_tags': 1,
-\     'auto_toc': 0,
-\     'auto_export': 1,
-\     'automatic_nested_syntaxes':1,
-\     'syntax': 'markdown',
-\     'ext': '.md',
-\     'template_path': '~/.pandoc/templates/html5/github/',
-\     'template_default': 'GitHub',
-\     'template_ext':'.html5',
-\     'custom_wiki2html': '~/bin/wiki2html.sh' },
-\ ]
+      \   { 'path': '~/Docs/wiki/wiki/md/',
+      \     'path_html': '~/Docs/wiki/wiki/html',
+      \     'diary_header': 'Diary',
+      \     'diary_link_fmt': '%Y-%m/%d',
+      \     'index': 'index',
+      \     'auto_tags': 1,
+      \     'auto_toc': 0,
+      \     'auto_export': 1,
+      \     'automatic_nested_syntaxes':1,
+      \     'syntax': 'markdown',
+      \     'ext': '.md',
+      \     'template_path': '~/.pandoc/templates/html5/github/',
+      \     'template_default': 'GitHub',
+      \     'template_ext':'.html5',
+      \     'custom_wiki2html': '~/bin/wiki2html.sh' },
+      \   { 'path': '~/Docs/wiki/school/md',
+      \     'path_html': '~/Docs/wiki/school/html',
+      \     'index': 'index',
+      \     'auto_tags': 1,
+      \     'auto_toc': 0,
+      \     'auto_export': 1,
+      \     'automatic_nested_syntaxes':1,
+      \     'syntax': 'markdown',
+      \     'ext': '.md',
+      \     'template_path': '~/.pandoc/templates/html5/github/',
+      \     'template_default': 'GitHub',
+      \     'template_ext':'.html5',
+      \     'custom_wiki2html': '~/bin/wiki2html.sh' },
+      \ ]
 
 " Custom link handler for external files
 " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
@@ -88,7 +88,7 @@ endfunction
 
 augroup SpellCheck
   autocmd FileType vimwiki
-    \ autocmd! SpellCheck InsertEnter <buffer> setlocal spell
+        \ autocmd! SpellCheck InsertEnter <buffer> setlocal spell
 augroup END
 
 
@@ -98,9 +98,9 @@ augroup VimwikiEditMode
   autocmd FileType vimwiki setlocal foldlevel=99
   " Toggle conceallevel on and after insert mode
   autocmd FileType vimwiki
-    \ autocmd InsertEnter <buffer> setlocal conceallevel=0
+        \ autocmd InsertEnter <buffer> setlocal conceallevel=0
   autocmd FileType vimwiki
-    \ autocmd InsertLeave <buffer> setlocal conceallevel=2
+        \ autocmd InsertLeave <buffer> setlocal conceallevel=2
   " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
   " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
   autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgq0A
