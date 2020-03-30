@@ -26,14 +26,14 @@
 # UI
 # ----------------------------------------
 - repo: itchyny/lightline.vim
+  hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
 - repo: bagrat/vim-buffet
   hook_add: source  $VIM_PATH/layers/+ui/buffet/config.vim
   depends: lightline.vim
 
 # Tools
 # ----------------------------------------
-- repo: airblade/vim-rooter
-  hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
+# - repo: airblade/vim-rooter
 
 - repo: christoomey/vim-tmux-navigator
   if: "! (has('win32') || has('win64'))"
@@ -139,7 +139,7 @@
 # }}}
 
 # Git{{{
-- repo: taigacute/magit.vim
+- repo: jreybert/vimagit
   on_cmd: Magit
 
 - repo: lambdalisue/gina.vim
@@ -159,6 +159,7 @@
     - Gdifsplit
     - Gvdiffsplit
     - Gvdiffsplit!
+    - Git
     - Git mergetool
     - Git difftool
     - Gbrowse
@@ -185,7 +186,7 @@
 # ----------------------------------------
 - repo: fatih/vim-go
   on_ft: go
-  hook_source: source  $VIM_PATH/layers/+lang/go/vim-go/config.vim
+  hook_source: source $VIM_PATH/layers/+lang/go/vim-go/config.vim
 
 # HTML
 # ---------------------------------------
@@ -217,7 +218,7 @@
 # ---------------------------------------
 - repo: plasticboy/vim-markdown
   on_ft: markdown
-  hook_source: source $VIM_PATH/layers/+lang/markdown/vim-markdown/config.vim
+  hook_add: source $VIM_PATH/layers/+lang/markdown/vim-markdown/config.vim
 
 - repo: iamcco/markdown-preview.nvim
   on_ft: [markdown, pandoc.markdown, rmd]
@@ -318,6 +319,27 @@
   on_func: Fzf_dev
   hook_source: source $VIM_PATH/layers/+tools/fzf/config.vim
 
+- repo: yuki-ycino/fzf-preview.vim
+  depends: [fzf, vim-fugitive]
+  on_cmd:
+    - FzfPreviewProjectFiles
+    - FzfPreviewDirectoryFile
+    - FzfPreviewBuffers
+    - FzfPreviewMruFiles
+    - FzfPreviewAllBuffers
+    - FzfPreviewProjectGrep
+    - FzfPreviewMruFiles
+    - FzfPreviewFromResources
+    - FzfPreviewGitStatus
+  hook_source: source $VIM_PATH/layers/+tools/fzf/config.vim
+
+- repo: Shougo/neomru.vim
+  on_source: [denite.vim, fzf-preview.vim]
+  hook_add: |
+    let g:neomru#directory_mru_path = $DATA_PATH . '/mru/dir'
+    let g:neomru#file_mru_path = $DATA_PATH . '/mru/file'
+    let g:unite_source_file_mru_limit = 5000
+
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
   on_path: .*
@@ -329,7 +351,7 @@
 
 - repo: liuchengxu/vim-which-key
   on_cmd: [Whichkey, Whichkey!]
-  hook_source: source $VIM_PATH/layers/+tools/whichkey/config.vim
+  hook_add: source $VIM_PATH/layers/+tools/whichkey/config.vim
   hook_post_source: |
         call which_key#register('<Space>', 'g:which_key_map')
         call which_key#register(';', 'g:which_key_localmap')

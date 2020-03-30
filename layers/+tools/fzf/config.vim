@@ -1,31 +1,3 @@
-"autocmd! FileType fzf
-"autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  "\| autocmd BufLeave <buffer> set laststatus=0 showmode ruler
-  "
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-h': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', '#5f5f87'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-let g:fzf_commits_log_options = '--graph --color=always
-  \ --format="%C(yellow)%h%C(red)%d%C(reset)
-  \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
 
 " GGrep
 command! -bang -nargs=* GGrep
@@ -33,7 +5,6 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
-"let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
 " Ripgrep
 if executable('rg')
   " let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
@@ -67,44 +38,198 @@ function! FloatingFZF()
   call setwinvar(win, '&relativenumber', 0)
 endfunction
 
-" Files + devicons
-function! Fzf_dev()
-  let l:fzf_files_options = ' -m --bind f1:toggle-preview-wrap,f2:toggle-preview,ctrl-l:cancel,ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-a:select-all --preview "bat --color always --style numbers {2..}"'
+" Fzf-Preview Configurations {{{
 
-  function! s:files()
-    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_icon(l:files)
-  endfunction
+" Add fzf quit mapping
+let g:fzf_preview_quit_map = 1
 
-  function! s:prepend_icon(candidates)
-    let result = []
-    for candidate in a:candidates
-      let filename = fnamemodify(candidate, ':p:t')
-      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-      call add(result, printf("%s %s", icon, candidate))
-    endfor
+" Use floating window (for neovim)
+let g:fzf_preview_use_floating_window = 1
 
-    return result
-  endfunction
+" floating window size ratio
+let g:fzf_preview_floating_window_rate = 0.9
 
-  function! s:edit_file(items)
-    let items = a:items
-    let i = 1
-    let ln = len(items)
-    while i < ln
-      let item = items[i]
-      let parts = split(item, ' ')
-      let file_path = get(parts, 1, '')
-      let items[i] = file_path
-      let i += 1
-    endwhile
-    call s:Sink(items)
-  endfunction
+" floating window winblend value
+let g:fzf_preview_floating_window_winblend = 15
 
-  let opts = fzf#wrap({})
-  let opts.source = <sid>files()
-  let s:Sink = opts['sink*']
-  let opts['sink*'] = function('s:edit_file')
-  let opts.options .= l:fzf_files_options
-  call fzf#run(opts)
+" Commands used for fzf preview.
+" The file name selected by fzf becomes {}
+" let g:fzf_preview_command = 'head -100 {-1}'                       " Not installed bat
+let g:fzf_preview_command = 'bat --color=always --style=grid {-1}' " Installed bat
+
+" g:fzf_binary_preview_command is executed if this command succeeds, and g:fzf_preview_command is executed if it fails
+let g:fzf_preview_if_binary_command = '[[ "$(file --mime {})" =~ binary ]]'
+
+" Commands used for binary file
+let g:fzf_binary_preview_command = 'echo "{} is a binary file"'
+
+" Commands used to get the file list from project
+" let g:fzf_preview_filelist_command = 'git ls-files --exclude-standard'               " Not Installed ripgrep
+let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"' " Installed ripgrep
+
+" Commands used to get the file list from git reposiroty
+let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard'
+
+" Commands used to get the file list from current directory
+let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
+
+" Commands used for current file lines
+" let g:fzf_preview_lines_command = 'cat'
+let g:fzf_preview_lines_command = 'bat --color=always --style=grid --theme=ansi-dark --plain'
+
+" Commands used to get the git status file list
+let g:fzf_preview_git_status_command = "git status --short --untracked-files=all | awk '{if (substr($0,2,1) !~ / /) print $2}'"
+
+" Commands used for git status preview.
+let g:fzf_preview_git_status_preview_command =  "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} || " .
+\ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} || " .
+\ g:fzf_preview_command
+
+" Commands used for project grep
+let g:fzf_preview_grep_cmd = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always"'
+
+" Commands used for preview of the grep result
+let g:fzf_preview_grep_preview_cmd = expand('<sfile>:h:h') . '/bin/preview_fzf_grep'
+
+" Keyboard shortcuts while fzf preview is active
+let g:fzf_preview_preview_key_bindings = 'ctrl-z:toggle-preview-wrap,?:toggle-preview,ctrl-l:cancel,ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-a:select-all'
+
+" Specify the color of fzf
+let g:fzf_preview_fzf_color_option = ''
+
+" Set the processors when selecting an element with fzf
+" Do not use with g:fzf_preview_*_key_map
+let g:fzf_preview_custom_default_processors = {}
+" For example, set split to ctrl-s
+" let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
+" call remove(g:fzf_preview_custom_default_processors, 'ctrl-x')
+" let g:fzf_preview_custom_default_processors['ctrl-s'] = function('fzf_preview#resource_processor#split')
+
+" Use as fzf preview-window option
+let g:fzf_preview_fzf_preview_window_option = ''
+" let g:fzf_preview_fzf_preview_window_option = 'up:30%'
+
+" Command to be executed after file list creation
+" let g:fzf_preview_filelist_postprocess_command = ''
+" let g:fzf_preview_filelist_postprocess_command = 'xargs -d "\n" ls -U --color'      " Use dircolors
+let g:fzf_preview_filelist_postprocess_command = 'xargs -d "\n" exa --color=always' " Use exa
+
+" Use vim-devicons
+let g:fzf_preview_use_dev_icons = 1
+
+" devicons character width
+let g:fzf_preview_dev_icon_prefix_length = 3 " 2 when devicons is off. 3 when on
+
+" DEPRECATED
+" Use g:fzf_preview_custom_default_processors
+" Keyboard shortcut for opening files with split
+let g:fzf_preview_split_key_map = 'ctrl-x'
+
+" DEPRECATED
+" Use g:fzf_preview_custom_default_processors
+" Keyboard shortcut for opening files with vsplit
+let g:fzf_preview_vsplit_key_map = 'ctrl-v'
+
+" DEPRECATED
+" Use g:fzf_preview_custom_default_processors
+" Keyboard shortcut for opening files with tabedit
+let g:fzf_preview_tabedit_key_map = 'ctrl-t'
+
+" DEPRECATED
+" Use g:fzf_preview_custom_default_processors
+" Keyboard shortcut for building quickfix
+let g:fzf_preview_build_quickfix_key_map = 'ctrl-q'
+
+" DEPRECATED
+" fzf window layout
+let g:fzf_preview_layout = 'top split new'
+
+" DEPRECATED
+" Rate of fzf window
+let g:fzf_preview_rate = 0.3
+
+" DEPRECATED
+" Key to toggle fzf window size of normal size and full-screen
+let g:fzf_full_preview_toggle_key = '<C-s>'
+
+" Intergration with Fugitive
+augroup fzf_preview
+  autocmd!
+  autocmd User fzf_preview#initialized call s:fzf_preview_settings()
+augroup END
+
+function! s:fugitive_add(paths) abort
+  for path in a:paths
+    execute 'silent G add ' . path
+  endfor
+  echomsg 'Git add ' . join(a:paths, ', ')
 endfunction
+
+function! s:fugitive_reset(paths) abort
+  for path in a:paths
+    execute 'silent G reset ' . path
+  endfor
+  echomsg 'Git reset ' . join(a:paths, ', ')
+endfunction
+
+function! s:fugitive_patch(paths) abort
+  for path in a:paths
+    execute 'silent tabedit ' . path . ' | silent Gdiff'
+  endfor
+  echomsg 'Git add --patch ' . join(a:paths, ', ')
+endfunction
+
+function! s:fzf_preview_settings() abort
+  let g:fzf_preview_fugitive_processors = fzf_preview#resource_processor#get_processors()
+  let g:fzf_preview_fugitive_processors['ctrl-a'] = function('s:fugitive_add')
+  let g:fzf_preview_fugitive_processors['ctrl-r'] = function('s:fugitive_reset')
+  let g:fzf_preview_fugitive_processors['ctrl-p'] = function('s:fugitive_patch')
+endfunction
+" }}}
+
+
+
+
+" OLD FZF CONFIGURATIONS
+" " Files + devicons
+" function! Fzf_dev()
+"
+" let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
+"
+"   function! s:files()
+"     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+"     return s:prepend_icon(l:files)
+"   endfunction
+"
+"   function! s:prepend_icon(candidates)
+"     let result = []
+"     for candidate in a:candidates
+"       let filename = fnamemodify(candidate, ':p:t')
+"       let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
+"       call add(result, printf("%s %s", icon, candidate))
+"     endfor
+"
+"     return result
+"   endfunction
+"
+"   function! s:edit_file(items)
+"     let items = a:items
+"     let i = 1
+"     let ln = len(items)
+"     while i < ln
+"       let item = items[i]
+"       let parts = split(item, ' ')
+"       let file_path = get(parts, 1, '')
+"       let items[i] = file_path
+"       let i += 1
+"     endwhile
+"     call s:Sink(items)
+"   endfunction
+"
+"   let opts = fzf#wrap({})
+"   let opts.source = <sid>files()
+"   let s:Sink = opts['sink*']
+"   let opts['sink*'] = function('s:edit_file')
+"   let opts.options .= l:fzf_files_options
+"   call fzf#run(opts)
+" endfunction

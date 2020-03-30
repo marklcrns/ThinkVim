@@ -24,6 +24,7 @@ augroup user_plugin_filetype "{{{
 
   " Go (Google)
   autocmd FileType go let b:coc_pairs_disabled = ['<']
+  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
   " HTML (.gohtml and .tpl for server side)
   autocmd BufNewFile,BufRead *.html,*.htm,*.gohtml,*.tpl  setf html

@@ -64,7 +64,6 @@ imap kj <Esc>`^
 smap fd <Esc>`^
 smap kj <Esc>`^
 vmap fd <Esc>
-vmap kj <Esc>
 
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>
@@ -105,20 +104,20 @@ cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 " Move between tabs
 nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]t :tabnext<CR>
-nnoremap <silent> ]]t :tablast<CR>
-nnoremap <silent> [[t :tabfirst<CR>
+nnoremap <silent> ]T :tablast<CR>
+nnoremap <silent> [T :tabfirst<CR>
 
 " Move between buffers
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> ]]b :blast<CR>
-nnoremap <silent> [[b :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+nnoremap <silent> [B :bfirst<CR>
 
 " Move through the loclist
 nnoremap <silent> [l :lprevious<CR>
 nnoremap <silent> ]l :lnext<CR>
-nnoremap <silent> [[l :lfirst<CR>
-nnoremap <silent> ]]l :llast<CR>
+nnoremap <silent> [L :lfirst<CR>
+nnoremap <silent> ]L :llast<CR>
 
 " Toggle Locationlist
 nnoremap <LocalLeader>l :call LocationlistToggle()<CR>
@@ -138,8 +137,8 @@ endfunction
 " Move through the quickfix list
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
-nnoremap <silent> [[q :cfirst<CR>
-nnoremap <silent> ]]q :clast<CR>
+nnoremap <silent> [Q :cfirst<CR>
+nnoremap <silent> ]Q :clast<CR>
 
 " Toggle Quickfix
 nnoremap <LocalLeader>q :call QuickfixToggle()<CR>

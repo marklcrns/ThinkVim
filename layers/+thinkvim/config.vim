@@ -30,12 +30,12 @@ if dein#tap('coc.nvim')
   function! s:cocActionsOpenFromSelected(type) abort
     execute 'CocCommand actions.open ' . a:type
   endfunction
-  xmap <silent> <leader>aa :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-  nmap <silent> <leader>aa :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+  xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+  nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
   " xmap <leader>a  <Plug>(coc-codeaction-selected)
   " nmap <leader>a  <Plug>(coc-codeaction-selected)
   " Remap for do codeAction of current line
-  nmap <leader>ac  <Plug>(coc-codeaction)
+  nmap <leader>cc  <Plug>(coc-codeaction)
   " Fix autofix problem of current line
   nmap <leader>cq  <Plug>(coc-fix-current)
   " Insert current filetype template on cursor
@@ -84,8 +84,8 @@ if dein#tap('coc.nvim')
     return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
   endfunc
 
-  nnoremap <silent> <leader>cs :CocSearch<Space>
-  nnoremap <silent> <leader>cw :CocSearch -w<Space>
+  nnoremap <silent> <leader>cs :<C-u>CocSearch<Space>
+  nnoremap <silent> <leader>cw :<C-u>CocSearch -w<Space>
   " use normal command like `<leader>xi(`
   nmap <leader>x  <Plug>(coc-cursors-operator)
   " coc-explorer
@@ -161,11 +161,20 @@ if dein#tap('vim-buffet')
 endif
 
 if dein#tap('fzf.vim')
-  nnoremap <silent> <leader>fzf :call Fzf_dev()<CR>
-  nnoremap <silent> <leader>fzr :Rg<CR>
-  nnoremap <silent> <leader>fzc :Colors<CR>
-  nnoremap <silent> <leader>fzb :Buffers<CR>
-  nnoremap <silent> <leader>fzw :Rg <C-R><C-W><CR>
+  nnoremap <silent> <leader>fdc :<C-u>Colors<CR>
+  nnoremap <silent> <leader>fdb :<C-u>FzfPreviewBuffers<CR>
+  nnoremap <silent> <leader>fdB :<C-u>FzfPreviewAllBuffers<CR>
+  nnoremap <silent> <leader>fdf :<C-u>FzfPreviewDirectoryFiles<CR>
+  nnoremap <silent> <Leader>fdg :<C-u>FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors<CR>
+  nnoremap <silent> <Leader>fdG :<C-u>GGrep<CR>
+  nnoremap <silent> <leader>fdk :<C-u>FzfPreviewMarks<CR>
+  nnoremap <silent> <leader>fdm :<C-u>FzfPreviewMruFiles<CR>
+  nnoremap <silent> <leader>fdo :<C-u>FzfPreviewOldFiles<CR>
+  nnoremap <silent> <leader>fdp :<C-u>FzfPreviewProjectFiles<CR>
+  nnoremap <silent> <leader>fdP :<C-u>FzfPreviewFromResources project_mru git<CR>
+  nnoremap <silent> <leader>fdr :<C-u>Rg<CR>
+  nnoremap          <leader>fdR :<C-u>FzfPreviewProjectGrep<Space>
+  xnoremap          <leader>fdR "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
 endif
 
 if dein#tap('vim-easy-align')
@@ -196,7 +205,7 @@ if dein#tap('vim-easygit')
   " nnoremap <Leader>gs :Gstatus<CR>
 endif
 
-if dein#tap('magit.vim')
+if dein#tap('vimagit')
   nnoremap <silent> <Leader>gm :Magit<CR>
 endif
 
@@ -291,7 +300,7 @@ if dein#tap('vista.vim')
   nnoremap <silent><localleader>vc :Vista coc<CR>
   nnoremap <silent><localleader>vx :Vista!<CR>
   nnoremap <silent><localleader>vo :Vista<CR>
-  nnoremap <silent><leader>fv      :Vista finder coc<CR>
+  nnoremap <silent><leader>fzv      :Vista finder coc<CR>
 endif
 
 if dein#tap('vim-easymotion')
@@ -366,9 +375,9 @@ if dein#tap('markdown-preview.nvim')
 endif
 
 if dein#tap('vim-markdown')
-  nmap <LocalLeader>mtt :Toc<CR>
-  nmap <LocalLeader>mtv :Tocv<CR>
-  nmap <LocalLeader>mth :Toch<CR>
+  nmap <LocalLeader>mtt :<C-u>Toc<CR>
+  nmap <LocalLeader>mtv :<C-u>Tocv<CR>
+  nmap <LocalLeader>mth :<C-u>Toch<CR>
 endif
 
 if dein#tap('vimtex')
@@ -391,8 +400,8 @@ if dein#tap('accelerated-jk')
 endif
 
 if dein#tap('vimwiki')
-  nnoremap <silent> <Leader>WW :VimwikiIndex<CR>
-  nnoremap <silent> <Leader>WI :VimwikiDiaryIndex<CR>
+  nnoremap <silent> <Leader>WW :<C-u>VimwikiIndex<CR>
+  nnoremap <silent> <Leader>WI :<C-u>VimwikiDiaryIndex<CR>
 endif
 
 if dein#tap('vimux')

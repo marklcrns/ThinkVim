@@ -109,7 +109,7 @@ set directory=$DATA_PATH/swap//,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set undodir=$DATA_PATH/undo//,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set viewdir=$DATA_PATH/view/
-set nospell spellfile=$VIM_PATH/spell/en.utf-8.add
+set spellfile=$VIM_PATH/spell/en.utf-8.add
 
 " Nvim specific settings
 if !has('nvim')
@@ -121,9 +121,9 @@ endif
 " History saving
 set history=1000
 if has('nvim')
-	set shada='300,<50,@100,s10,h
+	set shada='1000,<50,@100,s10,h
 else
-	set viminfo='300,<10,@50,h,n$DATA_PATH/viminfo
+	set viminfo='1000,<10,@50,h,n$DATA_PATH/viminfo
 endif
 
 " If sudo, disable vim swap/backup/undo/shada/viminfo writing
