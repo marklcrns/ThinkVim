@@ -155,6 +155,8 @@
   on_cmd:
     - G
     - Git
+    - Gblame
+    - Gpush
     - Glog
     - Gclog
     - Gllog

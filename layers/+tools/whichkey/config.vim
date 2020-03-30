@@ -81,7 +81,7 @@ let g:which_key_map = {
           \ },
     \ 'g' : {
           \ 'name' : '+Git-operate',
-             \ 'a' : 'gina-add-all',
+             \ 'a' : 'git-add-all',
              \ 'b' : 'git-blame',
              \ 'B' : 'gbrowse',
              \ 'c' : 'gina-commit',

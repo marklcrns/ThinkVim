@@ -202,10 +202,10 @@ if dein#tap('vimagit')
 endif
 
 if dein#tap('gina.vim')
-  nnoremap <Leader>ga :Gina add .<CR>
-  nnoremap <Leader>gs :Gina status<CR>
-  nnoremap <Leader>gc :Gina commit<CR>
-  nnoremap <Leader>go :Gina log<CR>
+  nnoremap <Leader>ga :<C-u>Gina add .<CR>
+  nnoremap <Leader>gs :<C-u>Gina status<CR>
+  nnoremap <Leader>gc :<C-u>Gina commit<CR>
+  nnoremap <Leader>go :<C-u>Gina log<CR>
 endif
 
 if dein#tap('vim-mundo')
@@ -446,18 +446,18 @@ endif
 
 if dein#tap('vim-fugitive')
   " Ref http://vimcasts.org/episodes/fugitive-vim-exploring-the-history-of-a-git-repository/
-  nnoremap <Leader>gb :<C-u>Git blame<CR>
+  nnoremap <Leader>gb :<C-u>Gblame<CR>
   nnoremap <Leader>gdc :<C-u>Git diff --cached<CR>
   nnoremap <Leader>gdd :<C-u>Git diff<CR>
   nnoremap <Leader>gdt :<C-u>Git difftool<CR>
   nnoremap <Leader>gdh :<C-u>Ghdiffsplit<CR>
   nnoremap <Leader>gdv :<C-u>Gvdiffsplit<CR>
-  nnoremap <Leader>gl :<C-u>Gclog<CR>
-  nnoremap <Leader>gL :<C-u>0Gclog<CR>
-  nnoremap <Leader>gf :<C-u>Git fetch<CR>
+  nnoremap <Leader>gl :<C-u>Glog<CR>
+  nnoremap <Leader>gL :<C-u>0Glog<CR>
+  nnoremap <Leader>gf :<C-u>Gfetch<CR>
   nnoremap <Leader>gg :<C-u>Ggrep<Space>
   nnoremap <Leader>gG :<C-u>Glog --grep= -- %<Left><Left><Left><Left><Left>
-  nnoremap <Leader>gp :<C-u>Git push<CR>
+  nnoremap <Leader>gp :<C-u>Gpush<CR>
 endif
 
 if dein#tap('calendar.vim')
