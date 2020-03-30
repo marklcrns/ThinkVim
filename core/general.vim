@@ -48,7 +48,7 @@ endif
 set history=2000
 set number
 set timeout ttimeout
-set timeoutlen=750 " Time out on mappings
+set timeoutlen=500 " Time out on mappings
 set updatetime=400 " Idle time to write swap and trigger CursorHold
 set ttimeoutlen=10 " Time out on key codes
 set cmdheight=2    " Height of the command line

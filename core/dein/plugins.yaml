@@ -36,6 +36,7 @@
   hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
 
 - repo: christoomey/vim-tmux-navigator
+  if: "! (has('win32') || has('win64'))"
   hook_add: source $VIM_PATH/layers/+tools/vim-tmux-navigator/config.vim
 #}}}
 
@@ -322,13 +323,8 @@
   on_path: .*
   hook_source: source $VIM_PATH/layers/+tools/vim-gutentags/config.vim
 
-- repo: vimwiki/vimwiki
-  on_map: { n: <Plug> }
-  on_cmd: [VimwikiIndex, VimwikiUISelect]
-  hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
-
 - repo: liuchengxu/vista.vim
-  on_cmd: [Vista,Vista!,Vista!!]
+  on_cmd: [Vista, Vista!, Vista!!]
   hook_source: source $VIM_PATH/layers/+tools/vista/config.vim
 
 - repo: liuchengxu/vim-which-key
@@ -339,6 +335,8 @@
         call which_key#register(';', 'g:which_key_localmap')
         call which_key#register(']', 'g:which_key_rsbgmap')
         call which_key#register('[', 'g:which_key_lsbgmap')
+        nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+        vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
 - repo: metakirby5/codi.vim
   on_cmd: Codi
@@ -355,13 +353,16 @@
   hook_source: let g:VimuxOrientation = 'v'
 
 - repo: vimwiki/vimwiki
-  on_map: { n: <Plug> }
+  on_map: {n: <Plug>}
+  on_cmd: [VimwikiIndex, VimwikiDiaryIndexVimwikiUISelect]
   hook_add: |
     let g:vimwiki_use_calendar = 1
     let g:vimwiki_hl_headers = 1
     let g:vimwiki_hl_cb_checked = 1
     let g:vimwiki_autowriteall = 0
-    let g:vimwiki_map_prefix = '<Leader>d'
+    let g:vimwiki_map_prefix = '<Leader>w'
+    let g:vimwiki_folding = 'custom'
+    let g:vimwiki_table_mappings = 0
   hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
 
 - repo: honza/dockerfile.vim
@@ -401,10 +402,27 @@
   on_cmd: [Wordy, NextWordy, PrevWordy]
 
 - repo: tpope/vim-abolish
-  on_cmd: [Abolish, Abolish!, Subvert, Subvert!]
+  on_map: [Abolish, Abolish!, Subvert, Subvert!]
 
 - repo: arthurxavierx/vim-caser
-  on_map: {n: <Plug>}
+  on_ft:
+    - vim
+    - md
+    - vimwiki
+    - json
+    - go
+    - html
+    - js
+    - jsx
+    - py
+    - css
+    - java
+    - less
+    - tmpl
+    - toml
+    - xml
+    - sql
+    - Dockerfile
 
 - repo: simnalamburt/vim-mundo
   on_map: {n: <Plug>}

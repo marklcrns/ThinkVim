@@ -36,30 +36,35 @@ nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 vmap y ygv<Esc>
 
 " Yank buffer's absolute path to clipboard
-nnoremap <Leader>y :let @+=expand("%:~:.")<CR>:echo 'Yanked relative path'<CR>
-nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
+nnoremap <Leader>fy :let @+=expand("%:~:.")<CR>:echo 'Yanked relative path'<CR>
+nnoremap <Leader>fY :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
 
 " Write buffer (save)
-nnoremap <leader>w :w<CR>
-vnoremap <leader>w :<Esc>w<CR>
+nnoremap <leader>fw :w<CR>
+vnoremap <leader>fw :<Esc>w<CR>
+" Write all buffer
+nnoremap <leader>fW :wa<CR>
+vnoremap <leader>fW :<Esc>wa<CR>
 " imap <C-S> <esc>:w<CR>
 imap <C-Q> <esc>:wq<CR>
 
 " Quit without saving
-nnoremap <Leader>q :q!<CR>
-nnoremap <Leader>Q :qa!<CR>
+nnoremap <Leader>fq :q!<CR>
+nnoremap <Leader>fQ :qa!<CR>
 
 " Save all and exit
-nnoremap <leader>S :confirm wqa!<CR>
+nnoremap <leader>fs :confirm wqa!<CR>
 
 " Moves curser to the right after exiting insert mode
 inoremap <Esc> <Esc>`^
 
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
-imap jj <Esc>`^
-imap kk <Esc>`^
-smap jj <Esc>`^
-smap kk <Esc>`^
+imap fd <Esc>`^
+imap kj <Esc>`^
+smap fd <Esc>`^
+smap kj <Esc>`^
+vmap fd <Esc>
+vmap kj <Esc>
 
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>
@@ -116,7 +121,7 @@ nnoremap <silent> [[l :lfirst<CR>
 nnoremap <silent> ]]l :llast<CR>
 
 " Toggle Locationlist
-nnoremap <LocalLeader>L :call LocationlistToggle()<CR>
+nnoremap <LocalLeader>l :call LocationlistToggle()<CR>
 
 function! LocationlistToggle()
   for i in range(1, winnr('$'))
@@ -137,7 +142,7 @@ nnoremap <silent> [[q :cfirst<CR>
 nnoremap <silent> ]]q :clast<CR>
 
 " Toggle Quickfix
-nnoremap <LocalLeader>Q :call QuickfixToggle()<CR>
+nnoremap <LocalLeader>q :call QuickfixToggle()<CR>
 
 function! QuickfixToggle()
   for i in range(1, winnr('$'))
@@ -167,16 +172,16 @@ endfunction
 " Cycle through vim register +abjkx.
 " Register `+` as the system clipboard and `x` as temp holder
 " `rj` cycles forward, `rk` cycles backward
-nnoremap <Leader>rj :let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
-nnoremap <Leader>rk :let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+nnoremap <Leader>rej :let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
+nnoremap <Leader>rek :let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
 " Paste register `+` then cycle through registers
-nnoremap <Leader>rJ p:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
-nnoremap <Leader>rK p:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+nnoremap <Leader>reJ p:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
+nnoremap <Leader>reK p:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
 " Copy selected then cycle through registers
-vnoremap <Leader>rj y<ESC>:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
-vnoremap <Leader>rk y<ESC>:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+vnoremap <Leader>rej y<ESC>:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
+vnoremap <Leader>rek y<ESC>:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
 " Display register +abjk
-nnoremap <Leader>rg :reg +abjk<CR>
+nnoremap <Leader>reg :reg +abjk<CR>
 
 " Makes Relative Number jumps work with text wrap
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -206,7 +211,7 @@ xmap <BS> %
 nnoremap <silent><Leader>rs :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 vnoremap <silent><Leader>rs :<C-u>silent! keeppatterns substitute/\s\+$//e<CR>
 
-" Format paragraph (selected or not) to 80 character lines.
+" Wrap paragraph to textwidth
 nnoremap <Leader>rl gqap
 xnoremap <Leader>rl gqa
 
@@ -220,12 +225,12 @@ vnoremap <Leader>rp y`]p
 " Change current word in a repeatable manner
 nnoremap <leader>rn *``cgn
 nnoremap <leader>rN *``cgN
-
 " Change selected word in a repeatable manner
 vnoremap <expr> <leader>rn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>rN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
-" Refactoring texts
+" Search and replace
+" Ref: https://vim.fandom.com/wiki/Search_and_replace
 nnoremap <Leader>rr :%s///g<Left><Left>
 nnoremap <Leader>rR :%s///gc<Left><Left><Left>
 
@@ -262,23 +267,23 @@ vnoremap <Leader>rC :s/\<./\u&/g<CR>
 nnoremap <Leader>rC :%s/\<./\u&/g<CR>
 " Lowercase each word of the selected
 vnoremap <Leader>rc :s/\<./\l&/g<CR>
-" Capitalize each word of current entire file
+" Lowercase each word of current entire file
 nnoremap <Leader>rc :%s/\<./\l&/g<CR>
 
 " Splits
-noremap sh :split<CR>
-noremap sv :vsplit<CR>
-noremap sx :close<CR>
+noremap <Leader>sh :split<CR>
+noremap <Leader>sv :vsplit<CR>
+noremap <Leader>sc :close<CR>
 " Deletes buffer but keeps the split
 " Ref: https://stackoverflow.com/a/19619038/11850077
-noremap sd :b#<bar>bd#<CR>
+noremap <Leader>sd :b#<bar>bd#<CR>
 
 " Resize splits vertically
-nmap s[ :vertical resize -3<CR>
-nmap s] :vertical resize +3<CR>
+nmap <Leader>s[ :vertical resize -3<CR>
+nmap <Leader>s] :vertical resize +3<CR>
 " Resize splites horizontally
-nmap S{ :resize -3<CR>
-nmap S} :resize +3<CR>
+nmap <Leader>s{ :resize -3<CR>
+nmap <Leader>s} :resize +3<CR>
 
 " Toggle text wrap
 nmap <LocalLeader>sw :set wrap!<CR>
@@ -314,15 +319,15 @@ endfunction
 inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Drag current line/s vertically and auto-indent
-nnoremap <Leader><Leader>j :m+<CR>
-nnoremap <Leader><Leader>k :m-2<CR>
-vnoremap <Leader><Leader>k :m'<-2<CR>gv=gv
-vnoremap <Leader><Leader>j :m'>+<CR>gv=gv
+nnoremap gj :m+<CR>
+nnoremap gk :m-2<CR>
+vnoremap gk :m'<-2<CR>gv=gv
+vnoremap gj :m'>+<CR>gv=gv
 
 " Set working directory to current file location for all windows
-nmap <LocalLeader>cd :cd %:p:h<CR>:pwd<CR>
+" nmap <LocalLeader>cd :cd %:p:h<CR>:pwd<CR>
 " Set working directory to current file location only for the current window
-nmap <LocalLeader>lcd :lcd %:p:h<CR>:pwd<CR>
+" nmap <LocalLeader>lcd :lcd %:p:h<CR>:pwd<CR>
 
 " Closing pop-up auto-completion before inserting new line
 inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-e><Esc>`^' : '<Esc>`^'
@@ -338,9 +343,9 @@ nnoremap dor :diffget RE<CR>
 nnoremap dob :diffget BA<CR>
 nnoremap dol :diffget LO<CR>
 " Quit nvim with an error code. Useful when aborting git mergetool or git commit
-nnoremap <Leader><Leader>q :cquit<CR>
+nnoremap dq :cquit<CR>
 
-nnoremap <Leader>dif :vert diffsplit $HOME/
+nnoremap <Leader>ed :vert diffsplit $HOME/
 
 " Fixes `[c` and `]c` not working
 nnoremap [c [c
@@ -350,11 +355,11 @@ nnoremap ]c ]c
 tnoremap <Esc> <C-\><C-n>
 
 " Toggle fold
-nnoremap <Leader><CR> za
+nnoremap <Leader>zf za
 " Focus the current fold by closing all others
-nnoremap <Leader><Leader><CR> zMzvzt
+nnoremap <Leader>zF zMzvzt
 " Toggle fold all
-nnoremap <expr> <Leader><Leader><Leader><CR> &foldlevel ? 'zM' :'zR'
+nnoremap <expr> <Leader>fm &foldlevel ? 'zM' :'zR'
 " Jumping to next closed fold
 " Ref: https://stackoverflow.com/a/9407015/11850077
 nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>

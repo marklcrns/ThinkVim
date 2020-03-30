@@ -1,11 +1,4 @@
 
-let g:vimwiki_use_calendar = 1
-let g:vimwiki_hl_headers = 1
-let g:vimwiki_hl_cb_checked = 1
-let g:vimwiki_autowriteall = 0
-let g:vimwiki_map_prefix = '<Leader>d'
-let g:vimwiki_folding = 'custom'
-let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
       \   { 'path': '~/Docs/wiki/wiki/md/',
       \     'path_html': '~/Docs/wiki/wiki/html',
@@ -111,9 +104,8 @@ augroup END
 " Vimwiki custom mappings
 augroup VimwikiCustomMappings
   autocmd!
-  autocmd FileType vimwiki nmap <buffer><Leader>dH :VimwikiAll2HTML<CR>
-  autocmd FileType vimwiki nmap <buffer><Leader>dc :VimwikiTOC<CR>
-  autocmd FileType vimwiki nmap <buffer><Leader>dl :VimwikiGenerateLinks<CR>
+  autocmd FileType vimwiki nmap <buffer><Leader>wH :VimwikiAll2HTML<CR>
+  autocmd FileType vimwiki nmap <buffer><Leader>wl :VimwikiGenerateLinks<CR>
 
   " Integration with delimitMate and coc-snippet
   autocmd FileType vimwiki inoremap <silent><buffer><expr> <TAB>

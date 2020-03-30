@@ -2,22 +2,22 @@
 
 if dein#tap('coc.nvim')
   " Using CocList
-  " Show all diagnostics
-  nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
-  " Manage extensions
-  nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
   " Show commands
-  nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+  nnoremap <silent> <leader>clc  :<C-u>CocList commands<cr>
+  " Show all diagnostics
+  nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
+  " Manage extensions
+  nnoremap <silent> <leader>cle  :<C-u>CocList extensions<cr>
   " Find symbol of current document
-  nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+  nnoremap <silent> <leader>clo  :<C-u>CocList outline<cr>
+  " Resume latest coc list
+  nnoremap <silent> <leader>clr  :<C-u>CocListResume<CR>
   " Search workspace symbols
-  nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+  nnoremap <silent> <leader>cls  :<C-u>CocList -I symbols<cr>
   " Do default action for next item.
   nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
   " Do default action for previous item.
   nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
-  " Resume latest coc list
-  nnoremap <silent> <leader>cr  :<C-u>CocListResume<CR>
   " Use `[d` and `]d` for navigate diagnostics
   nmap <silent> [d <Plug>(coc-diagnostic-prev)
   nmap <silent> ]d <Plug>(coc-diagnostic-next)
@@ -30,8 +30,8 @@ if dein#tap('coc.nvim')
   function! s:cocActionsOpenFromSelected(type) abort
     execute 'CocCommand actions.open ' . a:type
   endfunction
-  xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-  nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+  xmap <silent> <leader>aa :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+  nmap <silent> <leader>aa :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
   " xmap <leader>a  <Plug>(coc-codeaction-selected)
   " nmap <leader>a  <Plug>(coc-codeaction-selected)
   " Remap for do codeAction of current line
@@ -65,7 +65,7 @@ if dein#tap('coc.nvim')
   nmap [g <Plug>(coc-git-prevchunk)
   nmap ]g <Plug>(coc-git-nextchunk)
   " show chunk diff at current position
-  nmap gs <Plug>(coc-git-chunkinfo)
+  nmap gS <Plug>(coc-git-chunkinfo)
   " show commit contains current position
   nmap gm <Plug>(coc-git-commit)
   nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
@@ -84,8 +84,8 @@ if dein#tap('coc.nvim')
     return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
   endfunc
 
-  nnoremap <silent> <leader>cm ::CocSearch -w
-  nnoremap <silent> <leader>cw ::CocSearch
+  nnoremap <silent> <leader>cs :CocSearch<Space>
+  nnoremap <silent> <leader>cw :CocSearch -w<Space>
   " use normal command like `<leader>xi(`
   nmap <leader>x  <Plug>(coc-cursors-operator)
   " coc-explorer
@@ -117,13 +117,13 @@ if dein#tap('coc.nvim')
 endif
 
 if dein#tap('denite.nvim')
-  nnoremap <silent><LocalLeader>d :<C-u>Denite menu<CR>
+  nnoremap <silent><Leader>dd :<C-u>Denite menu<CR>
   noremap zl :<C-u>call <SID>my_denite_outline(&filetype)<CR>
   noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
   noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
 
   nnoremap <silent> <Leader>dgl :<C-u>Denite gitlog:all<CR>
-  nnoremap <silent> <Leader>dgh :<C-u>Denite gitbranch<CR>
+  nnoremap <silent> <Leader>dgb :<C-u>Denite gitbranch<CR>
   function! s:my_denite_outline(filetype) abort
     execute 'Denite' a:filetype ==# 'go' ? "decls:'%:p'" : 'outline'
   endfunction
@@ -161,12 +161,11 @@ if dein#tap('vim-buffet')
 endif
 
 if dein#tap('fzf.vim')
-  nnoremap <silent> <leader>ff :call Fzf_dev()<CR>
-  nnoremap <silent> <leader>fr :Rg<CR>
-  nnoremap <silent> <leader>fg :Ggrep<CR>
-  nnoremap <silent> <leader>fc :Colors<CR>
-  nnoremap <silent> <leader>fb :Buffers<CR>
-  nnoremap <silent> <leader>fw :Rg <C-R><C-W><CR>
+  nnoremap <silent> <leader>fzf :call Fzf_dev()<CR>
+  nnoremap <silent> <leader>fzr :Rg<CR>
+  nnoremap <silent> <leader>fzc :Colors<CR>
+  nnoremap <silent> <leader>fzb :Buffers<CR>
+  nnoremap <silent> <leader>fzw :Rg <C-R><C-W><CR>
 endif
 
 if dein#tap('vim-easy-align')
@@ -198,7 +197,7 @@ if dein#tap('vim-easygit')
 endif
 
 if dein#tap('magit.vim')
-  nnoremap <silent> <LocalLeader>mg :Magit<CR>
+  nnoremap <silent> <Leader>gm :Magit<CR>
 endif
 
 if dein#tap('gina.vim')
@@ -210,11 +209,11 @@ if dein#tap('gina.vim')
 endif
 
 if dein#tap('vim-mundo')
-  nnoremap <silent> <leader>mm :MundoToggle<CR>
+  nnoremap <silent> <leader>m :MundoToggle<CR>
 endif
 
 if dein#tap('vim-choosewin')
-  nmap -         <Plug>(choosewin)
+  nmap - <Plug>(choosewin)
   nmap <Leader>- :<C-u>ChooseWinSwapStay<CR>
 endif
 
@@ -230,8 +229,8 @@ if dein#tap('caw.vim')
       silent! nunmap <buffer> gcc
       silent! xunmap <buffer> gcc
     else
-      xmap <buffer> <Leader>VV <Plug>(caw:wrap:toggle)
-      nmap <buffer> <Leader>VV <Plug>(caw:wrap:toggle)
+      xmap <buffer> <Leader>vV <Plug>(caw:wrap:toggle)
+      nmap <buffer> <Leader>vV <Plug>(caw:wrap:toggle)
       xmap <buffer> <Leader>vv <Plug>(caw:hatpos:toggle)
       nmap <buffer> <Leader>vv <Plug>(caw:hatpos:toggle)
       nmap <buffer> gc <Plug>(caw:prefix)
@@ -268,7 +267,7 @@ if dein#tap('defx.nvim')
 endif
 
 if dein#tap('vim-startify')
-  nnoremap <silent> <leader>s :Startify<CR>
+  nnoremap <silent> <leader>es :Startify<CR>
 endif
 
 if dein#tap('vim-quickrun')
@@ -292,12 +291,7 @@ if dein#tap('vista.vim')
   nnoremap <silent><localleader>vc :Vista coc<CR>
   nnoremap <silent><localleader>vx :Vista!<CR>
   nnoremap <silent><localleader>vo :Vista<CR>
-  nnoremap <silent><leader>fv     :Vista finder coc<CR>
-endif
-
-if dein#tap('ale')
-  nmap [a <Plug>(ale_next_wrap)
-  nmap ]a <Plug>(ale_previous_wrap)
+  nnoremap <silent><leader>fv      :Vista finder coc<CR>
 endif
 
 if dein#tap('vim-easymotion')
@@ -358,7 +352,7 @@ if dein#tap('vim-textobj-multiblock')
 endif
 
 if dein#tap('vim-zoom')
-  nmap sf <Plug>(zoom-toggle)
+  nmap <Leader>sf <Plug>(zoom-toggle)
 endif
 
 if dein#tap('rainbow')
@@ -378,7 +372,7 @@ if dein#tap('vim-markdown')
 endif
 
 if dein#tap('vimtex')
-  nnoremap <Leader>fl :call vimtex#fzf#run()<cr>
+  nnoremap <Leader>fzl :call vimtex#fzf#run()<cr>
 endif
 
 if dein#tap('accelerated-jk')
@@ -397,8 +391,8 @@ if dein#tap('accelerated-jk')
 endif
 
 if dein#tap('vimwiki')
-  nnoremap <silent> <Leader>DW :<C-u>VimwikiIndex<CR>
-  nnoremap <silent> <Leader>DI :<C-u>VimwikiDiaryIndex<CR>
+  nnoremap <silent> <Leader>WW :VimwikiIndex<CR>
+  nnoremap <silent> <Leader>WI :VimwikiDiaryIndex<CR>
 endif
 
 if dein#tap('vimux')
@@ -418,11 +412,11 @@ endif
 
 if dein#tap('vim-wordy')
   if !&wildcharm | set wildcharm=<C-z> | endif
-  execute 'nnoremap <leader>rw :Wordy<space>'.nr2char(&wildcharm)
+  execute 'nnoremap <leader>rww :Wordy<space>'.nr2char(&wildcharm)
 
   nnoremap <leader>rwn :NextWordy<CR>
   nnoremap <leader>rwp :PrevWordy<CR>
-  nnoremap <leader>rwo :NoWordy<CR>
+  nnoremap <leader>rwr :NoWordy<CR>
 endif
 
 if dein#tap('vim-quickhl')
@@ -442,12 +436,12 @@ if dein#tap('thesaurus_query.vim')
 endif
 
 if dein#tap('neoformat')
-  nmap <LocalLeader>nf :Neoformat<CR>
+  nmap <Leader>nf :Neoformat<CR>
 endif
 
 if dein#tap('neomake')
-  nmap <LocalLeader>nm :Neomake<CR>
-  nmap <LocalLeader>nx :NeomakeClean<CR>
+  nmap <Leader>nm :Neomake<CR>
+  nmap <Leader>nc :NeomakeClean<CR>
 endif
 
 if dein#tap('vim-fugitive')
@@ -461,10 +455,9 @@ endif
 
 if dein#tap('calendar.vim')
   nnoremap <LocalLeader>ct :Calendar -view=clock<CR>
-  nnoremap <LocalLeader>cc :Calendar -first_day=sunday<CR>
+  nnoremap <LocalLeader>cc :Calendar -view=year -first_day=sunday<CR>
   nnoremap <LocalLeader>cd :Calendar -view=day<CR>
   nnoremap <LocalLeader>cw :Calendar -view=week<CR>
-  nnoremap <LocalLeader>cf :Calendar -view=year -first_day=sunday<CR>
   nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=sunday<CR>
   nnoremap <LocalLeader>ch :Calendar -view=day -split=horizontal -position=below -height=12<CR>
 endif
@@ -481,7 +474,7 @@ if dein#tap('vim-rooter')
   " Disables automatic directory change
   let g:rooter_manual_only = 1
 
-  nmap <LocalLeader>R :Rooter<CR>
+  nnoremap <Leader>fr :Rooter<CR>
 endif
 
 
