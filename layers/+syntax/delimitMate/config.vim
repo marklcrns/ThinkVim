@@ -1,12 +1,17 @@
 
 let g:delimitMate_expand_cr = 1
-let delimitMate_matchpairs = "(:),[:],{:}"
-let delimitMate_quotes = "\" ' `"
-let delimitMate_nesting_quotes = ['"','`']
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
-let delimitMate_jump_expansion = 1
-" let delimitMate_excluded_regions = 'Comment'
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_inside_quotes = 0
+let g:delimitMate_jump_expansion = 1
+let g:delimitMate_smart_quotes = 1
+let g:delimitMate_excluded_ft = 'mail,txt'
 
-autocmd FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
-autocmd FileType md,vimwiki let b:delimitMate_quotes = "\" `"
+augroup user_plugin_delimitMate
+  au!
+  au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+  au FileType markdown,vimwiki let b:delimitMate_quotes = "\" `"
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END

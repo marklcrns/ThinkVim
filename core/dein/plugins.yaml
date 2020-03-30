@@ -27,13 +27,16 @@
 # ----------------------------------------
 - repo: itchyny/lightline.vim
   hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
+
 - repo: bagrat/vim-buffet
-  hook_add: source  $VIM_PATH/layers/+ui/buffet/config.vim
+  hook_add: source $VIM_PATH/layers/+ui/buffet/config.vim
   depends: lightline.vim
 
 # Tools
 # ----------------------------------------
-# - repo: airblade/vim-rooter
+- repo: airblade/vim-rooter
+  hook_source: |
+    let g:rooter_manual_only = 1
 
 - repo: christoomey/vim-tmux-navigator
   if: "! (has('win32') || has('win64'))"
@@ -90,7 +93,7 @@
   on_map: { vnx: [<Plug>(operator-sandwich-, <Plug>(textobj-sandwich-]}
 
 - repo: Raimondi/delimitMate
-  on_event: InsertEnter
+  on_event: FileType
   hook_source: source $VIM_PATH/layers/+syntax/delimitMate/config.vim
 
 # Coding tools
@@ -134,7 +137,6 @@
   on_event: InsertCharPre
 
 - repo: kana/vim-operator-replace
-  depends: vim-operator-user
   on_map: { vnx: <Plug> }
 # }}}
 
@@ -145,27 +147,19 @@
 - repo: lambdalisue/gina.vim
   on_cmd: Gina
 
-- repo: chemzqm/vim-easygit
-  on_cmd: [Gcd, Glcd, Gcommit, Gstatus, Gdiff, Gstatus, Gpush]
-  hook_source: let g:easygit_enable_command = 1
-
 - repo: kristijanhusak/defx-git
   on_source: defx.nvim
   hook_source: source  $VIM_PATH/layers/+ui/defx/+defx-git.vim
 
 - repo: tpope/vim-fugitive
   on_cmd:
-    - Gdiffsplit!
-    - Gdifsplit
-    - Gvdiffsplit
-    - Gvdiffsplit!
+    - G
     - Git
-    - Git mergetool
-    - Git difftool
-    - Gbrowse
     - Glog
+    - Gclog
     - Gllog
-    - Gblame
+    - Gdiffsplit
+    - Gvdiffsplit
 
 - repo: tpope/vim-rhubarb
   depends: vim-fugitive
@@ -316,7 +310,7 @@
 - repo: junegunn/fzf.vim
   depends: fzf
   on_cmd: [Colors, Rg, Buffers]
-  on_func: Fzf_dev
+  on_func: [Fzf_dev, vista#finder#fzf#Run]
   hook_source: source $VIM_PATH/layers/+tools/fzf/config.vim
 
 - repo: yuki-ycino/fzf-preview.vim
@@ -342,11 +336,11 @@
 
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
-  on_path: .*
+  on_event: [BufReadPost, BufWritePost]
   hook_source: source $VIM_PATH/layers/+tools/vim-gutentags/config.vim
 
 - repo: liuchengxu/vista.vim
-  on_cmd: [Vista, Vista!, Vista!!]
+  on_cmd: Vista
   hook_source: source $VIM_PATH/layers/+tools/vista/config.vim
 
 - repo: liuchengxu/vim-which-key
@@ -427,24 +421,7 @@
   on_map: [Abolish, Abolish!, Subvert, Subvert!]
 
 - repo: arthurxavierx/vim-caser
-  on_ft:
-    - vim
-    - md
-    - vimwiki
-    - json
-    - go
-    - html
-    - js
-    - jsx
-    - py
-    - css
-    - java
-    - less
-    - tmpl
-    - toml
-    - xml
-    - sql
-    - Dockerfile
+  on_ft: [vim, md, vimwiki, json, go, html, js, jsx, py, css, java, less, tmpl, toml, xml, sql, Dockerfile]
 
 - repo: simnalamburt/vim-mundo
   on_map: {n: <Plug>}
@@ -473,11 +450,9 @@
 
 # UI{{{
 - repo: nathanaelkane/vim-indent-guides
-  on_cmd: [ IndentGuidesEnable, IndentGuidesDisable, IndentGuidesToggle ]
+  on_event: VimEnter
+  hook_post_source: IndentGuidesEnable
   hook_add: source $VIM_PATH/layers/+ui/vim-indent-guides/config.vim
-  hook_post_source: |
-    call indent_guides#init_script_vars()
-    call indent_guides#highlight_colors()
 
 - repo: mhinz/vim-startify
   on_cmd: Startify
