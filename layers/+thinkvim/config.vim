@@ -476,6 +476,7 @@ if dein#tap('vim-fugitive')
   nnoremap <Leader>gg :<C-u>Ggrep<Space>
   nnoremap <Leader>gG :<C-u>Glog --grep= -- %<Left><Left><Left><Left><Left>
   nnoremap <Leader>gp :<C-u>Gpush<CR>
+  nnoremap <Leader>gP :<C-u>terminal git push<CR>
   nnoremap <Leader>gr :<C-u>Git reset<CR>
   nnoremap <Leader>gs :<C-u>Gstatus<CR>
 endif

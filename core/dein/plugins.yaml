@@ -411,8 +411,8 @@
 - repo: reedes/vim-wordy
   on_cmd: [Wordy, NextWordy, PrevWordy]
 
-- repo: tpope/vim-abolish
-  on_map: [Abolish, Abolish!, Subvert, Subvert!]
+# - repo: tpope/vim-abolish
+#   on_map: [Abolish, Abolish!, Subvert, Subvert!]
 
 - repo: arthurxavierx/vim-caser
   on_ft: [vim, md, vimwiki, json, go, html, js, jsx, py, css, java, less, tmpl, toml, xml, sql, Dockerfile]

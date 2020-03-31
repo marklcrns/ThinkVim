@@ -102,6 +102,7 @@ let g:which_key_map = {
              \ 'm' : 'magit-status',
              \ 'o' : 'gina-log',
              \ 'p' : 'git-push',
+             \ 'P' : 'terminal-git-push',
              \ 's' : 'gina-status',
              \ 'v' : 'git-commit-browser',
           \ },
