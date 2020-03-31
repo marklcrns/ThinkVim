@@ -188,5 +188,10 @@
   // snippets
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.pythonVersion": 3,
-  "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips"
+  "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
+
+  // refactor
+  "refactor.openCommand": "vsplit",
+  "refactor.afterContext": 3,
+  "refactor.beforeContext": 3
 }

@@ -18,8 +18,8 @@ let g:which_key_map = {
              \ 'c' : 'code-action-current word',
              \ 'f' : 'coc-format',
              \ 'g' : 'coc-git-status',
-             \ 'j' : 'coc-next-item',
-             \ 'k' : 'coc-prev-item',
+             \ 'j' : 'coc-default-next',
+             \ 'k' : 'coc-default-prev',
           \ 'l' : {
                 \ 'name' : '+CocList',
                    \ 'c' : 'coc-commands',
@@ -40,8 +40,8 @@ let g:which_key_map = {
              \ 'd' : 'open-denite',
           \ 'g' : {
                 \ 'name' : '+Denite-git',
-                   \ 'b' : 'denite-gitlog-all',
-                   \ 'l' : 'denite-gitlog-all',
+                   \ 'b' : 'git-change-branch',
+                   \ 'l' : 'git-log-all',
                 \ }
           \ },
     \ 'e' : {
@@ -81,7 +81,8 @@ let g:which_key_map = {
           \ },
     \ 'g' : {
           \ 'name' : '+Git-operate',
-             \ 'a' : 'git-add-all',
+             \ 'a' : 'git-add',
+             \ 'A' : 'git-add-all',
              \ 'b' : 'git-blame',
              \ 'B' : 'gbrowse',
              \ 'c' : 'gina-commit',
@@ -93,7 +94,7 @@ let g:which_key_map = {
                    \ 'h' : 'git-diffthis-horizontal',
                    \ 'v' : 'git-diffthis-vertical',
                    \ },
-             \ 'f' : 'git-fetch',
+             \ 'F' : 'git-fetch',
              \ 'g' : 'ggrep-{word}',
              \ 'G' : 'git-log-grep-current-file',
              \ 'l' : 'git-log-quickfix',
@@ -102,6 +103,7 @@ let g:which_key_map = {
              \ 'o' : 'gina-log',
              \ 'p' : 'git-push',
              \ 's' : 'gina-status',
+             \ 'v' : 'git-commit-browser',
           \ },
     \ 'G' : 'goyo-toggle' ,
     \ 'h' : {
@@ -117,6 +119,11 @@ let g:which_key_map = {
              \ 'r' : 'compile-run-in-vim',
           \ },
     \ 'K' : 'thesaurus-current-word' ,
+    \ 'l' : {
+          \ 'name' : '+Linediff',
+          \ 'd' : 'linediff-selected',
+          \ 'r' : 'linediff-reset',
+          \ },
     \ 'm' : 'mundotree-toggle' ,
     \ 'n' : {
             \ 'name' : '+Neomake/Neoformat',
@@ -178,14 +185,12 @@ let g:which_key_map = {
              \ 'm' : 'move-tab',
           \ },
     \ 'v' : {
-          \ 'name' : '+Comment/vimux',
+          \ 'name' : 'Vimux',
              \ 'c' : 'vimux-prompt-command',
              \ 'l' : 'vimux-run-last-command',
              \ 'i' : 'vimux-inspect-runner',
              \ 'f' : 'vimux-zoom-runner',
              \ 'q' : 'vimux-close-runner',
-             \ 'v' : 'comment-hatpos-toggle',
-             \ 'V' : 'comment-wrap-toggle',
              \ 'x' : 'vimux-interrupt-runner',
           \ },
     \ 'w' : {
@@ -214,7 +219,19 @@ let g:which_key_map = {
              \ 'k' : 'prev-closed-fold',
              \ 'm' : 'toggle-fold-all',
           \ },
+    \ '/' : {
+          \ 'name' : '+Commenter',
+          \ '/' : 'comment-toggle',
+          \ 'a' : 'comment-beginning-toggle',
+          \ 'b' : 'comment-box',
+          \ 'j' : 'comment-jump-next',
+          \ 'k' : 'comment-prev-next',
+          \ 'i' : 'comment-end-toggle',
+          \ 'w' : 'comment-wrap-toggle',
+          \ },
     \ }
+
+
 
 let g:which_key_map[' '] = {
       \ 'name' : '+Easymotion',

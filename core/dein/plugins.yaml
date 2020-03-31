@@ -90,7 +90,11 @@
   on_map: { nx: <Plug> }
 
 - repo: machakann/vim-sandwich
-  on_map: { vnx: [<Plug>(operator-sandwich-, <Plug>(textobj-sandwich-]}
+  on_map: { vonx: <Plug>(operator-sandwich- }
+  hook_add: |
+    let g:sandwich_no_default_key_mappings = 1
+    let g:operator_sandwich_no_default_key_mappings = 1
+    let g:textobj_sandwich_no_default_key_mappings = 1
 
 - repo: Raimondi/delimitMate
   on_event: FileType
@@ -99,36 +103,26 @@
 # Coding tools
 # ----------------------------------------
 - repo: junegunn/vim-easy-align
-  on_ft:
-    - vim
-    - md
-    - vimwiki
-    - json
-    - go
-    - html
-    - js
-    - jsx
-    - py
-    - css
-    - java
-    - less
-    - tmpl
-    - toml
-    - xml
-    - sql
-    - Dockerfile
+  on_ft: [vim, md, vimwiki, json, go, html, js, jsx, py, css, java, less, tmpl, toml, xml, sql, Dockerfile]
 
 - repo: AndrewRadev/splitjoin.vim
   on_map: { n: <Plug>Splitjoin }
 
+- repo: AndrewRadev/linediff.vim
+  on_cmd: Linediff
+
 - repo: terryma/vim-expand-region
   on_map: { x: <Plug> }
 
-- repo: kana/vim-textobj-user
-  on_func: textobj#user#
+- repo: kana/vim-textobj-user  # only autoload functions, lazy by nature
+
+- repo: kana/vim-textobj-function
+  on_map: { ox: <Plug> }
+  hook_add: let g:textobj_function_no_default_key_mappings = 1
 
 - repo: kana/vim-operator-user
-  lazy: 1
+
+- repo: kana/vim-operator-replace
 
 - repo: kana/vim-niceblock
   on_map: { x: <Plug> }
@@ -136,8 +130,6 @@
 - repo: kana/vim-smartchr
   on_event: InsertCharPre
 
-- repo: kana/vim-operator-replace
-  on_map: { vnx: <Plug> }
 # }}}
 
 # Git{{{
@@ -155,17 +147,13 @@
   on_cmd:
     - G
     - Git
-    - Gblame
+    - Gfetch
     - Gpush
     - Glog
     - Gclog
     - Gllog
     - Gdiffsplit
     - Gvdiffsplit
-
-- repo: tpope/vim-rhubarb
-  depends: vim-fugitive
-  on_cmd: Gbrowse
 
 - repo: neoclide/denite-git
   on_cmd: Denite
@@ -328,6 +316,10 @@
     - FzfPreviewFromResources
     - FzfPreviewGitStatus
   hook_source: source $VIM_PATH/layers/+tools/fzf/config.vim
+
+- repo: junegunn/gv.vim
+  depends: vim-fugitive
+  on_cmd: GV
 
 - repo: Shougo/neomru.vim
   on_source: [denite.vim, fzf-preview.vim]

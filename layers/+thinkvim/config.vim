@@ -1,6 +1,7 @@
-"Plugin key settings
+" Plugin key settings
 
 if dein#tap('coc.nvim')
+  nnoremap <silent> <leader>cC :<C-u>CocConfig<Cr>
   " Using CocList
   " Show commands
   nnoremap <silent> <leader>clc  :<C-u>CocList commands<cr>
@@ -70,12 +71,16 @@ if dein#tap('coc.nvim')
   nmap gm <Plug>(coc-git-commit)
   nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
   " float window scroll
-  nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+  nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-f>"
   nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
   " multiple cursors
   nmap <silent> <C-c> <Plug>(coc-cursors-position)
-  xmap <silent> <C-c> <Plug>(coc-cursors-range)
   nmap <expr> <silent> <C-s> <SID>select_current_word()
+  xmap <silent> <C-s> <Plug>(coc-cursors-range)
+  " use normal command like `<leader>xi(`
+  nmap <leader>cx <Plug>(coc-cursors-operator)
+
+  nmap <leader>cr <Plug>(coc-refactor)
 
   function! s:select_current_word()
     if !get(g:, 'coc_cursors_activated', 0)
@@ -86,8 +91,6 @@ if dein#tap('coc.nvim')
 
   nnoremap <silent> <leader>cs :<C-u>CocSearch<Space>
   nnoremap <silent> <leader>cw :<C-u>CocSearch -w<Space>
-  " use normal command like `<leader>xi(`
-  nmap <leader>x  <Plug>(coc-cursors-operator)
   " coc-explorer
   " noremap <silent> <leader>ce :execute 'CocCommand explorer' .
   "      \ ' --toggle' .
@@ -201,13 +204,6 @@ if dein#tap('vimagit')
   nnoremap <silent> <Leader>gm :Magit<CR>
 endif
 
-if dein#tap('gina.vim')
-  nnoremap <Leader>ga :<C-u>Gina add .<CR>
-  nnoremap <Leader>gs :<C-u>Gina status<CR>
-  nnoremap <Leader>gc :<C-u>Gina commit<CR>
-  nnoremap <Leader>go :<C-u>Gina log<CR>
-endif
-
 if dein#tap('vim-mundo')
   nnoremap <silent> <leader>m :MundoToggle<CR>
 endif
@@ -219,7 +215,7 @@ endif
 
 if dein#tap('caw.vim')
   function! InitCaw() abort
-    if ! &l:modifiable
+    if ! (&l:modifiable && &buftype ==# '')
       silent! nunmap <buffer> <Leader>V
       silent! xunmap <buffer> <Leader>V
       silent! nunmap <buffer> <Leader>v
@@ -229,10 +225,20 @@ if dein#tap('caw.vim')
       silent! nunmap <buffer> gcc
       silent! xunmap <buffer> gcc
     else
-      xmap <buffer> <Leader>vV <Plug>(caw:wrap:toggle)
-      nmap <buffer> <Leader>vV <Plug>(caw:wrap:toggle)
-      xmap <buffer> <Leader>vv <Plug>(caw:hatpos:toggle)
-      nmap <buffer> <Leader>vv <Plug>(caw:hatpos:toggle)
+      xmap <buffer> <Leader>/a <Plug>(caw:dollarpos:toggle)
+      nmap <buffer> <Leader>/a <Plug>(caw:dollarpos:toggle)
+      xmap <buffer> <Leader>/b <Plug>(caw:box:comment)
+      nmap <buffer> <Leader>/b <Plug>(caw:box:comment)
+      xmap <buffer> <Leader>/j <Plug>(caw:jump:comment-next)
+      nmap <buffer> <Leader>/j <Plug>(caw:jump:comment-next)
+      xmap <buffer> <Leader>/k <Plug>(caw:jump:comment-prev)
+      nmap <buffer> <Leader>/k <Plug>(caw:jump:comment-prev)
+      xmap <buffer> <Leader>/i <Plug>(caw:zeropos:toggle)
+      nmap <buffer> <Leader>/i <Plug>(caw:zeropos:toggle)
+      xmap <buffer> <Leader>/w <Plug>(caw:wrap:toggle)
+      nmap <buffer> <Leader>/w <Plug>(caw:wrap:toggle)
+      xmap <buffer> <Leader>// <Plug>(caw:hatpos:toggle)
+      nmap <buffer> <Leader>// <Plug>(caw:hatpos:toggle)
       nmap <buffer> gc <Plug>(caw:prefix)
       xmap <buffer> gc <Plug>(caw:prefix)
       nmap <buffer> gcc <Plug>(caw:hatpos:toggle)
@@ -251,8 +257,9 @@ if dein#tap('comfortable-motion.vim')
 endif
 
 if dein#tap('python_match.vim')
-  nmap <buffer> {{ [%
-  nmap <buffer> }} ]%
+  autocmd FileType python
+        \ nmap <buffer> {{ [%
+        \ | nmap <buffer> }} ]%
 endif
 
 if dein#tap('goyo.vim')
@@ -316,8 +323,9 @@ if dein#tap('vim-smartchr')
 endif
 
 if dein#tap('vim-niceblock')
-  xmap I  <Plug>(niceblock-I)
-  xmap A  <Plug>(niceblock-A)
+  silent! xmap I  <Plug>(niceblock-I)
+  silent! xmap gI <Plug>(niceblock-gI)
+  silent! xmap A  <Plug>(niceblock-A)
 endif
 
 if dein#tap('vim-sandwich')
@@ -340,6 +348,7 @@ if dein#tap('vim-sandwich')
   xmap as <Plug>(textobj-sandwich-query-a)
 endif
 
+
 if dein#tap('vim-operator-replace')
   xmap p <Plug>(operator-replace)
 endif
@@ -349,6 +358,11 @@ if dein#tap('vim-textobj-multiblock')
   omap <silent> ib <Plug>(textobj-multiblock-i)
   xmap <silent> ab <Plug>(textobj-multiblock-a)
   xmap <silent> ib <Plug>(textobj-multiblock-i)
+endif
+
+if dein#tap('linediff.vim')
+  nmap <silent> <leader>lr :LinediffReset<CR>
+  vmap <silent> <leader>ld :Linediff<CR>
 endif
 
 if dein#tap('vim-zoom')
@@ -382,12 +396,8 @@ if dein#tap('accelerated-jk')
   let g:accelerated_jk_acceleration_limit = 250
 
   " Time-driven acceleration
-  "nmap j <Plug>(accelerated_jk_gj)
-  "nmap k <Plug>(accelerated_jk_gk)
-
-  " Position-driven acceleration
-  nmap j <Plug>(accelerated_jk_gj_position)
-  nmap k <Plug>(accelerated_jk_gk_position)
+  nmap <silent> j <Plug>(accelerated_jk_gj)
+  nmap <silent> k <Plug>(accelerated_jk_gk)
 endif
 
 if dein#tap('vimwiki')
@@ -446,7 +456,9 @@ endif
 
 if dein#tap('vim-fugitive')
   " Ref http://vimcasts.org/episodes/fugitive-vim-exploring-the-history-of-a-git-repository/
-  nnoremap <Leader>gb :<C-u>Gblame<CR>
+  nnoremap <Leader>ga :<C-u>Git add %:p<CR>
+  nnoremap <Leader>gA :<C-u>Git add .<CR>
+  nnoremap <Leader>gb :<C-u>Git blame<CR>
   nnoremap <Leader>gdc :<C-u>Git diff --cached<CR>
   nnoremap <Leader>gdd :<C-u>Git diff<CR>
   nnoremap <Leader>gdt :<C-u>Git difftool<CR>
@@ -454,11 +466,24 @@ if dein#tap('vim-fugitive')
   nnoremap <Leader>gdv :<C-u>Gvdiffsplit<CR>
   nnoremap <Leader>gl :<C-u>Glog<CR>
   nnoremap <Leader>gL :<C-u>0Glog<CR>
-  nnoremap <Leader>gf :<C-u>Gfetch<CR>
+  nnoremap <Leader>gF :<C-u>Gfetch<CR>
   nnoremap <Leader>gg :<C-u>Ggrep<Space>
   nnoremap <Leader>gG :<C-u>Glog --grep= -- %<Left><Left><Left><Left><Left>
   nnoremap <Leader>gp :<C-u>Gpush<CR>
+  nnoremap <Leader>gr :<C-u>Git reset<CR>
 endif
+
+if dein#tap('gv.vim')
+  nmap <Leader>gv :GV! --all<cr>
+  vmap <Leader>gv :GV! --all<cr>
+endif
+
+if dein#tap('gina.vim')
+  nnoremap <Leader>gs :<C-u>Gina status<CR>
+  nnoremap <Leader>gc :<C-u>Gina commit<CR>
+  nnoremap <Leader>go :<C-u>Gina log<CR>
+endif
+
 
 if dein#tap('calendar.vim')
   nnoremap <LocalLeader>ct :Calendar -view=clock<CR>
