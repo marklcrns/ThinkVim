@@ -1,10 +1,11 @@
 {
   "suggest.triggerAfterInsertEnter": false,
+  "suggest.minTriggerInputLength": 1,
   "suggest.timeout": 500,
   "suggest.noselect": false,
   "suggest.detailField":"abbr",
   "suggest.snippetIndicator": " 🌟",
-  "suggest.triggerCompletionWait": 100,
+  "suggest.triggerCompletionWait": 50,
   "suggest.echodocSupport": true,
   "suggest.completionItemKindLabels": {
       "keyword": "\uf1de",
@@ -30,8 +31,10 @@
       "file": "\uf723",
       "folder": "\uf114",
       "snippet": "\ue60b",
-      "typeParameter": "\uf728", "default": "\uf29c"
+      "typeParameter": "\uf728",
+      "default": "\uf29c"
   },
+
   //diagnostic
   "diagnostic.signOffset": 9999999,
   "diagnostic.errorSign": "●",
@@ -86,22 +89,13 @@
   //sessions
   "session.directory": "~/.cache/vim/session",
 
-  // coc-explorer
-  // "explorer.icon.expanded": "▾",
-  // "explorer.icon.collapsed": "▸",
-  // "explorer.width": 30,
-  // "explorer.icon.enableNerdfont": true,
-  // "explorer.keyMappings": {
-  //     "h" : "gotoParent",
-  //     "l" : "expandOrShrink"
-  // },
-
   // golang
   "go.goplsOptions": {
       "usePlaceholders": true,
       "completeUnimported": true,
       "deepCompletion": true
   },
+
   // eslint
   "eslint.filetypes": ["javascript", "javascript.jsx", "javascriptreact"],
   "eslint.autoFix": true,
@@ -138,7 +132,7 @@
     "less",
     "scss",
     "vim",
-    "text",
+    "text"
   ],
   // Controls the maximum number of spelling errors per document.
   "cSpell.maxNumberOfProblems": 100,
@@ -189,9 +183,4 @@
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.pythonVersion": 3,
   "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
-
-  // refactor
-  "refactor.openCommand": "vsplit",
-  "refactor.afterContext": 3,
-  "refactor.beforeContext": 3
 }

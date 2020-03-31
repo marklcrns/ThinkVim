@@ -282,12 +282,17 @@ let g:which_key_localmap = {
       \ 'q'    : 'toggle-quickfix',
       \ 'r'    : 'quick-run',
       \ 's' : {
-            \ 'name' : '+Text-UI-toggles',
+            \ 'name' : '+UI-toggles',
                \ 'c' : 'conceal-toggle',
                \ 'g' : 'gutter-toggle',
                \ 'p' : 'rainbow-pairs-toggle',
                \ 's' : 'spell-checker-toggle',
                \ 'w' : 'text-wrap-toggle',
+               \ 'l' : {
+                     \ 'name' : '+Cursor',
+                     \ 'c' : 'cursorcolumn-toggle',
+                     \ 'l' : 'cursorline-toggle',
+                     \ },
             \ },
       \ 'v' : {
             \ 'name' : '+Vista',

@@ -99,7 +99,7 @@ if dein#tap('coc.nvim')
 
   " Movement within 'ins-completion-menu'
   imap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>"
-  imap <expr><C-k> pumvisible() ? "\<Up>" : "\<C-k>"
+  imap <expr><C-k> pumvisible() ? "\<Up>" : "\<ESC>d$a"
 
   " Scroll pages in menu
   inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>"

@@ -83,12 +83,14 @@ inoremap <C-v> <ESC>v`[
 inoremap <C-w> <C-[>diwa
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
-" inoremap <C-k>  <ESC>d$a
+" inoremap <C-k> <ESC>d$a
 inoremap <C-u> <C-G>u<C-U>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
+" inoremap <C-b> <Left>
+" inoremap <C-f> <Right>
 inoremap <C-a> <Home>
 inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
+inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<Up>"
 
 " command line alias
 "cnoremap w!! w !sudo tee % >/dev/null
@@ -291,11 +293,6 @@ nmap <LocalLeader>sw :set wrap!<CR>
 nmap <Localleader>ss :setlocal spell!<CR>
 
 " Toggle conceallevel
-nmap <LocalLeader>sc :call ToggleConcealLevel()<CR>
-
-" Toggle gutter
-nmap <LocalLeader>sg :call ToggleGutter()<CR>
-
 function! ToggleConcealLevel()
   if &conceallevel
     set conceallevel=0
@@ -303,14 +300,50 @@ function! ToggleConcealLevel()
     set conceallevel=2
   end
 endfunction
+nmap <LocalLeader>sc :call ToggleConcealLevel()<CR>
 
+" Toggle gutter
 function! ToggleGutter()
   if &signcolumn == 'yes'
     set signcolumn=no
   else
     set signcolumn=yes
-  end
+  endif
 endfunction
+nmap <LocalLeader>sg :call ToggleGutter()<CR>
+
+" Toggle curosrcolumn and cursorline function
+if &cursorline
+  let g:activate_cursorline = 1
+else
+  let g:activate_cursorline = 0
+endif
+if &cursorcolumn
+  let g:activate_cursorcolumn = 1
+else
+  let g:activate_cursorcolumn = 0
+endif
+function! ToggleCursorline()
+  if &cursorline
+    set nocursorline
+    let g:activate_cursorline = 0
+  else
+    set cursorline
+    let g:activate_cursorline = 1
+  endif
+endfunction
+nmap <silent> <LocalLeader>sll :<C-u>call ToggleCursorline()<CR>
+
+function! ToggleCursorcolumn()
+  if &cursorcolumn
+    set nocursorcolumn
+    let g:activate_cursorcolumn = 0
+  else
+    set cursorcolumn
+    let g:activate_cursorcolumn = 1
+  endif
+endfunction
+nmap <silent> <LocalLeader>slc :<C-u>call ToggleCursorcolumn()<CR>
 
 " Jumps to previously misspelled word and fixes it with the first in the
 " suggestion
@@ -358,7 +391,7 @@ nnoremap <Leader>zf za
 " Focus the current fold by closing all others
 nnoremap <Leader>zF zMzvzt
 " Toggle fold all
-nnoremap <expr> <Leader>fm &foldlevel ? 'zM' :'zR'
+nnoremap <expr> <Leader>zm &foldlevel ? 'zM' :'zR'
 " Jumping to next closed fold
 " Ref: https://stackoverflow.com/a/9407015/11850077
 nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>

@@ -74,8 +74,8 @@ set hidden
 set shortmess=aFc
 set signcolumn=yes:2
 set completefunc=emoji#complete
-set completeopt =longest,menu
-set completeopt-=preview
+set completeopt=noinsert,menuone,preview
+set completeopt+=longest
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
@@ -83,7 +83,7 @@ set colorcolumn=80
 set mouse=a         " Enable mouse support
 set scrolloff=5     " Keeps some screen visible while scrolling
 set cursorline      " Highlights entire line of current cursor position"
-set cursorcolumn    " Highlights column of current cursor position"
+" set cursorcolumn    " Highlights column of current cursor position"
 set ignorecase      " Search ignoring case
 set smartcase       " Keep case when searching with *
 set infercase       " Adjust case in insert completion mode
@@ -174,6 +174,25 @@ autocmd VimResized * wincmd =
 
 " autoread file to check and update new changes in current buffer
 autocmd FocusGained,BufEnter * :checktime
+
+" disable cursorline and cursorcolumn on InsertEnter
+autocmd WinLeave,InsertEnter * set nocursorline nocursorcolumn
+
+" reenable cursorline or cursorcolumn on InsertLeave when activated
+autocmd WinEnter,InsertLeave *
+    \ if g:activate_cursorline == 1
+      \ | set cursorline
+    \ | else
+      \ | set nocursorline
+    \ | endif
+    \ | if g:activate_cursorcolumn == 1
+      \ | set cursorcolumn
+    \ | else
+      \ | set nocursorcolumn
+    \ | endif
+
+" Always choose read-only when SwapExists
+autocmd SwapExists * let v:swapchoice = "o"
 
 " Auto capitalization in start of sentences
 " Ref: https://davidxmoody.com/2014/vim-auto-capitalisation/
