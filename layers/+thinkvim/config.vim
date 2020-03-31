@@ -15,6 +15,8 @@ if dein#tap('coc.nvim')
   nnoremap <silent> <leader>clr  :<C-u>CocListResume<CR>
   " Search workspace symbols
   nnoremap <silent> <leader>cls  :<C-u>CocList -I symbols<cr>
+  " Show yank list (coc-yank)
+  nnoremap <silent> <leader>cly  :<C-u>CocList -A --normal yank<cr>
   " Do default action for next item.
   nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
   " Do default action for previous item.

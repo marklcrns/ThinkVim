@@ -80,17 +80,21 @@ xnoremap > >gv|
 inoremap <C-v> <ESC>v`[
 
 " insert keymap like emacs
-inoremap <C-w> <C-[>diwa
-inoremap <C-h> <BS>
-inoremap <C-d> <Del>
-" inoremap <C-k> <ESC>d$a
-inoremap <C-u> <C-G>u<C-U>
-" inoremap <C-b> <Left>
-" inoremap <C-f> <Right>
-inoremap <C-a> <Home>
-inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
-inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<Up>"
+imap <C-w> <C-[>diwa
+imap <C-h> <BS>
+imap <C-d> <Del>
+imap <C-k> <ESC>d$a
+imap <C-u> <C-G>u<C-U>
+imap <C-a> <Home>
+imap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
+" Cursor navigation
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Down>"
+imap <expr><C-p> pumvisible() ? "\<C-p>" : "\<Up>"
+" move between sentences
+imap <M-a> <C-[>(i
+imap <M-e> <C-[>)i
 
 " command line alias
 "cnoremap w!! w !sudo tee % >/dev/null

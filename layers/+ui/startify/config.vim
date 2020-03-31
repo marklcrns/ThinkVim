@@ -22,10 +22,9 @@ let g:startify_custom_header =
 	\ startify#center(startify#fortune#cowsay('', '═','║','╔','╗','╝','╚'))
 
 let g:startify_bookmarks = [
-	\ { 'v': '~/.vim/.vimrc' },
+	\ { 'a': '~/.bash_aliases' },
 	\ { 'z': '~/.zshrc' },
 	\ { 'b': '~/.bashrc' },
-	\ { 'a': '~/.bash_aliases' },
 	\ { 't': '~/.tmux.conf' },
 	\ { 'vg': '~/.config/nvim/core/general.vim' },
 	\ { 'vm': '~/.config/nvim/core/mappings.vim' },
@@ -33,6 +32,10 @@ let g:startify_bookmarks = [
 	\ { 'vc': '~/.config/nvim/layers/+thinkvim/config.vim' },
 	\ { 'lp': '~/.config/nvim/.thinkvim.d/local_plugins.yaml' },
 	\ { 'ls': '~/.config/nvim/.thinkvim.d/local_settings.vim' },
+	\ { 'di': '~/.doom.d/init.el' },
+	\ { 'dc': '~/.doom.d/config.el' },
+	\ { 'dp': '~/.doom.d/packages.el' },
+	\ { 'ei': '~/.emacs.d/init.el' },
 	\ ]
 
 let s:footer = [
