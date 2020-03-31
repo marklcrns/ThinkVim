@@ -122,14 +122,13 @@
 
 - repo: kana/vim-operator-user
 
-- repo: kana/vim-operator-replace
+# - repo: kana/vim-operator-replace
 
 - repo: kana/vim-niceblock
   on_map: { x: <Plug> }
 
 - repo: kana/vim-smartchr
   on_event: InsertCharPre
-
 # }}}
 
 # Git{{{
@@ -149,6 +148,7 @@
     - Git
     - Gfetch
     - Gpush
+    - Gstatus
     - Glog
     - Gclog
     - Gllog
@@ -449,7 +449,7 @@
   hook_add: source $VIM_PATH/layers/+ui/vim-indent-guides/config.vim
 
 - repo: mhinz/vim-startify
-  on_cmd: Startify
+  on_event: VimEnter
   depends: vim-devicons
   hook_source: source $VIM_PATH/layers/+ui/startify/config.vim
   hook_post_source: |

@@ -274,7 +274,11 @@ if dein#tap('defx.nvim')
 endif
 
 if dein#tap('vim-startify')
-  nnoremap <silent> <leader>es :Startify<CR>
+  nnoremap <silent> <leader>es :<C-u>Startify<CR>
+  nnoremap <silent> <leader>ssc :<C-u>SClose<CR>
+  nnoremap <silent> <leader>sss :<C-u>SSave<CR>
+  nnoremap <silent> <leader>ssl :<C-u>SLoad<CR>
+  nnoremap <silent> <leader>ssd :<C-u>SDelete<CR>
 endif
 
 if dein#tap('vim-quickrun')
@@ -471,6 +475,7 @@ if dein#tap('vim-fugitive')
   nnoremap <Leader>gG :<C-u>Glog --grep= -- %<Left><Left><Left><Left><Left>
   nnoremap <Leader>gp :<C-u>Gpush<CR>
   nnoremap <Leader>gr :<C-u>Git reset<CR>
+  nnoremap <Leader>gs :<C-u>Gstatus<CR>
 endif
 
 if dein#tap('gv.vim')
@@ -479,7 +484,6 @@ if dein#tap('gv.vim')
 endif
 
 if dein#tap('gina.vim')
-  nnoremap <Leader>gs :<C-u>Gina status<CR>
   nnoremap <Leader>gc :<C-u>Gina commit<CR>
   nnoremap <Leader>go :<C-u>Gina log<CR>
 endif

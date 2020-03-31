@@ -14,10 +14,10 @@ call defx#custom#option('_', {
 augroup user_plugin_defx
 	autocmd!
 
-	" autocmd DirChanged * call s:defx_refresh_cwd(v:event)
+	autocmd DirChanged * call s:defx_refresh_cwd(v:event)
 
 	" Delete defx if it's the only buffer left in the window
-	" autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bd | endif
+	autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bd | endif
 
 	" Move focus to the next window if current buffer is defx
 	autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
@@ -140,6 +140,10 @@ function! s:defx_mappings() abort
 	nnoremap <silent><buffer><expr> gr  defx#do_action('call', '<SID>grep')
 	nnoremap <silent><buffer><expr> gf  defx#do_action('call', '<SID>find_files')
 	nnoremap <silent><buffer><expr> w   defx#async_action('call', '<SID>toggle_width')
+	nnoremap <silent><buffer><expr> > defx#do_action('resize',
+	\ defx#get_context().winwidth + 10)
+	nnoremap <silent><buffer><expr> < defx#do_action('resize',
+	\ defx#get_context().winwidth - 10)
 endfunction
 
 " TOOLS

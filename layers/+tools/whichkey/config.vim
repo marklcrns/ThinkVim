@@ -168,7 +168,7 @@ let g:which_key_map = {
                 \ }
           \ },
     \ 's' : {
-          \ 'name' : '+Splits',
+          \ 'name' : '+Splits/Sessions',
              \ '[' : 'vertical-resize-minus',
              \ ']' : 'vertical-resize-plus',
              \ '{' : 'horizontal-resize-minus',
@@ -176,6 +176,13 @@ let g:which_key_map = {
              \ 'd' : 'delete-buffer-keep-split',
              \ 'f' : 'zoom-split-toggle',
              \ 'h' : 'horizontal-split',
+             \ 's' : {
+                   \ 'name' : '+Sessions',
+                   \ 'c' : 'close-session',
+                   \ 'd' : 'delete-session-{prompt}',
+                   \ 'l' : 'load-session-{prompt}',
+                   \ 's' : 'save-session-{prompt}',
+                   \  },
              \ 'v' : 'vertical-split',
           \ },
     \ 't' : {

@@ -1,5 +1,11 @@
 
 autocmd User Startified setlocal cursorline
+autocmd VimEnter *
+    \   if !argc()
+    \ |   Startify
+    \ |   Defx -direction=botright
+    \ |   wincmd w
+    \ | endif
 
 let g:startify_enable_special      = 0
 let g:startify_files_number        = 8
@@ -8,7 +14,6 @@ let g:startify_change_to_dir       = 1
 let g:startify_update_oldfiles     = 1
 let g:startify_session_autoload    = 1
 let g:startify_session_persistence = 1
-let NERDTreeHijackNetrw = 0
 
 let g:startify_lists = [
       \ { 'type': 'sessions',  'header': ['   Sessions']       },

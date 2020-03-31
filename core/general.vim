@@ -45,7 +45,7 @@ if has('clipboard')
     set clipboard& clipboard+=unnamedplus
 endif
 
-set history=2000
+set history=5000
 set number
 set timeout ttimeout
 set timeoutlen=500 " Time out on mappings
