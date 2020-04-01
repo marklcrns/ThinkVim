@@ -1,25 +1,37 @@
 let g:which_key_map =  {}
 let g:which_key_map = {
-    \ 'name' : '+Leader-Key',
-       \ '-' : 'choose-window' ,
-       \ '1' : 'buffer-1',
-       \ '2' : 'buffer-2',
-       \ '3' : 'buffer-3',
-       \ '4' : 'buffer-4',
-       \ '5' : 'buffer-5',
-       \ '6' : 'buffer-6',
-       \ '7' : 'buffer-7',
-       \ '8' : 'buffer-8',
-       \ '9' : 'buffer-9',
-       \ '0' : 'buffer-10',
+    \ 'name' : '+leader-Key',
+       \ '-' : 'Choose Window' ,
+       \ '/' : {
+             \ 'name' : '+commenter',
+             \ '/' : 'Comment Toggle',
+             \ 'a' : 'Comment Beginning Toggle',
+             \ 'b' : 'Comment Box',
+             \ 'j' : 'Comment Jump Next',
+             \ 'k' : 'Comment Prev Next',
+             \ 'i' : 'Comment End Toggle',
+             \ 'w' : 'Comment Wrap Toggle',
+             \ },
+       \ '<Tab>' : 'Next buffer',
+       \ '<S-Tab>' : 'Prev buffer',
+       \ '1' : 'Buffer 1',
+       \ '2' : 'Buffer 2',
+       \ '3' : 'Buffer 3',
+       \ '4' : 'Buffer 4',
+       \ '5' : 'Buffer 5',
+       \ '6' : 'Buffer 6',
+       \ '7' : 'Buffer 7',
+       \ '8' : 'Buffer 8',
+       \ '9' : 'Buffer 9',
+       \ '0' : 'Buffer 10',
     \ 'c' : {
-          \ 'name' : '+Coc',
-             \ 'a' : 'code-action-text-object',
-             \ 'c' : 'code-action-current word',
-             \ 'f' : 'coc-format',
-             \ 'g' : 'coc-git-status',
-             \ 'j' : 'coc-default-next',
-             \ 'k' : 'coc-default-prev',
+          \ 'name' : '+coc',
+             \ 'a' : 'Code Action Text Object',
+             \ 'c' : 'Code Action Current Word',
+             \ 'f' : 'Coc Format',
+             \ 'g' : 'Coc Git Status',
+             \ 'j' : 'Coc Default Next',
+             \ 'k' : 'Coc Default Prev',
           \ 'l' : {
                 \ 'name' : '+CocList',
                    \ 'c' : 'coc-commands',
@@ -49,7 +61,6 @@ let g:which_key_map = {
              \ 'a' : 'explorer-to-current-file-directory',
              \ 'd' : 'vertical-diffsplit',
              \ 'e' : 'explorer-to-current-directory',
-             \ 's' : 'startify-open',
           \ },
     \ 'f' : {
           \ 'name' : '+File-management',
@@ -169,23 +180,13 @@ let g:which_key_map = {
                 \ }
           \ },
     \ 's' : {
-          \ 'name' : '+Splits/Sessions',
-             \ '[' : 'vertical-resize-minus',
-             \ ']' : 'vertical-resize-plus',
-             \ '{' : 'horizontal-resize-minus',
-             \ '}' : 'horizontal-resize-plus',
-             \ 'd' : 'delete-buffer-keep-split',
-             \ 'f' : 'zoom-split-toggle',
-             \ 'h' : 'horizontal-split',
-             \ 's' : {
-                   \ 'name' : '+Sessions',
-                   \ 'c' : 'close-session',
-                   \ 'd' : 'delete-session-{prompt}',
-                   \ 'l' : 'load-session-{prompt}',
-                   \ 's' : 'save-session-{prompt}',
-                   \  },
-             \ 'v' : 'vertical-split',
+          \ 'name' : '+sessions',
+          \ 'c' : 'Close Session',
+          \ 'd' : 'Delete Session {prompt}',
+          \ 'l' : 'Load Session {prompt}',
+          \ 's' : 'Save Session {prompt}',
           \ },
+    \ 'S' : 'Startify open',
     \ 't' : {
           \ 'name' : '+Tab-operate',
              \ 'n' : 'new-tab',
@@ -202,21 +203,15 @@ let g:which_key_map = {
              \ 'x' : 'vimux-interrupt-runner',
           \ },
     \ 'w' : {
-          \ 'name' : '+Vimwiki',
-             \ 'h' : 'vimwiki-to-html',
-            \ 'hh' : 'vimwiki-to-html-browse',
-             \ 'H' : 'vimwiki-all-to-html',
-             \ 'i' : '{int}vimwiki-diary-index',
-             \ 'l' : 'vimwiki-generate-links',
-             \ 's' : 'vimwiki-ui-select',
-             \ 'w' : '{int}vimwiki-index',
-          \ '<SPC>' : {
-                    \ 'name' : '+Diary',
-                       \ 'm' : 'mark-diary-tomorrow',
-                       \ 't' : 'mark-diary-today',
-                       \ 'w' : 'mark-diary-note',
-                       \ 'y' : 'mark-diary-yesterday',
-                    \ },
+          \ 'name' : '+splits',
+             \ '[' : 'Vertical Resize Minus',
+             \ ']' : 'Vertical Resize Plus',
+             \ '{' : 'Horizontal Resize Minus',
+             \ '}' : 'Horizontal Resize Plus',
+             \ 'd' : 'Delete Buffer Keep Split',
+             \ 'f' : 'Zoom Split Toggle',
+             \ 'h' : 'Horizontal Split',
+             \ 'v' : 'Vertical Split',
           \ },
     \ 'x' : 'coc-cursors-operate',
     \ 'z' : {
@@ -227,19 +222,7 @@ let g:which_key_map = {
              \ 'k' : 'prev-closed-fold',
              \ 'm' : 'toggle-fold-all',
           \ },
-    \ '/' : {
-          \ 'name' : '+Commenter',
-          \ '/' : 'comment-toggle',
-          \ 'a' : 'comment-beginning-toggle',
-          \ 'b' : 'comment-box',
-          \ 'j' : 'comment-jump-next',
-          \ 'k' : 'comment-prev-next',
-          \ 'i' : 'comment-end-toggle',
-          \ 'w' : 'comment-wrap-toggle',
-          \ },
     \ }
-
-
 
 let g:which_key_map[' '] = {
       \ 'name' : '+Easymotion',
@@ -302,12 +285,29 @@ let g:which_key_localmap = {
                \ 'o' : 'vista-open',
                \ 'x' : 'vista-close',
             \ },
+      \ 'w' : {
+            \ 'name' : '+vimwiki',
+              \ 'h' : 'Vimwiki To Html',
+              \ 'hh' : 'Vimwiki To Html Browse',
+              \ 'H' : 'Vimwiki All To Html',
+              \ 'i' : '{#wiki}Vimwiki Diary Index',
+              \ 'l' : 'Vimwiki Generate Links',
+              \ 's' : 'Vimwiki Ui Select',
+              \ 'w' : '{#wiki}Vimwiki Index',
+            \ '<SPC>' : {
+                      \ 'name' : '+Diary',
+                        \ 'm' : 'mark-diary-tomorrow',
+                        \ 't' : 'mark-diary-today',
+                        \ 'w' : 'mark-diary-note',
+                        \ 'y' : 'mark-diary-yesterday',
+                      \ },
+            \ },
       \ '<Tab>' : 'wipe-current-buffer',
       \ '<S-Tab>' : 'wipe-all-except-current-buffer',
       \ }
 
 let g:which_key_lsbgmap = {
-      \ 'name' : '+LeftSquarebrackets',
+      \ 'name' : '+left-square-brackets',
          \ '[' : 'prev-function-beginning',
          \ ']' : 'prev-function-end',
          \ '=' : 'marker-any-prev',
@@ -327,7 +327,7 @@ let g:which_key_lsbgmap = {
       \ }
 
 let g:which_key_rsbgmap = {
-      \ 'name' : '+RightSquarebrackets',
+      \ 'name' : '+right-Square-brackets',
          \ ']' : 'next-function-beginning',
          \ '[' : 'next-function-end',
          \ '=' : 'marker-any-next',
@@ -352,7 +352,7 @@ if  s:current_colorscheme == "base16-default-dark"
 endif
 
 let g:which_key_timeout = 300
-let g:which_key_exit = ["\<C-[>", "\<C-c>"]
+let g:which_key_exit = ["\<C-[>", "\<C-c>", "\<C-g>"]
 
 let g:which_key_display_names = {
       \       ' ': 'SPC',
@@ -360,5 +360,5 @@ let g:which_key_display_names = {
       \   '<C-I>': 'TAB',
       \   '<TAB>': 'TAB',
       \ '<S-TAB>': 'S-TAB',
-      \    '<CR>': 'CR',
+      \    '<CR>': 'RET',
       \ }

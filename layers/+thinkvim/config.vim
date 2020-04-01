@@ -475,7 +475,6 @@ if dein#tap('vim-fugitive')
   nnoremap <Leader>gF :<C-u>Gfetch<CR>
   nnoremap <Leader>gg :<C-u>Ggrep<Space>
   nnoremap <Leader>gG :<C-u>Glog --grep= -- %<Left><Left><Left><Left><Left>
-  nnoremap <Leader>gp :<C-u>Gpush<CR>
   nnoremap <Leader>gP :<C-u>terminal git push<CR>
   nnoremap <Leader>gr :<C-u>Git reset<CR>
   nnoremap <Leader>gs :<C-u>Gstatus<CR>
@@ -489,6 +488,7 @@ endif
 if dein#tap('gina.vim')
   nnoremap <Leader>gc :<C-u>Gina commit<CR>
   nnoremap <Leader>go :<C-u>Gina log<CR>
+  nnoremap <Leader>gp :<C-u>Gina push<CR>
 endif
 
 
