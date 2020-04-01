@@ -26,6 +26,7 @@ let g:startify_bookmarks = [
 	\ { 'z': '~/.zshrc' },
 	\ { 'b': '~/.bashrc' },
 	\ { 't': '~/.tmux.conf' },
+	\ { 'w': '~/.config/nvim/layers/+tools/whichkey/config.vim' },
 	\ { 'vg': '~/.config/nvim/core/general.vim' },
 	\ { 'vm': '~/.config/nvim/core/mappings.vim' },
 	\ { 'vp': '~/.config/nvim/core/dein/plugins.yaml' },

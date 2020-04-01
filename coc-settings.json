@@ -185,5 +185,5 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
 
   // Coc-yank
-  "yank.highlight.duration": 180
+  "yank.highlight.duration": 150
 }

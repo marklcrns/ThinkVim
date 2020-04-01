@@ -276,19 +276,19 @@ vnoremap <Leader>rc :s/\<./\l&/g<CR>
 nnoremap <Leader>rc :%s/\<./\l&/g<CR>
 
 " Splits
-noremap <Leader>sh :split<CR>
-noremap <Leader>sv :vsplit<CR>
-noremap <Leader>sc :close<CR>
+noremap <Leader>wh :split<CR>
+noremap <Leader>wv :vsplit<CR>
+noremap <Leader>wc :close<CR>
 " Deletes buffer but keeps the split
 " Ref: https://stackoverflow.com/a/19619038/11850077
-noremap <Leader>sd :b#<bar>bd#<CR>
+noremap <Leader>wd :b#<bar>bd#<CR>
 
 " Resize splits vertically
-nmap <Leader>s[ :vertical resize -3<CR>
-nmap <Leader>s] :vertical resize +3<CR>
+nmap <Leader>w[ :vertical resize -3<CR>
+nmap <Leader>w] :vertical resize +3<CR>
 " Resize splites horizontally
-nmap <Leader>s{ :resize -3<CR>
-nmap <Leader>s} :resize +3<CR>
+nmap <Leader>w{ :resize -3<CR>
+nmap <Leader>w} :resize +3<CR>
 
 " Toggle text wrap
 nmap <LocalLeader>sw :set wrap!<CR>

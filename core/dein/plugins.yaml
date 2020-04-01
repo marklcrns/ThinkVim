@@ -370,7 +370,7 @@
     let g:vimwiki_hl_headers = 1
     let g:vimwiki_hl_cb_checked = 1
     let g:vimwiki_autowriteall = 0
-    let g:vimwiki_map_prefix = '<Leader>w'
+    let g:vimwiki_map_prefix = '<LocalLeader>w'
     let g:vimwiki_folding = 'custom'
     let g:vimwiki_table_mappings = 0
   hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim

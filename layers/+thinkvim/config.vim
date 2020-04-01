@@ -276,11 +276,11 @@ if dein#tap('defx.nvim')
 endif
 
 if dein#tap('vim-startify')
-  nnoremap <silent> <leader>es :<C-u>Startify<CR>
-  nnoremap <silent> <leader>ssc :<C-u>SClose<CR>
-  nnoremap <silent> <leader>sss :<C-u>SSave<CR>
-  nnoremap <silent> <leader>ssl :<C-u>SLoad<CR>
-  nnoremap <silent> <leader>ssd :<C-u>SDelete<CR>
+  nnoremap <silent> <leader>S :<C-u>Startify<CR>
+  nnoremap <silent> <leader>sc :<C-u>SClose<CR>
+  nnoremap <silent> <leader>ss :<C-u>SSave<CR>
+  nnoremap <silent> <leader>sl :<C-u>SLoad<CR>
+  nnoremap <silent> <leader>sd :<C-u>SDelete<CR>
 endif
 
 if dein#tap('vim-quickrun')
@@ -399,16 +399,16 @@ if dein#tap('accelerated-jk')
   " conservative deceleration
   let g:accelerated_jk_enable_deceleration = 1
   " if default key-repeat interval check(150 ms) is too short
-  let g:accelerated_jk_acceleration_limit = 250
+  let g:accelerated_jk_acceleration_limit = 300
 
   " Time-driven acceleration
-  nmap <silent> j <Plug>(accelerated_jk_gj)
-  nmap <silent> k <Plug>(accelerated_jk_gk)
+  nmap j <Plug>(accelerated_jk_gj_position)
+  nmap k <Plug>(accelerated_jk_gk_position)
 endif
 
 if dein#tap('vimwiki')
-  nnoremap <silent> <Leader>WW :<C-u>VimwikiIndex<CR>
-  nnoremap <silent> <Leader>WI :<C-u>VimwikiDiaryIndex<CR>
+  nnoremap <silent> <LocalLeader>WW :<C-u>VimwikiIndex<CR>
+  nnoremap <silent> <LocalLeader>WI :<C-u>VimwikiDiaryIndex<CR>
 endif
 
 if dein#tap('vimux')

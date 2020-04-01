@@ -104,8 +104,8 @@ augroup END
 " Vimwiki custom mappings
 augroup VimwikiCustomMappings
   autocmd!
-  autocmd FileType vimwiki nmap <buffer><Leader>wH :VimwikiAll2HTML<CR>
-  autocmd FileType vimwiki nmap <buffer><Leader>wl :VimwikiGenerateLinks<CR>
+  autocmd FileType vimwiki nmap <buffer><LocalLeader>wH :VimwikiAll2HTML<CR>
+  autocmd FileType vimwiki nmap <buffer><LocalLeader>wl :VimwikiGenerateLinks<CR>
 
   " Integration with delimitMate and coc-snippet
   autocmd FileType vimwiki inoremap <silent><buffer><expr> <TAB>
