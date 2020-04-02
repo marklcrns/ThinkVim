@@ -35,7 +35,7 @@ let g:coc_global_extensions =[
       \ 'coc-spell-checker',
       \ 'coc-actions',
       \ 'coc-vimtex',
-      \ 'coc-go']
+      \ 'coc-floaterm']
 
 augroup MyAutoCmd
   autocmd!

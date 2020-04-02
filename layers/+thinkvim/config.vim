@@ -93,6 +93,10 @@ if dein#tap('coc.nvim')
 
   nnoremap <silent> <leader>cs :<C-u>CocSearch<Space>
   nnoremap <silent> <leader>cw :<C-u>CocSearch -w<Space>
+
+  " Open floaterm
+  nnoremap <silent> <leader>ot :<C-u>CocCommand floaterm.new<cr>
+
   " coc-explorer
   " noremap <silent> <leader>ce :execute 'CocCommand explorer' .
   "      \ ' --toggle' .
@@ -170,6 +174,7 @@ if dein#tap('fzf.vim')
   nnoremap <silent> <leader>fdb :<C-u>FzfPreviewBuffers<CR>
   nnoremap <silent> <leader>fdB :<C-u>FzfPreviewAllBuffers<CR>
   nnoremap <silent> <leader>fdf :<C-u>FzfPreviewDirectoryFiles<CR>
+  nnoremap <silent> <leader>fdF :<C-u>call Fzf_dev()<CR>
   nnoremap <silent> <Leader>fdg :<C-u>FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors<CR>
   nnoremap <silent> <Leader>fdG :<C-u>GGrep<CR>
   nnoremap <silent> <leader>fdk :<C-u>FzfPreviewMarks<CR>
@@ -178,7 +183,7 @@ if dein#tap('fzf.vim')
   nnoremap <silent> <leader>fdp :<C-u>FzfPreviewProjectFiles<CR>
   nnoremap <silent> <leader>fdP :<C-u>FzfPreviewFromResources project_mru git<CR>
   nnoremap <silent> <leader>fdr :<C-u>Rg<CR>
-  nnoremap          <leader>fdR :<C-u>FzfPreviewProjectGrep<Space>
+  nnoremap          <leader>fdR :<C-u>FzfPreviewProjectGrep <C-r>=expand('<cword>')<CR><CR>
   xnoremap          <leader>fdR "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
 endif
 

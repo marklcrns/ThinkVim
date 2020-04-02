@@ -70,6 +70,7 @@ let g:which_key_map = {
                 \ 'B' : 'Find on all buffers',
                 \ 'c' : 'Find colorscheme',
                 \ 'f' : 'Find files on directory',
+                \ 'F' : 'Find files on directory (old)',
                 \ 'g' : 'Files git status',
                 \ 'G' : 'Git grep',
                 \ 'l' : 'Find vimtex',
@@ -78,8 +79,8 @@ let g:which_key_map = {
                 \ 'o' : 'Find old files',
                 \ 'p' : 'Find on a project',
                 \ 'P' : 'Find on a git project',
-                \ 'r' : 'Search {word} on project',
-                \ 'R' : 'Search on files',
+                \ 'r' : 'Search {word} in directory recursively',
+                \ 'R' : 'Search word in directory recursively',
                 \ 'v' : 'Find vista outline',
                 \ },
              \ 'q' : 'Save all and quit',
@@ -143,9 +144,10 @@ let g:which_key_map = {
                \ 'm' : 'Neomake',
             \ },
     \ 'o' : {
-          \ 'name' : '+open-with',
-             \ 'g' : 'Google open file',
-             \ 'o' : 'Xdg open file'
+          \ 'name' : '+open',
+             \ 'g' : 'Open file in google chrome',
+             \ 'o' : 'Open file with xdg',
+             \ 't' : 'Open floaterm',
           \ },
     \ 'q' : 'Quit nvim',
     \ 'r' : {
