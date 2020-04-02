@@ -105,8 +105,6 @@
   // Java
   "java.errors.incompleteClasspath.severity": "ignore",
   "java.completion.enabled": true,
-  // add your languageServer into this list
-  "languageserver": {},
 
   //-------- Code Spell Checker Configuration --------
   // Enable / Disable the spell checker.
@@ -185,5 +183,8 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
 
   // Coc-yank
-  "yank.highlight.duration": 150
+  "yank.highlight.duration": 150,
+
+  // add your languageServer into this list
+  "languageserver": {}
 }

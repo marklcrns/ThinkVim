@@ -28,6 +28,7 @@ let g:which_key_map = {
           \ 'name' : '+coc',
              \ 'a' : 'Code action text object',
              \ 'c' : 'Code action current word',
+             \ 'C' : 'Open coc config',
              \ 'f' : 'Coc format',
              \ 'g' : 'Coc git status',
              \ 'j' : 'Coc default next',
@@ -42,10 +43,12 @@ let g:which_key_map = {
                    \ 's' : 'Search workspace symbols',
                 \ },
           \ 'n' : 'Coc rename',
+          \ 'r' : 'Coc refactor',
           \ 's' : 'Coc search {prompt}',
           \ 't' : 'Coc template',
           \ 'q' : 'Coc autofix current line',
           \ 'w' : 'Coc search word match {prompt}',
+          \ 'x' : 'Coc cursors operate',
           \ },
     \ 'd' : {
           \ 'name' : '+denite',
@@ -215,7 +218,6 @@ let g:which_key_map = {
              \ 'h' : 'Horizontal split',
              \ 'v' : 'Vertical split',
           \ },
-    \ 'x' : 'Coc cursors operate',
     \ 'z' : {
           \ 'name' : '+folds',
              \ 'f' : 'Toggle fold',

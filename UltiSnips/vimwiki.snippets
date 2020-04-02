@@ -173,42 +173,36 @@ summary: $3
 
 endsnippet
 
-snippet todo "Todo list template" bA
+snippet todo "To-do list template" bA
 ---
 title: To-do list for `!p
 date = fn.rstrip('.md')
 snip.rv = date `
 author: Mark Lucernas
 date: `!p
-import datetime
+from datetime import datetime, timedelta
+# parse date filename
 date = fn.rstrip('.md')
 date = date.split("-")
-date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
-snip.rv = str(date).split()[0] `
-summary: `!p
+# get today, and day after tomorrow's date in string
+base = datetime(int(date[0]), int(date[1]), int(date[2]))
+today = datetime.strftime(base, '%Y-%m-%d')
+dayafter = datetime.strftime(base + timedelta(2), '%Y-%m-%d')
+
 weekdays = {
-	"0": "Monday",
-	"1": "Tuesday",
-	"2": "Wednesday",
-	"3": "Thursday",
-	"4": "Friday",
-	"5": "Saturday",
-	"6": "Sunday"
+  "0": "Monday",
+  "1": "Tuesday",
+  "2": "Wednesday",
+  "3": "Thursday",
+  "4": "Friday",
+  "5": "Saturday",
+  "6": "Sunday"
 }
-snip.rv = weekdays[str(date.weekday())]`
----
 
-
-# To-do `!p snip.rv = fn.rstrip('.md')`
-
+# output
+snip.rv = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n# Daily To-do | project:Todo scheduled:{today} due:{today} 23:59:00 until:{dayafter}"`
 * [ ] $0
 
-endsnippet
-
-snippet xnotes "Scratch Notes" bA
-# Scratch
-
-- 
 endsnippet
 
 snippet task "Todo checkbox" bA
@@ -731,7 +725,7 @@ snippet 'pm' "Mathjax plus minus sign" i
 \pm
 endsnippet
 
-snippet 0- "Mathjax theta symbol" iA
+snippet O- "Mathjax theta symbol" iA
 \theta
 endsnippet
 

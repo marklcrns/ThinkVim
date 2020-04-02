@@ -77,6 +77,12 @@
 7. source ./env/python3/env/bin/activate
 8. pip3 install flake8 pylint autopep8
 9. deactivate
+
+# Taskwiki Taskwarrior integration (Debian installation)
+1. sudo apt install taskwarrior
+2. cd ~/.config/nvim
+3. source ./env/python3/env/bin/activate
+4. pip3 install tasklib
 ```
 
 - Shell lint: [shellcheck.net](https://www.shellcheck.net/)
