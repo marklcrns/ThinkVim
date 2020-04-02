@@ -82,11 +82,10 @@ let g:which_key_map = {
                 \ 'R' : 'Search on files',
                 \ 'v' : 'Find vista outline',
                 \ },
-             \ 'q' : 'Quit file',
-             \ 'Q' : 'Quit all',
+             \ 'q' : 'Save all and quit',
              \ 'r' : 'Change working directory to file',
-             \ 'w' : 'Save file',
-             \ 'W' : 'Save and quit all',
+             \ 's' : 'Save buffer',
+             \ 'S' : 'Save all buffers',
              \ 'y' : 'Yank relative path',
              \ 'Y' : 'Yank absolute path',
           \ },
@@ -148,6 +147,7 @@ let g:which_key_map = {
              \ 'g' : 'Google open file',
              \ 'o' : 'Xdg open file'
           \ },
+    \ 'q' : 'Quit nvim',
     \ 'r' : {
           \ 'name' : '+text-operate',
              \ 'a' : ['<Plug>(EasyAlign)', 'Easyalign'],
@@ -278,6 +278,22 @@ let g:which_key_localmap = {
                      \ 'l' : 'Cursorline toggle',
                      \ },
             \ },
+      \ 't' : {
+            \ 'name' : '+taskwiki',
+            \ 'b' : {
+                  \ 'name' : '+taskwiki-burndown',
+                  \ },
+            \ 'c' : {
+                  \ 'name' : '+taskwiki-choose',
+                  \ },
+            \ 'h' : {
+                  \ 'name' : '+taskwiki-history',
+                  \ },
+            \ 'G' : {
+                  \ 'name' : '+taskwiki-ghistory',
+                  \ },
+            \ 'W' : 'Open taskwarrior',
+            \ },
       \ 'v' : {
             \ 'name' : '+vista',
                \ 'v' : 'Vista toggle',
@@ -287,21 +303,26 @@ let g:which_key_localmap = {
             \ },
       \ 'w' : {
             \ 'name' : '+vimwiki',
+              \ 'd' : 'Vimwiki delete link',
               \ 'h' : 'Vimwiki to html',
               \ 'hh' : 'Vimwiki to html browse',
               \ 'H' : 'Vimwiki all to html',
-              \ 'i' : '{#wiki}Vimwiki diary index',
+              \ 'i' : 'Vimwiki diary index',
+              \ 'I' : 'Vimwiki diary index',
               \ 'l' : 'Vimwiki generate links',
-              \ 's' : 'Vimwiki ui select',
-              \ 'w' : '{#wiki}Vimwiki index',
-            \ '<SPC>' : {
-                      \ 'name' : '+diary',
-                        \ 'm' : 'Mark diary tomorrow',
-                        \ 't' : 'Mark diary today',
-                        \ 'w' : 'Mark diary note',
-                        \ 'y' : 'Mark diary yesterday',
-                      \ },
-            \ },
+              \ 'r' : 'Vimwiki rename link',
+              \ 's' : 'Vimwiki UI select',
+              \ 't' : 'Vimwiki index new tab',
+              \ 'w' : 'Vimwiki index',
+              \ ' ' : {
+                    \ 'name' : '+diary',
+                    \ 'i' : 'Vimwiki diary generate link',
+                    \ 'm' : 'Vimwiki diary tomorrow',
+                    \ 't' : 'Vimwiki diary today',
+                    \ 'w' : 'Vimwiki diary note',
+                    \ 'y' : 'Vimwiki diary yesterday',
+                    \ },
+              \ },
       \ '<Tab>' : 'Wipe current buffer',
       \ '<S-Tab>' : 'Wipe all except current buffer',
       \ }

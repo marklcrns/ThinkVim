@@ -24,6 +24,7 @@ hi PmenuThumb ctermfg=NONE ctermbg=60 guifg=NONE guibg=#5d4d7a guisp=NONE cterm=
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 hi default CocHighlightText  guibg=#725972 ctermbg=96
 hi CocWarningSign  ctermfg=32 ctermbg=NONE guifg=#0087d7 guibg=NONE
+
 " coc-yank highlight
 hi HighlightedyankRegion term=bold ctermbg=0 guibg=#d0d0d0
 
@@ -107,4 +108,7 @@ highlight IndentGuidesEven guibg=#303030 ctermbg=236
 
 " Conceal
 hi Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
+
+" Bracket match color
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 " }}}

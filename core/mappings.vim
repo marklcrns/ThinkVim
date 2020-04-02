@@ -40,20 +40,17 @@ nnoremap <Leader>fy :let @+=expand("%:~:.")<CR>:echo 'Yanked relative path'<CR>
 nnoremap <Leader>fY :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
 
 " Write buffer (save)
-nnoremap <leader>fw :w<CR>
-vnoremap <leader>fw :<Esc>w<CR>
+nnoremap <leader>fs :w<CR>
+vnoremap <leader>fs :<Esc>w<CR>
 " Write all buffer
-nnoremap <leader>fW :wa<CR>
-vnoremap <leader>fW :<Esc>wa<CR>
-" imap <C-S> <esc>:w<CR>
-imap <C-Q> <esc>:wq<CR>
+nnoremap <leader>fS :wa<CR>
+vnoremap <leader>fS :<Esc>wa<CR>
 
-" Quit without saving
-nnoremap <Leader>fq :q!<CR>
-nnoremap <Leader>fQ :qa!<CR>
+" Quit vim without saving
+nnoremap <Leader>q :q!<CR>
 
 " Save all and exit
-nnoremap <leader>fs :confirm wqa!<CR>
+nnoremap <leader>fq :confirm wqa!<CR>
 
 " Moves curser to the right after exiting insert mode
 inoremap <Esc> <Esc>`^
@@ -290,12 +287,6 @@ nmap <Leader>w] :vertical resize +3<CR>
 nmap <Leader>w{ :resize -3<CR>
 nmap <Leader>w} :resize +3<CR>
 
-" Toggle text wrap
-nmap <LocalLeader>sw :set wrap!<CR>
-
-" Toggle spell check.
-nmap <Localleader>ss :setlocal spell!<CR>
-
 " Toggle conceallevel
 function! ToggleConcealLevel()
   if &conceallevel
@@ -310,11 +301,13 @@ nmap <LocalLeader>sc :call ToggleConcealLevel()<CR>
 function! ToggleGutter()
   if &signcolumn == 'yes'
     set signcolumn=no
+    echom 'Sign gutter deactivated'
   else
     set signcolumn=yes
+    echom 'Sign gutter activated'
   endif
 endfunction
-nmap <LocalLeader>sg :call ToggleGutter()<CR>
+nmap <silent> <LocalLeader>sg :call ToggleGutter()<CR>
 
 " Toggle curosrcolumn and cursorline function
 if &cursorline
@@ -328,26 +321,35 @@ else
   let g:activate_cursorcolumn = 0
 endif
 function! ToggleCursorline()
-  if &cursorline
+  if g:activate_cursorline == 1
     set nocursorline
     let g:activate_cursorline = 0
+    echom 'Cursorline deactivated'
   else
     set cursorline
     let g:activate_cursorline = 1
+    echom 'Cursorline activated'
   endif
 endfunction
-nmap <silent> <LocalLeader>sll :<C-u>call ToggleCursorline()<CR>
-
 function! ToggleCursorcolumn()
-  if &cursorcolumn
+  if g:activate_cursorcolumn == 1
     set nocursorcolumn
     let g:activate_cursorcolumn = 0
+    echom 'Cursorcolumn deactivated'
   else
     set cursorcolumn
     let g:activate_cursorcolumn = 1
+    echom 'Cursorcolumn activated'
   endif
 endfunction
+nmap <silent> <LocalLeader>sll :<C-u>call ToggleCursorline()<CR>
 nmap <silent> <LocalLeader>slc :<C-u>call ToggleCursorcolumn()<CR>
+
+" Toggle spell check
+nmap <LocalLeader>ss :set spell!<CR>
+
+" Toggle text wrap
+nmap <LocalLeader>sw :set wrap!<CR>
 
 " Jumps to previously misspelled word and fixes it with the first in the
 " suggestion

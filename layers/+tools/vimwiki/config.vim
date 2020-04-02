@@ -80,8 +80,33 @@ endfunction
 
 
 augroup SpellCheck
+  autocmd!
+  " Toggle spell check
+  if &spell
+    let b:activate_spellcheck = 1
+  else
+    let b:activate_spellcheck = 0
+  endif
+  function! ToggleSpellCheck()
+    if b:activate_spellcheck == 1
+      echom 'Spellchecker deactivated'
+      let b:activate_spellcheck = 0
+    else
+      echom 'Spellchecker activated'
+      let b:activate_spellcheck = 1
+    end
+  endfunction
+  autocmd Filetype vimwiki nnoremap <silent> <LocalLeader>ss :call ToggleSpellCheck()<CR>
+  autocmd Filetype vimwiki
+        \ autocmd BufRead <buffer> setlocal spell
+  autocmd Filetype vimwiki let b:activate_spellcheck = 1
   autocmd FileType vimwiki
-        \ autocmd! SpellCheck InsertEnter <buffer> setlocal spell
+        \ autocmd InsertEnter <buffer>
+              \ if b:activate_spellcheck == 1
+              \ | setlocal spell
+              \ | endif
+  autocmd FileType vimwiki
+        \ autocmd InsertLeave <buffer> setlocal nospell
 augroup END
 
 
@@ -96,7 +121,7 @@ augroup VimwikiEditMode
         \ autocmd InsertLeave <buffer> setlocal conceallevel=2
   " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
   " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
-  autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgq0A
+  autocmd FileType vimwiki imap <silent><buffer> <A-p> <A-p><Esc>gp=gvgq0A
   " autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgqgv0$
 augroup END
 
@@ -104,9 +129,6 @@ augroup END
 " Vimwiki custom mappings
 augroup VimwikiCustomMappings
   autocmd!
-  autocmd FileType vimwiki nmap <buffer><LocalLeader>wH :VimwikiAll2HTML<CR>
-  autocmd FileType vimwiki nmap <buffer><LocalLeader>wl :VimwikiGenerateLinks<CR>
-
   " Integration with delimitMate and coc-snippet
   autocmd FileType vimwiki inoremap <silent><buffer><expr> <TAB>
         \ pumvisible() ? coc#_select_confirm() :

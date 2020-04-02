@@ -175,21 +175,19 @@ autocmd VimResized * wincmd =
 " autoread file to check and update new changes in current buffer
 autocmd FocusGained,BufEnter * :checktime
 
-" disable cursorline and cursorcolumn on InsertEnter
-autocmd WinLeave,InsertEnter * set nocursorline nocursorcolumn
-
-" reenable cursorline or cursorcolumn on InsertLeave when activated
-autocmd WinEnter,InsertLeave *
-    \ if g:activate_cursorline == 1
-      \ | set cursorline
-    \ | else
-      \ | set nocursorline
-    \ | endif
-    \ | if g:activate_cursorcolumn == 1
-      \ | set cursorcolumn
-    \ | else
-      \ | set nocursorcolumn
-    \ | endif
+augroup CursorUI
+  autocmd!
+  " disable cursorline and cursorcolumn on InsertEnter
+  autocmd InsertEnter * set nocursorline nocursorcolumn
+  " reenable cursorline or cursorcolumn on InsertLeave when activated
+  autocmd InsertLeave *
+      \ if g:activate_cursorline == 1
+        \ | set cursorline
+      \ | endif
+      \ | if g:activate_cursorcolumn == 1
+        \ | set cursorcolumn
+      \ | endif
+augroup END
 
 " Always choose read-only when SwapExists
 autocmd SwapExists * let v:swapchoice = "o"

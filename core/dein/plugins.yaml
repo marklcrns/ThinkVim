@@ -363,8 +363,8 @@
   hook_source: let g:VimuxOrientation = 'v'
 
 - repo: vimwiki/vimwiki
-  on_map: {n: <Plug>}
-  on_cmd: [VimwikiIndex, VimwikiDiaryIndex, VimwikiUISelect]
+  lazy: 1
+  on_ft: [md, markdown, pandoc, rst, restructuredtext]
   hook_add: |
     let g:vimwiki_use_calendar = 1
     let g:vimwiki_hl_headers = 1
@@ -374,6 +374,16 @@
     let g:vimwiki_folding = 'custom'
     let g:vimwiki_table_mappings = 0
   hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
+
+- repo: tbabej/taskwiki
+  on_ft: vimwiki
+  hook_source: |
+    let g:taskwiki_markup_syntax = 'markdown'
+    let g:taskwiki_dont_preserve_folds = 'yes'
+    let g:taskwiki_disable_concealcursor = 'yes'
+    let g:taskwiki_maplocalleader= ';t'
+
+- repo: xarthurx/taskwarrior.vim
 
 - repo: honza/dockerfile.vim
   on_ft: Dockerfile
