@@ -308,7 +308,6 @@ let g:which_key_localmap = {
               \ 'hh' : 'Vimwiki to html browse',
               \ 'H' : 'Vimwiki all to html',
               \ 'i' : 'Vimwiki diary index',
-              \ 'I' : 'Vimwiki diary index',
               \ 'l' : 'Vimwiki generate links',
               \ 'r' : 'Vimwiki rename link',
               \ 's' : 'Vimwiki UI select',
@@ -323,6 +322,11 @@ let g:which_key_localmap = {
                     \ 'y' : 'Vimwiki diary yesterday',
                     \ },
               \ },
+      \ 'W' : {
+            \ 'name' : '+vimwiki-init',
+            \ 'W' : 'Vimwiki index',
+            \ 'I' : 'Vimwiki diary index',
+            \ },
       \ '<Tab>' : 'Wipe current buffer',
       \ '<S-Tab>' : 'Wipe all except current buffer',
       \ }

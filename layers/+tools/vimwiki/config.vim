@@ -89,11 +89,11 @@ augroup SpellCheck
   endif
   function! ToggleSpellCheck()
     if b:activate_spellcheck == 1
-      echom 'Spellchecker deactivated'
       let b:activate_spellcheck = 0
+      echom 'Spellchecker deactivated'
     else
-      echom 'Spellchecker activated'
       let b:activate_spellcheck = 1
+      echom 'Spellchecker activated'
     end
   endfunction
   autocmd Filetype vimwiki nnoremap <silent> <LocalLeader>ss :call ToggleSpellCheck()<CR>
