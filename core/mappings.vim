@@ -296,7 +296,7 @@ function! ToggleConcealLevel()
     set conceallevel=2
   end
 endfunction
-nmap <LocalLeader>sc :call ToggleConcealLevel()<CR>
+nmap <LocalLeader>se :call ToggleConcealLevel()<CR>
 
 " Toggle gutter
 function! ToggleGutter()

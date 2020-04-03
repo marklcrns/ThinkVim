@@ -36,10 +36,16 @@
   },
 
   //diagnostic
+  "diagnostic.enableSign": true,
+  "diagnostic.enableHighlightLineNumber": true,
   "diagnostic.signOffset": 9999999,
-  "diagnostic.errorSign": "●",
-  "diagnostic.warningSign": "●",
+  "diagnostic.hintSign": "⊹",
+  "diagnostic.infoSign": "⌂",
+  "diagnostic.warningSign": "⌁",
+  "diagnostic.errorSign": "⚠",
+  "diagnostic.messageDelay": 150,
   "diagnostic.displayByAle": false,
+
   "diagnostic.refreshOnInsertMode": true,
   //git
   "git.enableGutters": true,
@@ -108,9 +114,10 @@
 
   //-------- Code Spell Checker Configuration --------
   // Enable / Disable the spell checker.
-  "cSpell.enabled": false,
+  "cSpell.enabled": true,
   // The Language local to use when spell checking. "en" and "en-GB" are currently supported.
   "cSpell.language": "en",
+  "cSpell.diagnosticLevel": "information",
   // Specify file types to spell check.
   "cSpell.enabledLanguageIds": [
     "csharp",

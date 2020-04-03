@@ -26,17 +26,30 @@
 # UI
 # ----------------------------------------
 - repo: ryanoasis/vim-devicons
-  hook_source: |
+  hook_add: |
     let g:webdevicons_enable_denite = 1
     let g:webdevicons_enable_startify = 1
 
 - repo: itchyny/lightline.vim
-  hook_source: source $VIM_PATH/layers/+ui/lightline/config.vim
+  hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
+
+- repo: bagrat/vim-buffet
+  on_path: .*
+  on_event: VimEnter
+  hook_source: |
+    let g:buffet_always_show_tabline = 0
+    let g:buffet_use_devicons = 1
+    let g:buffet_show_index = 1
+    let g:buffet_tab_icon = "\uf00a"
+    let g:buffet_left_trunc_icon = "\uf0a8"
+    let g:buffet_right_trunc_icon = "\uf0a9"
+  hook_add: source $VIM_PATH/layers/+ui/buffet/config.vim
+  depends: lightline.vim
 
 # Tools
 # ----------------------------------------
 - repo: airblade/vim-rooter
-  hook_source: |
+  hook_add: |
     let g:rooter_manual_only = 1
 
 - repo: christoomey/vim-tmux-navigator
@@ -63,23 +76,23 @@
 - repo: Shougo/echodoc.vim
   on_event: CompleteDone
   hook_source: |
-        call echodoc#enable()
-        let g:echodoc#type = "virtual"
+    call echodoc#enable()
+    let g:echodoc#type = "virtual"
 # }}}
 
 # Syntax{{{
 # Linters & Formaters
 # ----------------------------------------
-- repo: sbdchd/neoformat
-  on_cmd: [Neoformat, Neoformat!]
-  hook_source: source  $VIM_PATH/layers/+syntax/neoformat/config.vim
-
-- repo: benekastah/neomake
-  on_path: .*
-  on_cmd: [Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo]
-  hook_source: |
-    source $VIM_PATH/layers/+syntax/neomake/config.vim
-    call neomake#configure#automake('rwn', 300)
+# - repo: sbdchd/neoformat
+#   on_cmd: [Neoformat, Neoformat!]
+#   hook_source: source  $VIM_PATH/layers/+syntax/neoformat/config.vim
+# 
+# - repo: benekastah/neomake
+#   on_path: .*
+#   on_cmd: [Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo]
+#   hook_source: |
+#     source $VIM_PATH/layers/+syntax/neomake/config.vim
+#     call neomake#configure#automake('rwn', 300)
 
 # Syntax Helpers
 # ----------------------------------------
@@ -471,17 +484,6 @@
       function! StartifyEntryFormat()
         return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
       endfunction
-
-- repo: bagrat/vim-buffet
-  on_path: .*
-  hook_source: |
-    let g:buffet_always_show_tabline = 0
-    let g:buffet_use_devicons = 1
-    let g:buffet_show_index = 1
-    let g:buffet_tab_icon = "\uf00a"
-    let g:buffet_left_trunc_icon = "\uf0a8"
-    let g:buffet_right_trunc_icon = "\uf0a9"
-  hook_add: source $VIM_PATH/layers/+ui/buffet/config.vim
 
 - repo: norcalli/nvim-colorizer.lua
   if: has('nvim') && has('nvim-0.4.0')

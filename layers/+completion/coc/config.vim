@@ -3,39 +3,38 @@
 let b:defx_git_loaded = 1
 
 "CoC configlet
-let g:coc_status_error_sign = '•'
-let g:coc_status_warning_sign = '•'
+let g:coc_status_error_sign = ''
+let g:coc_status_warning_sign = ' '
 let g:coc_global_extensions =[
-      \ 'coc-html',
+      \ 'coc-actions',
       \ 'coc-css',
-      \ 'coc-vetur',
-      \ 'coc-snippets',
-      \ 'coc-prettier',
       \ 'coc-eslint',
       \ 'coc-emmet',
-      \ 'coc-tsserver',
+      \ 'coc-emoji',
+      \ 'coc-html',
+      \ 'coc-git',
+      \ 'coc-gitignore',
+      \ 'coc-floaterm',
       \ 'coc-json',
       \ 'coc-java',
-      \ 'coc-python',
-      \ 'coc-highlight',
-      \ 'coc-git',
-      \ 'coc-lists',
-      \ 'coc-post',
-      \ 'coc-stylelint',
-      \ 'coc-yaml',
-      \ 'coc-template',
-      \ 'coc-tabnine',
-      \ 'coc-marketplace',
-      \ 'coc-gitignore',
-      \ 'coc-emoji',
-      \ 'coc-yank',
-      \ 'coc-template',
       \ 'coc-kite',
+      \ 'coc-lists',
+      \ 'coc-marketplace',
+      \ 'coc-post',
+      \ 'coc-prettier',
+      \ 'coc-python',
+      \ 'coc-tabnine',
+      \ 'coc-template',
       \ 'coc-todolist',
+      \ 'coc-tsserver',
+      \ 'coc-snippets',
       \ 'coc-spell-checker',
-      \ 'coc-actions',
+      \ 'coc-stylelint',
+      \ 'coc-vetur',
+      \ 'coc-vimlsp',
       \ 'coc-vimtex',
-      \ 'coc-floaterm']
+      \ 'coc-yaml',
+      \ 'coc-yank']
 
 augroup MyAutoCmd
   autocmd!

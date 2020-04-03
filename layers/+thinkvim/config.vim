@@ -9,6 +9,8 @@ if dein#tap('coc.nvim')
   nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
   " Manage extensions
   nnoremap <silent> <leader>cle  :<C-u>CocList extensions<cr>
+  " Marketplace list
+  nnoremap <silent> <leader>clm  :<C-u>CocList marketplace<cr>
   " Find symbol of current document
   nnoremap <silent> <leader>clo  :<C-u>CocList outline<cr>
   " Resume latest coc list
@@ -17,6 +19,29 @@ if dein#tap('coc.nvim')
   nnoremap <silent> <leader>cls  :<C-u>CocList -I symbols<cr>
   " Show yank list (coc-yank)
   nnoremap <silent> <leader>cly  :<C-u>CocList -A --normal yank<cr>
+
+  " Rgrep selected or by motion
+  nnoremap <leader>clw :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+  vnoremap <leader>clw :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+
+  function! s:GrepFromSelected(type)
+    let saved_unnamed_register = @@
+    if a:type ==# 'v'
+      normal! `<v`>y
+    elseif a:type ==# 'char'
+      normal! `[v`]y
+    else
+      return
+    endif
+    let word = substitute(@@, '\n$', '', 'g')
+    let word = escape(word, '| ')
+    let @@ = saved_unnamed_register
+    execute 'CocList grep '.word
+  endfunction
+
+  " Grep in current buffer under cursor
+  nnoremap <silent> <Leader>clW  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
   " Do default action for next item.
   nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
   " Do default action for previous item.
@@ -38,11 +63,11 @@ if dein#tap('coc.nvim')
   " xmap <leader>a  <Plug>(coc-codeaction-selected)
   " nmap <leader>a  <Plug>(coc-codeaction-selected)
   " Remap for do codeAction of current line
-  nmap <leader>cc  <Plug>(coc-codeaction)
+  nnoremap <leader>cc  <Plug>(coc-codeaction)
   " Fix autofix problem of current line
-  nmap <leader>cq  <Plug>(coc-fix-current)
+  nnoremap <leader>cq  <Plug>(coc-fix-current)
   " Insert current filetype template on cursor
-  nmap <leader>ct <Plug>(coc-template)
+  nnoremap <leader>ct <Plug>(coc-template)
   " Remap keys for gotos
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
@@ -529,6 +554,9 @@ if dein#tap('vim-rooter')
   nnoremap <Leader>fr :Rooter<CR>
 endif
 
+if dein#tap('nvim-colorizer.lua')
+  nnoremap <LocalLeader>sc :<C-u>ColorizerToggle<CR>
+endif
 
 
 " Commented plugins too old, or found much better
