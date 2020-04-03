@@ -90,7 +90,7 @@ function! s:defx_mappings() abort
 	" Defx window keyboard mappings
 	setlocal signcolumn=no
 
-	nnoremap <silent><buffer><expr> <CR>  defx#do_action('drop')
+  nnoremap <silent><buffer><expr> <CR>  defx#do_action('multi', ['drop', 'quit'])
 	nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])

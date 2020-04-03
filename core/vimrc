@@ -67,7 +67,7 @@ if has('vim_starting')
 	nnoremap ;        <Nop>
 	xnoremap ;        <Nop>
 
-   if ! has('nvim') && has('pythonx')
+	if ! has('nvim') && has('pythonx')
 		if has('python3')
 			set pyxversion=3
 		elseif has('python')

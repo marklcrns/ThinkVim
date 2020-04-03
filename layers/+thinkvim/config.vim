@@ -377,7 +377,7 @@ if dein#tap('linediff.vim')
 endif
 
 if dein#tap('vim-zoom')
-  nmap <Leader>sf <Plug>(zoom-toggle)
+  nmap <Leader>wf <Plug>(zoom-toggle)
 endif
 
 if dein#tap('rainbow')

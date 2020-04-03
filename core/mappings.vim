@@ -244,6 +244,7 @@ xnoremap <Leader>rr :s///g<Left><Left>
 xnoremap <Leader>rR :s///gc<Left><Left><Left>
 
 " <C-r>: Easier search and replace in visual mode
+nnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 xnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 
 " Ref: https://vi.stackexchange.com/a/690
@@ -281,11 +282,11 @@ noremap <Leader>wc :close<CR>
 noremap <Leader>wd :b#<bar>bd#<CR>
 
 " Resize splits vertically
-nmap <Leader>w[ :vertical resize -3<CR>
-nmap <Leader>w] :vertical resize +3<CR>
+nmap <Leader>wH :vertical resize -3<CR>
+nmap <Leader>wL :vertical resize +3<CR>
 " Resize splites horizontally
-nmap <Leader>w{ :resize -3<CR>
-nmap <Leader>w} :resize +3<CR>
+nmap <Leader>wJ :resize -3<CR>
+nmap <Leader>wK :resize +3<CR>
 
 " Toggle conceallevel
 function! ToggleConcealLevel()
