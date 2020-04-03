@@ -231,19 +231,14 @@ nnoremap <leader>rN *``cgN
 vnoremap <expr> <leader>rn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>rN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
-" Search and replace
-" Ref: https://vim.fandom.com/wiki/Search_and_replace
-nnoremap <Leader>rr :%s///g<Left><Left>
-nnoremap <Leader>rR :%s///gc<Left><Left><Left>
+" Search and replace whole buffer
+nnoremap <Leader>rr :%s//g<Left><Left>
+" Search and replace current line only
+nnoremap <Leader>rR :s//g<Left><Left>
+" Search and replace within visually selected only
+xnoremap <Leader>rr :s//g<Left><Left>
 
-" The same as above but instead of acting on the whole file it will be
-" restricted to the previously visually selected range. You can do that by
-" pressing *, visually selecting the range you want it to apply to and then
-" press a key below to replace all instances of it in the current selection.
-xnoremap <Leader>rr :s///g<Left><Left>
-xnoremap <Leader>rR :s///gc<Left><Left><Left>
-
-" <C-r>: Easier search and replace in visual mode
+" Search and replace last selected with confirmation
 nnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 xnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 
@@ -252,7 +247,7 @@ nmap <Leader>rE :%s/^/\=line('.').". "<CR>
 " To enumerate lines with macro: https://stackoverflow.com/a/32053439/11850077
 " To enumerate lines with few commands: https://stackoverflow.com/a/48408001/11850077
 
-" Fix indentation
+" Fix indentation of while buffer
 nmap <Leader>ri gg=G
 
 " Returns visually selected text
@@ -284,7 +279,7 @@ noremap <Leader>wd :b#<bar>bd#<CR>
 " Resize splits vertically
 nmap <Leader>wH :vertical resize -3<CR>
 nmap <Leader>wL :vertical resize +3<CR>
-" Resize splites horizontally
+" Resize splits horizontally
 nmap <Leader>wJ :resize -3<CR>
 nmap <Leader>wK :resize +3<CR>
 

@@ -117,7 +117,7 @@ if dein#tap('coc.nvim')
   endfunc
 
   nnoremap <silent> <leader>cs :<C-u>CocSearch<Space>
-  nnoremap <silent> <leader>cw :<C-u>CocSearch -w<Space>
+  nnoremap <silent> <leader>cS :<C-u>CocSearch -w<Space>
 
   " Open floaterm
   nnoremap <silent> <leader>ot :<C-u>CocCommand floaterm.new<cr>

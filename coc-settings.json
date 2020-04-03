@@ -117,7 +117,7 @@
   "cSpell.enabled": true,
   // The Language local to use when spell checking. "en" and "en-GB" are currently supported.
   "cSpell.language": "en",
-  "cSpell.diagnosticLevel": "information",
+  "cSpell.diagnosticLevel": "Hint",
   // Specify file types to spell check.
   "cSpell.enabledLanguageIds": [
     "csharp",
@@ -137,6 +137,7 @@
     "less",
     "scss",
     "vim",
+    "vimwiki",
     "text"
   ],
   // Controls the maximum number of spelling errors per document.
@@ -167,7 +168,7 @@
     "**/node_modules",     // the same for this one
     "**/node_modules/**",  // the same for this one
     "node_modules/**",     // Doesn't currently work due to how the current working directory is determined.
-    "vscode-extension",    //
+    "vscode-extension",
     ".git",                // Ignore the .git directory
     "*.dll",               // Ignore all .dll files.
     "**/*.dll"             // Ignore all .dll files
