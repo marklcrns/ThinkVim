@@ -48,9 +48,9 @@ let g:which_key_map = {
           \ 'n' : 'Coc rename',
           \ 'r' : 'Coc refactor',
           \ 's' : 'Coc search {prompt}',
+          \ 'S' : 'Coc search word match {prompt}',
           \ 't' : 'Coc template',
           \ 'q' : 'Coc autofix current line',
-          \ 'w' : 'Coc search word match {prompt}',
           \ 'x' : 'Coc cursors operate',
           \ },
     \ 'd' : {
@@ -171,6 +171,7 @@ let g:which_key_map = {
                    \ 'K' : 'Paste cycle backward',
                 \ },
           \ 'E' : 'Enumerate entire file',
+          \ 'f' : 'Search and replace confirmation last selected',
           \ 'i' : 'Fix indentation',
           \ 'l' : 'Wrap paragraph to textwidth',
           \ 'n' : 'Search forward and replace',
@@ -386,7 +387,7 @@ if  s:current_colorscheme == "base16-default-dark"
     highlight WhichKeySeperator guibg=NONE ctermbg=NONE guifg=#a1b56c ctermfg=02
 endif
 
-let g:which_key_timeout = 300
+let g:which_key_timeout = 200
 let g:which_key_exit = ["\<C-[>", "\<C-c>", "\<C-g>"]
 
 let g:which_key_display_names = {
