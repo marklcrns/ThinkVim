@@ -17,6 +17,7 @@ require 'colorizer'.setup {
   'typescriptreact';
   javascript = {
     rgb_fn = true;
+    RRGGBBAA = true;
   };
   css = {
     rgb_fn = true;

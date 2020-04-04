@@ -57,8 +57,8 @@ let g:which_key_map = {
                      \ 'w' : 'Coc rgrep selected word or motion',
                      \ 'W' : 'Coc grep cursor word in buffer',
                    \ },
-          \ 'n' : 'Coc rename',
-          \ 'r' : 'Coc refactor',
+          \ 'n' : 'Coc rename variable under cursor',
+          \ 'r' : 'Coc refactor word under cursor',
           \ 's' : 'Coc search {prompt}',
           \ 'S' : 'Coc search word match {prompt}',
           \ 't' : {
