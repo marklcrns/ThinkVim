@@ -1,5 +1,7 @@
 
-autocmd User Startified setlocal cursorline
+autocmd! FileType startify
+autocmd  FileType startify set laststatus=0 showtabline=0
+      \| autocmd BufLeave <buffer> set laststatus=2 showtabline=2
 
 let g:startify_enable_special      = 0
 let g:startify_files_number        = 8

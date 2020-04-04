@@ -31,4 +31,7 @@ require 'colorizer'.setup {
     RGB = false;
     RRGGBB = false;
   };
+  vim = {
+    names = false;
+  }
 }

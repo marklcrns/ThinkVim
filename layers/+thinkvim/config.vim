@@ -501,6 +501,10 @@ if dein#tap('vimux')
   nnoremap <Leader>vf :VimuxZoomRunner<CR>
 endif
 
+if dein#tap('vim-indent-guides')
+  nmap <silent> <LocalLeader>si <Plug>IndentGuidesToggle
+endif
+
 if dein#tap('vim-wordy')
   if !&wildcharm | set wildcharm=<C-z> | endif
   execute 'nnoremap <leader>iww :Wordy<space>'.nr2char(&wildcharm)

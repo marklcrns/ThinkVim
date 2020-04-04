@@ -364,6 +364,7 @@ let g:which_key_localmap = {
                \ 'c' : 'Color highlight toggle',
                \ 'e' : 'Conceal toggle',
                \ 'g' : 'Gutter toggle',
+               \ 'i' : 'Indent guide toggle',
                \ 'p' : 'Rainbow pairs toggle',
                \ 's' : 'Spell checker toggle',
                \ 'w' : 'Text wrap toggle',
