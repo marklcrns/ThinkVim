@@ -110,8 +110,17 @@ let g:which_key_map = {
              \ 'r' : 'Change working directory to file',
              \ 's' : 'Save buffer',
              \ 'S' : 'Save all buffers',
-             \ 'y' : 'Yank relative path',
-             \ 'Y' : 'Yank absolute path',
+             \ 'y' : {
+                   \ 'name' : '+yank-path',
+                      \ 'd' : 'Yank relative directory path',
+                      \ 'D' : 'Yank absolute directory path',
+                      \ 'f' : 'Yank relative file path',
+                      \ 'F' : 'Yank absolute file path',
+                      \ 'e' : 'Yank relative file path without extension',
+                      \ 'E' : 'Yank absolute file path without extension',
+                      \ 'o' : 'Open/Create file from yanked path',
+                      \ 'x' : 'Yank file extension only',
+                   \ },
           \ },
     \ 'g' : {
           \ 'name' : '+git-operate',
@@ -273,6 +282,10 @@ let g:which_key_map = {
             \ 'R' : 'Search and replace current line',
             \ 's' : 'Remove whitespaces',
             \ 't' : 'Thesaurus current word' ,
+            \ 'y' : {
+                  \ 'name' : '+yank-text',
+                  \ 'a' : 'Yank all text',
+                  \ },
           \ },
     \ 's' : {
           \ 'name' : '+sessions',

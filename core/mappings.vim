@@ -35,9 +35,25 @@ nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
-" Yank buffer's absolute path to clipboard
-nnoremap <Leader>fy :let @+=expand("%:~:.")<CR>:echo 'Yanked relative path'<CR>
-nnoremap <Leader>fY :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
+" Yank buffer's relative file path to clipboard
+nnoremap <Leader>fyf :let @+=expand("%:~:.")<bar>echo 'Yanked relative file path'<CR>
+" Yank buffer's absolute file path to clipboard
+nnoremap <Leader>fyF :let @+=expand("%:p")<bar>echo 'Yanked absolute file path'<CR>
+" Yank buffer's relative directory path to clipboard
+nnoremap <Leader>fyd :let @+=expand("%:p:h:t")<bar>echo 'Yanked relative directory path'<CR>
+" Yank buffer's absolut directory path to clipboard
+nnoremap <Leader>fyD :let @+=expand("%:p:h")<bar>echo 'Yanked absolute directory path'<CR>
+" Yank buffer's relative path without file extension
+nnoremap <Leader>fye :let @+=expand("%:r")<bar>echo 'Yanked relative file path without extension'<CR>
+" Yank buffer's absolute path without file extension
+nnoremap <Leader>fyE :let @+=expand("%:p:r")<bar>echo 'Yanked absolute file path without extension'<CR>
+" Yank buffer's file extension only
+nnoremap <Leader>fyx :let @+=expand("%:e")<bar>echo 'Yanked file extension'<CR>
+" :edit file from clipboard register
+nnoremap <Leader>fyo :execute "e " . getreg('+')<bar>echo 'Opened ' . expand("%:p")<CR>
+
+" Append '.md' from clipboard register and :edit from current directory
+nnoremap <Leader>fym :cd %:h<bar>execute "e " . expand("%:p:h") . '/' . getreg('+') . '.md'<bar>echo 'Opened ' . expand("%:p")<CR>
 
 " Write buffer (save)
 nnoremap <leader>fs :w<CR>
@@ -56,14 +72,15 @@ nnoremap <leader>fq :confirm wqa!<CR>
 inoremap <Esc> <Esc>`^
 
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
-imap fd <Esc>`^
-imap kj <Esc>`^
-smap fd <Esc>`^
-smap kj <Esc>`^
-vmap fd <Esc>
-vmap <C-l> <Esc>
-cmap <C-l> <C-c>
-cmap <C-g> <C-c>
+inoremap fd <Esc>`^
+inoremap kj <Esc>`^
+snoremap fd <Esc>`^
+snoremap kj <Esc>`^
+vnoremap fd <Esc>
+inoremap <C-l> <Esc>`^
+vnoremap <C-l> <Esc>
+cnoremap <C-l> <C-c>
+cnoremap <C-g> <C-c>
 
 " Keep selection while indenting
 vnoremap <silent> > ><cr>gv
@@ -268,6 +285,9 @@ vnoremap <Leader>rc :s/\<./\l&/g<CR>
 " Lowercase each word of current entire file
 nnoremap <Leader>rc :%s/\<./\l&/g<CR>
 
+" Yank everything from current file
+nnoremap <Leader>rya ggVGy
+
 " Splits
 noremap <Leader>wH :split<CR>
 noremap <Leader>wV :vsplit<CR>
@@ -367,8 +387,8 @@ vnoremap <Leader>J :m'>+<CR>gv=gv
 " nmap <LocalLeader>lcd :lcd %:p:h<CR>:pwd<CR>
 
 " Closing pop-up auto-completion before inserting new line
-inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-e><Esc>`^' : '<Esc>`^'
-inoremap <expr> <A-o> (pumvisible() <bar><bar> &insertmode) ? '<C-e><A-o>' : '<A-o>'
+inoremap <expr> <M-o> (pumvisible() <bar><bar> &insertmode) ? '<C-e><M-o>' : '<M-o>'
+inoremap <expr> <M-O> (pumvisible() <bar><bar> &insertmode) ? '<C-e><M-O>' : '<M-O>'
 
 " Open current file with xdg-open
 nmap <silent><Leader>oo :!xdg-open "%:p"<CR>
@@ -436,3 +456,4 @@ function! JavaCompile()
   exec 'VimuxInterruptRunner'
   exec 'VimuxRunLastCommand'
 endfunction
+
