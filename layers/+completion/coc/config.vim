@@ -49,8 +49,8 @@ augroup end
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Snippets jump
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_next = '<C-j>'
+let g:coc_snippet_prev = '<C-k>'
 
 " Use <TAB> for select text for visual placeholder of snippet.
 " Visual mode and other Ultisnips tricks tutorial blog
@@ -61,8 +61,7 @@ inoremap <silent><expr> <Tab>
     \ pumvisible() ? coc#_select_confirm() :
     \ coc#expandableOrJumpable()  ?
     \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
+    \ "\<TAB>"
 
 " Integration with delimitMate plugin. Also ignores completion.
 inoremap <silent><expr> <CR>

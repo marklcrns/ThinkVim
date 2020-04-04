@@ -28,6 +28,9 @@ augroup user_plugin_filetype "{{{
   " Magit
   autocmd User VimagitEnterCommit startinsert
 
+  " Auto change project directory
+  autocmd BufEnter * Rooter
+
   " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
   autocmd FileType css,javascript,javascriptreact setlocal backupcopy=yes
 augroup END "}}}

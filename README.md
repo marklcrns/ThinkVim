@@ -77,16 +77,36 @@
 7. source ./env/python3/env/bin/activate
 8. pip3 install flake8 pylint autopep8
 9. deactivate
+```
 
-# Taskwiki Taskwarrior integration (Debian installation)
+- Shell lint: [shellcheck.net](https://www.shellcheck.net/)
+- HTML Tidy: [html-tidy.org](http://www.html-tidy.org/)
+
+Taskwiki Taskwarrior integration (Debian installation)
+
+```bash
 1. sudo apt install taskwarrior
 2. cd ~/.config/nvim
 3. source ./env/python3/env/bin/activate
 4. pip3 install tasklib
 ```
 
-- Shell lint: [shellcheck.net](https://www.shellcheck.net/)
-- HTML Tidy: [html-tidy.org](http://www.html-tidy.org/)
+Extras
+
+- `Send2Trash`
+
+```bash
+3. cd ~/.config/nvim
+7. source ./env/python3/env/bin/activate
+8. pip3 install send2trash
+9. deactivate
+```
+
+- [Zenity](https://wiki.gnome.org/action/show/Projects/Zenity) for [Color Picker](https://github.com/KabbAmine/vCoolor.vim)
+
+```bash
+sudo apt install zenity
+```
 
 **_2._** open the nvim ,it will auto install dein and plugins,when the plugins install success,it will install coc extensions.
 

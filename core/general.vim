@@ -3,8 +3,6 @@ if has('termguicolors')
 	set termguicolors
 endif
 
-set nobackup
-set noswapfile
 set autoread
 set autowrite
 set confirm
@@ -104,7 +102,7 @@ endif
 
 " Vim Directories {{{
 " ---------------
-set undofile swapfile nobackup
+set undofile noswapfile nobackup
 set directory=$DATA_PATH/swap//,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set undodir=$DATA_PATH/undo//,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
@@ -178,19 +176,19 @@ autocmd FocusGained,BufEnter * :checktime
 augroup CursorUI
   autocmd!
   " disable cursorline and cursorcolumn on InsertEnter
-  autocmd InsertEnter * set nocursorline nocursorcolumn
+  autocmd InsertEnter * set nocursorline
   " reenable cursorline or cursorcolumn on InsertLeave when activated
   autocmd InsertLeave *
       \ if g:activate_cursorline == 1
         \ | set cursorline
       \ | endif
-      \ | if g:activate_cursorcolumn == 1
-        \ | set cursorcolumn
-      \ | endif
+      "\ | if g:activate_cursorcolumn == 1
+      "  \ | set cursorcolumn
+      "\ | endif
 augroup END
 
-" Always choose read-only when SwapExists
-autocmd SwapExists * let v:swapchoice = "o"
+" " Always choose read-only when SwapExists
+" autocmd SwapExists * let v:swapchoice = "o"
 
 " Auto capitalization in start of sentences
 " Ref: https://davidxmoody.com/2014/vim-auto-capitalisation/

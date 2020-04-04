@@ -15,7 +15,7 @@ xnoremap p pgvy
 nnoremap Y y$
 
 " Duplicate current line then enter line substitution
-inoremap <C-y> <ESC>yypV:s//g<Left><Left>
+" inoremap <C-y> <ESC>yypV:s//g<Left><Left>  " Deprecated by vim-abolish
 
 fun! AutoIndentPaste()
   " Don't apply on these filetypes
@@ -61,9 +61,9 @@ imap kj <Esc>`^
 smap fd <Esc>`^
 smap kj <Esc>`^
 vmap fd <Esc>
-
 vmap <C-l> <Esc>
 cmap <C-l> <C-c>
+cmap <C-g> <C-c>
 
 " Keep selection while indenting
 vnoremap <silent> > ><cr>gv
@@ -350,13 +350,13 @@ nmap <LocalLeader>sw :set wrap!<CR>
 " Jumps to previously misspelled word and fixes it with the first in the
 " suggestion
 " Ref: https://castel.dev/post/lecture-notes-1/
-inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+inoremap <C-s> <C-g>u<Esc>[s1z=`]a<c-g>u
 
 " Drag current line/s vertically and auto-indent
-nnoremap gj :m+<CR>
-nnoremap gk :m-2<CR>
-vnoremap gk :m'<-2<CR>gv=gv
-vnoremap gj :m'>+<CR>gv=gv
+nnoremap <Leader>J :m+<CR>
+nnoremap <Leader>K :m-2<CR>
+vnoremap <Leader>K :m'<-2<CR>gv=gv
+vnoremap <Leader>J :m'>+<CR>gv=gv
 
 " Set working directory to current file location for all windows
 " nmap <LocalLeader>cd :cd %:p:h<CR>:pwd<CR>
@@ -379,7 +379,7 @@ nnoremap dol :diffget LO<CR>
 " Quit nvim with an error code. Useful when aborting git mergetool or git commit
 nnoremap dq :cquit<CR>
 
-nnoremap <Leader>ed :vert diffsplit $HOME/
+nnoremap <Leader>ids :vert diffsplit $HOME/
 
 " Fixes `[c` and `]c` not working
 nnoremap [c [c
@@ -423,11 +423,11 @@ noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
 noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
 " Compile current java file
-autocmd FileType java nnoremap <buffer><silent><Leader>jc :!javac %<CR>
+autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac %<CR>
 " Save, complie, and run java file in current buffer <C-c> to exit program
-autocmd FileType java nnoremap <buffer><silent><Leader>jr :w<CR>:!javac % && java %:r<CR>
+autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac % && java %:r<CR>
 " Autocompile Java and run last Vimux command
-autocmd FileType java nnoremap <buffer><silent><Leader>jj :call JavaCompile()<CR>
+autocmd FileType java nnoremap <buffer><silent><Leader>ljj :call JavaCompile()<CR>
 function! JavaCompile()
   exec '!javac %'
   exec 'VimuxInterruptRunner'

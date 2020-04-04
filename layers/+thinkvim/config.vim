@@ -63,9 +63,9 @@ if dein#tap('coc.nvim')
   " xmap <leader>a  <Plug>(coc-codeaction-selected)
   " nmap <leader>a  <Plug>(coc-codeaction-selected)
   " Remap for do codeAction of current line
-  nnoremap <leader>cc  <Plug>(coc-codeaction)
+  nnoremap <leader>cc <Plug>(coc-codeaction)
   " Fix autofix problem of current line
-  nnoremap <leader>cq  <Plug>(coc-fix-current)
+  nnoremap <leader>cq <Plug>(coc-fix-current)
   " Insert current filetype template on cursor
   nnoremap <leader>ct <Plug>(coc-template)
   " Remap keys for gotos
@@ -79,6 +79,7 @@ if dein#tap('coc.nvim')
 
   " Use K to show documentation in preview for vim window and float for nvim
   nnoremap <silent> K :call <SID>show_documentation()<CR>
+  vnoremap <silent> K :call <SID>show_documentation()<CR>
 
   function! s:show_documentation()
     if (index(['vim', 'help'], &filetype) >= 0)
@@ -133,10 +134,10 @@ if dein#tap('coc.nvim')
   imap <expr><C-k> pumvisible() ? "\<Up>" : "\<ESC>d$a"
 
   " Scroll pages in menu
-  inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>"
-  inoremap <expr><C-b> pumvisible() ? "\<PageUp>" : "\<Left>"
-  imap     <expr><C-d> pumvisible() ? "\<PageDown>" : "\<C-d>"
-  imap     <expr><C-u> pumvisible() ? "\<PageUp>" : "\<C-u>"
+  " inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>" a
+  " inoremap <expr><C-b> pumvisible() ? "\<PageUp>" : "\<Left>"
+  " imap     <expr><C-d> pumvisible() ? "\<PageDown>" : "\<C-d>"
+  " imap     <expr><C-u> pumvisible() ? "\<PageUp>" : "\<C-u>"
 
   nnoremap <expr><C-n> coc#util#has_float() ?
         \ coc#util#float_scrollable() ?
@@ -213,14 +214,14 @@ if dein#tap('fzf.vim')
 endif
 
 if dein#tap('vim-easy-align')
-  " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap <Leader>ra <Plug>(EasyAlign)
-  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap <Leader>ra <Plug>(EasyAlign)
-  " Start Live-interactive EasyAlign in visual mode (e.g. vipga)
-  xmap <Leader>rA <Plug>(LiveEasyAlign)
-  " Start Live-interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap <Leader>rA <Plug>(LiveEasyAlign)
+  " Start interactive EasyAlign in visual mode
+  xmap <Leader>raa <Plug>(EasyAlign)
+  " Start interactive EasyAlign for a motion/text object
+  nmap <Leader>raa <Plug>(EasyAlign)
+  " Start Live-interactive EasyAlign in visual mode
+  xmap <Leader>rAA <Plug>(LiveEasyAlign)
+  " Start Live-interactive EasyAlign for a motion/text object
+  nmap <Leader>rAA <Plug>(LiveEasyAlign)
 endif
 
 
@@ -257,20 +258,22 @@ if dein#tap('caw.vim')
       silent! nunmap <buffer> gcc
       silent! xunmap <buffer> gcc
     else
-      xmap <buffer> <Leader>/a <Plug>(caw:dollarpos:toggle)
-      nmap <buffer> <Leader>/a <Plug>(caw:dollarpos:toggle)
+      xmap <buffer> <Leader>/a <Plug>(caw:dollarpos:comment)
+      nmap <buffer> <Leader>/a <Plug>(caw:dollarpos:comment)
       xmap <buffer> <Leader>/b <Plug>(caw:box:comment)
       nmap <buffer> <Leader>/b <Plug>(caw:box:comment)
       xmap <buffer> <Leader>/j <Plug>(caw:jump:comment-next)
       nmap <buffer> <Leader>/j <Plug>(caw:jump:comment-next)
       xmap <buffer> <Leader>/k <Plug>(caw:jump:comment-prev)
       nmap <buffer> <Leader>/k <Plug>(caw:jump:comment-prev)
-      xmap <buffer> <Leader>/i <Plug>(caw:zeropos:toggle)
-      nmap <buffer> <Leader>/i <Plug>(caw:zeropos:toggle)
+      xmap <buffer> <Leader>/i <Plug>(caw:zeropos:comment)
+      nmap <buffer> <Leader>/i <Plug>(caw:zeropos:comment)
       xmap <buffer> <Leader>/w <Plug>(caw:wrap:toggle)
       nmap <buffer> <Leader>/w <Plug>(caw:wrap:toggle)
-      xmap <buffer> <Leader>// <Plug>(caw:hatpos:toggle)
-      nmap <buffer> <Leader>// <Plug>(caw:hatpos:toggle)
+      xmap <buffer> <Leader>/t <Plug>(caw:hatpos:toggle)
+      nmap <buffer> <Leader>/t <Plug>(caw:hatpos:toggle)
+      xmap <buffer> <Leader>// <Plug>(caw:hatpos:comment)
+      nmap <buffer> <Leader>// <Plug>(caw:hatpos:comment)
       nmap <buffer> gc <Plug>(caw:prefix)
       xmap <buffer> gc <Plug>(caw:prefix)
       nmap <buffer> gcc <Plug>(caw:hatpos:toggle)
@@ -295,11 +298,13 @@ if dein#tap('python_match.vim')
 endif
 
 if dein#tap('goyo.vim')
-  nnoremap <Leader>G :Goyo<CR>
+  nnoremap <Leader>ig :Goyo<CR>
 endif
 
 if dein#tap('defx.nvim')
   nnoremap <silent> <Leader>ee
+        \ :<C-u>Defx -toggle -buffer-name=tab`tabpagenr()`<CR>
+  nnoremap <silent> <Leader>er
         \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
   nnoremap <silent> <Leader>ea
         \ :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
@@ -334,7 +339,7 @@ if dein#tap('vista.vim')
   nnoremap <silent><localleader>vc :Vista coc<CR>
   nnoremap <silent><localleader>vx :Vista!<CR>
   nnoremap <silent><localleader>vo :Vista<CR>
-  nnoremap <silent><leader>fzv      :Vista finder coc<CR>
+  nnoremap <silent><leader>fzv     :Vista finder coc<CR>
 endif
 
 if dein#tap('vim-easymotion')
@@ -344,10 +349,18 @@ if dein#tap('vim-easymotion')
 endif
 
 if dein#tap('vim-which-key')
-  nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-  nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
-  nnoremap <silent>[              :<c-u>WhichKey  '['<CR>
-  nnoremap <silent>]              :<c-u>WhichKey  ']'<CR>
+  nnoremap <silent> <Leader>      :<c-u>WhichKey '<Space>'<CR>
+  vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
+  nnoremap <silent> <localleader> :<c-u>WhichKey ';'<CR>
+  vnoremap <silent> <localleader> :<c-u>WhichKeyVisual ';'<CR>
+  nnoremap <silent> [             :<c-u>WhichKey '['<CR>
+  nnoremap <silent> ]             :<c-u>WhichKey ']'<CR>
+  nnoremap <silent> ?s            :<c-u>WhichKey 's'<CR>
+  vnoremap <silent> ?s            :<c-u>WhichKeyVisual 's'<CR>
+  nnoremap <silent> ?d            :<c-u>WhichKey 'd'<CR>
+  vnoremap <silent> ?d            :<c-u>WhichKeyVisual 'd'<CR>
+  nnoremap <silent> ?g            :<c-u>WhichKey 'g'<CR>
+  vnoremap <silent> ?g            :<c-u>WhichKeyVisual 'g'<CR>
 endif
 
 if dein#tap('vim-smartchr')
@@ -397,8 +410,19 @@ if dein#tap('vim-textobj-multiblock')
 endif
 
 if dein#tap('linediff.vim')
-  nmap <silent> <leader>lr :LinediffReset<CR>
-  vmap <silent> <leader>ld :Linediff<CR>
+  nmap <silent> <leader>idla :<C-u>LinediffAdd<CR>
+  vmap <silent> <leader>idla :LinediffAdd<CR>
+  nmap <silent> <leader>idlA :<C-u>LinediffAdd<C-a>
+  nmap <silent> <leader>idld :<C-u>Linediff<CR>
+  vmap <silent> <leader>idld :Linediff<CR>
+  nmap <silent> <leader>idll :<C-u>LinediffLast<CR>
+  vmap <silent> <leader>idll :LinediffLast<CR>
+  nmap <silent> <leader>idlm :<C-u>LinediffMerge<CR>
+  nmap <silent> <leader>idlp :<C-u>LinediffPick<CR>
+  nmap <silent> <leader>idlr :<C-u>LinediffReset<CR>
+  nmap <silent> <leader>idls :<C-u>LinediffShow<CR>
+  " resets linediff with q when active
+  autocmd User LinediffBufferReady nnoremap <buffer> q :LinediffReset<cr>
 endif
 
 if dein#tap('vim-zoom')
@@ -466,36 +490,36 @@ endif
 
 if dein#tap('vim-wordy')
   if !&wildcharm | set wildcharm=<C-z> | endif
-  execute 'nnoremap <leader>rww :Wordy<space>'.nr2char(&wildcharm)
+  execute 'nnoremap <leader>iww :Wordy<space>'.nr2char(&wildcharm)
 
-  nnoremap <leader>rwn :NextWordy<CR>
-  nnoremap <leader>rwp :PrevWordy<CR>
-  nnoremap <leader>rwr :NoWordy<CR>
+  nnoremap <leader>iwn :NextWordy<CR>
+  nnoremap <leader>iwp :PrevWordy<CR>
+  nnoremap <leader>iwr :NoWordy<CR>
 endif
 
 if dein#tap('vim-quickhl')
-  nmap <Leader>ht <Plug>(quickhl-manual-this)
-  xmap <Leader>ht <Plug>(quickhl-manual-this)
+  nmap <Leader>iht <Plug>(quickhl-manual-this)
+  xmap <Leader>iht <Plug>(quickhl-manual-this)
 
-  nmap <Leader>hw <Plug>(quickhl-manual-this-whole-word)
-  xmap <Leader>hw <Plug>(quickhl-manual-this-whole-word)
+  nmap <Leader>ihw <Plug>(quickhl-manual-this-whole-word)
+  xmap <Leader>ihw <Plug>(quickhl-manual-this-whole-word)
 
-  nmap <Leader>hr <Plug>(quickhl-manual-reset)
-  xmap <Leader>hr <Plug>(quickhl-manual-reset)
+  nmap <Leader>ihr <Plug>(quickhl-manual-reset)
+  xmap <Leader>ihr <Plug>(quickhl-manual-reset)
 endif
 
 if dein#tap('thesaurus_query.vim')
-  nnoremap <silent> <Leader>K :<C-u>ThesaurusQueryReplaceCurrentWord<CR>
-  vnoremap <silent> <Leader>K y:ThesaurusQueryReplace <C-r>"<CR>
+  nnoremap <silent> <Leader>rt :<C-u>ThesaurusQueryReplaceCurrentWord<CR>
+  vnoremap <silent> <Leader>rt y:ThesaurusQueryReplace <C-r>"<CR>
 endif
 
 if dein#tap('neoformat')
-  nmap <Leader>nf :Neoformat<CR>
+  nmap <Leader>lnf :Neoformat<CR>
 endif
 
 if dein#tap('neomake')
-  nmap <Leader>nm :Neomake<CR>
-  nmap <Leader>nc :NeomakeClean<CR>
+  nmap <Leader>lnm :Neomake<CR>
+  nmap <Leader>lnc :NeomakeClean<CR>
 endif
 
 if dein#tap('vim-fugitive')
@@ -556,6 +580,42 @@ endif
 
 if dein#tap('nvim-colorizer.lua')
   nnoremap <LocalLeader>sc :<C-u>ColorizerToggle<CR>
+endif
+
+if dein#tap('vCoolor.vim')
+  nnoremap <silent> <Leader>ltcpa :<C-u>VCoolIns ra<CR>
+  nnoremap <silent> <Leader>ltcph :<C-u>VCoolIns h<CR>
+  nnoremap <silent> <Leader>ltcpr :<C-u>VCoolIns r<CR>
+  nnoremap <silent> <Leader>ltcpx :<C-u>VCoolor<CR>
+endif
+
+if dein#tap('vim-convert-color-to')
+  " Normal mode
+  nnoremap <Leader>ltca :<C-u>ConvertColorTo rgba<CR>
+  nnoremap <Leader>ltch :<C-u>ConvertColorTo hsl<CR>
+  nnoremap <Leader>ltcH :<C-u>ConvertColorTo hsla<CR>
+  nnoremap <Leader>ltcr :<C-u>ConvertColorTo rgb_int<CR>
+  nnoremap <Leader>ltcR :<C-u>ConvertColorTo rgb_float<CR>
+  nnoremap <Leader>ltcx :<C-u>ConvertColorTo hex<CR>
+  nnoremap <Leader>ltcX :<C-u>ConvertColorTo hexa<CR>
+  " Visual mode
+  vnoremap <Leader>ltca :ConvertColorTo rgba<CR>
+  vnoremap <Leader>ltch :ConvertColorTo hsl<CR>
+  vnoremap <Leader>ltcH :ConvertColorTo hsla<CR>
+  vnoremap <Leader>ltcr :ConvertColorTo rgb_int<CR>
+  vnoremap <Leader>ltcR :ConvertColorTo rgb_float<CR>
+  vnoremap <Leader>ltcx :ConvertColorTo hex<CR>
+  vnoremap <Leader>ltcX :ConvertColorTo hexa<CR>
+endif
+
+if dein#tap('vim-abolish')
+  nnoremap <Leader>rbs :<C-u>Subvert//g<Left><Left>
+  vnoremap <Leader>rbs :Subvert//g<Left><Left>
+  nnoremap <Leader>rbS :<C-u>%Subvert//g<Left><Left>
+  nnoremap <Leader>rba :<C-u>Abolish<Space>
+  vnoremap <Leader>rba :Abolish<Space>
+  " Duplicate line and subvert
+  inoremap <C-y> <ESC>yypV:Subvert//g<Left><Left>
 endif
 
 
