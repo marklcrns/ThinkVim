@@ -102,9 +102,15 @@ Extras
 9. deactivate
 ```
 
-- [Zenity](https://wiki.gnome.org/action/show/Projects/Zenity) for [Color Picker](https://github.com/KabbAmine/vCoolor.vim)
+- [Yad](https://www.howtoinstall.co/en/debian/stretch/yad) or
+  [Zenity](https://wiki.gnome.org/action/show/Projects/Zenity) for
+  [Color Picker](https://github.com/KabbAmine/vCoolor.vim)
+
+> VCoolor defaults to Yad
 
 ```bash
+sudo apt install yad
+# and/or
 sudo apt install zenity
 ```
 

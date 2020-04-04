@@ -7,4 +7,5 @@ let g:indent_exclude = [ 'help', 'denite', 'codi', 'vista', 'coc', 'fzf' ]
 let g:indent_guides_exclude_filetypes =
     \ [ 'help', 'terminal', 'defx', 'denite', 'nerdtree',
     \ 'startify', 'tagbar', 'vista_kind', 'vista', 'fzf',
-    \ 'codi', 'which_key', 'calendar', 'coc', 'floaterm']
+    \ 'codi', 'which_key', 'calendar', 'coc', 'floaterm',
+    \ 'coc-explorer']

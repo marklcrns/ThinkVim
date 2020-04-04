@@ -175,16 +175,13 @@ autocmd FocusGained,BufEnter * :checktime
 
 augroup CursorUI
   autocmd!
-  " disable cursorline and cursorcolumn on InsertEnter
+  " disable cursorline on InsertEnter
   autocmd InsertEnter * set nocursorline
-  " reenable cursorline or cursorcolumn on InsertLeave when activated
+  " reenable cursorline on InsertLeave when activated
   autocmd InsertLeave *
       \ if g:activate_cursorline == 1
         \ | set cursorline
       \ | endif
-      "\ | if g:activate_cursorcolumn == 1
-      "  \ | set cursorcolumn
-      "\ | endif
 augroup END
 
 " " Always choose read-only when SwapExists

@@ -63,16 +63,35 @@ if dein#tap('coc.nvim')
   " xmap <leader>a  <Plug>(coc-codeaction-selected)
   " nmap <leader>a  <Plug>(coc-codeaction-selected)
   " Remap for do codeAction of current line
-  nnoremap <leader>cc <Plug>(coc-codeaction)
+  nmap <leader>cc <Plug>(coc-codeaction)
   " Fix autofix problem of current line
-  nnoremap <leader>cq <Plug>(coc-fix-current)
+  nmap <leader>cq <Plug>(coc-fix-current)
   " Insert current filetype template on cursor
-  nnoremap <leader>ct <Plug>(coc-template)
+  nmap <leader>cm <Plug>(coc-template)
   " Remap keys for gotos
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
+
+  " coc-git
+  nmap [g <Plug>(coc-git-prevchunk)
+  nmap ]g <Plug>(coc-git-nextchunk)
+  " show commit contains current position
+  nmap <Leader>cgc <Plug>(coc-git-commit)
+  " show chunk diff at current position
+  nmap <Leader>cgi <Plug>(coc-git-chunkinfo)
+  " show git status
+  nnoremap <silent> <leader>cgs  :<C-u>CocList --normal gstatus<CR>
+  nnoremap <Leader>cgb :CocCommand git.browserOpen<CR>
+  nnoremap <Leader>cgd :CocCommand git.diffCached<CR>
+  nnoremap <Leader>cgf :CocCommand git.foldUnchanged<CR>
+  nnoremap <Leader>cgt :CocCommand git.chunkStage<CR>
+  nnoremap <Leader>cgu :CocCommand git.chunkUndo<CR>
+
+  " Coc toggles
+  nnoremap <Leader>ctg :<C-u>CocCommand git.toggleGutters<Cr>
+  nnoremap <Leader>cts :<C-u>CocCommand cSpell.toggleEnableSpellChecker<Cr>
 
   " Use K for show documentation in float window
   " nnoremap <silent> K :call CocActionAsync('doHover')<CR>
@@ -91,13 +110,7 @@ if dein#tap('coc.nvim')
 
   " use <c-space> for trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
-  nmap [g <Plug>(coc-git-prevchunk)
-  nmap ]g <Plug>(coc-git-nextchunk)
-  " show chunk diff at current position
-  nmap gS <Plug>(coc-git-chunkinfo)
-  " show commit contains current position
-  nmap gm <Plug>(coc-git-commit)
-  nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
+
   " float window scroll
   nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-f>"
   nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
@@ -124,10 +137,10 @@ if dein#tap('coc.nvim')
   nnoremap <silent> <leader>ot :<C-u>CocCommand floaterm.new<cr>
 
   " coc-explorer
-  " noremap <silent> <leader>ce :execute 'CocCommand explorer' .
-  "      \ ' --toggle' .
-  "      \ ' --sources=buffer+,file+' .
-  "      \ ' --file-columns=git,selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
+  noremap <silent> <leader>ce :execute 'CocCommand explorer' .
+        \ ' --toggle' .
+        \ ' --position=floating' .
+        \ ' --sources=file+'<CR>
 
   " Movement within 'ins-completion-menu'
   imap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>"
@@ -197,11 +210,11 @@ endif
 
 if dein#tap('fzf.vim')
   nnoremap <silent> <leader>fdc :<C-u>Colors<CR>
-  nnoremap <silent> <leader>fdb :<C-u>FzfPreviewBuffers<CR>
-  nnoremap <silent> <leader>fdB :<C-u>FzfPreviewAllBuffers<CR>
+  nnoremap <silent> <leader>fdb :<C-u>FzfPreviewBuffers -processors=g:fzf_preview_buffer_delete_processors<CR>
+  nnoremap <silent> <leader>fdB :<C-u>FzfPreviewAllBuffers -processors=g:fzf_preview_buffer_delete_processors<CR>
   nnoremap <silent> <leader>fdf :<C-u>FzfPreviewDirectoryFiles<CR>
   nnoremap <silent> <leader>fdF :<C-u>call Fzf_dev()<CR>
-  nnoremap <silent> <Leader>fdg :<C-u>FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors<CR>
+  nnoremap <silent> <Leader>fdg :<C-u>FzfPreviewGitStatus -processors=g:fzf_preview_gina_processors<CR>
   nnoremap <silent> <Leader>fdG :<C-u>GGrep<CR>
   nnoremap <silent> <leader>fdk :<C-u>FzfPreviewMarks<CR>
   nnoremap <silent> <leader>fdm :<C-u>FzfPreviewMruFiles<CR>
@@ -311,7 +324,7 @@ if dein#tap('defx.nvim')
 endif
 
 if dein#tap('vim-startify')
-  nnoremap <silent> <leader>S :<C-u>Startify<CR>
+  nnoremap <silent> <leader>so :<C-u>Startify<CR>
   nnoremap <silent> <leader>sc :<C-u>SClose<CR>
   nnoremap <silent> <leader>ss :<C-u>SSave<CR>
   nnoremap <silent> <leader>sl :<C-u>SLoad<CR>
@@ -339,7 +352,7 @@ if dein#tap('vista.vim')
   nnoremap <silent><localleader>vc :Vista coc<CR>
   nnoremap <silent><localleader>vx :Vista!<CR>
   nnoremap <silent><localleader>vo :Vista<CR>
-  nnoremap <silent><leader>fzv     :Vista finder coc<CR>
+  nnoremap <silent><leader>fdv     :Vista finder coc<CR>
 endif
 
 if dein#tap('vim-easymotion')
@@ -446,7 +459,7 @@ if dein#tap('vim-markdown')
 endif
 
 if dein#tap('vimtex')
-  nnoremap <Leader>fzl :call vimtex#fzf#run()<cr>
+  nnoremap <Leader>fdl :call vimtex#fzf#run()<cr>
 endif
 
 if dein#tap('accelerated-jk')

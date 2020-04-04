@@ -269,19 +269,19 @@ vnoremap <Leader>rc :s/\<./\l&/g<CR>
 nnoremap <Leader>rc :%s/\<./\l&/g<CR>
 
 " Splits
-noremap <Leader>wh :split<CR>
-noremap <Leader>wv :vsplit<CR>
+noremap <Leader>wH :split<CR>
+noremap <Leader>wV :vsplit<CR>
 noremap <Leader>wc :close<CR>
 " Deletes buffer but keeps the split
 " Ref: https://stackoverflow.com/a/19619038/11850077
 noremap <Leader>wd :b#<bar>bd#<CR>
 
 " Resize splits vertically
-nmap <Leader>wH :vertical resize -3<CR>
-nmap <Leader>wL :vertical resize +3<CR>
+nmap <Leader>wh :vertical resize -3<CR>
+nmap <Leader>wl :vertical resize +3<CR>
 " Resize splits horizontally
-nmap <Leader>wJ :resize -3<CR>
-nmap <Leader>wK :resize +3<CR>
+nmap <Leader>wj :resize -3<CR>
+nmap <Leader>wk :resize +3<CR>
 
 " Toggle conceallevel
 function! ToggleConcealLevel()
@@ -316,6 +316,7 @@ if &cursorcolumn
 else
   let g:activate_cursorcolumn = 0
 endif
+
 function! ToggleCursorline()
   if g:activate_cursorline == 1
     set nocursorline
@@ -327,6 +328,7 @@ function! ToggleCursorline()
     echom 'Cursorline activated'
   endif
 endfunction
+
 function! ToggleCursorcolumn()
   if g:activate_cursorcolumn == 1
     set nocursorcolumn
@@ -338,6 +340,7 @@ function! ToggleCursorcolumn()
     echom 'Cursorcolumn activated'
   endif
 endfunction
+
 nmap <silent> <LocalLeader>sll :<C-u>call ToggleCursorline()<CR>
 nmap <silent> <LocalLeader>slc :<C-u>call ToggleCursorcolumn()<CR>
 

@@ -1,9 +1,9 @@
 
 " GGrep
 command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+      \ call fzf#vim#grep(
+      \   'git grep --line-number '.shellescape(<q-args>), 0,
+      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 " Ripgrep
 if executable('rg')
@@ -83,8 +83,8 @@ let g:fzf_preview_git_status_command = "git status --short --untracked-files=all
 
 " Commands used for git status preview.
 let g:fzf_preview_git_status_preview_command =  "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} || " .
-\ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} || " .
-\ g:fzf_preview_command
+      \ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} || " .
+      \ g:fzf_preview_command
 
 " Commands used for project grep
 let g:fzf_preview_grep_cmd = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always"'
@@ -121,70 +121,64 @@ let g:fzf_preview_use_dev_icons = 1
 " devicons character width
 let g:fzf_preview_dev_icon_prefix_length = 3 " 2 when devicons is off. 3 when on
 
-" DEPRECATED
-" Use g:fzf_preview_custom_default_processors
-" Keyboard shortcut for opening files with split
-let g:fzf_preview_split_key_map = 'ctrl-x'
-
-" DEPRECATED
-" Use g:fzf_preview_custom_default_processors
-" Keyboard shortcut for opening files with vsplit
-let g:fzf_preview_vsplit_key_map = 'ctrl-v'
-
-" DEPRECATED
-" Use g:fzf_preview_custom_default_processors
-" Keyboard shortcut for opening files with tabedit
-let g:fzf_preview_tabedit_key_map = 'ctrl-t'
-
-" DEPRECATED
-" Use g:fzf_preview_custom_default_processors
-" Keyboard shortcut for building quickfix
-let g:fzf_preview_build_quickfix_key_map = 'ctrl-q'
-
-" DEPRECATED
-" fzf window layout
-let g:fzf_preview_layout = 'top split new'
-
-" DEPRECATED
-" Rate of fzf window
-let g:fzf_preview_rate = 0.3
-
-" DEPRECATED
-" Key to toggle fzf window size of normal size and full-screen
-let g:fzf_full_preview_toggle_key = '<C-s>'
-
-" Intergration with Fugitive
+" Intergration with Gina
 augroup fzf_preview
   autocmd!
   autocmd User fzf_preview#initialized call s:fzf_preview_settings()
 augroup END
 
-function! s:fugitive_add(paths) abort
-  for path in a:paths
-    execute 'silent G add ' . path
+function! s:fzf_preview_settings() abort
+  let g:fzf_preview_buffer_delete_processors = fzf_preview#resource_processor#get_default_processors()
+  let g:fzf_preview_buffer_delete_processors['ctrl-x'] = function('s:buffers_delete_from_lines')
+endfunction
+
+function! s:buffers_delete_from_lines(lines) abort
+  for line in a:lines
+    let matches = matchlist(line, '^buffer \(\d\+\)$')
+    if len(matches) >= 1
+      execute 'bdelete! ' . matches[1]
+    else
+      execute 'bdelete! ' . line
+    endif
   endfor
+endfunction
+
+function! s:gina_add(paths) abort
+  for path in a:paths
+    execute 'silent Gina add ' . path
+  endfor
+
   echomsg 'Git add ' . join(a:paths, ', ')
 endfunction
 
-function! s:fugitive_reset(paths) abort
+function! s:gina_reset(paths) abort
   for path in a:paths
-    execute 'silent G reset ' . path
+    execute 'silent Gina reset ' . path
   endfor
+
   echomsg 'Git reset ' . join(a:paths, ', ')
 endfunction
 
-function! s:fugitive_patch(paths) abort
+function! s:gina_patch(paths) abort
   for path in a:paths
-    execute 'silent tabedit ' . path . ' | silent Gdiff'
+    execute 'silent Gina patch ' . path
   endfor
+
   echomsg 'Git add --patch ' . join(a:paths, ', ')
 endfunction
 
 function! s:fzf_preview_settings() abort
-  let g:fzf_preview_fugitive_processors = fzf_preview#resource_processor#get_processors()
-  let g:fzf_preview_fugitive_processors['ctrl-a'] = function('s:fugitive_add')
-  let g:fzf_preview_fugitive_processors['ctrl-r'] = function('s:fugitive_reset')
-  let g:fzf_preview_fugitive_processors['ctrl-p'] = function('s:fugitive_patch')
+  let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
+  call remove(g:fzf_preview_custom_default_processors, 'ctrl-x')
+  let g:fzf_preview_custom_default_processors['ctrl-s'] = function('fzf_preview#resource_processor#split')
+
+  let g:fzf_preview_buffer_delete_processors = fzf_preview#resource_processor#get_default_processors()
+  let g:fzf_preview_buffer_delete_processors['ctrl-x'] = function('s:buffers_delete_from_lines')
+
+  let g:fzf_preview_gina_processors = fzf_preview#resource_processor#get_processors()
+  let g:fzf_preview_gina_processors['ctrl-a'] = function('s:gina_add')
+  let g:fzf_preview_gina_processors['ctrl-r'] = function('s:gina_reset')
+  let g:fzf_preview_gina_processors['ctrl-c'] = function('s:gina_patch')
 endfunction
 " }}}
 
@@ -192,7 +186,7 @@ endfunction
 " OLD FZF CONFIGURATIONS
 function! Fzf_dev()
 
-let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
+  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')

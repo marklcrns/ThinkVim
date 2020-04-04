@@ -59,7 +59,8 @@
 
 - repo: christoomey/vim-tmux-navigator
   if: "! (has('win32') || has('win64'))"
-  hook_add: source $VIM_PATH/layers/+tools/vim-tmux-navigator/config.vim
+  hook_add: |
+    let g:tmux_navigator_disable_when_zoomed = 1
 # }}}
 
 
@@ -505,6 +506,9 @@
 - repo: KabbAmine/vCoolor.vim
   if: has('nvim') && has('nvim-0.4.0')
   on_cmd: [VCoolor, VCoolIns]
+  hook_add: |
+    let g:vcoolor_disable_mappings = 1
+    let g:vcoolor_lowercase = 1
 
 - repo: amadeus/vim-convert-color-to
   on_cmd: ConvertColorTo

@@ -35,6 +35,16 @@
       "default": "\uf29c"
   },
 
+  // coc-explorer
+  "explorer.icon.expanded": "▾",
+  "explorer.icon.collapsed": "▸",
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.quitOnOpen": true,
+  "explorer.floating.width": -20,
+  "explorer.floating.height": -10,
+  "explorer.openAction.strategy": "sourceWindow",
+
   //diagnostic
   "diagnostic.enableSign": true,
   "diagnostic.enableHighlightLineNumber": true,
@@ -48,7 +58,7 @@
   "diagnostic.refreshOnInsertMode": true,
 
   //git
-  "git.enableGutters": true,
+  "git.enableGutters": false,
   "git.branchCharacter":"\uf408",
   //"git.addGBlameToBufferVar": true,
   //"git.addGBlameToVirtualText": true,
@@ -90,7 +100,6 @@
     "htmldjango": "html",
     "handlebars": "html",
     "vue-html": "html",
-    "javascript": "javascriptreact"
   },
   //multiple curssors
   "cursors.nextKey": "<C-n>",
