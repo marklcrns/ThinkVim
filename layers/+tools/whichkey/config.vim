@@ -13,6 +13,12 @@ let g:which_key_map = {
              \ 'i' : 'Comment line/selected beginning',
              \ 'w' : 'Comment wrap toggle',
              \ },
+       \ ' ' : {
+             \ 'name' : '+easymotion',
+             \ 'b' : 'Beginning of word backward',
+             \ 'f' : 'Find {char} to the left',
+             \ 'w' : 'Beginning of word forward',
+       \ },
        \ '<Tab>' : 'Next buffer',
        \ '<S-Tab>' : 'Prev buffer',
        \ '1' : 'Buffer 1',
@@ -331,22 +337,7 @@ let g:which_key_map = {
              \ 'j' : 'Horizontal resize minus',
              \ 'k' : 'Horizontal resize plus',
           \ },
-    \ 'z' : {
-          \ 'name' : '+folds',
-             \ 'f' : 'Toggle fold',
-             \ 'F' : 'Close all folds except current',
-             \ 'j' : 'Next closed fold',
-             \ 'k' : 'Prev closed fold',
-             \ 'm' : 'Toggle fold all',
-          \ },
     \ }
-
-let g:which_key_map[' '] = {
-      \ 'name' : '+easymotion',
-         \ 'b' : 'Beginning of word backward',
-         \ 'f' : 'Find {char} to the left',
-         \ 'w' : 'Beginning of word forward',
-      \ }
 
 let g:which_key_localmap = {
       \ 'name' : '+local-leader-key'  ,
@@ -448,6 +439,14 @@ let g:which_key_localmap = {
             \ },
       \ '<Tab>' : 'Wipe current buffer',
       \ '<S-Tab>' : 'Wipe all except current buffer',
+      \ 'z' : {
+            \ 'name' : '+folds',
+              \ 'f' : 'Toggle fold',
+              \ 'F' : 'Close all folds except current',
+              \ 'j' : 'Next closed fold',
+              \ 'k' : 'Prev closed fold',
+              \ 'm' : 'Toggle fold all',
+            \ },
       \ }
 
 let g:which_key_lsbgmap = {

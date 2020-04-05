@@ -1,6 +1,42 @@
 
-" Delete buffer
-nnoremap q :bd<CR>
+function! CloseBuffer()
+    let curBuf = bufnr('%')
+    let curTab = tabpagenr()
+    exe 'bnext'
+
+    " Quit window/split if buffer is empty ([No Name] buffer)
+    if bufname('%') == ''
+        exe 'q'
+        return
+    endif
+
+    " If in last buffer, create empty buffer
+    if curBuf == bufnr('%')
+        exe 'enew'
+    endif
+
+    " Loop through tabs
+    for i in range(tabpagenr('$'))
+        " Go to tab (is there a way with inactive tabs?)
+        exe 'tabnext ' . (i + 1)
+        " Store active window nr to restore later
+        let curWin = winnr()
+        " Loop through windows pointing to buffer
+        let winnr = bufwinnr(curBuf)
+        while (winnr >= 0)
+            " Go to window and switch to next buffer
+            exe winnr . 'wincmd w | bnext'
+            " Restore active window
+            exe curWin . 'wincmd w'
+            let winnr = bufwinnr(curBuf)
+        endwhile
+    endfor
+
+    " Close buffer, restore active tab
+    exe 'bd' . curBuf
+    exe 'tabnext ' . curTab
+endfunction
+noremap <silent> q :call CloseBuffer()<cr>
 
 " Remaps macro record key since q has been remapped
 nnoremap Q q
@@ -75,15 +111,12 @@ nnoremap <leader>fq :confirm wqa!<CR>
 inoremap <Esc> <Esc>`^
 
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
-inoremap fd <Esc>`^
-inoremap kj <Esc>`^
-snoremap fd <Esc>`^
-snoremap kj <Esc>`^
-vnoremap fd <Esc>
-inoremap <C-l> <Esc>`^
-vnoremap <C-l> <Esc>
 cnoremap <C-l> <C-c>
 cnoremap <C-g> <C-c>
+noremap <C-l> <Esc>`^
+noremap fd <Esc>`^
+inoremap kj <Esc>`^
+snoremap kj <Esc>`^
 
 " Keep selection while indenting
 vnoremap <silent> > ><cr>gv
@@ -364,8 +397,21 @@ function! ToggleCursorcolumn()
   endif
 endfunction
 
+function! ToggleCrosshair()
+  if (&cursorline || &cursorcolumn)
+    set nocursorline nocursorcolumn
+    let g:activate_cursorline = 0
+    let g:activate_cursorcolumn = 0
+  else
+    set cursorline cursorcolumn
+    let g:activate_cursorline = 1
+    let g:activate_cursorcolumn = 1
+  endif
+endfunction
+
 nmap <silent> <LocalLeader>sll :<C-u>call ToggleCursorline()<CR>
 nmap <silent> <LocalLeader>slc :<C-u>call ToggleCursorcolumn()<CR>
+nmap <silent> <LocalLeader>slx :<C-u>call ToggleCrosshair()<CR>
 
 " Toggle spell check
 nmap <LocalLeader>ss :set spell!<CR>
@@ -415,15 +461,15 @@ nnoremap ]c ]c
 tnoremap <Esc> <C-\><C-n>
 
 " Toggle fold
-nnoremap <Leader>zf za
+nnoremap <LocalLeader>zf za
 " Focus the current fold by closing all others
-nnoremap <Leader>zF zMzvzt
+nnoremap <LocalLeader>zF zMzvzt
 " Toggle fold all
-nnoremap <expr> <Leader>zm &foldlevel ? 'zM' :'zR'
+nnoremap <expr> <LocalLeader>zm &foldlevel ? 'zM' :'zR'
 " Jumping to next closed fold
 " Ref: https://stackoverflow.com/a/9407015/11850077
-nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>
-nnoremap <silent> <leader>zk :call NextClosedFold('k')<cr>
+nnoremap <silent> <LocalLeader>zj :call NextClosedFold('j')<cr>
+nnoremap <silent> <LocalLeader>zk :call NextClosedFold('k')<cr>
 function! NextClosedFold(dir)
   let cmd = 'norm!z' . a:dir
   let view = winsaveview()
@@ -448,17 +494,30 @@ noremap <expr> <C-b> max([winheight(0) - 2, 1])
 noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
 noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
-" Compile current java file
-autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac %<CR>
-" Save, complie, and run java file in current buffer <C-c> to exit program
-autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac % && java %:r<CR>
-" Autocompile Java and run last Vimux command
-autocmd FileType java nnoremap <buffer><silent><Leader>ljj :call JavaCompile()<CR>
 function! JavaCompile()
   exec '!javac %'
   exec 'VimuxInterruptRunner'
   exec 'VimuxRunLastCommand'
 endfunction
+" Autocompile Java and run last Vimux command
+autocmd FileType java nnoremap <buffer><silent><Leader>ljj :call JavaCompile()<CR>
+" Compile current java file
+autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac %<CR>
+" Save, complie, and run java file in current buffer <C-c> to exit program
+autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac % && java %:r<CR>
+
+function! AddSubtract(char, back)
+  let pattern = &nrformats =~ 'alpha' ? '[[:alpha:][:digit:]]' : '[[:digit:]]'
+  call search(pattern, 'cw' . a:back)
+  execute 'normal! ' . v:count1 . a:char
+  silent! call repeat#set(":\<C-u>call AddSubtract('" .a:char. "', '" .a:back. "')\<CR>")
+endfunction
+" Increment/Decrement next searcheable number by one. Wraps at end of file.
+nnoremap <silent> <M-a> :<C-u>call AddSubtract("\<C-a>", '')<CR>
+nnoremap <silent> <M-x> :<C-u>call AddSubtract("\<C-x>", '')<CR>
+" Increment/Decrement previous searcheable number by one. Wraps at start of file.
+" nnoremap <silent> <Leader><M-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
+" nnoremap <silent> <Leader><M-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 
 " ========== Custom single purpose functions and mappings ==========
 
@@ -475,7 +534,6 @@ nnoremap <Leader>;wm :cd %:h<bar>execute "e " . expand("%:p:h") . '/' . getreg('
 " 4. MkNonExDir() from https://stackoverflow.com/a/4294176/11850077
 " 5. vim-buffet plugin
 " Insert date ref: https://vim.fandom.com/wiki/Insert_current_date_or_time
-nmap <Leader>;wi :call VimConvertImportFiles()<Left>
 function! VimConvertImportFiles(repeat)
   " loop through nth times with repeat arg
   let i = 0
@@ -519,4 +577,5 @@ function! VimConvertImportFiles(repeat)
     let i += 1
   endwhile
 endfunction
+nmap <Leader>;wi :call VimConvertImportFiles()<Left>
 
