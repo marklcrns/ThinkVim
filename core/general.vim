@@ -146,6 +146,19 @@ if exists('&backupskip')
     set backupskip+=.vault.vim
 endif
 
+if has('folding')
+    set foldenable
+    set foldmethod=syntax
+    set foldlevelstart=99
+endif
+
+" Live interactive search and replace
+set inccommand=split  " Options: split or nosplit
+
+"--------------------------------------------------
+" Autocommands:
+"--------------------------------------------------
+
 " Disable swap/undo/viminfo/shada files in temp directories or shm
 augroup MyAutoCmd
     autocmd!
@@ -153,16 +166,6 @@ augroup MyAutoCmd
         \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
         \ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
 augroup END
-
-if has('folding')
-    set foldenable
-    set foldmethod=syntax
-    set foldlevelstart=99
-endif
-
-"--------------------------------------------------
-" Autocommands:
-"--------------------------------------------------
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

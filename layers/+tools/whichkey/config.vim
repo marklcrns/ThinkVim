@@ -25,6 +25,14 @@ let g:which_key_map = {
        \ '8' : 'Buffer 8',
        \ '9' : 'Buffer 9',
        \ '0' : 'Buffer 10',
+       \ ';' : {
+             \ 'name' : '+single-purpose',
+             \ 'w' : {
+                   \ 'name' : '+vimwiki',
+                   \ 'm' : 'Open clipboard register relative path as markdown',
+                   \ 'i' : 'Import file to vimwiki (see reqs in mappings.vim)',
+                   \ },
+             \ },
     \ 'c' : {
           \ 'name' : '+coc',
              \ 'a' : 'Code action text object',

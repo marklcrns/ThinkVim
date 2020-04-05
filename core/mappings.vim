@@ -58,9 +58,6 @@ nnoremap <Leader>fyx :let @+=expand("%:e")<bar>echo 'Yanked file extension'<CR>
 " :edit file from clipboard register
 nnoremap <Leader>fyo :execute "e " . getreg('+')<bar>echo 'Opened ' . expand("%:p")<CR>
 
-" Append '.md' from clipboard register and :edit from current directory
-nnoremap <Leader>fym :cd %:h<bar>execute "e " . expand("%:p:h") . '/' . getreg('+') . '.md'<bar>echo 'Opened ' . expand("%:p")<CR>
-
 " Write buffer (save)
 nnoremap <leader>fs :w<CR>
 vnoremap <leader>fs :<Esc>w<CR>
@@ -103,7 +100,7 @@ inoremap <M-v> <ESC>v`[
 imap <C-w> <C-[>diwa
 imap <C-h> <BS>
 imap <C-d> <Del>
-imap <C-k> <ESC>d$a
+imap <C-k> <C-[>Da
 imap <C-u> <C-G>u<C-U>
 imap <C-a> <Home>
 imap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
@@ -463,11 +460,26 @@ function! JavaCompile()
   exec 'VimuxRunLastCommand'
 endfunction
 
-" Requires MkNonExDir() from https://stackoverflow.com/a/4294176/11850077
-" Date ref: https://vim.fandom.com/wiki/Insert_current_date_or_time
-function! VimConvertImportFiles(loop_num)
+" ========== Custom single purpose functions and mappings ==========
+
+" Append '.md' to clipboard register yanked file path and :edit from current directory
+nnoremap <Leader>;wm :cd %:h<bar>execute "e " . expand("%:p:h") . '/' . getreg('+') . '.md'<bar>echo 'Opened ' . expand("%:p")<CR>
+
+" Creates a wiki link based from the relative path of the source file to be
+" imported, then copy its content. Close the source file buffer after and goes
+" back to target index file or start point.
+" Requirements:
+" 1. Source references to import has to start from 2nd buffer
+" 2. Target index has to be the last buffer
+" 3. Start cursor should be at the line above the target line.
+" 4. MkNonExDir() from https://stackoverflow.com/a/4294176/11850077
+" 5. vim-buffet plugin
+" Insert date ref: https://vim.fandom.com/wiki/Insert_current_date_or_time
+nmap <Leader>;wi :call VimConvertImportFiles()<Left>
+function! VimConvertImportFiles(repeat)
+  " loop through nth times with repeat arg
   let i = 0
-  while i < a:loop_num
+  while i < a:repeat
     " mark 'A' to index file and reference import file
     exec "norm! mA"
     exec "norm \<plug>BuffetSwitch(2)"
@@ -477,17 +489,16 @@ function! VimConvertImportFiles(loop_num)
     exec "norm! ggmB"
     " go back to index and create a new link for the reference file
     exec "norm 'AA\<cr>\<esc>p\<cr>"
-    " save index
-    exec "w"
 
     " Open new wiki link relative to current working directory and mark to 'C'
     exec "cd %:h"
     exec 'e ' . expand('%:p:h') . '/' . getreg('+') . '.md'
     exec 'norm! mC'
     " go to reference file and yank all contents
-    exec "norm! \<c-^>'BVGy"
+    exec "norm! 'BVGy"
     " go to new wiki link and paste all
     exec "norm! 'Cp"
+
     " copy filename wihtout extension
     exec "let @+=expand('%:t:r')"
     " add markdown title and author meta data, filename as title.
@@ -498,13 +509,14 @@ function! VimConvertImportFiles(loop_num)
     exec "pu='date: ' . strftime('%Y-%m-%d')"
     exec "pu='---'"
 
-    " save and delete reference and new wiki buffers
+    " save and delete reference and new wiki buffers, then go back to index
     exec "w!"
-    " quit new wiki and reference file
+    exec "norm! \<c-^>"
     exec "bd"
-    exec "bd"
+    exec "redraw!"
+    exec "norm! 'Aj"
+
     let i += 1
   endwhile
 endfunction
-nmap <Leader>wim :call VimConvertImportFiles()<Left>
 
