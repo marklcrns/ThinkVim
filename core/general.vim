@@ -185,6 +185,7 @@ augroup CursorUI
 augroup END
 
 " Automatically create non existing directory in buffer's path when saved
+" Ref: https://stackoverflow.com/a/4294176/11850077
 function s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
         let dir=fnamemodify(a:file, ':h')

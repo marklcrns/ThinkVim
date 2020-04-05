@@ -61,6 +61,8 @@
   if: "! (has('win32') || has('win64'))"
   hook_add: |
     let g:tmux_navigator_disable_when_zoomed = 1
+
+- repo: tpope/vim-unimpaired
 # }}}
 
 

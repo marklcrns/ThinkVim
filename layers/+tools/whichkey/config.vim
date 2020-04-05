@@ -112,12 +112,14 @@ let g:which_key_map = {
              \ 'S' : 'Save all buffers',
              \ 'y' : {
                    \ 'name' : '+yank-path',
-                      \ 'd' : 'Yank relative directory path',
-                      \ 'D' : 'Yank absolute directory path',
-                      \ 'f' : 'Yank relative file path',
-                      \ 'F' : 'Yank absolute file path',
                       \ 'e' : 'Yank relative file path without extension',
                       \ 'E' : 'Yank absolute file path without extension',
+                      \ 'p' : 'Yank relative file path',
+                      \ 'P' : 'Yank absolute file path',
+                      \ 'f' : 'Yank file name',
+                      \ 'F' : 'Yank file name without extension',
+                      \ 'd' : 'Yank relative directory path',
+                      \ 'D' : 'Yank absolute directory path',
                       \ 'o' : 'Open/Create file from yanked path',
                       \ 'x' : 'Yank file extension only',
                    \ },
@@ -284,7 +286,7 @@ let g:which_key_map = {
             \ 't' : 'Thesaurus current word' ,
             \ 'y' : {
                   \ 'name' : '+yank-text',
-                  \ 'a' : 'Yank all text',
+                  \ 'a' : 'Yank all buffer content',
                   \ },
           \ },
     \ 's' : {

@@ -1,3 +1,4 @@
+
 " Delete buffer
 nnoremap q :bd<CR>
 
@@ -35,19 +36,24 @@ nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
-" Yank buffer's relative file path to clipboard
-nnoremap <Leader>fyf :let @+=expand("%:~:.")<bar>echo 'Yanked relative file path'<CR>
-" Yank buffer's absolute file path to clipboard
-nnoremap <Leader>fyF :let @+=expand("%:p")<bar>echo 'Yanked absolute file path'<CR>
-" Yank buffer's relative directory path to clipboard
-nnoremap <Leader>fyd :let @+=expand("%:p:h:t")<bar>echo 'Yanked relative directory path'<CR>
-" Yank buffer's absolut directory path to clipboard
-nnoremap <Leader>fyD :let @+=expand("%:p:h")<bar>echo 'Yanked absolute directory path'<CR>
-" Yank buffer's relative path without file extension
+" Resources: https://vim.fandom.com/wiki/Get_the_name_of_the_current_file
+" Yank buffer's relative path without file extension to '+' clipboard
 nnoremap <Leader>fye :let @+=expand("%:r")<bar>echo 'Yanked relative file path without extension'<CR>
-" Yank buffer's absolute path without file extension
+" Yank buffer's absolute path without file extension to '+' clipboard
 nnoremap <Leader>fyE :let @+=expand("%:p:r")<bar>echo 'Yanked absolute file path without extension'<CR>
-" Yank buffer's file extension only
+" Yank buffer's relative file path to '+' register
+nnoremap <Leader>fyp :let @+=expand("%:~:.")<bar>echo 'Yanked relative file path'<CR>
+" Yank buffer's absolute file path to '+' register
+nnoremap <Leader>fyP :let @+=expand("%:p")<bar>echo 'Yanked absolute file path'<CR>
+" Yank buffer file name to '+' register
+nnoremap <Leader>fyf :let @+=expand("%:t")<bar>echo 'Yanked file name'<CR>
+" Yank buffer file name without extension to '+' register
+nnoremap <Leader>fyF :let @+=expand("%:t:r")<bar>echo 'Yanked absolute file path'<CR>
+" Yank buffer's relative directory path to '+' register
+nnoremap <Leader>fyd :let @+=expand("%:p:h:t")<bar>echo 'Yanked relative directory path'<CR>
+" Yank buffer's absolut directory path to '+' register
+nnoremap <Leader>fyD :let @+=expand("%:p:h")<bar>echo 'Yanked absolute directory path'<CR>
+" Yank buffer's file extension only to '+' clipboard
 nnoremap <Leader>fyx :let @+=expand("%:e")<bar>echo 'Yanked file extension'<CR>
 " :edit file from clipboard register
 nnoremap <Leader>fyo :execute "e " . getreg('+')<bar>echo 'Opened ' . expand("%:p")<CR>
@@ -91,7 +97,7 @@ xnoremap < <gv
 xnoremap > >gv|
 
 " Select last inserted characters
-inoremap <C-v> <ESC>v`[
+inoremap <M-v> <ESC>v`[
 
 " insert keymap like emacs
 imap <C-w> <C-[>diwa
@@ -456,4 +462,49 @@ function! JavaCompile()
   exec 'VimuxInterruptRunner'
   exec 'VimuxRunLastCommand'
 endfunction
+
+" Requires MkNonExDir() from https://stackoverflow.com/a/4294176/11850077
+" Date ref: https://vim.fandom.com/wiki/Insert_current_date_or_time
+function! VimConvertImportFiles(loop_num)
+  let i = 0
+  while i < a:loop_num
+    " mark 'A' to index file and reference import file
+    exec "norm! mA"
+    exec "norm \<plug>BuffetSwitch(2)"
+    " copy relative file path without extension
+    exec "let @+=expand('%:r')"
+    " mark 'B' to reference file first line
+    exec "norm! ggmB"
+    " go back to index and create a new link for the reference file
+    exec "norm 'AA\<cr>\<esc>p\<cr>"
+    " save index
+    exec "w"
+
+    " Open new wiki link relative to current working directory and mark to 'C'
+    exec "cd %:h"
+    exec 'e ' . expand('%:p:h') . '/' . getreg('+') . '.md'
+    exec 'norm! mC'
+    " go to reference file and yank all contents
+    exec "norm! \<c-^>'BVGy"
+    " go to new wiki link and paste all
+    exec "norm! 'Cp"
+    " copy filename wihtout extension
+    exec "let @+=expand('%:t:r')"
+    " add markdown title and author meta data, filename as title.
+    exec "norm! ggO---"
+    exec "put='title: ' . getreg('+')"
+    exec "put='author: Mark Lucernas'"
+    " add markdown date meta
+    exec "pu='date: ' . strftime('%Y-%m-%d')"
+    exec "pu='---'"
+
+    " save and delete reference and new wiki buffers
+    exec "w!"
+    " quit new wiki and reference file
+    exec "bd"
+    exec "bd"
+    let i += 1
+  endwhile
+endfunction
+nmap <Leader>wim :call VimConvertImportFiles()<Left>
 
