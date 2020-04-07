@@ -386,6 +386,7 @@ let g:which_key_localmap = {
                      \ 'name' : '+cursor',
                      \ 'c' : 'Cursorcolumn toggle',
                      \ 'l' : 'Cursorline toggle',
+                     \ 'x' : 'Crosshair toggle',
                      \ },
             \ },
       \ 't' : {

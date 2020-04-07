@@ -1,4 +1,5 @@
 
+" Ref: https://stackoverflow.com/a/29236158
 function! CloseBuffer()
     let curBuf = bufnr('%')
     let curTab = tabpagenr()

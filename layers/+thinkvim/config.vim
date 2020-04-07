@@ -483,7 +483,7 @@ if dein#tap('vimwiki')
 endif
 
 if dein#tap('taskwarrior.vim')
-  nnoremap <LocalLeader>tW :<C-u>TW<Space>
+  nnoremap <LocalLeader>tW :<C-u>TW<CR>
 endif
 
 if dein#tap('vimux')
