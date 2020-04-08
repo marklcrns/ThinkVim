@@ -6,8 +6,8 @@ function! CloseBuffer()
     exe 'bnext'
 
     " Quit window/split if buffer is empty ([No Name] buffer)
-    if bufname('%')
-        exe 'q'
+    if (bufname('%') == '' || !&modifiable)
+        exe 'q!'
         return
     endif
 
