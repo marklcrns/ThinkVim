@@ -459,6 +459,7 @@ nmap <silent><Leader>oo :!xdg-open "%:p"<CR>
 nmap <silent><Leader>og :!google-chrome "%:p"<CR>
 
 " Diff split with a file (auto wildcharm trigger)
+if !&wildcharm | set wildcharm=<C-z> | endif
 execute 'nnoremap <Leader>idv :vert diffsplit $HOME/'.nr2char(&wildcharm)
 execute 'nnoremap <Leader>ids :diffsplit $HOME/'.nr2char(&wildcharm)
 
