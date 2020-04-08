@@ -52,7 +52,7 @@ xnoremap p pgvy
 " Yank to end
 nnoremap Y y$
 
-" Yan and paste line immediatly below
+" Yank and paste line immediatly below
 nnoremap <C-y> yyp$
 inoremap <C-y> <Esc>yyp`^A
 
