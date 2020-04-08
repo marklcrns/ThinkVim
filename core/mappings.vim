@@ -6,7 +6,7 @@ function! CloseBuffer()
     exe 'bnext'
 
     " Quit window/split if buffer is empty ([No Name] buffer)
-    if bufname('%') == ''
+    if bufname('%')
         exe 'q'
         return
     endif
@@ -51,6 +51,10 @@ xnoremap p pgvy
 
 " Yank to end
 nnoremap Y y$
+
+" Yan and paste line immediatly below
+nnoremap <C-y> yyp$
+inoremap <C-y> <Esc>yyp`^A
 
 " Duplicate current line then enter line substitution
 " inoremap <C-y> <ESC>yypV:s//g<Left><Left>  " Deprecated by vim-abolish
@@ -112,10 +116,14 @@ nnoremap <leader>fq :confirm wqa!<CR>
 inoremap <Esc> <Esc>`^
 
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
-cnoremap <C-l> <C-c>
 cnoremap <C-g> <C-c>
-noremap <C-l> <Esc>`^
-noremap fd <Esc>`^
+cnoremap <C-l> <C-c>
+nnoremap <C-l> <Esc>`^
+inoremap <C-l> <Esc>`^
+vnoremap <C-l> <Esc>`<
+nnoremap fd <Esc>`^
+inoremap fd <Esc>`^
+vnoremap fd <Esc>`<
 inoremap kj <Esc>`^
 snoremap kj <Esc>`^
 
@@ -156,7 +164,12 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
+" print insert buffer file directory path
 cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
+" Easy wildcharm navigation
+cnoremap <expr><C-j> pumvisible() ? "\<C-n>" : nr2char(&wildcharm)
+cnoremap <expr><C-k> pumvisible() ? "\<C-p>" : nr2char(&wildcharm)
+cnoremap <expr><Tab> pumvisible() ? "\<C-e>".nr2char(&wildcharm) : nr2char(&wildcharm)
 
 " Move between tabs
 nnoremap <silent> [t :tabprevious<CR>
@@ -445,14 +458,16 @@ nmap <silent><Leader>oo :!xdg-open "%:p"<CR>
 " Open current file in google chrome
 nmap <silent><Leader>og :!google-chrome "%:p"<CR>
 
+" Diff split with a file (auto wildcharm trigger)
+execute 'nnoremap <Leader>idv :vert diffsplit $HOME/'.nr2char(&wildcharm)
+execute 'nnoremap <Leader>ids :diffsplit $HOME/'.nr2char(&wildcharm)
+
 " Git mappings for mergetools or diff mode
 nnoremap dor :diffget RE<CR>
 nnoremap dob :diffget BA<CR>
 nnoremap dol :diffget LO<CR>
 " Quit nvim with an error code. Useful when aborting git mergetool or git commit
 nnoremap dq :cquit<CR>
-
-nnoremap <Leader>ids :vert diffsplit $HOME/
 
 " Fixes `[c` and `]c` not working
 nnoremap [c [c
@@ -486,14 +501,14 @@ function! NextClosedFold(dir)
 endfunction
 
 " Improve scroll, credits: https://github.com/Shougo
-nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
+map <expr> zz (winline() == (winheight(0)+1) / 2) ?
       \ 'zt' : (winline() == 1) ? 'zb' : 'zz'
-noremap <expr> <C-f> max([winheight(0) - 2, 1])
+map <expr> <C-f> max([winheight(0) - 2, 1])
       \ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
-noremap <expr> <C-b> max([winheight(0) - 2, 1])
+map <expr> <C-b> max([winheight(0) - 2, 1])
       \ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
-noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
-noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
+map <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
+" map <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
 function! JavaCompile()
   exec '!javac %'

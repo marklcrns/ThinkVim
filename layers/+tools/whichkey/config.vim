@@ -180,6 +180,8 @@ let g:which_key_map = {
                       \ 'r' : 'Linediff reset',
                       \ 's' : 'Linediff show',
                       \ },
+                \ 'h' : 'Horizontal file diff split',
+                \ 'v' : 'Vertical file diff split',
                 \ },
           \ 'g' : 'Goyo toggle' ,
           \ 'h' : {

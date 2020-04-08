@@ -506,7 +506,7 @@ if dein#tap('vim-indent-guides')
 endif
 
 if dein#tap('vim-wordy')
-  if !&wildcharm | set wildcharm=<C-z> | endif
+  " auto wildcharm trigger
   execute 'nnoremap <leader>iww :Wordy<space>'.nr2char(&wildcharm)
 
   nnoremap <leader>iwn :NextWordy<CR>
@@ -632,7 +632,10 @@ if dein#tap('vim-abolish')
   nnoremap <Leader>rba :<C-u>Abolish<Space>
   vnoremap <Leader>rba :Abolish<Space>
   " Duplicate line and subvert
-  inoremap <C-y> <ESC>yypV:Subvert//g<Left><Left>
+  inoremap <M-y> <ESC>yypV:Subvert//g<bar>norm`.$
+    \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+  nnoremap <M-y> yypV:Subvert//g<bar>norm`.$
+    \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 endif
 
 
