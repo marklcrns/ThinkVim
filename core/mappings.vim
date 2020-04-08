@@ -460,8 +460,10 @@ nmap <silent><Leader>og :!google-chrome "%:p"<CR>
 
 " Diff split with a file (auto wildcharm trigger)
 if !&wildcharm | set wildcharm=<C-z> | endif
-execute 'nnoremap <Leader>idv :vert diffsplit $HOME/'.nr2char(&wildcharm)
-execute 'nnoremap <Leader>ids :diffsplit $HOME/'.nr2char(&wildcharm)
+execute 'nnoremap <Leader>idv :vert diffsplit '.expand("%:p:h").'/'.nr2char(&wildcharm)
+execute 'nnoremap <Leader>idh :diffsplit '.expand("%:p:h").'/'.nr2char(&wildcharm)
+execute 'nnoremap <Leader>idV :vert diffsplit $HOME/'.nr2char(&wildcharm)
+execute 'nnoremap <Leader>idH :diffsplit $HOME/'.nr2char(&wildcharm)
 
 " Git mappings for mergetools or diff mode
 nnoremap dor :diffget RE<CR>

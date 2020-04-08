@@ -180,8 +180,10 @@ let g:which_key_map = {
                       \ 'r' : 'Linediff reset',
                       \ 's' : 'Linediff show',
                       \ },
-                \ 'h' : 'Horizontal file diff split',
-                \ 'v' : 'Vertical file diff split',
+                \ 'h' : 'Horizontal file diff split from current directory',
+                \ 'H' : 'Horizontal file diff split from $HOME',
+                \ 'v' : 'Vertical file diff split from current directory',
+                \ 'V' : 'Vertical file diff split from $HOME',
                 \ },
           \ 'g' : 'Goyo toggle' ,
           \ 'h' : {
