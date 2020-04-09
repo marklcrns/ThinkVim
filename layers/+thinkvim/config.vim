@@ -226,6 +226,14 @@ if dein#tap('fzf.vim')
   xnoremap          <leader>fdR "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
 endif
 
+if dein#tap('unite.vim')
+  nnoremap <Leader>fua :<C-u>Unite file buffer<CR>
+  nnoremap <Leader>fub :<C-u>Unite buffer<CR>
+  nnoremap <Leader>fud :<C-u>Unite file_rec<CR>
+  nnoremap <Leader>fuf :<C-u>Unite file<CR>
+  nnoremap <Leader>fuu :<C-u>Unite<Space>
+endif
+
 if dein#tap('vim-easy-align')
   " Start interactive EasyAlign in visual mode
   xmap <Leader>raa <Plug>(EasyAlign)
@@ -508,17 +516,23 @@ endif
 if dein#tap('vim-wordy')
   " auto wildcharm trigger
   if !&wildcharm | set wildcharm=<C-z> | endif
-  execute 'nnoremap <leader>iww :Wordy<space>'.nr2char(&wildcharm)
+  execute 'nnoremap <leader>igww :Wordy<space>'.nr2char(&wildcharm)
 
-  nnoremap <leader>iwn :NextWordy<CR>
-  nnoremap <leader>iwp :PrevWordy<CR>
-  nnoremap <leader>iwr :NoWordy<CR>
+  nnoremap <leader>lgwn :NextWordy<CR>
+  nnoremap <leader>lgwp :PrevWordy<CR>
+  nnoremap <leader>lgwr :NoWordy<CR>
 endif
 
-if dein#tap('vim-LanguageTool')
-  nnoremap <Leader>ilc :<C-u>LanguageToolCheck<CR>
-  vnoremap <Leader>ilc :LanguageToolCheck<CR>
-  nnoremap <Leader>ilr :<C-u>LanguageToolClear<CR>
+" if dein#tap('vim-LanguageTool')
+"   nnoremap <Leader>ilc :<C-u>LanguageToolCheck<CR>
+"   vnoremap <Leader>ilc :LanguageToolCheck<CR>
+"   nnoremap <Leader>ilr :<C-u>LanguageToolClear<CR>
+" endif
+
+if dein#tap('vim-grammarous')
+  nnoremap <Leader>lgc :GrammarousCheck<CR>
+  vnoremap <Leader>lgc :GrammarousCheck<CR>
+  nnoremap <Leader>lgr :GrammarousReset<CR>
 endif
 
 if dein#tap('vim-quickhl')

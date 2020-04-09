@@ -1,16 +1,16 @@
 
 " Ref: https://stackoverflow.com/a/29236158
 function! CloseBuffer()
-    let curBuf = bufnr('%')
-    let curTab = tabpagenr()
-    exe 'bnext'
+  let curBuf = bufnr('%')
+  let curBufName = bufname('%')
+  let curTab = tabpagenr()
+  exe 'bnext'
 
-    " Quit window/split if buffer is empty ([No Name] buffer)
-    if (bufname('%') == '' || !&modifiable)
-        exe 'q!'
-        return
-    endif
-
+  " Quit window/split if buffer is empty ([No Name] buffer)
+  if (curBufName == '' || !&modifiable || &readonly)
+      exe 'q!'
+      return
+  else
     " If in last buffer, create empty buffer
     if curBuf == bufnr('%')
         exe 'enew'
@@ -31,11 +31,13 @@ function! CloseBuffer()
             exe curWin . 'wincmd w'
             let winnr = bufwinnr(curBuf)
         endwhile
+      echo 'Exited ' . curBufName
     endfor
 
     " Close buffer, restore active tab
     exe 'bd' . curBuf
     exe 'tabnext ' . curTab
+  endif
 endfunction
 noremap <silent> q :call CloseBuffer()<cr>
 

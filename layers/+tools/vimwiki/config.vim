@@ -78,35 +78,33 @@ function! VimwikiLinkHandler(link)
   endif
 endfunction
 
+" TODO
+" Resources:
+" https://vim.fandom.com/wiki/Copy_search_matches
+" https://vim.fandom.com/wiki/Folding_with_Regular_Expression
+" ----------
+" function! CopyMatches(reg)
+"   let hits = []
+"   %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+"   let reg = empty(a:reg) ? '+' : a:reg
+"   execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+" endfunction
+" command! -register CopyMatches call CopyMatches(<q-reg>)
+"
+" function! IndexReferenceLinks()
+"     exe 'g/- \[.*](.*)/y A'
+"     call CopyMatches('x')
+"     " Paste all links to reference header
+"     exe 'g/\# References/'
+"     exe 'norm o'
+"     exe 'norm! VGd"xpgv>`>\<esc>'
+" endfunction
+
 
 augroup SpellCheck
   autocmd!
-  " Toggle spell check
-  if &spell
-    let b:activate_spellcheck = 1
-  else
-    let b:activate_spellcheck = 0
-  endif
-  function! ToggleSpellCheck()
-    if b:activate_spellcheck == 1
-      let b:activate_spellcheck = 0
-      echom 'Spellchecker deactivated'
-    else
-      let b:activate_spellcheck = 1
-      echom 'Spellchecker activated'
-    end
-  endfunction
-  autocmd Filetype vimwiki nnoremap <silent> <LocalLeader>ss :call ToggleSpellCheck()<CR>
   autocmd Filetype vimwiki
         \ autocmd BufRead <buffer> setlocal spell
-  autocmd Filetype vimwiki let b:activate_spellcheck = 1
-  autocmd FileType vimwiki
-        \ autocmd InsertEnter <buffer>
-              \ if b:activate_spellcheck == 1
-              \ | setlocal spell
-              \ | endif
-  autocmd FileType vimwiki
-        \ autocmd InsertLeave <buffer> setlocal nospell
 augroup END
 
 

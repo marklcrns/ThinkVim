@@ -87,7 +87,7 @@ set smartcase       " Keep case when searching with *
 set infercase       " Adjust case in insert completion mode
 set incsearch       " Incremental search
 set hlsearch        " Highlight search results
-set wrapscan        " Searches wrap around the end of the file
+set nowrapscan      " Incremental search stops wrapping around at the end of the file
 set showmatch       " Jump to matching bracket
 set matchpairs+=<:> " Add HTML brackets to pair matching
 set matchtime=1     " Tenths of a second to show the matching paren

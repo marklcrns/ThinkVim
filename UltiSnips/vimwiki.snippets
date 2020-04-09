@@ -169,8 +169,6 @@ summary: $3
 
 # References
 
-	- 
-
 endsnippet
 
 snippet todo "To-do list template" bA
@@ -502,8 +500,6 @@ summary: $3
 
 # References
 
-	- 
-
 endsnippet
 
 # ==========CISC 190 Note taking snippets========== #
@@ -585,7 +581,7 @@ $$
 endsnippet
 
 snippet $$ "Mathjax in-line" wA
-$${1:${VISUAL}}$$0
+$${1:${VISUAL}}$
 endsnippet
 
 snippet @@ "Mathjax text" wA
@@ -726,7 +722,7 @@ snippet 'pm' "Mathjax plus minus sign" i
 \pm
 endsnippet
 
-snippet O- "Mathjax theta symbol" iA
+snippet thet "Mathjax theta symbol" i
 \theta
 endsnippet
 
@@ -746,7 +742,7 @@ snippet delt "Mathjax delta symbol" i
 \delta
 endsnippet
 
-snippet Delt "Mathjax Delta symbol" i
+snippet Delt "Mathjax triangle delta symbol" i
 \Delta
 endsnippet
 
@@ -1056,6 +1052,55 @@ endsnippet
 snippet col# "Mathjax text color" iA
 \color{#$1}{${2:${VISUAL}}}$0
 endsnippet
+
+snippet sin( "Mathjax sine function" wA
+\sin($1)$0
+endsnippet
+
+snippet cos( "Mathjax cosine function" wA
+\cos($1)$0
+endsnippet
+
+snippet tan( "Mathjax tangent function" wA
+\tan($1)$0
+endsnippet
+
+snippet sin- "Mathjax arcsine function" wA
+\sin{-1}($1)$0
+endsnippet
+
+snippet cos- "Mathjax arccosine function" wA
+\cos{-1}($1)$0
+endsnippet
+
+snippet tan- "Mathjax arctangent function" wA
+\tan{-1}($1)$0
+endsnippet
+
+snippet sec( "Mathjax secant function" wA
+\sec($1)$0
+endsnippet
+
+snippet cosec( "Mathjax cosecant function" wA
+\cosec($1)$0
+endsnippet
+
+snippet cot( "Mathjax cotangent function" wA
+\cot($1)$0
+endsnippet
+
+snippet sec- "Mathjax arcsecant function" wA
+\sec{-1}($1)$0
+endsnippet
+
+snippet cosec- "Mathjax arccosecant function" wA
+\cosec{-1}($1)$0
+endsnippet
+
+snippet cot- "Mathjax arccotangent function" wA
+\cot{-1}($1)$0
+endsnippet
+
 
 # Matrices, absolute value and parenthises
 # ============================================================
