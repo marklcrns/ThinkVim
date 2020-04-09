@@ -94,7 +94,7 @@
 # - repo: sbdchd/neoformat
 #   on_cmd: [Neoformat, Neoformat!]
 #   hook_source: source  $VIM_PATH/layers/+syntax/neoformat/config.vim
-# 
+#
 # - repo: benekastah/neomake
 #   on_path: .*
 #   on_cmd: [Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo]
@@ -355,6 +355,9 @@
     let g:neomru#file_mru_path = $DATA_PATH . '/mru/file'
     let g:unite_source_file_mru_limit = 5000
 
+- repo: Shougo/unite.vim
+  on_cmd: Unite
+
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
   on_event: [BufReadPost, BufWritePost]
@@ -454,9 +457,9 @@
 - repo: reedes/vim-wordy
   on_cmd: [Wordy, NextWordy, PrevWordy]
 
-- repo: dpelle/vim-LanguageTool
-  hook_add: |
-    let g:languagetool_jar = '$HOME/LanguageTool-4.9/languagetool-commandline.jar'
+- repo: rhysd/vim-grammarous
+  on_cmd: [GrammarousCheck, GrammarousReset]
+  hook_add: source $VIM_PATH/layers/+tools/vim-grammarous/config.vim
 
 - repo: tpope/vim-abolish
   on_path: .*
