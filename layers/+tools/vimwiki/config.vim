@@ -121,8 +121,9 @@ augroup VimwikiEditMode
         \ autocmd InsertLeave <buffer> setlocal conceallevel=2
   " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
   " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
-  autocmd FileType vimwiki imap <silent><buffer> <A-p> <A-p><Esc>gp=gvgq0A
-  " autocmd FileType vimwiki imap <A-p> <A-p><Esc>gp=gvgqgv0$
+  autocmd FileType vimwiki
+    \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gvgq0A" :
+    \ "\<M-p>\<Esc>gp=gvgq0A"
 augroup END
 
 

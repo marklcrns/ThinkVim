@@ -517,6 +517,7 @@ endif
 
 if dein#tap('vim-LanguageTool')
   nnoremap <Leader>ilc :<C-u>LanguageToolCheck<CR>
+  vnoremap <Leader>ilc :LanguageToolCheck<CR>
   nnoremap <Leader>ilr :<C-u>LanguageToolClear<CR>
 endif
 
