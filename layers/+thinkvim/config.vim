@@ -494,6 +494,33 @@ if dein#tap('taskwarrior.vim')
   nnoremap <LocalLeader>tW :<C-u>TW<CR>
 endif
 
+if dein#tap('taskwiki')
+  vnoremap <LocalLeader>ta :TaskWikiAnnotate<CR>
+  nnoremap <LocalLeader>tbd :TaskWikiBurndownDaily<CR>
+  nnoremap <LocalLeader>tbw :TaskWikiBurndownWeekly<CR>
+  nnoremap <LocalLeader>tbm :TaskWikiBurndownMonthly<CR>
+  vnoremap <LocalLeader>tcp :TaskWikiChooseProject<CR>
+  vnoremap <LocalLeader>tct :TaskWikiChooseTag<CR>
+  nnoremap <LocalLeader>tC :TaskWikiCalendar<CR>
+  vnoremap <LocalLeader>td :TaskWikiDone<CR>
+  vnoremap <LocalLeader>tD :TaskWikiDelete<CR>
+  vnoremap <LocalLeader>te :TaskWikiEdit<CR>
+  vnoremap <LocalLeader>tg :TaskWikiGrid<CR>
+  nnoremap <LocalLeader>tGm :TaskWikiGhistoryMonthly<CR>
+  nnoremap <LocalLeader>tGa :TaskWikiGhistoryAnnual<CR>
+  nnoremap <LocalLeader>thm :TaskWikiHistoryMonthly<CR>
+  nnoremap <LocalLeader>tha :TaskWikiHistoryAnnual<CR>
+  vnoremap <LocalLeader>ti :TaskWikiInfo<CR>
+  vnoremap <LocalLeader>tl :TaskWikiLink<CR>
+  vnoremap <LocalLeader>tm :TaskWikiMod<CR>
+  nnoremap <LocalLeader>tp :TaskWikiProjects<CR>
+  nnoremap <LocalLeader>ts :TaskWikiProjectsSummary<CR>
+  nnoremap <LocalLeader>tS :TaskWikiStats<CR>
+  nnoremap <LocalLeader>tt :TaskWikiTags<CR>
+  vnoremap <LocalLeader>t+ :TaskWikiStart<CR>
+  vnoremap <LocalLeader>t- :TaskWikiStop<CR>
+endif
+
 if dein#tap('vimux')
   " Prompt for a command to run
   nnoremap <Leader>vc :VimuxPromptCommand<CR>

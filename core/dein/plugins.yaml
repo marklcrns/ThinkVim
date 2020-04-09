@@ -416,7 +416,7 @@
     let g:taskwiki_markup_syntax = 'markdown'
     let g:taskwiki_dont_preserve_folds = 'yes'
     let g:taskwiki_disable_concealcursor = 'yes'
-    let g:taskwiki_maplocalleader= ';t'
+    let g:taskwiki_suppress_mappings = 'yes'
 
 - repo: xarthurx/taskwarrior.vim
   on_path: .*

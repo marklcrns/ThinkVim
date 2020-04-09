@@ -78,28 +78,32 @@ function! VimwikiLinkHandler(link)
   endif
 endfunction
 
-" TODO
+" TODO: Check if reference header exists, if not make one
+" TODO: Do not overwrite on existing list sublists
 " Resources:
-" https://vim.fandom.com/wiki/Copy_search_matches
+" Copy search match - https://vim.fandom.com/wiki/Copy_search_matches
+" Undupe list - https://stackoverflow.com/a/6630950/11850077
+" Extras:
 " https://vim.fandom.com/wiki/Folding_with_Regular_Expression
 " ----------
-" function! CopyMatches(reg)
-"   let hits = []
-"   %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
-"   let reg = empty(a:reg) ? '+' : a:reg
-"   execute 'let @'.reg.' = join(hits, "\n") . "\n"'
-" endfunction
-" command! -register CopyMatches call CopyMatches(<q-reg>)
-"
-" function! IndexReferenceLinks()
-"     exe 'g/- \[.*](.*)/y A'
-"     call CopyMatches('x')
-"     " Paste all links to reference header
-"     exe 'g/\# References/'
-"     exe 'norm o'
-"     exe 'norm! VGd"xpgv>`>\<esc>'
-" endfunction
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  let reg = empty(a:reg) ? '+' : a:reg
+  let unduphits=filter(copy(hits), 'index(hits, v:val, v:key+1)==-1')
+  execute 'let @'.reg.' = "\n" . join(unduphits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
 
+function! IndexReferenceLinks()
+    exe 'let @x = ""'
+    exe 'g/- \[.*](.*)/y A'
+    call CopyMatches('x')
+    " Paste all links to reference header
+    exe 'g/\# References/'
+    exe 'norm! o'
+    exe 'norm VG"xpVG>\<esc>'
+endfunction
 
 augroup SpellCheck
   autocmd!
@@ -144,6 +148,7 @@ augroup VimwikiCustomMappings
         \ "\<ESC>:VimwikiReturn 1 5\<CR>"
 
   autocmd Filetype vimwiki inoremap <silent><buffer><S-CR> :VimwikiReturn 4 1<CR>
+  autocmd Filetype vimwiki nnoremap <silent><buffer><LocalLeader>wL :call IndexReferenceLinks()<CR>
 augroup END
 
 " Quick fix hack on <CR> and <S-CR> being remapped when comming back to a session
