@@ -104,7 +104,7 @@ Extras
 
 - [Yad](https://www.howtoinstall.co/en/debian/stretch/yad) or
   [Zenity](https://wiki.gnome.org/action/show/Projects/Zenity) for
-  [Color Picker](https://github.com/KabbAmine/vCoolor.vim)
+  [Color Picker](https://github.com/KabbAmine/vCoolor.vim) - GUI color picker
 
 > VCoolor defaults to Yad
 
@@ -113,6 +113,14 @@ sudo apt install yad
 # and/or
 sudo apt install zenity
 ```
+
+- `LanguageTools` - grammar checker
+
+1. Go to <https://languagetool.org/> and scroll down to _Desktop version for
+offline use_ and download the zip file
+2. Extract the `.zip` file to `$HOME` directory
+
+
 
 **_2._** open the nvim ,it will auto install dein and plugins,when the plugins install success,it will install coc extensions.
 

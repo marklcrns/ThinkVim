@@ -454,6 +454,10 @@
 - repo: reedes/vim-wordy
   on_cmd: [Wordy, NextWordy, PrevWordy]
 
+- repo: dpelle/vim-LanguageTool
+  hook_add: |
+    let g:languagetool_jar = '$HOME/LanguageTool-4.9/languagetool-commandline.jar'
+
 - repo: tpope/vim-abolish
   on_path: .*
 

@@ -515,6 +515,11 @@ if dein#tap('vim-wordy')
   nnoremap <leader>iwr :NoWordy<CR>
 endif
 
+if dein#tap('vim-LanguageTool')
+  nnoremap <Leader>ilc :<C-u>LanguageToolCheck<CR>
+  nnoremap <Leader>ilr :<C-u>LanguageToolClear<CR>
+endif
+
 if dein#tap('vim-quickhl')
   nmap <Leader>iht <Plug>(quickhl-manual-this)
   xmap <Leader>iht <Plug>(quickhl-manual-this)

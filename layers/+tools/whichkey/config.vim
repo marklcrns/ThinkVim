@@ -192,6 +192,11 @@ let g:which_key_map = {
                 \ 'r' : 'Highlight reset',
                 \ 'w' : 'Highlight this whole word',
                 \ },
+          \ 'l' : {
+                \ 'name' : '+language-tool',
+                \ 'c' : 'Activate grammar checker',
+                \ 'r' : 'Clear grammer checker',
+                \ },
           \ 'w' : {
                 \ 'name' : '+wordy',
                 \ 'p' : 'Prev wordy',
@@ -335,11 +340,11 @@ let g:which_key_map = {
              \ 'd' : 'Delete buffer keep split',
              \ 'f' : 'Zoom split toggle',
              \ 'H' : 'Horizontal split',
-             \ 'V' : 'Vertical split',
              \ 'h' : 'Vertical resize minus',
-             \ 'l' : 'Vertical resize plus',
              \ 'j' : 'Horizontal resize minus',
              \ 'k' : 'Horizontal resize plus',
+             \ 'l' : 'Vertical resize plus',
+             \ 'V' : 'Vertical split',
           \ },
     \ }
 

@@ -54,7 +54,7 @@ nnoremap Y y$
 
 " Yank and paste line immediatly below
 nnoremap <C-y> yyp$
-inoremap <C-y> <Esc>yyp`^A
+inoremap <C-y> <Esc>yyp`.A
 
 " Duplicate current line then enter line substitution
 " inoremap <C-y> <ESC>yypV:s//g<Left><Left>  " Deprecated by vim-abolish
