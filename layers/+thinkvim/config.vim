@@ -1,5 +1,10 @@
 " Plugin key settings
 
+if dein#tap('any-jump.vim')
+	nnoremap <silent> <Leader>aj :AnyJump<CR>
+	xnoremap <silent> <Leader>aj :AnyJump<CR>
+endif
+
 if dein#tap('coc.nvim')
   nnoremap <silent> <leader>cC :<C-u>CocConfig<Cr>
   " Using CocList
@@ -164,6 +169,7 @@ if dein#tap('coc.nvim')
         \ : "\<C-p>"
 endif
 
+
 if dein#tap('denite.nvim')
   nnoremap <silent><Leader>dd :<C-u>Denite menu<CR>
   noremap zl :<C-u>call <SID>my_denite_outline(&filetype)<CR>
@@ -311,11 +317,18 @@ if dein#tap('caw.vim')
   call InitCaw()
 endif
 
-if dein#tap('comfortable-motion.vim')
-  nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-  nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-  nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-  nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
+" if dein#tap('comfortable-motion.vim')
+"   nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+"   nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+"   nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
+"   nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
+" endif
+
+if dein#tap('vim-smoothie')
+	nnoremap <silent> <C-f> :<C-U>call smoothie#forwards()<CR>
+  nnoremap <silent> <C-b> :<C-U>call smoothie#backwards()<CR>
+  nnoremap <silent> <C-d> :<C-U>call smoothie#downwards()<CR>
+  nnoremap <silent> <C-u> :<C-U>call smoothie#upwards()<CR>
 endif
 
 if dein#tap('python_match.vim')
@@ -400,6 +413,7 @@ endif
 
 if dein#tap('vim-smartchr')
   inoremap <expr> , smartchr#one_of(',', '->')
+  inoremap <expr> ; smartchr#one_of(';', '==', '!=')
   " autocmd FileType go inoremap <buffer><expr> ;
   "      \ smartchr#loop(':=',';')
   " autocmd FileType go inoremap <buffer> <expr> .

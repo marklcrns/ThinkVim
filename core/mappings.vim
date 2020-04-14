@@ -120,10 +120,8 @@ inoremap <Esc> <Esc>`^
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
 cnoremap <C-g> <C-c>
 cnoremap <C-l> <C-c>
-nnoremap <C-l> <Esc>`^
 inoremap <C-l> <Esc>`^
 vnoremap <C-l> <Esc>`<
-nnoremap fd <Esc>`^
 inoremap fd <Esc>`^
 vnoremap fd <Esc>`<
 inoremap kj <Esc>`^
