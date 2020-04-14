@@ -9,4 +9,4 @@ let g:indent_guides_exclude_filetypes =
     \ [ 'help', 'terminal', 'defx', 'denite', 'nerdtree',
     \ 'startify', 'tagbar', 'vista_kind', 'vista', 'fzf',
     \ 'codi', 'which_key', 'calendar', 'coc', 'floaterm',
-    \ 'coc-explorer', 'any-jump']
+    \ 'any-jump', 'coc-explorer' ]

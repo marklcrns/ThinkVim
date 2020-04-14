@@ -111,8 +111,4 @@ hi Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
 
 " Bracket match color
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-
-" LanguageTools
-hi LanguageToolGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=blue term=underline cterm=none
-hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none
 " }}}
