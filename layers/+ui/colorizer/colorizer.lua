@@ -14,8 +14,11 @@ DEFAULT_OPTIONS = {
 
 require 'colorizer'.setup {
   'javascriptreact';
-  'typescriptreact';
   javascript = {
+    rgb_fn = true;
+    RRGGBBAA = true;
+  };
+  java = {
     rgb_fn = true;
     RRGGBBAA = true;
   };

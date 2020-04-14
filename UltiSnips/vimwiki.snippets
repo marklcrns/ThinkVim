@@ -98,12 +98,12 @@ snippet uimg "Image tag for urls" w
 ![$1]($2)
 endsnippet
 
-snippet ref "Markdown anchor link" w
+snippet alink "Markdown anchor link" w
 [${1:${VISUAL}}]($0#$1)
 endsnippet
 
-# Usage: &name-of-link&ref
-snippet '&?([A-Za-z- ]+)\&ref' "Word or pharse definition auto" wrA
+# Usage: &name-of-link&alink
+snippet '&?([A-Za-z- ]+)\&alink' "Word or pharse definition auto" wrA
 [`!p
 snip.rv = match.group(1).replace("-", " ")
 `]($1#`!p
@@ -424,10 +424,29 @@ snippet def "Word or phrase definition" bA
 	- $0
 endsnippet
 
-# Usage: &definition name&def or **Definition name**&def
-snippet '&?(\*\*)?([^._*()\[\]#$]+)(\*\*)?&def$' "Word or pharse definition auto" wrA
+# Usage: &terminology name&term or **Terminology name**&term
+snippet '&?(\*\*)?([^.*\[\]#]+)(\*\*)?&term$' "Word or pharse definition auto" wrA
 <a name="`!p
-snip.rv = match.group(2).replace(" ", "-").lower()
+term = match.group(2)
+text = ""
+copy = True
+# check if theres parenthesis
+parenthesis = set('()')
+if any((c in parenthesis) for c in term):
+	for i in range(0, len(term) - 1):
+		if ((term[i] == "(" or term[i + 1] == "(") and copy == True):
+			copy = False
+			continue
+		elif (term[i] == ")" and copy == False):
+			copy = True
+			continue
+
+		if copy == True:
+			text += term[i]
+else:
+  text = term
+
+snip.rv = text.replace(" ", "-").lower()
 `">**`!p
 snip.rv = match.group(2).capitalize()
 `$1**</a>`!p
@@ -722,27 +741,27 @@ snippet 'pm' "Mathjax plus minus sign" i
 \pm
 endsnippet
 
-snippet thet "Mathjax theta symbol" i
+snippet the "Mathjax theta symbol" i
 \theta
 endsnippet
 
-snippet alph "Mathjax alpha symbol" i
+snippet alp "Mathjax alpha symbol" i
 \alpha
 endsnippet
 
-snippet beta "Mathjax beta symbol" i
+snippet bet "Mathjax beta symbol" i
 \beta
 endsnippet
 
-snippet gamm "Mathjax gamma symbol" i
+snippet gam "Mathjax gamma symbol" i
 \gamma
 endsnippet
 
-snippet delt "Mathjax delta symbol" i
+snippet del "Mathjax delta symbol" i
 \delta
 endsnippet
 
-snippet Delt "Mathjax triangle delta symbol" i
+snippet Del "Mathjax triangle delta symbol" i
 \Delta
 endsnippet
 
@@ -754,6 +773,10 @@ snippet vareps "Mathjax varepsilon symbol" i
 \varepsilon
 endsnippet
 
+snippet phi "Mathjax phi symbol" i
+\phi
+endsnippet
+
 snippet zeta "Mathjax zeta symbol" i
 \zeta
 endsnippet
@@ -762,23 +785,23 @@ snippet lamb "Mathjax lambda symbol" i
 \lambda
 endsnippet
 
-snippet '....' "Mathjax ldots" iA
+snippet '....' "Mathjax ldots" wA
 \ldots
 endsnippet
 
-snippet tf "Mathjax therefore dots" i
+snippet tf "Mathjax therefore dots" w
 \therefore
 endsnippet
 
-snippet bc "Mathjax because dots" i
+snippet bc "Mathjax because dots" w
 \because
 endsnippet
 
-snippet <= "Mathjax less than or equals to" i
+snippet <= "Mathjax less than or equals to" w
 \le
 endsnippet
 
-snippet >= "Mathjax greater than or equals to" i
+snippet >= "Mathjax greater than or equals to" w
 \ge
 endsnippet
 
@@ -786,43 +809,43 @@ snippet appr "Mathjax approximation symbol" w
 \approx
 endsnippet
 
-snippet => "Mathjax implies" i
+snippet => "Mathjax implies" wA
 \implies
 endsnippet
 
-snippet =< "Mathjax implied by" i
+snippet =< "Mathjax implied by" wA
 \impliedby
 endsnippet
 
-snippet != "Mathjax not equals to" iA
+snippet != "Mathjax not equals to" wA
 \neq
 endsnippet
 
-snippet ooo "Mathjax infinity" iA
+snippet ooo "Mathjax infinity" wA
 \infty
 endsnippet
 
-snippet PP "Mathjax prime numbers" iA
+snippet PP "Mathjax prime numbers" wA
 \mathbb{P}
 endsnippet
 
-snippet NN "Mathjax natural numbers" iA
+snippet NN "Mathjax natural numbers" wA
 \mathbb{N}
 endsnippet
 
-snippet ZZ "Mathjax integer numbers" iA
+snippet ZZ "Mathjax integer numbers" wA
 \mathbb{Z}
 endsnippet
 
-snippet II "Mathjax irrational numbers" iA
+snippet II "Mathjax irrational numbers" wA
 \mathbb{I}
 endsnippet
 
-snippet QQ "Mathjax rational numbers" iA
+snippet QQ "Mathjax rational numbers" wA
 \mathbb{Q}
 endsnippet
 
-snippet RR "Mathjax real numbers" iA
+snippet RR "Mathjax real numbers" wA
 \mathbb{R}
 endsnippet
 
@@ -1053,54 +1076,17 @@ snippet col# "Mathjax text color" iA
 \color{#$1}{${2:${VISUAL}}}$0
 endsnippet
 
-snippet sin( "Mathjax sine function" wA
-\sin($1)$0
+snippet '(\d+)?(sin|cos|tan|csc|sec|cot)\(' "Mathjax trig functions" rwA
+`!p snip.rv = ("" if match.group(1) == None  else match.group(1)) + "\\" + match.group(2)`($1)$0
 endsnippet
 
-snippet cos( "Mathjax cosine function" wA
-\cos($1)$0
+snippet '(\d+)?(sin|cos|tan|csc|sec|cot)(\d+)' "Mathjax sine raise to n function" rwA
+`!p snip.rv = ("" if match.group(1) == None  else match.group(1)) + "\\" + match.group(2) + "^{" + match.group(3) + "}"`($1)$0
 endsnippet
 
-snippet tan( "Mathjax tangent function" wA
-\tan($1)$0
+snippet '(\d+)?(sin|cos|tan|csc|sec|cot)-' "Mathjax trig arc-functions" rwA
+`!p snip.rv = ("" if match.group(1) == None  else match.group(1)) + "\\" + match.group(2)`^{-1}($1)$0
 endsnippet
-
-snippet sin- "Mathjax arcsine function" wA
-\sin{-1}($1)$0
-endsnippet
-
-snippet cos- "Mathjax arccosine function" wA
-\cos{-1}($1)$0
-endsnippet
-
-snippet tan- "Mathjax arctangent function" wA
-\tan{-1}($1)$0
-endsnippet
-
-snippet sec( "Mathjax secant function" wA
-\sec($1)$0
-endsnippet
-
-snippet cosec( "Mathjax cosecant function" wA
-\cosec($1)$0
-endsnippet
-
-snippet cot( "Mathjax cotangent function" wA
-\cot($1)$0
-endsnippet
-
-snippet sec- "Mathjax arcsecant function" wA
-\sec{-1}($1)$0
-endsnippet
-
-snippet cosec- "Mathjax arccosecant function" wA
-\cosec{-1}($1)$0
-endsnippet
-
-snippet cot- "Mathjax arccotangent function" wA
-\cot{-1}($1)$0
-endsnippet
-
 
 # Matrices, absolute value and parenthises
 # ============================================================

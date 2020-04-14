@@ -47,7 +47,7 @@ set history=5000
 set number
 set timeout ttimeout
 set timeoutlen=500 " Time out on mappings
-set updatetime=400 " Idle time to write swap and trigger CursorHold
+" set updatetime=400 " Idle time to write swap and trigger CursorHold
 set ttimeoutlen=10 " Time out on key codes
 set cmdheight=2    " Height of the command line
 set undofile
@@ -72,11 +72,13 @@ set hidden
 set shortmess=aFc
 set signcolumn=yes:2
 set completefunc=emoji#complete
-set completeopt=noinsert,menuone,preview
-set completeopt+=longest
+" set completeopt=noinsert,menuone,preview
+" set completeopt+=longest
+set completeopt+=noselect,noinsert
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
+set regexpengine=1
 set colorcolumn=80
 set mouse=a         " Enable mouse support
 set scrolloff=5     " Keeps some screen visible while scrolling
@@ -201,6 +203,17 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 
 " " Always choose read-only when SwapExists

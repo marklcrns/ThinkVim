@@ -10,7 +10,7 @@ let g:delimitMate_excluded_ft = 'mail,txt'
 augroup user_plugin_delimitMate
   au!
   au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
-  au FileType javascript,javascriptreact,python let b:delimitMate_matchpairs = "(:),[:],{:}"
+  au FileType java,javascript,javascriptreact,python let b:delimitMate_matchpairs = "(:),[:],{:}"
   au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
   au FileType tex let b:delimitMate_quotes = ""
   au FileType markdown,vimwiki let b:delimitMate_matchpairs = "[:],{:},<:>"

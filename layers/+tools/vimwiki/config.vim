@@ -96,13 +96,18 @@ endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
 function! IndexReferenceLinks()
+    " Delete exising links
+    exe 'g/\# References/'
+    exe 'norm! o'
+    exe 'norm VGd'
+    " Clear `x` register and copy all reference links
     exe 'let @x = ""'
     exe 'g/- \[.*](.*)/y A'
     call CopyMatches('x')
     " Paste all links to reference header
     exe 'g/\# References/'
     exe 'norm! o'
-    exe 'norm VG"xpVG>\<esc>'
+    exe 'norm VG"xpVG>'
 endfunction
 
 augroup SpellCheck
@@ -148,7 +153,7 @@ augroup VimwikiCustomMappings
         \ "\<ESC>:VimwikiReturn 1 5\<CR>"
 
   autocmd Filetype vimwiki inoremap <silent><buffer><S-CR> :VimwikiReturn 4 1<CR>
-  autocmd Filetype vimwiki nnoremap <silent><buffer><LocalLeader>wL :call IndexReferenceLinks()<CR>
+  autocmd Filetype vimwiki nnoremap <buffer><LocalLeader>wL :call IndexReferenceLinks()<CR>
 augroup END
 
 " Quick fix hack on <CR> and <S-CR> being remapped when comming back to a session

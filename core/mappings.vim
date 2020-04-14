@@ -140,8 +140,9 @@ xnoremap > >gv|
 " Select last inserted characters
 inoremap <M-v> <ESC>v`[
 
-" insert keymap like emacs
-imap <C-w> <C-[>diwa
+" insert keymap like emacs (Adjusted for new <Esc>`^ remapping above)
+" Delete word before cursor (skips punctuations and delimiters)
+imap <C-w> <C-[>dbi
 imap <C-h> <BS>
 imap <C-d> <Del>
 imap <C-k> <C-[>Da

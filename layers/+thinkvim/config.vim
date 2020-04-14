@@ -170,8 +170,6 @@ if dein#tap('denite.nvim')
   noremap zL :<C-u>call <SID>my_denite_decls(&filetype)<CR>
   noremap zT :<C-u>call <SID>my_denite_file_rec_goroot()<CR>
 
-  nnoremap <silent> <Leader>dgl :<C-u>Denite gitlog:all<CR>
-  nnoremap <silent> <Leader>dgb :<C-u>Denite gitbranch<CR>
   function! s:my_denite_outline(filetype) abort
     execute 'Denite' a:filetype ==# 'go' ? "decls:'%:p'" : 'outline'
   endfunction
@@ -193,6 +191,14 @@ if dein#tap('denite.nvim')
           \ [{'name': 'file/rec', 'args': [goroot]}],
           \ {'input': '.go'})
   endfunction
+endif
+
+if dein#tap('denite-git')
+  nnoremap <silent> <Leader>dgb :<C-u>Denite gitbranch<CR>
+  nnoremap <silent> <Leader>dgc :<C-u>Denite gitchanged<CR>
+  nnoremap <silent> <Leader>dgl :<C-u>Denite gitlog:all<CR>
+  nnoremap <silent> <Leader>dgf :<C-u>Denite gitfiles<CR>
+  nnoremap <silent> <Leader>dgs :<C-u>Denite gitstatus<CR>
 endif
 
 if dein#tap('vim-buffet')
@@ -340,8 +346,16 @@ if dein#tap('vim-startify')
 endif
 
 if dein#tap('vim-quickrun')
-  nnoremap <silent> <localleader>r :QuickRun<CR>
+  nnoremap <silent> <localleader>r :QuickRun -mode n<CR>
+  vnoremap <silent> <localLeader>r :QuickRun -mode v<CR>
 endif
+
+" if dein#tap('vim-asterisk')
+"   map *  <Plug>(asterisk-z*)
+"   map #  <Plug>(asterisk-z#)
+"   map g* <Plug>(asterisk-gz*)
+"   map g# <Plug>(asterisk-gz#)
+" endif
 
 if dein#tap('vim-expand-region')
   xmap v <Plug>(expand_region_expand)
@@ -385,11 +399,11 @@ if dein#tap('vim-which-key')
 endif
 
 if dein#tap('vim-smartchr')
-  inoremap <expr> , smartchr#one_of(',', ',')
-  autocmd FileType go inoremap <buffer><expr> ;
-        \ smartchr#loop(':=',';')
-  autocmd FileType go inoremap <buffer> <expr> .
-        \ smartchr#loop('.', '<-', '->','...')
+  inoremap <expr> , smartchr#one_of(',', '->')
+  " autocmd FileType go inoremap <buffer><expr> ;
+  "      \ smartchr#loop(':=',';')
+  " autocmd FileType go inoremap <buffer> <expr> .
+  "      \ smartchr#loop('.', '<-', '->','...')
 endif
 
 if dein#tap('vim-niceblock')
@@ -419,16 +433,9 @@ if dein#tap('vim-sandwich')
 endif
 
 
-if dein#tap('vim-operator-replace')
-  xmap p <Plug>(operator-replace)
-endif
-
-if dein#tap('vim-textobj-multiblock')
-  omap <silent> ab <Plug>(textobj-multiblock-a)
-  omap <silent> ib <Plug>(textobj-multiblock-i)
-  xmap <silent> ab <Plug>(textobj-multiblock-a)
-  xmap <silent> ib <Plug>(textobj-multiblock-i)
-endif
+" if dein#tap('vim-operator-replace')
+"   xmap p <Plug>(operator-replace)
+" endif
 
 if dein#tap('linediff.vim')
   nmap <silent> <leader>idla :<C-u>LinediffAdd<CR>
@@ -550,12 +557,6 @@ if dein#tap('vim-wordy')
   nnoremap <leader>lgwr :NoWordy<CR>
 endif
 
-" if dein#tap('vim-LanguageTool')
-"   nnoremap <Leader>ilc :<C-u>LanguageToolCheck<CR>
-"   vnoremap <Leader>ilc :LanguageToolCheck<CR>
-"   nnoremap <Leader>ilr :<C-u>LanguageToolClear<CR>
-" endif
-
 if dein#tap('vim-grammarous')
   nnoremap <Leader>lgc :GrammarousCheck<CR>
   vnoremap <Leader>lgc :GrammarousCheck<CR>
@@ -620,12 +621,13 @@ endif
 
 
 if dein#tap('calendar.vim')
-  nnoremap <LocalLeader>ct :Calendar -view=clock<CR>
   nnoremap <LocalLeader>cc :Calendar -view=year -first_day=sunday<CR>
   nnoremap <LocalLeader>cd :Calendar -view=day<CR>
-  nnoremap <LocalLeader>cw :Calendar -view=week<CR>
-  nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=sunday<CR>
   nnoremap <LocalLeader>ch :Calendar -view=day -split=horizontal -position=below -height=12<CR>
+  nnoremap <LocalLeader>cm :Calendar -view=monthly<CR>
+  nnoremap <LocalLeader>ct :Calendar -view=clock<CR>
+  nnoremap <LocalLeader>cv :Calendar -view=year -split=vertical -width=27 -first_day=sunday<CR>
+  nnoremap <LocalLeader>cw :Calendar -view=week<CR>
 endif
 
 if dein#tap('vim-rooter')

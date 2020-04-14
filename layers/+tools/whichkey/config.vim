@@ -89,8 +89,11 @@ let g:which_key_map = {
              \ 'd' : 'Open denite',
           \ 'g' : {
                 \ 'name' : '+denite-git',
-                   \ 'b' : 'Git change branch',
-                   \ 'l' : 'Git log all',
+                   \ 'b' : 'Denite git change branch',
+                   \ 'c' : 'Denite git changed',
+                   \ 'f' : 'Denite git files',
+                   \ 'l' : 'Denite git log all',
+                   \ 's' : 'Denite git status',
                 \ },
           \ },
     \ 'e' : {
@@ -363,6 +366,7 @@ let g:which_key_localmap = {
                \ 'c' : 'Calendar default',
                \ 'd' : 'Calendar daily',
                \ 'h' : 'Calendar horizontal daily',
+               \ 'm' : 'Calendar monthly',
                \ 't' : 'Calendar clock',
                \ 'v' : 'Calendar vertical yearly',
                \ 'w' : 'Calendar weekly',
