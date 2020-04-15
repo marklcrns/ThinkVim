@@ -2,7 +2,7 @@
 
 if dein#tap('any-jump.vim')
 	nnoremap <silent> <Leader>aj :AnyJump<CR>
-	xnoremap <silent> <Leader>aj :AnyJump<CR>
+	xnoremap <silent> <Leader>aj :AnyJumpVisual<CR>
 endif
 
 if dein#tap('coc.nvim')
