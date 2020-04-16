@@ -39,6 +39,12 @@ let g:which_key_map = {
                    \ 'i' : 'Import file to vimwiki (see reqs in mappings.vim)',
                    \ },
              \ },
+    \ 'a' : {
+          \ 'name' : '+any-jump',
+          \ 'b' : 'Open previously opened file',
+          \ 'l' : 'Open last jump to definition result',
+          \ 'j' : 'Open jump to definition window',
+          \ },
     \ 'c' : {
           \ 'name' : '+coc',
              \ 'a' : 'Code action text object',

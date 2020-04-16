@@ -1,8 +1,10 @@
 " Plugin key settings
 
 if dein#tap('any-jump.vim')
+  nnoremap <silent> <leader>ab :AnyJumpBack<CR>
 	nnoremap <silent> <Leader>aj :AnyJump<CR>
 	xnoremap <silent> <Leader>aj :AnyJumpVisual<CR>
+  nnoremap <silent> <leader>al :AnyJumpLastResults<CR>
 endif
 
 if dein#tap('coc.nvim')
@@ -363,12 +365,12 @@ if dein#tap('vim-quickrun')
   vnoremap <silent> <localLeader>r :QuickRun -mode v<CR>
 endif
 
-" if dein#tap('vim-asterisk')
-"   map *  <Plug>(asterisk-z*)
-"   map #  <Plug>(asterisk-z#)
-"   map g* <Plug>(asterisk-gz*)
-"   map g# <Plug>(asterisk-gz#)
-" endif
+if dein#tap('vim-asterisk')
+  map *  <Plug>(asterisk-z*)
+  map #  <Plug>(asterisk-z#)
+  map g* <Plug>(asterisk-gz*)
+  map g# <Plug>(asterisk-gz#)
+endif
 
 if dein#tap('vim-expand-region')
   xmap v <Plug>(expand_region_expand)

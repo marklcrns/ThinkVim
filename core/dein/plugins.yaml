@@ -183,6 +183,13 @@
 # Language{{{
 - repo: pechorin/any-jump.vim
   on_cmd: AnyJump
+  depends: vim-indent-guides
+  hook_add: |
+    let g:any_jump_disable_default_keybindings = 1
+    let g:any_jump_window_width_ratio  = 0.6
+    let g:any_jump_window_height_ratio = 0.6
+    let g:any_jump_window_top_offset   = 10
+    let g:any_jump_search_prefered_engine = 'rg'
 
 # CSS
 # ----------------------------------------
@@ -479,10 +486,10 @@
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_use_smartsign_us = 1
 
-# - repo: haya14busa/vim-asterisk
-#   on_map: { nv: <Plug> }
-#   hook_add: |
-#     let g:asterisk#keeppos = 1
+- repo: haya14busa/vim-asterisk
+  on_map: { nv: <Plug> }
+  hook_add: |
+    let g:asterisk#keeppos = 1
 
 - repo: t9md/vim-quickhl
   on_map: { nv: <Plug> }
