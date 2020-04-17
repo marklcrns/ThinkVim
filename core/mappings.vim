@@ -108,8 +108,10 @@ vnoremap <leader>fs :<Esc>w<CR>
 nnoremap <leader>fS :wa<CR>
 vnoremap <leader>fS :<Esc>wa<CR>
 
-" Quit vim without saving
+" Quit windown without saving
 nnoremap <Leader>q :q!<CR>
+" Quit all without saving
+nnoremap <Leader>Q :qa!<CR>
 
 " Save all and exit
 nnoremap <leader>fq :confirm wqa!<CR>
@@ -142,7 +144,7 @@ inoremap <M-v> <ESC>v`[
 " Delete word before cursor (skips punctuations and delimiters)
 imap <C-w> <C-[>dbi
 imap <C-h> <BS>
-imap <C-d> <Del>
+" imap <C-d> <Del>
 imap <C-k> <C-[>Da
 imap <C-u> <C-G>u<C-U>
 imap <C-a> <Home>

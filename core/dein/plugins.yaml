@@ -34,7 +34,7 @@
   hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
 
 - repo: bagrat/vim-buffet
-  on_path: .*
+  on_event: FileType
   on_event: VimEnter
   hook_source: |
     let g:buffet_always_show_tabline = 0
@@ -49,7 +49,7 @@
 # Tools
 # ----------------------------------------
 - repo: airblade/vim-rooter
-  on_path: .*
+  on_event: FileType
   hook_add: |
     let g:rooter_manual_only = 0
     let g:rooter_patterns = ['.git/', 'node_modules/', 'env/', '.eslintrc.*']
@@ -96,7 +96,7 @@
 #   hook_source: source  $VIM_PATH/layers/+syntax/neoformat/config.vim
 #
 # - repo: benekastah/neomake
-#   on_path: .*
+#   on_event: FileType
 #   on_cmd: [Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo]
 #   hook_source: |
 #     source $VIM_PATH/layers/+syntax/neomake/config.vim
@@ -423,7 +423,7 @@
     let g:taskwiki_suppress_mappings = 'yes'
 
 - repo: xarthurx/taskwarrior.vim
-  on_path: .*
+  on_event: FileType
 
 - repo: honza/dockerfile.vim
   on_ft: Dockerfile
@@ -438,16 +438,20 @@
             \}
         let g:quickrun_no_default_key_mappings = 1
 
+# TODO: Fix conflict when using Codi on python
 - repo: kshenoy/vim-signature
-  on_path: .*
+  on_event: FileType
   hook_add: |
-    let g:SignatureForceRemoveGlobal = 0
+    let g:SignatureForceRemoveGlobal = 1
     let g:SignatureUnconditionallyRecycleMarks = 1
     let g:SignatureErrorIfNoAvailableMarks = 0
     let g:SignaturePurgeConfirmation = 0
     let g:SignatureMarkTextHLDynamic = 1
     let g:SignatureMarkerTextHLDynamic = 1
-  hook_source: source $VIM_PATH/layers/+tools/vim-signature/config.vim
+    let g:SignatureIncludeMarkers = repeat('⚐', 10)
+
+# autocmd user_events User GitGutter call signature#sign#Refresh()
+# depends: vim-gitgutter
 
 - repo: Ron89/thesaurus_query.vim
   on_cmd:
@@ -466,7 +470,7 @@
   hook_add: source $VIM_PATH/layers/+tools/vim-grammarous/config.vim
 
 - repo: tpope/vim-abolish
-  on_path: .*
+  on_event: FileType
 
 - repo: arthurxavierx/vim-caser
   on_ft: [vim, md, vimwiki, json, go, html, js, jsx, py, css, java, less, tmpl, toml, xml, sql, Dockerfile]
@@ -515,7 +519,7 @@
 
 - repo: norcalli/nvim-colorizer.lua
   if: has('nvim') && has('nvim-0.4.0')
-  on_path: .*
+  on_event: FileType
   hook_source: luafile $VIM_PATH/layers/+ui/colorizer/colorizer.lua
 
 - repo: KabbAmine/vCoolor.vim
@@ -529,7 +533,7 @@
   on_cmd: ConvertColorTo
 
 - repo: itchyny/vim-cursorword
-  on_path: .*
+  on_event: FileType
   hook_source: |
     augroup user_plugin_cursorword
       autocmd!
@@ -575,7 +579,7 @@
 
 # use coc-git instead of vim-gitgutter
 # - repo: airblade/vim-gitgutter
-#   on_path: .*
+#   on_event: FileType
 #   hook_source: source ~/.config/nvim/core/plugins/vim-gitgutter.vim
 
 # - repo: Yggdroot/indentLine
@@ -619,6 +623,6 @@
 # - repo: itchyny/vim-gitbranch
 
 # - repo: airblade/vim-gitgutter
-#   on_path: .*
+#   on_event: FileType
 #   hook_source: source $VIM_PATH/layers/+git/vim-gitgutter/config.vim
 
