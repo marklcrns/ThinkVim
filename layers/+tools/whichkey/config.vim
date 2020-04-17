@@ -266,7 +266,8 @@ let g:which_key_map = {
              \ 'o' : 'Open file with xdg',
              \ 't' : 'Open floaterm',
           \ },
-    \ 'q' : 'Quit nvim',
+    \ 'q' : 'Adaptive buffer quit',
+    \ 'Q' : 'Quit neovim',
     \ 'r' : {
           \ 'name' : '+text-manipulate',
              \ 'a' : {

@@ -91,14 +91,14 @@ nnoremap <Leader>fyP :let @+=expand("%:p")<bar>echo 'Yanked absolute file path'<
 " Yank buffer file name to '+' register
 nnoremap <Leader>fyf :let @+=expand("%:t")<bar>echo 'Yanked file name'<CR>
 " Yank buffer file name without extension to '+' register
-nnoremap <Leader>fyF :let @+=expand("%:t:r")<bar>echo 'Yanked absolute file path'<CR>
+nnoremap <Leader>fyF :let @+=expand("%:t:r")<bar>echo 'Yanked file name without extension'<CR>
 " Yank buffer's relative directory path to '+' register
 nnoremap <Leader>fyd :let @+=expand("%:p:h:t")<bar>echo 'Yanked relative directory path'<CR>
 " Yank buffer's absolut directory path to '+' register
 nnoremap <Leader>fyD :let @+=expand("%:p:h")<bar>echo 'Yanked absolute directory path'<CR>
 " Yank buffer's file extension only to '+' clipboard
 nnoremap <Leader>fyx :let @+=expand("%:e")<bar>echo 'Yanked file extension'<CR>
-" :edit file from clipboard register
+" :edit file path from clipboard register
 nnoremap <Leader>fyo :execute "e " . getreg('+')<bar>echo 'Opened ' . expand("%:p")<CR>
 
 " Write buffer (save)
@@ -118,12 +118,8 @@ nnoremap <leader>fq :confirm wqa!<CR>
 
 " Moves curser to the right after exiting insert mode
 inoremap <Esc> <Esc>`^
-
 " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
 cnoremap <C-g> <C-c>
-cnoremap <C-l> <C-c>
-inoremap <C-l> <Esc>`^
-vnoremap <C-l> <Esc>`<
 inoremap fd <Esc>`^
 vnoremap fd <Esc>`<
 inoremap kj <Esc>`^
@@ -140,11 +136,11 @@ xnoremap > >gv|
 " Select last inserted characters
 inoremap <M-v> <ESC>v`[
 
-" insert keymap like emacs (Adjusted for new <Esc>`^ remapping above)
-" Delete word before cursor (skips punctuations and delimiters)
-imap <C-w> <C-[>dbi
+" Insert keymap like emacs (Adjusted for new <Esc>`^ remapping above)
+" delete word before cursor (skips punctuations and delimiters)
+imap <C-w> <C-[>hbdwi
 imap <C-h> <BS>
-" imap <C-d> <Del>
+imap <C-l> <Del>
 imap <C-k> <C-[>Da
 imap <C-u> <C-G>u<C-U>
 imap <C-a> <Home>
@@ -170,9 +166,9 @@ cnoremap <C-h> <BS>
 " print insert buffer file directory path
 cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 " Easy wildcharm navigation
-cnoremap <expr><C-j> pumvisible() ? "\<C-n>" : nr2char(&wildcharm)
-cnoremap <expr><C-k> pumvisible() ? "\<C-p>" : nr2char(&wildcharm)
-cnoremap <expr><Tab> pumvisible() ? "\<C-e>".nr2char(&wildcharm) : nr2char(&wildcharm)
+cnoremap <expr><C-j> pumvisible() ? "\<C-n>" : nr4char(&wildcharm)
+cnoremap <expr><C-k> pumvisible() ? "\<C-p>" : nr3char(&wildcharm)
+cnoremap <expr><Tab> pumvisible() ? "\<C-e>".nr3char(&wildcharm) : nr2char(&wildcharm)
 
 " Move between tabs
 nnoremap <silent> [t :tabprevious<CR>

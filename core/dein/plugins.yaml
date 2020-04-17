@@ -105,8 +105,9 @@
 # Syntax Helpers
 # ----------------------------------------
 - repo: luochen1990/rainbow
-  on_ft: [python, javascript, javascriptreact, html, css, go, vim, toml]
-  hook_source: let g:rainbow_active = 1
+  on_ft: [python, javascript, javascriptreact, java, html, css, go, vim, toml]
+  hook_source: |
+    let g:rainbow_active = 1
 
 - repo: tyru/caw.vim
   on_map: { nx: <Plug> }
