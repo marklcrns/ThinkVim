@@ -291,6 +291,7 @@ nnoremap <leader>rp yap<S-}>p
 vnoremap <Leader>rp y`]p
 
 " Change current word in a repeatable manner
+" Use "." to repeat changes with next occurence
 nnoremap <leader>rn *``cgn
 nnoremap <leader>rN *``cgN
 " Change selected word in a repeatable manner
@@ -298,11 +299,11 @@ vnoremap <expr> <leader>rn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>rN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
 " Search and replace whole buffer
-nnoremap <Leader>rr :%s//g<Left><Left>
+nnoremap <Leader>rr :%s//gc<Left><Left><Left>
 " Search and replace current line only
-nnoremap <Leader>rR :s//g<Left><Left>
+nnoremap <Leader>rR :s//gc<Left><Left><Left>
 " Search and replace within visually selected only
-xnoremap <Leader>rr :s//g<Left><Left>
+xnoremap <Leader>rr :s//gc<Left><Left><Left>
 
 " Search and replace last selected with confirmation
 nnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
