@@ -308,7 +308,7 @@ let g:which_key_map = {
              \ 'C' : 'Capitalize entire file',
              \ 'e' : {
                    \ 'name' : '+register',
-                     \ 'd' : 'display-register(+abjk)',
+                     \ 'g' : 'display-register(+abjk)',
                      \ 'j' : 'Cycle forward',
                      \ 'J' : 'Paste cycle forward',
                      \ 'k' : 'Cycle backward',

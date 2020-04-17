@@ -237,19 +237,26 @@ endfunction
 " vnoremap j gj
 " vnoremap k gk
 
+
 " Cycle through vim register +abjkx.
 " Register `+` as the system clipboard and `x` as temp holder
-" `rj` cycles forward, `rk` cycles backward
+" `j` cycles forward, `k` cycles backward
 nnoremap <Leader>rej :let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
 nnoremap <Leader>rek :let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+
 " Paste register `+` then cycle through registers
 nnoremap <Leader>reJ p:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
 nnoremap <Leader>reK p:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+vnoremap <Leader>reJ p:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
+vnoremap <Leader>reK p:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+
 " Copy selected then cycle through registers
 vnoremap <Leader>rej y<ESC>:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
 vnoremap <Leader>rek y<ESC>:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+
 " Display register +abjk
 nnoremap <Leader>reg :reg +abjk<CR>
+
 
 " Makes Relative Number jumps work with text wrap
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
