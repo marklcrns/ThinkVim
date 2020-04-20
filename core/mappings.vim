@@ -452,10 +452,11 @@ nmap <LocalLeader>sw :set wrap!<CR>
 
 " Jumps to previously misspelled word and fixes it with the first in the
 " suggestion
-" Ref: https://castel.dev/post/lecture-notes-1/
-inoremap <C-s> <C-g>u<Esc>[s1z=`]a<c-g>u
+" Update: also echo changes and line and col number
+" Ref: https://castle.Dev/post/lecture-notes-1/
+inoremap <C-s> <Esc>:set spell<bar>norm i<C-g>u<Esc>[sviw"sy1z=viw"ty:let @l=line('.')<bar>let @c=virtcol('.')<CR>``a<C-g>u<Esc>:set nospell<bar>:echo getreg('l') . ":" . getreg('c') . " spell from '" .getreg('s') . "' -> '" . getreg('t') . "'"<CR>
 
-" Drag current line/s vertically and auto-indent
+" Drag current line(s) vertically and auto-indent
 nnoremap <Leader>J :m+<CR>
 nnoremap <Leader>K :m-2<CR>
 vnoremap <Leader>K :m'<-2<CR>gv=gv

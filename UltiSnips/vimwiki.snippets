@@ -147,7 +147,9 @@ endsnippet
 
 snippet meta "Meta deta template" bA
 ---
-title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ').replace('_', ' ').title()`}
+title: ${1:`!p
+fn = fn.rstrip('.md')
+snip.rv = fn.replace('-', ' ').replace('_', ' ').title()`}
 author: ${2:`whoami`}
 date: `date '+%Y-%m-%d'`
 summary: $3
@@ -159,7 +161,9 @@ endsnippet
 
 snippet temp "Vimwiki document template" bA
 ---
-title: ${1:`!p snip.rv = fn.rstrip('.md').replace('-', ' ').replace('_', ' ').title()`}
+title: ${1:`!p
+fn = fn.rstrip('.md')
+snip.rv = fn.replace('-', ' ').replace('_', ' ').title()`}
 author: ${2:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
 summary: $3
@@ -550,6 +554,36 @@ summary: Module $1 notes and exercises
 ### Explain
 
 ### Reflect
+
+endsnippet
+
+snippet ciscntemp "Vimwiki CISC 160 notes template" bA
+---
+title: CISC 190 Module ${1:0}
+author: ${2:Mark Lucernas}
+date: `date '+%Y-%m-%d'`
+summary: $3
+---
+
+
+# Module $1: $4
+
+## Chapter $5: $6
+
+### $5.1
+
+### $5.2
+
+### $5.3
+
+### $5.4
+
+
+<br>
+
+# References
+
+	- [Chapter $5: $6](file:../../../../files/spring-2020/CISC-190/module-$1/java_book_mediaComp_ch-$5.pdf)
 
 endsnippet
 
