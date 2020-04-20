@@ -454,7 +454,7 @@ nmap <LocalLeader>sw :set wrap!<CR>
 " suggestion
 " Update: also echo changes and line and col number
 " Ref: https://castle.Dev/post/lecture-notes-1/
-inoremap <C-s> <Esc>:set spell<bar>norm i<C-g>u<Esc>[sviw"sy1z=viw"ty:let @l=line('.')<bar>let @c=virtcol('.')<CR>``a<C-g>u<Esc>:set nospell<bar>:echo getreg('l') . ":" . getreg('c') . " spell correct '" .getreg('s') . "' -> '" . getreg('t') . "'"<CR>la
+inoremap <C-s> <Esc>:set spell<bar>norm i<C-g>u<Esc>[s"syiW1z="tyiW:let @l=line('.')<bar>let @c=virtcol('.')<CR>``a<C-g>u<Esc>:set nospell<bar>:echo getreg('l') . ":" . getreg('c') . " spell fixed (" . getreg('s') . " -> " . getreg('t') . ")"<CR>la
 
 " Drag current line(s) vertically and auto-indent
 nnoremap <Leader>J :m+<CR>
