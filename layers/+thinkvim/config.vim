@@ -415,8 +415,8 @@ endif
 
 if dein#tap('vim-smartchr')
   inoremap <expr> , smartchr#one_of(',', '->')
-  inoremap <expr> - smartchr#one_of('-', ',')
-  inoremap <expr> _ smartchr#one_of('-', '.')
+  inoremap <expr> - smartchr#one_of('-', '.')
+  inoremap <expr> _ smartchr#one_of('_', ',')
   " autocmd FileType go inoremap <buffer><expr> ;
   "      \ smartchr#loop(':=',';')
   " autocmd FileType go inoremap <buffer> <expr> .
