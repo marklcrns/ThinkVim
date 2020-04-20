@@ -122,8 +122,8 @@ nnoremap <leader>fq :wq!<CR>
 vnoremap <leader>fq :<Esc>wq!<CR>
 
 " SAve all and quit
-nnoremap <leader>fq :confirm wqa!<CR>
-vnoremap <leader>fq :<Esc>confirm wqa!<CR>
+nnoremap <leader>fQ :confirm wqa!<CR>
+vnoremap <leader>fQ :<Esc>confirm wqa!<CR>
 
 " Moves curser to the right after exiting insert mode
 inoremap <Esc> <Esc>`^
