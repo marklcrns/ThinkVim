@@ -101,20 +101,29 @@ nnoremap <Leader>fyx :let @+=expand("%:e")<bar>echo 'Yanked file extension'<CR>
 " :edit file path from clipboard register
 nnoremap <Leader>fyo :execute "e " . getreg('+')<bar>echo 'Opened ' . expand("%:p")<CR>
 
-" Write buffer (save)
+" Write/Save buffer
 nnoremap <leader>fs :w<CR>
 vnoremap <leader>fs :<Esc>w<CR>
-" Write all buffer
+
+" Write/Save all buffer
 nnoremap <leader>fS :wa<CR>
 vnoremap <leader>fS :<Esc>wa<CR>
 
-" Quit windown without saving
+" Quit without saving
 nnoremap <Leader>q :q!<CR>
+vnoremap <Leader>q :<Esc>q!<CR>
+
 " Quit all without saving
 nnoremap <Leader>Q :qa!<CR>
+vnoremap <Leader>Q :<Esc>qa!<CR>
 
-" Save all and exit
+" Save and quit
+nnoremap <leader>fq :wq!<CR>
+vnoremap <leader>fq :<Esc>wq!<CR>
+
+" SAve all and quit
 nnoremap <leader>fq :confirm wqa!<CR>
+vnoremap <leader>fq :<Esc>confirm wqa!<CR>
 
 " Moves curser to the right after exiting insert mode
 inoremap <Esc> <Esc>`^
@@ -122,6 +131,7 @@ inoremap <Esc> <Esc>`^
 cnoremap <C-g> <C-c>
 inoremap fd <Esc>`^
 vnoremap fd <Esc>`<
+snoremap fd <Esc>`^
 inoremap kj <Esc>`^
 snoremap kj <Esc>`^
 
