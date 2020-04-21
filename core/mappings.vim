@@ -143,12 +143,12 @@ vnoremap <silent> < <<cr>gv
 xnoremap < <gv
 xnoremap > >gv|
 
-" Select last inserted characters
+" Select last inserted characters.
 inoremap <M-v> <ESC>v`[
 
 " Insert keymap like emacs (Adjusted for new <Esc>`^ remapping above)
 " delete word before cursor (skips punctuations and delimiters)
-imap <C-w> <C-[>hbdwi
+" imap <C-w> <C-[>hbdawi<Right>
 imap <C-h> <BS>
 imap <C-l> <Del>
 imap <C-k> <C-[>Da

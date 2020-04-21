@@ -415,8 +415,8 @@ endif
 
 if dein#tap('vim-smartchr')
   inoremap <expr> , smartchr#one_of(',', '->')
-  inoremap <expr> - smartchr#one_of('-', '.')
-  inoremap <expr> _ smartchr#one_of('_', ',')
+  inoremap <expr> - smartchr#one_of('-', '.', '--')
+  inoremap <expr> _ smartchr#one_of('_', ',', '__')
   " autocmd FileType go inoremap <buffer><expr> ;
   "      \ smartchr#loop(':=',';')
   " autocmd FileType go inoremap <buffer> <expr> .
@@ -519,30 +519,46 @@ if dein#tap('taskwarrior.vim')
 endif
 
 if dein#tap('taskwiki')
+  " Normal mode task commands
+  nnoremap <LocalLeader>ta :TaskWikiAnnotate<CR>
+  nnoremap <LocalLeader>tcp :TaskWikiChooseProject<CR>
+  nnoremap <LocalLeader>tct :TaskWikiChooseTag<CR>
+  nnoremap <LocalLeader>td :TaskWikiDone<CR>
+  nnoremap <LocalLeader>tD :TaskWikiDelete<CR>
+  nnoremap <LocalLeader>te :TaskWikiEdit<CR>
+  nnoremap <LocalLeader>tg :TaskWikiGrid<CR>
+  nnoremap <LocalLeader>ti :TaskWikiInfo<CR>
+  nnoremap <LocalLeader>tl :TaskWikiLink<CR>
+  nnoremap <LocalLeader>tm :TaskWikiMod<CR>
+  nnoremap <LocalLeader>t+ :TaskWikiStart<CR>
+  nnoremap <LocalLeader>t- :TaskWikiStop<CR>
+  " Visual mode counter part task commands
   vnoremap <LocalLeader>ta :TaskWikiAnnotate<CR>
-  nnoremap <LocalLeader>tbd :TaskWikiBurndownDaily<CR>
-  nnoremap <LocalLeader>tbw :TaskWikiBurndownWeekly<CR>
-  nnoremap <LocalLeader>tbm :TaskWikiBurndownMonthly<CR>
   vnoremap <LocalLeader>tcp :TaskWikiChooseProject<CR>
   vnoremap <LocalLeader>tct :TaskWikiChooseTag<CR>
-  nnoremap <LocalLeader>tC :TaskWikiCalendar<CR>
   vnoremap <LocalLeader>td :TaskWikiDone<CR>
   vnoremap <LocalLeader>tD :TaskWikiDelete<CR>
   vnoremap <LocalLeader>te :TaskWikiEdit<CR>
   vnoremap <LocalLeader>tg :TaskWikiGrid<CR>
+  vnoremap <LocalLeader>ti :TaskWikiInfo<CR>
+  vnoremap <LocalLeader>tl :TaskWikiLink<CR>
+  vnoremap <LocalLeader>tm :TaskWikiMod<CR>
+  vnoremap <LocalLeader>t+ :TaskWikiStart<CR>
+  vnoremap <LocalLeader>t- :TaskWikiStop<CR>
+
+  " Other normal mode commands
+  nnoremap <LocalLeader>tbd :TaskWikiBurndownDaily<CR>
+  nnoremap <LocalLeader>tbw :TaskWikiBurndownWeekly<CR>
+  nnoremap <LocalLeader>tbm :TaskWikiBurndownMonthly<CR>
+  nnoremap <LocalLeader>tC :TaskWikiCalendar<CR>
   nnoremap <LocalLeader>tGm :TaskWikiGhistoryMonthly<CR>
   nnoremap <LocalLeader>tGa :TaskWikiGhistoryAnnual<CR>
   nnoremap <LocalLeader>thm :TaskWikiHistoryMonthly<CR>
   nnoremap <LocalLeader>tha :TaskWikiHistoryAnnual<CR>
-  vnoremap <LocalLeader>ti :TaskWikiInfo<CR>
-  vnoremap <LocalLeader>tl :TaskWikiLink<CR>
-  vnoremap <LocalLeader>tm :TaskWikiMod<CR>
   nnoremap <LocalLeader>tp :TaskWikiProjects<CR>
   nnoremap <LocalLeader>ts :TaskWikiProjectsSummary<CR>
   nnoremap <LocalLeader>tS :TaskWikiStats<CR>
   nnoremap <LocalLeader>tt :TaskWikiTags<CR>
-  vnoremap <LocalLeader>t+ :TaskWikiStart<CR>
-  vnoremap <LocalLeader>t- :TaskWikiStop<CR>
 endif
 
 if dein#tap('vimux')
