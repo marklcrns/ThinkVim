@@ -440,17 +440,17 @@
         let g:quickrun_no_default_key_mappings = 1
 
 # TODO: Fix conflict when using Codi on python
-# - repo: kshenoy/vim-signature
-#   on_event: FileType
-#   hook_add: |
-#     let g:SignatureForceRemoveGlobal = 1
-#     let g:SignatureUnconditionallyRecycleMarks = 1
-#     let g:SignatureErrorIfNoAvailableMarks = 0
-#     let g:SignaturePurgeConfirmation = 0
-#     let g:SignatureMarkTextHLDynamic = 1
-#     let g:SignatureMarkerTextHLDynamic = 1
-#     let g:SignatureIncludeMarkers = repeat('⚐', 10)
-# 
+- repo: kshenoy/vim-signature
+  on_event: FileType
+  hook_add: |
+    let g:SignatureForceRemoveGlobal = 1
+    let g:SignatureUnconditionallyRecycleMarks = 1
+    let g:SignatureErrorIfNoAvailableMarks = 0
+    let g:SignaturePurgeConfirmation = 0
+    let g:SignatureMarkTextHLDynamic = 1
+    let g:SignatureMarkerTextHLDynamic = 1
+    let g:SignatureIncludeMarkers = repeat('⚐', 10)
+
 # autocmd user_events User GitGutter call signature#sign#Refresh()
 # depends: vim-gitgutter
 
@@ -555,8 +555,8 @@
   hook_add: |
     let g:smoothie_no_default_mappings = v:true
 
-- repo: rhysd/accelerated-jk
-  on_map: { n: <Plug> }
+# - repo: rhysd/accelerated-jk
+#   on_map: { n: <Plug> }
 
 - repo: dhruvasagar/vim-zoom
   on_map: { n: <Plug> }
