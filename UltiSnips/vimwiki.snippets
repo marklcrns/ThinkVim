@@ -102,19 +102,6 @@ snippet uimg "Image tag for urls" w
 ![$1]($2)
 endsnippet
 
-snippet alink "Markdown anchor link" w
-[${1:${VISUAL}}]($0#$1)
-endsnippet
-
-# Usage: &name-of-link&alink
-snippet '&?([A-Za-z- ]+)\&alink' "Word or pharse definition auto" wrA
-[`!p
-snip.rv = match.group(1).replace("-", " ")
-`]($1#`!p
-snip.rv = match.group(1).replace(" ", "-").lower()
-`)$0
-endsnippet
-
 snippet anc "Html anchor" bA
 <a name="${1:${VISUAL}}">$2</a>
 endsnippet
@@ -426,10 +413,23 @@ else:
 `
 endsnippet
 
-snippet def "Word or phrase definition" bA
+snippet term "Word or phrase definition" bA
 <a name="$1">**${2:${VISUAL}}**</a>
 
 	- $0
+endsnippet
+
+snippet alink "Markdown anchor link" w
+[${1:${VISUAL}}]($0#$1)
+endsnippet
+
+# Usage: &name-of-link&alink
+snippet '&?([A-Za-z- ]+)\&(t)?alink' "Word or pharse definition auto" wrA
+[`!p
+snip.rv = match.group(1).replace("-", " ")
+`]($1#${2:`!p
+		snip.rv = match.group(1).replace(" ", "-").lower() if match.group(2) == None else match.group(1).replace(" ", "-").lower() + "-term"
+`})$0
 endsnippet
 
 # Usage: &terminology name&term or **Terminology name**&term
@@ -455,7 +455,7 @@ else:
   text = term
 
 snip.rv = text.replace(" ", "-").lower()
-`">**`!p
+`-term">**`!p
 snip.rv = match.group(2).capitalize()
 `$1**</a>`!p
 if match.group(1) and match.group(3):
@@ -590,7 +590,7 @@ endsnippet
 # ==========ECON 121 Note taking snippets========== #
 snippet econtemp "Vimwiki ECON 121 document template" bA
 ---
-title: ECON 121 Chapter ${1:0}
+title: ECON 121 Chapter ${1:0} Notes
 author: ${2:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
 summary: $3
@@ -712,6 +712,7 @@ endsnippet
 # Exponents, Superscript, Subscript
 # ============================================================
 
+# TODO: Fix bug on recycling previous match groups on multiple snippet calls
 snippet '(([A-Za-z0-9]+)|(\(.+\))|(\{.+\})|)\^' "Mathjax auto exponent/superscript" bwrA
 `!p snip.rv = match.group(1)`^{$1}$0
 endsnippet
@@ -1111,20 +1112,21 @@ snippet nphan "Mathjax negative phantom placeholder" wA
 endsnippet
 
 snippet col# "Mathjax text color" iA
-\color{#$1}{${2:${VISUAL}}}$0
+{\color{#$1}{${2:${VISUAL}}}}$0
 endsnippet
 
-snippet '(\d+)?(sin|cos|tan|csc|sec|cot)\(' "Mathjax trig functions" rwA
-`!p snip.rv = ("" if match.group(1) == None  else match.group(1)) + "\\" + match.group(2)`($1)$0
-endsnippet
+# TODO: Fix bug on recycling previous match groups on multiple snippet calls
+# snippet '(\d+|\\)?(sin|cos|tan|csc|sec|cot)\(' "Mathjax trig functions" riA
+# `!p snip.rv = ("" if match.group(1) == None else match.group(1)) + "\\" + match.group(2)`($1)$0
+# endsnippet
 
-snippet '(\d+)?(sin|cos|tan|csc|sec|cot)(\d+)' "Mathjax sine raise to n function" rwA
-`!p snip.rv = ("" if match.group(1) == None  else match.group(1)) + "\\" + match.group(2) + "^{" + match.group(3) + "}"`($1)$0
-endsnippet
+# snippet '(\d+)?(sin|cos|tan|csc|sec|cot)(\d+)' "Mathjax sine raise to n function" riA
+# `!p snip.rv = ("" if match.group(2) == None else match.group(1)) + "\\" + match.group(2) + "^{" + match.group(3) + "}"`($1)$0
+# endsnippet
 
-snippet '(\d+)?(sin|cos|tan|csc|sec|cot)-' "Mathjax trig arc-functions" rwA
-`!p snip.rv = ("" if match.group(1) == None  else match.group(1)) + "\\" + match.group(2)`^{-1}($1)$0
-endsnippet
+# snippet '(\d+)?(sin|cos|tan|csc|sec|cot)-' "Mathjax trig arc-functions" riA
+# `!p snip.rv = ("" if match.group(1) == None else match.group(1)) + "\\" + match.group(2)`^{-1}($1)$0
+# endsnippet
 
 # Matrices, absolute value and parenthises
 # ============================================================
