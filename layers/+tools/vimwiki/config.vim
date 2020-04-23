@@ -110,12 +110,12 @@ function! IndexReferenceLinks()
     exe 'norm VG"xpVG>'
 endfunction
 
-augroup SpellCheck
-  autocmd!
-  autocmd Filetype vimwiki
-        \ autocmd BufRead <buffer> setlocal spell
-augroup END
-
+" Deprecated by coc-spell-checker
+" augroup SpellCheck
+"   autocmd!
+"   autocmd Filetype vimwiki
+"        \ autocmd BufRead <buffer> setlocal spell
+" augroup END
 
 augroup VimwikiEditMode
   autocmd!
@@ -129,8 +129,8 @@ augroup VimwikiEditMode
   " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
   " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
   autocmd FileType vimwiki
-    \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gvgq0A" :
-    \ "\<M-p>\<Esc>gp=gvgq0A"
+    \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^i" :
+    \ "\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^i"
 augroup END
 
 
