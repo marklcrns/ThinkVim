@@ -81,7 +81,7 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 set regexpengine=1
 set colorcolumn=80
 set mouse=a         " Enable mouse support
-set scrolloff=5     " Keeps some screen visible while scrolling
+set scrolloff=3     " Keeps some screen visible while scrolling
 set cursorline      " Highlights entire line of current cursor position"
 " set cursorcolumn    " Highlights column of current cursor position"
 set ignorecase      " Search ignoring case
