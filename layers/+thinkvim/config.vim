@@ -387,8 +387,9 @@ endif
 if dein#tap('vista.vim')
   nnoremap <silent><localleader>vv :Vista!!<CR>
   nnoremap <silent><localleader>vc :Vista coc<CR>
-  nnoremap <silent><localleader>vx :Vista!<CR>
+  nnoremap <silent><localleader>vf :Vista focus<CR>
   nnoremap <silent><localleader>vo :Vista<CR>
+  nnoremap <silent><localleader>vq :Vista!<CR>
   nnoremap <silent><leader>fdv     :Vista finder coc<CR>
 endif
 

@@ -438,8 +438,9 @@ let g:which_key_localmap = {
             \ 'name' : '+vista',
                \ 'v' : 'Vista toggle',
                \ 'c' : 'Vista coc',
+               \ 'f' : 'Vista focus back and forth',
                \ 'o' : 'Vista open',
-               \ 'x' : 'Vista close',
+               \ 'q' : 'Vista close',
             \ },
       \ 'w' : {
             \ 'name' : '+vimwiki',
