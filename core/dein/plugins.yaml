@@ -34,8 +34,7 @@
   hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
 
 - repo: bagrat/vim-buffet
-  on_event: FileType
-  on_event: VimEnter
+  on_event: [FileType, VimEnter]
   hook_source: |
     let g:buffet_always_show_tabline = 0
     let g:buffet_use_devicons = 1
