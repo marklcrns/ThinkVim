@@ -148,7 +148,7 @@ inoremap <M-v> <ESC>v`[
 
 " Insert keymap like emacs (Adjusted for new <Esc>`^ remapping above)
 " delete word before cursor (skips punctuations and delimiters)
-" imap <C-w> <C-[>hbdawi<Right>
+imap <C-w> <C-[>hbcaw
 imap <C-h> <BS>
 imap <C-l> <Del>
 imap <C-k> <C-[>Da
@@ -446,6 +446,17 @@ nmap <silent> <LocalLeader>slx :<C-u>call ToggleCrosshair()<CR>
 
 " Toggle spell check
 nmap <LocalLeader>ss :set spell!<CR>
+
+" Toggle virtualedit mode
+nmap <LocalLeader>sv :<C-u>call ToggleVirtualedit()<CR>
+
+function! ToggleVirtualedit()
+  if &virtualedit == ''
+    set virtualedit=all
+  else
+    set virtualedit=""
+  endif
+endfunction
 
 " Toggle text wrap
 nmap <LocalLeader>sw :set wrap!<CR>
