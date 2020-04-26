@@ -57,7 +57,7 @@ set backspace=2
 set backspace=indent,eol,start
 " Tabs and Indents {{{
 " ----------------
-                  " set textwidth=80    " Text width maximum chars before wrapping
+" set textwidth=80  " Text width maximum chars before wrapping text on insert
 set expandtab     " Don't expand tabs to spaces.
 set tabstop=2     " The number of spaces a tab is
 set softtabstop=2 " While performing editing operations
@@ -66,7 +66,13 @@ set smarttab      " Tab insert blanks according to 'shiftwidth'
 set autoindent    " Use same indenting on new lines
 set smartindent   " Smart autoindenting on new lines
 set shiftround    " Round indent to multiple of 'shiftwidth'
-set nowrap
+set colorcolumn=80,165,250
+set wrap
+set breakindent   " Enable wrap indentation
+" indent by an additional 2 characters on wrapped lines, when line >= 40 characters, put 'showbreak' at start of line sdlkf jsaldkqewrowqieuroq iwueroi uqwioe ruwioeqru iqowueiqwo uroqiweu roiquweoi ruqoiweu r
+set breakindentopt=shift:2,min:40,sbr
+set showbreak=>>\   " append '>> ' to indent
+" let &showbreak=repeat(' ', 2)
 " }}}
 set hidden
 set shortmess=aFc
@@ -79,7 +85,6 @@ set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
 set regexpengine=1
-set colorcolumn=80
 set mouse=a         " Enable mouse support
 set scrolloff=3     " Keeps some screen visible while scrolling
 set cursorline      " Highlights entire line of current cursor position"
