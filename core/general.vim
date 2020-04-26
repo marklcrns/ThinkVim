@@ -67,9 +67,8 @@ set autoindent    " Use same indenting on new lines
 set smartindent   " Smart autoindenting on new lines
 set shiftround    " Round indent to multiple of 'shiftwidth'
 set colorcolumn=80,165,250
-set sidescroll=10 " shows number of chars instantly when scrolling horizontally
+set sidescroll=5  " shows number of chars instantly when scrolling horizontally
 set wrap
-set wrapmargin=8
 set breakindent   " Enable wrap indentation
 " indent by an additional 2 characters on wrapped lines, when line >= 40 characters, put 'showbreak' at start of line
 set breakindentopt=shift:2,min:40,sbr
