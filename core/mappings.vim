@@ -127,7 +127,8 @@ vnoremap <leader>fQ :<Esc>confirm wqa!<CR>
 
 " Moves curser to the right after exiting insert mode
 inoremap <Esc> <Esc>`^
-" Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
+" Esc from insert, visual and command mode shortcuts (also moves cursor to the
+" right)
 cnoremap <C-g> <C-c>
 inoremap fd <Esc>`^
 vnoremap fd <Esc>`<
@@ -147,8 +148,9 @@ xnoremap > >gv|
 inoremap <M-v> <ESC>v`[
 
 " Insert keymap like emacs (Adjusted for new <Esc>`^ remapping above)
-" delete word before cursor (skips punctuations and delimiters)
-imap <C-w> <C-[>hbcaw
+" delete word before cursor (prioritize words over punctualtions and
+" delimiters)
+" imap <C-w> <C-[>bcaw
 imap <C-h> <BS>
 imap <C-l> <Del>
 imap <C-k> <C-[>Da
