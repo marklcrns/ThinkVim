@@ -180,7 +180,7 @@ cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 " Easy wildcharm navigation
 cnoremap <expr><C-j> pumvisible() ? "\<C-n>" : nr4char(&wildcharm)
 cnoremap <expr><C-k> pumvisible() ? "\<C-p>" : nr3char(&wildcharm)
-cnoremap <expr><Tab> pumvisible() ? "\<C-e>".nr3char(&wildcharm) : nr2char(&wildcharm)
+cnoremap <expr><Tab> pumvisible() ? "\<C-e>".nr2char(&wildcharm) : nr2char(&wildcharm)
 
 " Move between tabs
 nnoremap <silent> [t :tabprevious<CR>

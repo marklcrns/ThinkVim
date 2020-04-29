@@ -66,6 +66,7 @@ set smarttab      " Tab insert blanks according to 'shiftwidth'
 set autoindent    " Use same indenting on new lines
 set smartindent   " Smart autoindenting on new lines
 set shiftround    " Round indent to multiple of 'shiftwidth'
+set signcolumn=yes:2
 set colorcolumn=80,165,250
 set sidescroll=5  " shows number of chars instantly when scrolling horizontally
 set wrap
@@ -77,7 +78,6 @@ set showbreak=>>  " append '>>' to indent
 " }}}
 set hidden
 set shortmess=aFc
-set signcolumn=yes:2
 set completefunc=emoji#complete
 " set completeopt=noinsert,menuone,preview
 " set completeopt+=longest
