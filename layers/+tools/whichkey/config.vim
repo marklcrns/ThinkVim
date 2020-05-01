@@ -310,9 +310,9 @@ let g:which_key_map = {
              \ 'e' : {
                    \ 'name' : '+register',
                      \ 'g' : 'display-register(+abjk)',
-                     \ 'j' : 'Cycle forward',
+                     \ 'j' : 'Cycle forward (copy selected if Visual)',
                      \ 'J' : 'Paste cycle forward',
-                     \ 'k' : 'Cycle backward',
+                     \ 'k' : 'Cycle backward (copy selected if Visual)',
                      \ 'K' : 'Paste cycle backward',
                    \ },
             \ 'E' : 'Enumerate entire file',
