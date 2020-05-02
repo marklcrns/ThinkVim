@@ -1119,7 +1119,7 @@ snippet col# "Mathjax text color" iA
 {\color{#${1:ff0000}}{${2:${VISUAL}}}}$0
 endsnippet
 
-# TODO: Fix bug on recycling previous match groups on multiple snippet calls
+# FIXED: Fix bug on recycling previous match groups on multiple snippet calls
 # snippet '(\d+|\\)?(sin|cos|tan|csc|sec|cot)\(' "Mathjax trig functions" riA
 # `!p snip.rv = ("" if match.group(1) == None else match.group(1)) + "\\" + match.group(2)`($1)$0
 # endsnippet
@@ -1131,6 +1131,56 @@ endsnippet
 # snippet '(\d+)?(sin|cos|tan|csc|sec|cot)-' "Mathjax trig arc-functions" riA
 # `!p snip.rv = ("" if match.group(1) == None else match.group(1)) + "\\" + match.group(2)`^{-1}($1)$0
 # endsnippet
+
+# HARD CODE WORKAROUND
+# Basic trig function
+snippet '(\d+|\\)?(sin)' "Mathjax sine function" ri
+\sin($1)$0
+endsnippet
+
+snippet '(\d+|\\)?(cos)' "Mathjax cosine function" ri
+\cos($1)$0
+endsnippet
+
+snippet '(\d+|\\)?(tan)' "Mathjax tangent function" ri
+\tan($1)$0
+endsnippet
+
+snippet '(\d+|\\)?(csc)' "Mathjax cosecant function" ri
+\csc($1)$0
+endsnippet
+
+snippet '(\d+|\\)?(sec)' "Mathjax secant function" ri
+\sec($1)$0
+endsnippet
+
+snippet '(\d+|\\)?(cot)' "Mathjax cotangent function" ri
+\cot($1)$0
+endsnippet
+
+snippet '(\d+)?(sin)-' "Mathjax arc-sine function" ri
+\sin^{-1}($1)$0
+endsnippet
+
+snippet '(\d+)?(cos)-' "Mathjax arc-cosine function" ri
+\cos^{-1}($1)$0
+endsnippet
+
+snippet '(\d+)?(tan)-' "Mathjax arc-tangent function" ri
+\tan^{-1}($1)$0
+endsnippet
+
+snippet '(\d+)?(csc)-' "Mathjax arc-cosecant function" ri
+\csc^{-1}($1)$0
+endsnippet
+
+snippet '(\d+)?(sec)-' "Mathjax arc-secant function" ri
+\sec^{-1}($1)$0
+endsnippet
+
+snippet '(\d+)?(cot)-' "Mathjax arc-cotangent function" ri
+\tan^{-1}($1)$0
+endsnippet
 
 # Matrices, absolute value and parenthises
 # ============================================================
