@@ -180,7 +180,7 @@ date = date.split("-")
 # get today, and day after tomorrow's date in string
 base = datetime(int(date[0]), int(date[1]), int(date[2]))
 today = datetime.strftime(base, '%Y-%m-%d')
-dayafter = datetime.strftime(base + timedelta(2), '%Y-%m-%d')
+week_after = datetime.strftime(base + timedelta(7), '%Y-%m-%d')
 
 weekdays = {
   "0": "Monday",
@@ -193,15 +193,16 @@ weekdays = {
 }
 
 # output
-snip.rv = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n# Daily To-do | project:Todo scheduled:{today} due:{today} 23:59:00"`
-* [ ] $0
+snip.rv = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n# Daily To-do | project:Todo scheduled:{today} due:{today} until:{week_after}"`
+* [ ] $1
 * [ ] Read a book
 * [ ] Workout
-		* [ ] 
+		* [ ] Push ups ${0:50}
+		* [ ] Sit ups ${0:50}
 
 endsnippet
 
-snippet task "Todo checkbox" bA
+snippet task "Todo checkbox" b
 * [ ] $0
 endsnippet
 

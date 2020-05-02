@@ -25,7 +25,7 @@
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
 snippet temp "Java basic template" bA
-/*
+/**
  * Filename: `!p snip.rv = fn`
  *
  * Created by: Mark Lucernas
@@ -41,3 +41,42 @@ public class `!p snip.rv = fn.rstrip('.java')`
 }
 endsnippet
 
+snippet classtemp "java basic Class template" bA
+/**
+ * ${1:Class description...}
+ *
+ * @author ${2:Mark Lucernas}
+ */
+
+public class `!p snip.rv = fn.rstrip('.java')` extends Object
+{
+	//////////////////// fields ////////////////////
+	${3:Type} ${4:varName1};
+	${4:Type} ${6:varName2};
+	${7:Type} ${8:varName3};
+
+	///////////////// constructors /////////////////
+	/**
+	 * No-argument constructor
+	 */
+	public `!p snip.rv = fn.rstrip('.java')`() {}
+
+	/**
+	 * ${6:Constructor description...}
+	 * @param $4
+	 * @param $6
+	 * @param $8
+	 */
+	public `!p snip.rv = fn.rstrip('.java')`($3 $4, $5 $6, $7 $8)
+	{
+		this.$4 = $4;
+		this.$6 = $6;
+		this.$8 = $8;
+	}
+
+	//////////////////// methods ///////////////////
+	public String toString() {
+		return "";
+	}
+}
+endsnippet
