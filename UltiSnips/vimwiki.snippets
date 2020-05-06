@@ -206,8 +206,8 @@ snippet task "Todo checkbox" b
 * [ ] $0
 endsnippet
 
-snippet fence "Fenced code block" bA
-\`\`\`${1}
+snippet (.+)?fence "Fenced code block" rbA
+\`\`\``!p snip.rv = "" if match.group(1) == None else match.group(1)`
 ${0:${VISUAL}}
 \`\`\`
 endsnippet
