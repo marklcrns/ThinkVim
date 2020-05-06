@@ -686,16 +686,10 @@ endsnippet
 
 # Fractions
 # ============================================================
-snippet 'f/' "Mathjax fraction" iA
-\\frac{${1:${VISUAL}}}{$2}$0
-endsnippet
-
-snippet 'df/' "Mathjax displaystyle fraction" iA
-\\dfrac{${1:${VISUAL}}}{$2}$0
-endsnippet
-
-snippet 'tf/' "Mathjax textstyle fraction" iA
-\\tfrac{${1:${VISUAL}}}{$2}$0
+snippet '(d|t)?f/' "Mathjax normal/display/textstyle fraction" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Mathjax auto fraction" wr
