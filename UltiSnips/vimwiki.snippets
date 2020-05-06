@@ -686,12 +686,16 @@ endsnippet
 
 # Fractions
 # ============================================================
-snippet 'f/' "Mathjax tiny fraction" iA
-\\tfrac{${1:${VISUAL}}}{$2}$0
+snippet 'f/' "Mathjax fraction" iA
+\\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
-snippet 'F/' "Mathjax fraction" iA
-\\frac{${1:${VISUAL}}}{$2}$0
+snippet 'df/' "Mathjax displaystyle fraction" iA
+\\dfrac{${1:${VISUAL}}}{$2}$0
+endsnippet
+
+snippet 'tf/' "Mathjax textstyle fraction" iA
+\\tfrac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Mathjax auto fraction" wr
@@ -1134,52 +1138,76 @@ endsnippet
 
 # HARD CODE WORKAROUND
 # Basic trig function
-snippet '(\d+|\\)?(sin)' "Mathjax sine function" ri
-\sin($1)$0
+snippet '(\d+|\\)(sin)' "Mathjax sine function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\sin($1)$0
 endsnippet
 
-snippet '(\d+|\\)?(cos)' "Mathjax cosine function" ri
-\cos($1)$0
+snippet '(\d+|\\)(cos)' "Mathjax cosine function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\cos($1)$0
 endsnippet
 
-snippet '(\d+|\\)?(tan)' "Mathjax tangent function" ri
-\tan($1)$0
+snippet '(\d+|\\)(tan)' "Mathjax tangent function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\tan($1)$0
 endsnippet
 
-snippet '(\d+|\\)?(csc)' "Mathjax cosecant function" ri
-\csc($1)$0
+snippet '(\d+|\\)?(csc)' "Mathjax cosecant function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\csc($1)$0
 endsnippet
 
-snippet '(\d+|\\)?(sec)' "Mathjax secant function" ri
-\sec($1)$0
+snippet '(\d+|\\)?(sec)' "Mathjax secant function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\sec($1)$0
 endsnippet
 
-snippet '(\d+|\\)?(cot)' "Mathjax cotangent function" ri
-\cot($1)$0
+snippet '(\d+|\\)?(cot)' "Mathjax cotangent function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\cot($1)$0
 endsnippet
 
-snippet '(\d+)?(sin)-' "Mathjax arc-sine function" ri
-\sin^{-1}($1)$0
+snippet '(\d+|\\)?(sin)-' "Mathjax arc-sine function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\sin^{-1}($1)$0
 endsnippet
 
-snippet '(\d+)?(cos)-' "Mathjax arc-cosine function" ri
-\cos^{-1}($1)$0
+snippet '(\d+|\\)?(cos)-' "Mathjax arc-cosine function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\cos^{-1}($1)$0
 endsnippet
 
-snippet '(\d+)?(tan)-' "Mathjax arc-tangent function" ri
-\tan^{-1}($1)$0
+snippet '(\d+|\\)?(tan)-' "Mathjax arc-tangent function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\tan^{-1}($1)$0
 endsnippet
 
-snippet '(\d+)?(csc)-' "Mathjax arc-cosecant function" ri
-\csc^{-1}($1)$0
+snippet '(\d+|\\)?(csc)-' "Mathjax arc-cosecant function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\csc^{-1}($1)$0
 endsnippet
 
-snippet '(\d+)?(sec)-' "Mathjax arc-secant function" ri
-\sec^{-1}($1)$0
+snippet '(\d+|\\)?(sec)-' "Mathjax arc-secant function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\sec^{-1}($1)$0
 endsnippet
 
-snippet '(\d+)?(cot)-' "Mathjax arc-cotangent function" ri
-\tan^{-1}($1)$0
+snippet '(\d+|\\)?(cot)-' "Mathjax arc-cotangent function" riA
+`!p
+snip.rv = "" if match.group(1) == None else match.group(1)
+`\tan^{-1}($1)$0
 endsnippet
 
 # Matrices, absolute value and parenthises
