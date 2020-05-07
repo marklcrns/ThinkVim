@@ -13,7 +13,7 @@ augroup user_plugin_delimitMate
   au FileType java,javascript,javascriptreact,python let b:delimitMate_matchpairs = "(:),[:],{:}"
   au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
   au FileType tex let b:delimitMate_quotes = ""
-  au FileType markdown,vimwiki let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+  au FileType markdown,vimwiki let b:delimitMate_matchpairs = "(:),[:],{:}"
   au FileType markdown,vimwiki let b:delimitMate_quotes = "\" `"
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
