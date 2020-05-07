@@ -714,18 +714,19 @@ endsnippet
 # Exponents, Superscript, Subscript
 # ============================================================
 
-# TODO: Fix bug on recycling previous match groups on multiple snippet calls
-snippet '(([A-Za-z0-9]+)|(\(.+\))|(\{.+\})|)\^' "Mathjax auto exponent/superscript" bwrA
-`!p snip.rv = match.group(1)`^{$1}$0
+# Auto exponent/superscript
+# Matches any number of digits, words, or outside of enclosing brackets
+# or parenthesis character followed by '^' using negative lookbehind
+snippet '(?<=\d+|\w+|\(.*\)|\[.*\]|\{.*\})\^' "Mathjax auto exponent/superscript" irA
+^{$1}$0
 endsnippet
 
-snippet '(([A-Za-z0-9])|(\(.+\))|(\{.+\}))_' "Mathjax auto subscript" bwrA
-`!p snip.rv = match.group(1)`_{$1}$0
+# Auto subscript
+# Matches any number of digits, words, or outside of enclosing brackets
+# or parenthesis character followed by '_' using negative lookbehind
+snippet '(?<=\d+|\w+|\(.*\)|\[.*\]|\{.*\})_' "Mathjax auto subscript" irA
+_{$1}$0
 endsnippet
-
-# snippet '([A-Za-z])_(\d\d)' "Mathjax auto subscript2" wrA
-# `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
-# endsnippet
 
 snippet sqrt "Mathjax square root" iA
 \sqrt{${1:${VISUAL}}}$0

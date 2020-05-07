@@ -24,8 +24,8 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet fence "Fence code block" bA
-\`\`\`$1
+snippet (.+)?fence "Fenced code block" rbA
+\`\`\``!p snip.rv = "" if match.group(1) == None else match.group(1)`
 ${0:${VISUAL}}
 \`\`\`
 endsnippet
