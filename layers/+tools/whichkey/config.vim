@@ -50,7 +50,6 @@ let g:which_key_map = {
              \ 'a' : 'Code action text object',
              \ 'c' : 'Code action current word',
              \ 'C' : 'Open coc config',
-             \ 'e' : 'Open coc explorer',
              \ 'f' : 'Coc format',
              \ 'g' : {
                    \ 'name' : '+coc-git',
@@ -105,6 +104,7 @@ let g:which_key_map = {
     \ 'e' : {
           \ 'name' : '+file-explorer',
              \ 'a' : 'Toggle explorer to current file',
+             \ 'c' : 'Toggle coc explorer',
              \ 'e' : 'Toggle explorer to current directory',
              \ 'r' : 'Toggle explorer resume directory',
           \ },
@@ -305,8 +305,8 @@ let g:which_key_map = {
                           \ 's' : 'Subvert/{pattern}/{replace}/[flags] line',
                           \ 'S' : 'Subvert/{pattern}/{replace}/[flags] whole',
                           \ },
-             \ 'c' : 'Lowercase entire file',
-             \ 'C' : 'Capitalize entire file',
+             \ 'c' : 'Lowercase entire file (or selected lines)',
+             \ 'C' : 'Capitalize entire file (or selected lines)',
              \ 'e' : {
                    \ 'name' : '+register',
                      \ 'g' : 'display-register(+abjk)',
