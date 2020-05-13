@@ -19,9 +19,9 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'gitstatus', 'readonly', 'filename', 'modified' ],
-  \             [ 'cocstatus', 'method' ] ],
+  \             [ 'cocstatus', 'currentfunction' ] ],
   \  'right': [ [ 'percent', 'lineinfo' ],
-  \            [ 'currentfunction' ], [ 'gutentags' ] ]
+  \            [ 'method' ], [ 'gutentags' ] ]
   \ },
   \ }
   "\ 'component_function': {

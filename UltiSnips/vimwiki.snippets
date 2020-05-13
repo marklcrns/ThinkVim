@@ -692,12 +692,12 @@ snip.rv = "" if match.group(1) == None else match.group(1)
 `\\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Mathjax auto fraction" wr
-\\tfrac{`!p snip.rv = match.group(1)`}{$1}$0
+snippet '((\d+)|(\\.*)?(\d+)(.*)?)\/' "Mathjax tab auto fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 priority 1000
-snippet '^.*\)/' "Mathjax () fraction" wrA
+snippet '^.*\)/' "Mathjax () auto fraction" wrA
 `!p
 stripped = match.string[:-1]
 depth = 0
@@ -707,7 +707,7 @@ while True:
 	if stripped[i] == '(': depth -= 1
 	if depth == 0: break;
 	i-=1
-snip.rv = stripped[0:i] + "\\tfrac{" + stripped[i+1:-1] + "}"
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 `{$1}$0
 endsnippet
 

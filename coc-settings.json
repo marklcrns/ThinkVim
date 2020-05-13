@@ -104,21 +104,15 @@
   "emmet.includeLanguages": {
     "htmldjango": "html",
     "handlebars": "html",
-    "vue-html": "html",
+    "vue-html": "html"
   },
+
   //multiple curssors
   "cursors.nextKey": "<C-n>",
   "cursors.previousKey": "<C-p>",
   "cursors.cancelKey": "<Esc>",
   //sessions
   "session.directory": "~/.cache/vim/session",
-
-  // golang
-  "go.goplsOptions": {
-      "usePlaceholders": true,
-      "completeUnimported": true,
-      "deepCompletion": true
-  },
 
   // eslint
   "eslint.filetypes": ["javascript", "javascript.jsx", "javascriptreact"],
@@ -130,8 +124,17 @@
   // "tsserver.npm": "/usr/bin/npm",  // `nvm deactivate` to make this work
 
   // java
-  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.implementationsCodeLens.enabled": true,
+  "java.referencesCodeLens.enabled": true,
+  "java.errors.incompleteClasspath.severity": "error",
   "java.completion.enabled": true,
+  "java.autobuild.enabled": true,
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "com",
+    "org"
+  ],
 
   //-------- Code Spell Checker Configuration --------
   // Enable / Disable the spell checker.
