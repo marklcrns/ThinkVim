@@ -131,7 +131,12 @@ let g:which_key_map = {
                 \ },
           \ 'q' : 'Save and quit',
           \ 'Q' : 'Save all and quit',
-          \ 'r' : 'Change working directory to file',
+          \ 'r' : {
+                \ 'name' : '+change-directory',
+                \ 'r' : 'Change working directory to root',
+                \ 'c' : 'Change working directory to current file',
+                \ 'l' : 'Change working directory to current file (window only)',
+                \ },
           \ 's' : 'Save buffer',
           \ 'S' : 'Save all buffers',
           \ 'u' : {

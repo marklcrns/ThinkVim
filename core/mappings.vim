@@ -484,9 +484,9 @@ vnoremap <Leader>K :m'<-2<CR>gv=gv
 vnoremap <Leader>J :m'>+<CR>gv=gv
 
 " Set working directory to current file location for all windows
-" nmap <LocalLeader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>frc :cd %:p:h<CR>:pwd<CR>
 " Set working directory to current file location only for the current window
-" nmap <LocalLeader>lcd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>frl :lcd %:p:h<CR>:pwd<CR>
 
 " Closing pop-up auto-completion before inserting new line
 inoremap <expr> <M-o> (pumvisible() <bar><bar> &insertmode) ? '<C-e><M-o>' : '<M-o>'

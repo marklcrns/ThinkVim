@@ -701,7 +701,7 @@ if dein#tap('vim-rooter')
   " Disables automatic directory change
   let g:rooter_manual_only = 1
 
-  nnoremap <Leader>fr :Rooter<CR>
+  nnoremap <Leader>frr :Rooter<CR>
 endif
 
 if dein#tap('nvim-colorizer.lua')
