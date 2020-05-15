@@ -24,7 +24,32 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet temp "Java basic template with main method" bA
+snippet temp "Java class template" bA
+/**
+ * Author: Mark Lucernas
+ * Date: `date '+%Y-%m-%d'`
+ */
+
+public class `!p snip.rv = fn.rstrip('.java')` {$0}
+endsnippet
+
+snippet ctemp "Java basic class template with constructor" bA
+/**
+ * Author: Mark Lucernas
+ * Date: `date '+%Y-%m-%d'`
+ */
+
+public class `!p snip.rv = fn.rstrip('.java')` {
+  /**
+   * Constructor
+   */
+  `!p snip.rv = fn.rstrip('.java') + "()"` {
+    $0
+  }
+}
+endsnippet
+
+snippet mtemp "Java basic template with main method" bA
 /**
  * Author: Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
@@ -40,22 +65,6 @@ public class `!p snip.rv = fn.rstrip('.java')` {
    */
   `!p snip.rv = fn.rstrip('.java') + "()"` {
     
-  }
-}
-endsnippet
-
-snippet ctemp "Java basic class template" bA
-/**
- * Author: Mark Lucernas
- * Date: `date '+%Y-%m-%d'`
- */
-
-public class `!p snip.rv = fn.rstrip('.java')` {
-  /**
-   * Constructor
-   */
-  `!p snip.rv = fn.rstrip('.java') + "()"` {
-    $0
   }
 }
 endsnippet

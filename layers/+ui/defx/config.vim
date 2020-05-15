@@ -12,22 +12,19 @@ call defx#custom#option('_', {
 " ---
 
 augroup user_plugin_defx
-	autocmd!
+  autocmd!
 
-	autocmd DirChanged * call s:defx_refresh_cwd(v:event)
+  " Define defx window mappings
+  autocmd FileType defx call <SID>defx_mappings()
 
-	" Delete defx if it's the only buffer left in the window
-	autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bd | endif
+  " Delete defx if it's the only buffer left in the window
+  autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
 
-	" Move focus to the next window if current buffer is defx
-	autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
-
-	autocmd TabClosed * call s:defx_close_tab(expand('<afile>'))
-
-	" Define defx window mappings
-	autocmd FileType defx call s:defx_mappings()
+  " Move focus to the next window if current buffer is defx
+  autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
 
 augroup END
+
 
 " Internal functions
 " ---
@@ -47,34 +44,8 @@ function! s:defx_close_tab(tabnr)
 	endfor
 endfunction
 
-function! s:defx_toggle_tree() abort
-	" Open current file, or toggle directory expand/collapse
-	if defx#is_directory()
-		return defx#do_action('open_or_close_tree')
-	endif
-	return defx#do_action('multi', ['drop'])
-endfunction
-
-function! s:defx_refresh_cwd(event)
-	" Automatically refresh opened Defx windows when changing working-directory
-	let l:cwd = get(a:event, 'cwd', '')
-	let l:scope = get(a:event, 'scope', '')   " global, tab, window
-	let l:is_opened = bufwinnr('defx') > -1
-	if ! l:is_opened || empty(l:cwd) || empty(l:scope)
-		return
-	endif
-
-	" Abort if Defx is already on the cwd triggered (new files trigger this)
-	let l:paths = get(getbufvar('defx', 'defx', {}), 'paths', [])
-	if index(l:paths, l:cwd) >= 0
-		return
-	endif
-
-	let l:tab = tabpagenr()
-	call execute(printf('Defx -buffer-name=tab%s %s', l:tab, l:cwd))
-	wincmd p
-endfunction
-
+" Internal functions
+" ---
 function! s:jump_dirty(dir) abort
 	" Jump to the next position with defx-git dirty symbols
 	let l:icons = get(g:, 'defx_git_indicators', {})
@@ -86,12 +57,19 @@ function! s:jump_dirty(dir) abort
 	endif
 endfunction
 
+function! s:defx_toggle_tree() abort
+	" Open current file, or toggle directory expand/collapse
+	if defx#is_directory()
+		return defx#do_action('open_or_close_tree')
+	endif
+	return defx#do_action('multi', ['drop'])
+endfunction
+
 function! s:defx_mappings() abort
 	" Defx window keyboard mappings
 	setlocal signcolumn=no
 
   nnoremap <silent><buffer><expr> <CR>  defx#do_action('multi', ['drop', 'quit'])
-	nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
 	nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
