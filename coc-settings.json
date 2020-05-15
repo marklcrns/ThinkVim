@@ -128,7 +128,6 @@
   "java.referencesCodeLens.enabled": true,
   "java.errors.incompleteClasspath.severity": "error",
   "java.completion.enabled": true,
-  "java.autobuild.enabled": true,
   "java.completion.importOrder": [
     "java",
     "javax",

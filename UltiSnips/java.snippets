@@ -1,82 +1,135 @@
 # A valid snippet should starts with:
 #
-#		snippet trigger_word [ "description" [ options ] ]
+#   snippet trigger_word [ "description" [ options ] ]
 #
 # and end with:
 #
-#		endsnippet
+#   endsnippet
 #
 # Snippet options:
 #
-#		b - Beginning of line.
-#		i - In-word expansion.
-#		w - Word boundary.
-#		r - Regular expression
-#		e - Custom context snippet
-#		A - Snippet will be triggered automatically, when condition matches.
+#   b - Beginning of line.
+#   i - In-word expansion.
+#   w - Word boundary.
+#   r - Regular expression
+#   e - Custom context snippet
+#   A - Snippet will be triggered automatically, when condition matches.
 #
 # Basic example:
 #
-#		snippet emitter "emitter properties" b
-#		private readonly ${1} = new Emitter<$2>()
-#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
-#		endsnippet
+#   snippet emitter "emitter properties" b
+#   private readonly ${1} = new Emitter<$2>()
+#   public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#   endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet temp "Java basic template" bA
+snippet temp "Java basic template with main method" bA
 /**
- * Filename: `!p snip.rv = fn`
- *
- * Created by: Mark Lucernas
- *
+ * Author: Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 
-public class `!p snip.rv = fn.rstrip('.java')`
-{
-	public static void main(String[] args) {
-		$0
-	}
+public class `!p snip.rv = fn.rstrip('.java')` {
+  public static void main(String[] args) {
+    $0
+  }
+
+  /**
+   * Constructor
+   */
+  `!p snip.rv = fn.rstrip('.java') + "()"` {
+    
+  }
 }
 endsnippet
 
-snippet classtemp "java basic Class template" bA
+snippet ctemp "Java basic class template" bA
+/**
+ * Author: Mark Lucernas
+ * Date: `date '+%Y-%m-%d'`
+ */
+
+public class `!p snip.rv = fn.rstrip('.java')` {
+  /**
+   * Constructor
+   */
+  `!p snip.rv = fn.rstrip('.java') + "()"` {
+    $0
+  }
+}
+endsnippet
+
+snippet itemp "Java basic interface template" bA
+/**
+ * Author: Mark Lucernas
+ * Date: `date '+%Y-%m-%d'`
+ */
+
+public interface `!p snip.rv = fn.rstrip('.java')` {
+  $0
+}
+endsnippet
+
+snippet atemp "Java basic abstract class template" bA
+/**
+ * Author: Mark Lucernas
+ * Date: `date '+%Y-%m-%d'`
+ */
+
+public abstract class `!p snip.rv = fn.rstrip('.java')` {
+  $0
+}
+endsnippet
+
+snippet customtemp "java basic Class template" bA
 /**
  * ${1:Class description...}
  *
  * @author ${2:Mark Lucernas}
  */
 
-public class `!p snip.rv = fn.rstrip('.java')` extends Object
-{
-	//////////////////// fields ////////////////////
-	${3:Type} ${4:varName1};
-	${5:Type} ${6:varName2};
-	${7:Type} ${8:varName3};
+public class `!p snip.rv = fn.rstrip('.java')` extends Object {
+    //////////////////// fields ////////////////////
+    ${3:Type} ${4:varName1};
+    ${5:Type} ${6:varName2};
+    ${7:Type} ${8:varName3};
 
-	///////////////// constructors /////////////////
-	/**
-	 * No-argument constructor
-	 */
-	public `!p snip.rv = fn.rstrip('.java')`() {}
+    ///////////////// constructors /////////////////
+    /**
+     * No-argument constructor
+     */
+    public `!p snip.rv = fn.rstrip('.java')`() {}
 
-	/**
-	 * ${6:Constructor description...}
-	 * @param $4
-	 * @param $6
-	 * @param $8
-	 */
-	public `!p snip.rv = fn.rstrip('.java')`($3 $4, $5 $6, $7 $8)
-	{
-		this.$4 = $4;
-		this.$6 = $6;
-		this.$8 = $8;
-	}
+    /**
+     * ${6:Constructor description...}
+     * @param $4
+     * @param $6
+     * @param $8
+     */
+    public `!p snip.rv = fn.rstrip('.java')`($3 $4, $5 $6, $7 $8) {
+      this.$4 = $4;
+      this.$6 = $6;
+      this.$8 = $8;
+    }
 
-	//////////////////// methods ///////////////////
-	public String toString() {
-		return "";
-	}
+    //////////////////// methods ///////////////////
+    public String toString() {
+      return "";
+    }
 }
 endsnippet
+
+snippet head "Java javadoc header" bA
+/**
+ * Author: Mark Lucernas
+ * Date: `date '+%Y-%m-%d'`
+ */
+endsnippet
+
+snippet doc "Java javadoc" bA
+/**
+ * $0
+ */
+endsnippet
+
