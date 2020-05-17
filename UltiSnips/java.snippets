@@ -24,21 +24,34 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
+# Must be in root folder for auto package detect to work. Use vim-rooter
 snippet temp "Java class template" bA
+`!p
+import os, re
+root = os.getcwd()
+rel_path = re.sub(root + '/src/', '', path)
+package_path = re.sub(fn, '', rel_path)
+snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
+
 /**
  * Author: Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
-
 public class `!p snip.rv = fn.rstrip('.java')` {$0}
 endsnippet
 
 snippet ctemp "Java basic class template with constructor" bA
+`!p
+import os, re
+root = os.getcwd()
+rel_path = re.sub(root + '/src/', '', path)
+package_path = re.sub(fn, '', rel_path)
+snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
+
 /**
  * Author: Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
-
 public class `!p snip.rv = fn.rstrip('.java')` {
   /**
    * Constructor
@@ -50,11 +63,17 @@ public class `!p snip.rv = fn.rstrip('.java')` {
 endsnippet
 
 snippet mtemp "Java basic template with main method" bA
+`!p
+import os, re
+root = os.getcwd()
+rel_path = re.sub(root + '/src/', '', path)
+package_path = re.sub(fn, '', rel_path)
+snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
+
 /**
  * Author: Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
-
 public class `!p snip.rv = fn.rstrip('.java')` {
   public static void main(String[] args) {
     $0
@@ -70,34 +89,69 @@ public class `!p snip.rv = fn.rstrip('.java')` {
 endsnippet
 
 snippet itemp "Java basic interface template" bA
+`!p
+import os, re
+root = os.getcwd()
+rel_path = re.sub(root + '/src/', '', path)
+package_path = re.sub(fn, '', rel_path)
+snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
+
 /**
  * Author: Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
-
 public interface `!p snip.rv = fn.rstrip('.java')` {
   $0
 }
 endsnippet
 
 snippet atemp "Java basic abstract class template" bA
+`!p
+import os, re
+root = os.getcwd()
+rel_path = re.sub(root + '/src/', '', path)
+package_path = re.sub(fn, '', rel_path)
+snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
+
 /**
  * Author: Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
-
 public abstract class `!p snip.rv = fn.rstrip('.java')` {
   $0
 }
 endsnippet
 
+snippet etemp "Java enum class template" bA
+`!p
+import os, re
+root = os.getcwd()
+rel_path = re.sub(root + '/src/', '', path)
+package_path = re.sub(fn, '', rel_path)
+snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
+
+/**
+ * Author: Mark Lucernas
+ * Date: `date '+%Y-%m-%d'`
+ */
+public enum `!p snip.rv = fn.rstrip('.java')` {
+  $0
+}
+endsnippet
+
 snippet customtemp "java basic Class template" bA
+`!p
+import os, re
+root = os.getcwd()
+rel_path = re.sub(root + '/src/', '', path)
+package_path = re.sub(fn, '', rel_path)
+snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
+
 /**
  * ${1:Class description...}
  *
  * @author ${2:Mark Lucernas}
  */
-
 public class `!p snip.rv = fn.rstrip('.java')` extends Object {
     //////////////////// fields ////////////////////
     ${3:Type} ${4:varName1};
@@ -136,9 +190,15 @@ snippet head "Java javadoc header" bA
  */
 endsnippet
 
-snippet doc "Java javadoc" bA
+snippet /* "Java javadoc" bA
 /**
  * $0
  */
 endsnippet
 
+snippet 'for(i|j|x|y)' "Java generic for loop" rwA
+`!p
+var = match.group(1)
+snip.rv = f"for (int {var} = 0; {var} < $1; {var}++) " + "{\n\t$0\n}"
+`
+endsnippet
