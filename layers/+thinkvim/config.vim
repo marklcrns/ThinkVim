@@ -123,22 +123,22 @@ if dein#tap('coc.nvim')
   nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
   " multiple cursors
   nmap <silent> <C-c> <Plug>(coc-cursors-position)
-  nmap <expr> <silent> <C-s> <SID>select_current_word()
-  xmap <silent> <C-s> <Plug>(coc-cursors-range)
   " use normal command like `<leader>xi(`
   nmap <leader>cx <Plug>(coc-cursors-operator)
 
-  nmap <leader>cr <Plug>(coc-refactor)
-
+  nmap <expr> <silent> <C-s> <SID>select_current_word()
   function! s:select_current_word()
     if !get(g:, 'coc_cursors_activated', 0)
       return "\<Plug>(coc-cursors-word)"
     endif
-    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+    " Adjusted for vim-asterisk plugin
+    return "*n\<Plug>(coc-cursors-word):nohlsearch\<CR>"
   endfunc
 
   nnoremap <silent> <leader>cs :<C-u>CocSearch<Space>
   nnoremap <silent> <leader>cS :<C-u>CocSearch -w<Space>
+
+  nmap <leader>cr <Plug>(coc-refactor)
 
   " Open floaterm
   nnoremap <silent> <leader>ot :<C-u>CocCommand floaterm.new<cr>
