@@ -50,7 +50,7 @@
   "diagnostic.enableHighlightLineNumber": true,
   "diagnostic.signOffset": 9999999,
   "diagnostic.hintSign": "⊹",
-  "diagnostic.infoSign": "כֿ",
+  "diagnostic.infoSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.errorSign": "",
   "diagnostic.messageDelay": 150,
