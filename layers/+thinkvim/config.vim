@@ -132,7 +132,7 @@ if dein#tap('coc.nvim')
       return "\<Plug>(coc-cursors-word)"
     endif
     " Adjusted for vim-asterisk plugin
-    return "*n\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
   endfunc
 
   nnoremap <silent> <leader>cs :<C-u>CocSearch<Space>
@@ -365,12 +365,12 @@ if dein#tap('vim-quickrun')
   vnoremap <silent> <localLeader>r :QuickRun -mode v<CR>
 endif
 
-if dein#tap('vim-asterisk')
-  map *  <Plug>(asterisk-z*)
-  map #  <Plug>(asterisk-z#)
-  map g* <Plug>(asterisk-gz*)
-  map g# <Plug>(asterisk-gz#)
-endif
+" if dein#tap('vim-asterisk')
+"   map *  <Plug>(asterisk-z*)
+"   map #  <Plug>(asterisk-z#)
+"   map g* <Plug>(asterisk-gz*)
+"   map g# <Plug>(asterisk-gz#)
+" endif
 
 if dein#tap('vim-expand-region')
   xmap v <Plug>(expand_region_expand)
