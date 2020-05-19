@@ -78,13 +78,6 @@ public class `!p snip.rv = fn.rstrip('.java')` {
   public static void main(String[] args) {
     $0
   }
-
-  /**
-   * Constructor
-   */
-  `!p snip.rv = fn.rstrip('.java') + "()"` {
-    
-  }
 }
 endsnippet
 
@@ -190,15 +183,31 @@ snippet head "Java javadoc header" bA
  */
 endsnippet
 
-snippet /* "Java javadoc" bA
+snippet /* "Java Comment" b
+/*
+ * $0
+ */
+endsnippet
+
+snippet /* "Description" w
+/* $0 */
+endsnippet
+
+
+snippet /** "Java javadoc" b
 /**
  * $0
  */
 endsnippet
 
-snippet 'for(i|j|x|y)' "Java generic for loop" rwA
+clearsnippets
+snippet 'for(i|j|x|y)' "Java generic for loop" rA
 `!p
 var = match.group(1)
 snip.rv = f"for (int {var} = 0; {var} < $1; {var}++) " + "{\n\t$0\n}"
 `
+endsnippet
+
+snippet pln "Java System.out.println" wA
+System.out.println(${0:${VISUAL}});
 endsnippet

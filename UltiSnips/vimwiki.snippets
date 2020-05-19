@@ -95,7 +95,7 @@ snippet vf "Open file link into vim"
 endsnippet
 
 snippet img "Image tag for files" w
-![$1](file:../../../$0)
+![$1](../../../$0)
 endsnippet
 
 snippet uimg "Image tag for urls" w
@@ -914,7 +914,7 @@ snippet xx "cross" wA
 \times
 endsnippet
 
-snippet '**' "Mathjax cdot" wA
+snippet '***' "Mathjax cdot" wA
 \cdot
 endsnippet
 
@@ -1016,7 +1016,7 @@ snippet mag "Mathjax vector's magnitude" i
 endsnippet
 
 snippet <> "Mathjax angled bracets" iA
-\langle $1 \rangle$0
+\langle ${1:${VISUAL}} \rangle$0
 endsnippet
 
 snippet || "Mathjax parallel sign" i
