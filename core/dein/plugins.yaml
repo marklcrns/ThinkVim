@@ -538,7 +538,6 @@
 
 - repo: amadeus/vim-convert-color-to
   on_cmd: ConvertColorTo
-
 - repo: itchyny/vim-cursorword
   on_event: FileType
   hook_source: |
@@ -574,6 +573,13 @@
 - repo: kristijanhusak/defx-icons
   on_source: defx.nvim
 # }}}
+
+
+# ETC {{{
+- repo: ThePrimeagen/vim-be-good
+  on_cmd: VimBeGood
+# }}}
+
 
 
 # Commented plugins too old, or found much better

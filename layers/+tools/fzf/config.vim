@@ -10,7 +10,7 @@ if executable('rg')
   " let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   let $FZF_DEFAULT_COMMAND = 'fdfind --type f --follow --exclude .git --exclude node_modules --exclude env --exclude "__*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --glob "!*.class" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
 let $FZF_DEFAULT_OPTS='--layout=reverse'
@@ -87,7 +87,7 @@ let g:fzf_preview_git_status_preview_command =  "[[ $(git diff -- {-1}) != \"\" 
       \ g:fzf_preview_command
 
 " Commands used for project grep
-let g:fzf_preview_grep_cmd = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always"'
+let g:fzf_preview_grep_cmd = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --glob "!*.class" --color "always"'
 
 " Commands used for preview of the grep result
 let g:fzf_preview_grep_preview_cmd = expand('<sfile>:h:h') . '/bin/preview_fzf_grep'
