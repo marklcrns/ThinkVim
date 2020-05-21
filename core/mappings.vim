@@ -375,10 +375,10 @@ nmap <Leader>wl :vertical resize +3<CR>
 nmap <Left> :vertical resize -3<CR>
 nmap <Right> :vertical resize +3<CR>
 " Resize splits horizontally
-nmap <Leader>wj :resize -3<CR>
-nmap <Leader>wk :resize +3<CR>
-nmap <Down> :resize -3<CR>
-nmap <Up> :resize +3<CR>
+nmap <Leader>wk :resize -3<CR>
+nmap <Leader>wj :resize +3<CR>
+nmap <Up> :resize -3<CR>
+nmap <Down> :resize +3<CR>
 
 " Toggle conceallevel
 function! ToggleConcealLevel()
