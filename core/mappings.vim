@@ -135,8 +135,9 @@ inoremap <Esc> <Esc>`^
 " right)
 cnoremap <C-g> <C-c>
 inoremap fd <Esc>`^
-vnoremap fd <Esc>`<
 snoremap fd <Esc>`^
+vnoremap fd <Esc>`<
+vnoremap df <Esc>`>
 inoremap kj <Esc>`^
 snoremap kj <Esc>`^
 
@@ -577,7 +578,14 @@ nnoremap <silent> <M-x> :<C-u>call AddSubtract("\<C-x>", '')<CR>
 " nnoremap <silent> <Leader><M-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
 " nnoremap <silent> <Leader><M-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 
+" Load all TODO's from all files of the same extension as the current buffer
+" within project directory.
+" Ref: https://stackoverflow.com/a/4106211/11850077
+nnoremap <Leader>T :execute "noautocmd vimgrep /TODO/j **/*." . expand("%:e")<bar>cw<CR>
+
 " ========== Custom single purpose functions and mappings ==========
+
+
 
 " Append '.md' to clipboard register yanked file path and :edit from current directory
 nnoremap <Leader>;wm :cd %:h<bar>execute "e " . expand("%:p:h") . '/' . getreg('+') . '.md'<bar>echo 'Opened ' . expand("%:p")<CR>

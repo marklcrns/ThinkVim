@@ -350,6 +350,7 @@ let g:which_key_map = {
              \ 'e' : 'Edit tab',
              \ 'm' : 'Move tab',
           \ },
+    \ 'T' : 'Load all TODOs in quickfix window',
     \ 'v' : {
           \ 'name' : 'Vimux',
              \ 'c' : 'Vimux prompt command',
