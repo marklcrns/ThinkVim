@@ -11,7 +11,7 @@ let g:limelight_conceal_guifg = '#777777'
 let g:limelight_default_coefficient = 0.7
 
 " Number of preceding/following paragraphs to include (default: 0)
-let g:limelight_paragraph_span = 8
+let g:limelight_paragraph_span = 10
 
 " Beginning/end of paragraph
 "   When there's no empty line between the paragraphs

@@ -105,7 +105,6 @@ if dein#tap('coc.nvim')
 
   " Use K to show documentation in preview for vim window and float for nvim
   nnoremap <silent> K :call <SID>show_documentation()<CR>
-  vnoremap <silent> K :call <SID>show_documentation()<CR>
 
   function! s:show_documentation()
     if (index(['vim', 'help'], &filetype) >= 0)

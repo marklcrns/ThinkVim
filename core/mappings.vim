@@ -1,46 +1,46 @@
 
 " Ref: https://stackoverflow.com/a/29236158
 " TODO: Fix behavior not closing readonly buffer split
-" function! SmartBufClose()
-"   let curBuf = bufnr('%')
-"   let curBufName = bufname('%')
-"   let curTab = tabpagenr()
-"   exe 'bnext'
-"
-"   " Quit window/split if buffer is empty ([No Name] buffer)
-"   if (curBufName == '' || !&modifiable || &readonly)
-"       exe 'q!'
-"       return
-"   else
-"     " If in last buffer, create empty buffer
-"     if curBuf == bufnr('%')
-"         exe 'enew'
-"     endif
-"
-"     " Loop through tabs
-"     for i in range(tabpagenr('$'))
-"         " Go to tab (is there a way with inactive tabs?)
-"         exe 'tabnext ' . (i + 1)
-"         " Store active window nr to restore later
-"         let curWin = winnr()
-"         " Loop through windows pointing to buffer
-"         let winnr = bufwinnr(curBuf)
-"         while (winnr >= 0)
-"             " Go to window and switch to next buffer
-"             exe winnr . 'wincmd w | bnext'
-"             " Restore active window
-"             exe curWin . 'wincmd w'
-"             let winnr = bufwinnr(curBuf)
-"         endwhile
-"       echo 'Exited ' . curBufName
-"     endfor
-"
-"     " Close buffer, restore active tab
-"     exe 'bd' . curBuf
-"     exe 'tabnext ' . curTab
-"   endif
-" endfunction
-" noremap <silent> q :call SmartBufClose()<cr>
+function! SmartBufClose()
+  let curBuf = bufnr('%')
+  let curBufName = bufname('%')
+  let curTab = tabpagenr()
+  exe 'bnext'
+
+  " Quit window/split if buffer is empty ([No Name] buffer)
+  if (curBufName == '' || !&modifiable || &readonly)
+      exe 'q!'
+      return
+  else
+    " If in last buffer, create empty buffer
+    if curBuf == bufnr('%')
+        exe 'enew'
+    endif
+
+    " Loop through tabs
+    for i in range(tabpagenr('$'))
+        " Go to tab (is there a way with inactive tabs?)
+        exe 'tabnext ' . (i + 1)
+        " Store active window nr to restore later
+        let curWin = winnr()
+        " Loop through windows pointing to buffer
+        let winnr = bufwinnr(curBuf)
+        while (winnr >= 0)
+            " Go to window and switch to next buffer
+            exe winnr . 'wincmd w | bnext'
+            " Restore active window
+            exe curWin . 'wincmd w'
+            let winnr = bufwinnr(curBuf)
+        endwhile
+      echo 'Exited ' . curBufName
+    endfor
+
+    " Close buffer, restore active tab
+    exe 'bd' . curBuf
+    exe 'tabnext ' . curTab
+  endif
+endfunction
+noremap <silent> q :call SmartBufClose()<cr>
 
 " Delete buffer without
 noremap q :bd<CR>
@@ -136,7 +136,7 @@ inoremap <Esc> <Esc>`^
 cnoremap <C-g> <C-c>
 inoremap fd <Esc>`^
 snoremap fd <Esc>`^
-vnoremap fd <Esc>`<
+vnoremap fd <Esc>`>
 vnoremap df <Esc>`>
 inoremap kj <Esc>`^
 snoremap kj <Esc>`^
@@ -156,10 +156,11 @@ inoremap <M-v> <ESC>v`[
 " delete word before cursor (prioritize words over punctualtions and
 " delimiters)
 " imap <C-w> <C-[>bcaw
+" no longer needed. Ref: https://vim.fandom.com/wiki/Recover_from_accidental_Ctrl-U
+" imap <C-u> <C-G>u<C-U>
 imap <C-h> <BS>
 imap <C-l> <Del>
 imap <C-k> <C-[>Da
-imap <C-u> <C-G>u<C-U>
 imap <C-a> <Home>
 imap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
 " Cursor navigation
@@ -481,8 +482,8 @@ inoremap <C-s> <Esc>:set spell<bar>norm i<C-g>u<Esc>[s"syiW1z="tyiW:let @l=line(
 " Drag current line(s) vertically and auto-indent
 nnoremap <Leader>J :m+<CR>
 nnoremap <Leader>K :m-2<CR>
-vnoremap <Leader>K :m'<-2<CR>gv=gv
-vnoremap <Leader>J :m'>+<CR>gv=gv
+vnoremap J :m'>+<CR>gv=gv
+vnoremap K :m'<-2<CR>gv=gv
 
 " Set working directory to current file location for all windows
 nnoremap <Leader>frc :cd %:p:h<CR>:pwd<CR>

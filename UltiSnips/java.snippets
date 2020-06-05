@@ -53,12 +53,11 @@ snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
  * Date: `date '+%Y-%m-%d'`
  */
 public class `!p snip.rv = fn.rstrip('.java')` {
-  /**
-   * Constructor
-   */
-  `!p snip.rv = fn.rstrip('.java') + "()"` {
-    $0
-  }
+
+	public `!p snip.rv = fn.rstrip('.java') + "()"` {
+		$0
+	}
+
 }
 endsnippet
 
@@ -183,18 +182,7 @@ snippet head "Java javadoc header" bA
  */
 endsnippet
 
-snippet /* "Java Comment" b
-/*
- * $0
- */
-endsnippet
-
-snippet /* "Description" w
-/* $0 */
-endsnippet
-
-
-snippet /** "Java javadoc" b
+snippet jdoc "Java javadoc" bA
 /**
  * $0
  */
@@ -213,6 +201,14 @@ System.out.println(${0:${VISUAL}});
 endsnippet
 
 snippet dpln "Java debug System.out.println" wA
-////////// DELETE ME LATER //////////
+////////// TODO: DELETE ME LATER //////////
 System.out.println(${0:${VISUAL}});
+endsnippet
+
+snippet nulltry "Java NullPointerException handler" bA
+try {
+	${1:${VISUAL}}
+} catch(NullPointerException e) {
+	System.out.println($0);
+}
 endsnippet
