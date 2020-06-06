@@ -10,13 +10,13 @@ let g:python3_host_prog = expand('~/.config/nvim/env/python3/env/bin/python3')
 
 " Set main configuration directory as parent directory
 let $VIM_PATH =
-	\ get(g:, 'etc#vim_path',
-	\   exists('*stdpath') ? stdpath('config') :
-	\   ! empty($MYVIMRC) ? fnamemodify(expand($MYVIMRC), ':h') :
-	\   ! empty($VIMCONFIG) ? expand($VIMCONFIG) :
-	\   ! empty($VIM_PATH) ? expand($VIM_PATH) :
-	\   fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
-	\ )
+			\ get(g:, 'etc#vim_path',
+			\   exists('*stdpath') ? stdpath('config') :
+			\   ! empty($MYVIMRC) ? fnamemodify(expand($MYVIMRC), ':h') :
+			\   ! empty($VIMCONFIG) ? expand($VIMCONFIG) :
+			\   ! empty($VIM_PATH) ? expand($VIM_PATH) :
+			\   fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
+			\ )
 let s:user_settings_path = expand('~/.thinkvim.d/local_settings.vim')
 
 " Regular Vim doesn't add custom configuration directories, if you use one
@@ -75,15 +75,13 @@ if has('vim_starting')
 		endif
 	endif
 
-
 	" Ensure data directories
 	call etc#util#ensure_directory([
-		\   g:etc#cache_path . '/undo',
-		\   g:etc#cache_path . '/backup',
-		\   g:etc#cache_path . '/session',
-		\   g:etc#vim_path . '/spell'
-		\ ])
-
+				\   g:etc#cache_path . '/undo',
+				\   g:etc#cache_path . '/backup',
+				\   g:etc#cache_path . '/session',
+				\   g:etc#vim_path . '/spell'
+				\ ])
 endif
 
 call etc#init()
@@ -94,34 +92,34 @@ call etc#util#source_file('layers/+thinkvim/config.vim')
 
 
 function! s:check_custom_settings(filename)abort
-       let  content = readfile(a:filename)
-       if empty(content)
-           return 0
-       endif
-       return 1
+	let  content = readfile(a:filename)
+	if empty(content)
+		return 0
+	endif
+	return 1
 endfunction
 
 function! s:source_custom(path, ...) abort
-  let use_global = get(a:000, 0, !has('vim_starting'))
-  let abspath = resolve(expand('~/.thinkvim.d' . a:path))
-  if !use_global
-    execute 'source' fnameescape(abspath)
-    return
-  endif
+	let use_global = get(a:000, 0, !has('vim_starting'))
+	let abspath = resolve(expand('~/.thinkvim.d' . a:path))
+	if !use_global
+		execute 'source' fnameescape(abspath)
+		return
+	endif
 
-  " substitute all 'set' to 'setglobal'
-  let content = map(readfile(abspath),
-        \ 'substitute(v:val, "^\\W*\\zsset\\ze\\W", "setglobal", "")')
-  " create tempfile and source the tempfile
-  let tempfile = tempname()
-  try
-    call writefile(content, tempfile)
-    execute 'source' fnameescape(tempfile)
-  finally
-    if filereadable(tempfile)
-      call delete(tempfile)
-    endif
-  endtry
+	" substitute all 'set' to 'setglobal'
+	let content = map(readfile(abspath),
+				\ 'substitute(v:val, "^\\W*\\zsset\\ze\\W", "setglobal", "")')
+	" create tempfile and source the tempfile
+	let tempfile = tempname()
+	try
+		call writefile(content, tempfile)
+		execute 'source' fnameescape(tempfile)
+	finally
+		if filereadable(tempfile)
+			call delete(tempfile)
+		endif
+	endtry
 endfunction
 " Load user custom local settings
 if filereadable(s:user_settings_path)

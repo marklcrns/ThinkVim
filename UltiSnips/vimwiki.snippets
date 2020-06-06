@@ -36,6 +36,65 @@ boundaries = {
 	"v": ["|", "|"],
 	"V": ["||", "||"]
 }
+
+# Todo meds taskk
+def create_meds_task_head(desc, time):
+	time = int(time)
+	str_date_time = ""
+
+	if time > 2399:
+		time = time - 2400
+
+	if time > 999:
+		str_date_time += str(time)
+		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
+	elif time < 1000 and time > 99:
+		str_date_time += "0" + str(time)
+		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
+	elif time < 100:
+		str_date_time += "00" + str(time)
+		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
+	elif time == 0:
+		str_date_time += "00:00"
+
+	str_date_time = "(" + tomorrow + " " + str_date_time + ")"
+
+	task =  desc + " " + str_date_time
+	return task
+
+def create_meds_task(desc, time, offset):
+	time = int(time) + (offset)
+	date = today
+	str_time = ""
+	str_date_time = ""
+
+	if time > 2399:
+		time = time - 2400
+		date = tomorrow
+
+	if time > 999:
+		str_time += str(time)
+		str_time = str_time[:2] + ":" + str_time[2:]
+		str_date_time += str(time)
+		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
+	elif time < 1000 and time > 99:
+		str_time += "0" + str(time)
+		str_time = str_time[:2] + ":" + str_time[2:]
+		str_date_time += "0" + str(time)
+		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
+	elif time < 100:
+		str_time += "00" + str(time)
+		str_time = str_time[:2] + ":" + str_time[2:]
+		str_date_time += "00" + str(time)
+		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
+	elif time == 0:
+		str_time += "00:00"
+		str_date_time += "00:00"
+
+	str_date_time = "(" + date + " " + str_date_time + ")"
+
+	task =  str_time + " " + desc + " " + str_date_time
+	return task
 endglobal
 
 # ====================Vimwiki/Markdown Snippets====================
@@ -175,8 +234,8 @@ author: Mark Lucernas
 date: `!p
 from datetime import datetime, timedelta
 # parse date filename
-date = fn.rstrip('.md')
-date = date.split("-")
+fn_date = fn.rstrip('.md')
+date = fn_date.split("-")
 # get today, and day after tomorrow's date in string
 base = datetime(int(date[0]), int(date[1]), int(date[2]))
 today = datetime.strftime(base, '%Y-%m-%d')
@@ -197,10 +256,43 @@ weekdays = {
 snip.rv = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n# Daily To-do | project:Todo scheduled:{today} due:{tomorrow} until:{week_after}"`
 * [ ] $1
 * [ ] Read a book
-* [ ] Workout
-		* [ ] Push ups ${0:50}
-		* [ ] Sit ups ${0:50}
 
+endsnippet
+
+snippet (\d+)meds "Description" rbA
+`!p
+from datetime import datetime, timedelta
+# parse date filename
+fn_date = fn.rstrip('.md')
+date = fn_date.split("-")
+init_time = match.group(1)
+# get today, and day after tomorrow's date in string
+base = datetime(int(date[0]), int(date[1]), int(date[2]))
+today = datetime.strftime(base, '%Y-%m-%d')
+tomorrow = datetime.strftime(base + timedelta(1), '%Y-%m-%d')
+`* [ ] `!p snip.rv = create_meds_task("2 Acetaminophen 6hrs", init_time, 0)`
+* [ ] `!p snip.rv = create_meds_task("2 Acetaminophen 6hrs", init_time, 600)`
+* [ ] `!p snip.rv = create_meds_task("2 Acetaminophen 6hrs", init_time, 1200)`
+* [ ] `!p snip.rv = create_meds_task("1 Indomethacine 8hrs", init_time, 0)`
+* [ ] `!p snip.rv = create_meds_task("1 Indomethacine 8hrs", init_time, 800)`
+* [ ] `!p snip.rv = create_meds_task("1 Indomethacine 8hrs", init_time, 1600)`
+* [ ] `!p snip.rv = create_meds_task("1 Aspirin EC 12hrs", init_time, 0)`
+* [ ] `!p snip.rv = create_meds_task("1 Aspirin EC 12hrs", init_time, 1200)`
+* [ ] `!p snip.rv = create_meds_task("2 Sennosides-docusate 2daily", init_time, 0)`
+* [ ] `!p snip.rv = create_meds_task("2 Sennosides-docusate 2daily", init_time, 1200)`
+* [ ] `!p snip.rv = create_meds_task("1 Famotidine 1daily", init_time, 400)`
+endsnippet
+
+snippet due "Description" rwA
+`!p
+from datetime import datetime, timedelta
+# parse date filename
+fn_date = fn.rstrip('.md')
+date = fn_date.split("-")
+# get today, and day after tomorrow's date in string
+base = datetime(int(date[0]), int(date[1]), int(date[2]))
+tomorrow = datetime.strftime(base + timedelta(1), '%Y-%m-%d')
+snip.rv = "(" + tomorrow + ")"`
 endsnippet
 
 snippet task "Todo checkbox" b
@@ -548,7 +640,7 @@ summary: Module $1 notes and exercises
 
 ## Notes
 
-	- [Module $1](../notes/m-$1) -- Chapter 
+	- [Module $1](../notes/m-$1) -- Chapter
 
 ## Homeworks
 
@@ -1082,11 +1174,11 @@ snippet taylor "taylor" w
 endsnippet
 
 snippet lim "limit" w
-\lim_{${1:n} \to ${2:\infty}} 
+\lim_{${1:n} \to ${2:\infty}}
 endsnippet
 
 snippet limsup "limsup" w
-\limsup_{${1:n} \to ${2:\infty}} 
+\limsup_{${1:n} \to ${2:\infty}}
 endsnippet
 
 snippet prod "product" w

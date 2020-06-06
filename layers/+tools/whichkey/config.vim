@@ -370,6 +370,7 @@ let g:which_key_map = {
              \ 'k' : 'Horizontal resize plus',
              \ 'l' : 'Vertical resize plus',
              \ 'V' : 'Vertical split',
+             \ 'q' : 'Close split',
           \ },
     \ }
 
