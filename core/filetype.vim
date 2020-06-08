@@ -12,8 +12,6 @@ augroup user_plugin_filetype "{{{
   " autocmd FileType css setlocal equalprg=csstidy\ -\ --silent=true
   " autocmd FileType css setlocal equalprg=css-beautify
 
-  " autocmd BufWr
-
   autocmd FileType javascript,javascriptreact set shiftwidth=2
 
   autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -23,7 +21,8 @@ augroup user_plugin_filetype "{{{
   autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
   " HTML (.gohtml and .tpl for server side)
-  autocmd BufNewFile,BufRead *.html,*.htm,*.gohtml,*.tpl  setf html
+  autocmd BufNewFile,BufRead *.html,*.htm,*.gohtml,*.tpl setf html
+  autocmd BufNewFile,BufRead *.html,*.htm,*.gohtml,*.tpl setlocal nowrap
 
   " Magit
   autocmd User VimagitEnterCommit startinsert

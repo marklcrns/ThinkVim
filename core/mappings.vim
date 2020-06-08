@@ -46,14 +46,14 @@ function! ImprovedDefaultMappings()
   vnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
   vnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
   " Improve scroll, credits: https://github.com/Shougo
-  map <expr> zz (winline() == (winheight(0)+1) / 2) ?
+  noremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
         \ 'zt' : (winline() == 1) ? 'zb' : 'zz'
-  map <expr> <C-f> max([winheight(0) - 2, 1])
-       \ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
-  map <expr> <C-b> max([winheight(0) - 2, 1])
-       \ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
-  map <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
-  map <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
+  noremap <expr> <C-f> max([winheight(0) - 2, 1])
+        \ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
+  noremap <expr> <C-b> max([winheight(0) - 2, 1])
+        \ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
+  noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
+  noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
   " Closing pop-up auto-completion before inserting new line
   inoremap <expr> <M-o> (pumvisible() <bar><bar> &insertmode) ? '<C-e><M-o>' : '<M-o>'
   inoremap <expr> <M-O> (pumvisible() <bar><bar> &insertmode) ? '<C-e><M-O>' : '<M-O>'
@@ -62,14 +62,15 @@ endfunction
 function! ExtendedBasicMappings()
   " Remaps macro record key since q has been remapped
   nnoremap Q q
+  " Disables insert esc operation to force new habit
+  inoremap <Esc> <nop>
+  vnoremap <Esc> <nop>
   " Allow <Esc> to exit terminal-mode back to normal:
   tnoremap <Esc> <C-\><C-n>
-  " Moves curser to the right after exiting insert mode
-  inoremap <Esc> <Esc>`^
   " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
   inoremap fd <Esc>`^
   snoremap fd <Esc>`^
-  vnoremap fd <Esc>`>
+  vnoremap fd <Esc>`<
   vnoremap df <Esc>`>
   inoremap kj <Esc>`^
   snoremap kj <Esc>`^
@@ -127,9 +128,9 @@ function! FileManagementMappings()
   " Set working directory to current file location only for the current window
   nnoremap <Leader>frl :lcd %:p:h<CR>:pwd<CR>
   " Open current file with xdg-open
-  nmap <silent><Leader>oo :!xdg-open "%:p"<CR>
+  nnoremap <silent><Leader>oo :!xdg-open "%:p"<CR>
   " Open current file in google chrome
-  nmap <silent><Leader>og :!google-chrome "%:p"<CR>
+  nnoremap <silent><Leader>og :!google-chrome "%:p"<CR>
 endfunction
 
 function! WindowsManagementMappings()
@@ -288,19 +289,19 @@ function! EmacsLikeMappings()
   " imap <C-w> <C-[>bcaw
   " no longer needed. Ref: https://vim.fandom.com/wiki/Recover_from_accidental_Ctrl-U
   " imap <C-u> <C-G>u<C-U>
-  imap <C-h> <BS>
-  imap <C-l> <Del>
-  imap <C-k> <C-[>Da
-  imap <C-a> <Home>
-  imap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
+  inoremap <C-h> <BS>
+  inoremap <C-l> <Del>
+  inoremap <C-k> <C-[>Da
+  inoremap <C-a> <Home>
+  inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
   " Cursor navigation
-  imap <C-b> <Left>
-  imap <C-f> <Right>
-  imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Down>"
-  imap <expr><C-p> pumvisible() ? "\<C-p>" : "\<Up>"
+  inoremap <C-b> <Left>
+  inoremap <C-f> <Right>
+  inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Down>"
+  inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<Up>"
   " move between sentences
-  imap <M-a> <C-[>(i
-  imap <M-e> <C-[>)i
+  inoremap <M-a> <C-[>(i
+  inoremap <M-e> <C-[>)i
 endfunction
 
 function! QuickFixLocationListMappings()

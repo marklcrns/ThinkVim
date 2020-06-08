@@ -51,7 +51,7 @@ def create_meds_task_head(desc, time):
 	elif time < 1000 and time > 99:
 		str_date_time += "0" + str(time)
 		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
-	elif time < 100:
+	elif time < 100 and time > 0:
 		str_date_time += "00" + str(time)
 		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
 	elif time == 0:
@@ -82,7 +82,7 @@ def create_meds_task(desc, time, offset):
 		str_time = str_time[:2] + ":" + str_time[2:]
 		str_date_time += "0" + str(time)
 		str_date_time = str_date_time[:2] + ":" + str_date_time[2:]
-	elif time < 100:
+	elif time < 100 and time > 0:
 		str_time += "00" + str(time)
 		str_time = str_time[:2] + ":" + str_time[2:]
 		str_date_time += "00" + str(time)
