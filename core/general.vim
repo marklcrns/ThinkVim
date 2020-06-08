@@ -171,22 +171,30 @@ set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 
 " ==================== Autocommands ==================== "
 
-" Disable swap/undo/viminfo/shada files in temp directories or shm
-augroup MyAutoCmd
+augroup MyAutoCmds
   autocmd!
+  " Disable swap/undo/viminfo/shada files in temp directories or shm
   silent! autocmd BufNewFile,BufReadPre
         \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
         \ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
+  " Auto-resize splits when Vim gets resized.
+  autocmd VimResized * wincmd =
+  " autoread file to check and update new changes in current buffer
+  autocmd FocusGained,BufEnter * :checktime
+  " Triger `autoread` when files changes on disk
+  " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+  " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+  autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+        \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+  " Notification after file change
+  " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+  autocmd FileChangedShellPost *
+        \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+  " " Disables automatic commenting on newline:
+  " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  " " Always choose read-only when SwapExists
+  " autocmd SwapExists * let v:swapchoice = "o"
 augroup END
-
-" Disables automatic commenting on newline:
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Auto-resize splits when Vim gets resized.
-autocmd VimResized * wincmd =
-
-" autoread file to check and update new changes in current buffer
-autocmd FocusGained,BufEnter * :checktime
 
 augroup CursorUI
   autocmd!
@@ -209,25 +217,12 @@ function s:MkNonExDir(file, buf)
     endif
   endif
 endfunction
-augroup BWCCreateDir
+
+augroup AutoMkNonExDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-" Triger `autoread` when files changes on disk
-" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
-" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
-      \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
-
-" Notification after file change
-" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
-autocmd FileChangedShellPost *
-      \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
-
-" " Always choose read-only when SwapExists
-" autocmd SwapExists * let v:swapchoice = "o"
 
 " Auto capitalization in start of sentences
 " Ref: https://davidxmoody.com/2014/vim-auto-capitalisation/
@@ -256,6 +251,10 @@ autocmd FileChangedShellPost *
 " endfu
 "
 " com! WP call WordProcessorMode()
-" au BufNewFile,BufRead *.mkd call WordProcessorMode()
-" au BufNewFile,BufRead *.md call WordProcessorMode()
-" au BufNewFile,BufRead *.txt call WordProcessorMode()
+" augroup WordProcessor
+"   autocmd!
+"   autocmd BufNewFile,BufRead *.mkd call WordProcessorMode()
+"   autocmd BufNewFile,BufRead *.md call WordProcessorMode()
+"   autocmd BufNewFile,BufRead *.txt call WordProcessorMode()
+" augroup END
+
