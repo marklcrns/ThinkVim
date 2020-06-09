@@ -1,7 +1,6 @@
 " ==================== Mappings Functions ==================== "
 
-" BASIC MAPPINGS {{{
-
+" BASIC MAPPINGS -------------------- {{{
 function! ExitMappings()
   " Quit without saving
   nnoremap <Leader>q :q!<CR>
@@ -62,9 +61,10 @@ endfunction
 function! ExtendedBasicMappings()
   " Remaps macro record key since q has been remapped
   nnoremap Q q
-  " Disables insert esc operation to force new habit
+  " Disables esc key on some modes to force new habit
+  noremap <Esc> <nop>
   inoremap <Esc> <nop>
-  vnoremap <Esc> <nop>
+  cnoremap <Esc> <nop>
   " Allow <Esc> to exit terminal-mode back to normal:
   tnoremap <Esc> <C-\><C-n>
   " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
@@ -74,6 +74,9 @@ function! ExtendedBasicMappings()
   vnoremap df <Esc>`>
   inoremap kj <Esc>`^
   snoremap kj <Esc>`^
+  inoremap <C-[> <Esc>`^
+  vnoremap <C-[> <Esc>
+  cnoremap <C-[> <C-c>
   cnoremap <C-g> <C-c>
   " Yank to end
   nnoremap Y y$
@@ -92,12 +95,20 @@ function! ExtendedBasicMappings()
   " nnoremap <silent> <Leader><M-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
   " nnoremap <silent> <Leader><M-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 endfunction
+" }}} BASIC MAPPINGS
 
-" BASIC MAPPINGS }}}
+" OPERATOR MAPPINGS -------------------- {{{
+function! OperatorMappings()
+  " Inside next and last parenthesis
+  onoremap in( :<C-u>normal! f(vi(<CR>
+  onoremap il( :<C-u>normal! F)vi(<CR>
+  " Around next and last parenthesis
+  onoremap an( :<C-u>normal! f(va(<CR>
+  onoremap al( :<C-u>normal! F)va(<CR>
+endfunction
+" }}} OPERATOR MAPPINGS
 
-
-" FILE AND WINDOWS MAPPINGS {{{
-
+" FILE AND WINDOWS MAPPINGS -------------------- {{{
 function! FilePathMappings()
   " Resources: https://vim.fandom.com/wiki/Get_the_name_of_the_current_file
   " Yank buffer's relative path without file extension to '+' clipboard
@@ -134,50 +145,61 @@ function! FileManagementMappings()
 endfunction
 
 function! WindowsManagementMappings()
-  " " Ref: https://stackoverflow.com/a/29236158
-  " " TODO: Fix behavior not closing readonly buffer split
-  " function! SmartBufClose()
-  "   let curBuf = bufnr('%')
-  "   let curBufName = bufname('%')
-  "   let curTab = tabpagenr()
-  "   exe 'bnext'
-  "
-  "   " Quit window/split if buffer is empty ([No Name] buffer)
-  "   if (curBufName == '' || !&modifiable || &readonly)
-  "       exe 'q!'
-  "       return
-  "   else
-  "     " If in last buffer, create empty buffer
-  "     if curBuf == bufnr('%')
-  "         exe 'enew'
-  "     endif
-  "
-  "     " Loop through tabs
-  "     for i in range(tabpagenr('$'))
-  "         " Go to tab (is there a way with inactive tabs?)
-  "         exe 'tabnext ' . (i + 1)
-  "         " Store active window nr to restore later
-  "         let curWin = winnr()
-  "         " Loop through windows pointing to buffer
-  "         let winnr = bufwinnr(curBuf)
-  "         while (winnr >= 0)
-  "             " Go to window and switch to next buffer
-  "             exe winnr . 'wincmd w | bnext'
-  "             " Restore active window
-  "             exe curWin . 'wincmd w'
-  "             let winnr = bufwinnr(curBuf)
-  "         endwhile
-  "       echo 'Exited ' . curBufName
-  "     endfor
-  "
-  "     " Close buffer, restore active tab
-  "     exe 'bd' . curBuf
-  "     exe 'tabnext ' . curTab
-  "   endif
-  " endfunction
-  " noremap <silent> q :call SmartBufClose()<cr>
-  " Delete buffer
-  noremap q :bd<CR>
+  " Smartly close buffers mindful of splits and read-only buffers
+  " Ref: https://stackoverflow.com/a/29236158
+  function! SmartBufClose()
+    let curBuf = bufnr('%')
+    let curBufName = bufname('%')
+    let curTab = tabpagenr()
+    let curWinNr = winnr()
+    " Quit window/split if buffer is empty ([No Name] buffer)
+    if (curBufName ==# '' || !&modifiable || &readonly)
+      execute 'q!'
+      return
+    endif
+    " Go to next buffer
+    execute 'bnext'
+    " If in the same buffer as the last, create empty buffer
+    if curBuf == bufnr('%')
+      " Check for splits
+      if curWinNr ==# 1
+        execute "2wincmd w"
+      else
+        execute "1wincmd w"
+      endif
+      if curWinNr !=# winnr()
+        " close split if exist without closing the only buffer
+        execute curWinNr . "wincmd w"
+        execute "close"
+        return
+      else
+        " create new buffer empty if no splits
+        execute 'enew'
+      endif
+    endif
+    " Loop through tabs
+    for i in range(tabpagenr('$'))
+        " Go to tab (is there a way with inactive tabs?)
+        execute 'tabnext ' . (i + 1)
+        " Store active window nr to restore later
+        let curWin = winnr()
+        " Loop through windows pointing to buffer
+        let winnr = bufwinnr(curBuf)
+        while (winnr >= 0)
+            " Go to window and switch to next buffer
+            execute winnr . 'wincmd w | bnext'
+            " Restore active window
+            execute curWin . 'wincmd w'
+            let winnr = bufwinnr(curBuf)
+        endwhile
+      echo 'Exited ' . curBufName
+    endfor
+
+    " Close buffer, restore active tab
+    execute 'bd' . curBuf
+    execute 'tabnext ' . curTab
+  endfunction
+  noremap <silent> q :call SmartBufClose()<cr>
   " Wipe current buffer
   noremap <LocalLeader><Tab> :Bw<CR>
   " Wipe all buffer except current
@@ -223,12 +245,9 @@ function! WindowsManagementMappings()
   " nnoremap <C-j> <C-w>j
   " nnoremap <C-k> <C-w>k
 endfunction
+" }}} FILE AND WINDOWS MAPPINGS
 
-" FILE AND WINDOWS MAPPINGS }}}
-
-
-" UTILITIES MAPPINGS {{{
-
+" UTILITIES MAPPINGS -------------------- {{{
 function! UtilityMappings()
   " Select last inserted characters.
   inoremap <M-v> <ESC>v`[
@@ -399,12 +418,9 @@ function! FoldsMappings()
   nnoremap <silent> <LocalLeader>zj :call NextClosedFold('j')<cr>
   nnoremap <silent> <LocalLeader>zk :call NextClosedFold('k')<cr>
 endfunction
+" }}} UTILITIES MAPPINGS
 
-" UTILITIES MAPPINGS }}}
-
-
-" TEXT MANIPULATION MAPPINGS {{{
-
+" TEXT MANIPULATION MAPPINGS -------------------- {{{
 function! TextManipulationMappings()
   " Remove spaces at the end of lines
   nnoremap <silent><Leader>rs :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
@@ -462,12 +478,9 @@ function! TextManipulationMappings()
   " Ref: https://castle.Dev/post/lecture-notes-1/
   inoremap <C-s> <Esc>:set spell<bar>norm i<C-g>u<Esc>[s"syiW1z="tyiW:let @l=line('.')<bar>let @c=virtcol('.')<CR>``a<C-g>u<Esc>:set nospell<bar>:echo getreg('l') . ":" . getreg('c') . " spell fixed (" . getreg('s') . " -> " . getreg('t') . ")"<CR>la
 endfunction
+" }}} TEXT MANIPULATION MAPPINGS
 
-" TEXT MANIPULATION MAPPINGS }}}
-
-
-" SETTINGS TOGGLE MAPPINGS {{{
-
+" SETTINGS TOGGLE MAPPINGS -------------------- {{{
 function! SettingsToggleMappings()
   if &cursorline
     let g:activate_cursorline = 1
@@ -552,12 +565,9 @@ function! SettingsToggleMappings()
   " Toggle text wrap
   nnoremap <LocalLeader>sw :set wrap!<CR>
 endfunction
+" }}} SETTINGS TOGGLE MAPPINGS
 
-" SETTINGS TOGGLE MAPPINGS }}}
-
-
-" MISC MAPPINGS {{{
-
+" MISC MAPPINGS -------------------- {{{
 function! JavaMappings()
   function! JavaCompile()
     exec '!javac %'
@@ -571,9 +581,7 @@ function! JavaMappings()
   " Save, complie, and run java file in current buffer <C-c> to exit program
   autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac % && java %:r<CR>
 endfunction
-
-" MISC MAPPINGS }}}
-
+" }}} MISC MAPPINGS
 
 " ==================== Custom single purpose functions and mappings ==================== "
 
@@ -635,13 +643,14 @@ function! VimConvertImportFiles(repeat)
 endfunction
 nmap <Leader>;wi :call VimConvertImportFiles()<Left>
 
-
 " ==================== Mappings Function Calls ==================== "
 
 " Basic Mappings
 call ExitMappings()
 call ImprovedDefaultMappings()
 call ExtendedBasicMappings()
+" Operator Mappings
+call OperatorMappings()
 " File and Windows Mappings
 call FilePathMappings()
 call FileManagementMappings()

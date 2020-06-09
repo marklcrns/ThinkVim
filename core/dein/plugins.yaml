@@ -33,17 +33,15 @@
 - repo: itchyny/lightline.vim
   hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
 
-- repo: bagrat/vim-buffet
-  on_event: [FileType, VimEnter]
-  hook_source: |
-    let g:buffet_always_show_tabline = 0
-    let g:buffet_use_devicons = 1
-    let g:buffet_show_index = 1
-    let g:buffet_tab_icon = "\uf00a"
-    let g:buffet_left_trunc_icon = "\uf0a8"
-    let g:buffet_right_trunc_icon = "\uf0a9"
+- repo: hardcoreplayers/vim-buffet
+  on_event: [ VimEnter, BufReadPre, BufNew ]
   hook_add: source $VIM_PATH/layers/+ui/buffet/config.vim
   depends: lightline.vim
+
+# - repo: bagrat/vim-buffet
+#   on_event: [ VimEnter, BufReadPre, BufNew ]
+#   hook_add: source $VIM_PATH/layers/+ui/buffet/config.vim
+#   depends: lightline.vim
 
 # Tools
 # ----------------------------------------

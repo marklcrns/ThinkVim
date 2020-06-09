@@ -16,9 +16,9 @@ function! s:goyo_enter()
   endif
 
   " set signcolumn=no
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
+  " set noshowmode
+  " set noshowcmd
+  " set scrolloff=999
   " Activate Limelight
   Limelight
 endfunction
@@ -35,16 +35,19 @@ function! s:goyo_leave()
     silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   endif
 
-  set signcolumn=yes:2
-  set showmode
-  set showcmd
-  set scrolloff=5
+  " set signcolumn=yes:2
+  " set showmode
+  " set showcmd
+  " set scrolloff=5
   " De-activate Limelight
   Limelight!
 endfunction
 
-autocmd! User GoyoEnter
-autocmd! User GoyoLeave
-autocmd  User GoyoEnter nested call <SID>goyo_enter()
-autocmd  User GoyoLeave nested call <SID>goyo_leave()
+augroup user_plugin_goyo
+  autocmd!
+  autocmd! User GoyoEnter
+  autocmd! User GoyoLeave
+  autocmd  User GoyoEnter nested call <SID>goyo_enter()
+  autocmd  User GoyoLeave nested call <SID>goyo_leave()
+augroup END
 

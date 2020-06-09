@@ -9,13 +9,16 @@ let g:indent_guides_exclude_filetypes =
     \ [ 'help', 'terminal', 'defx', 'denite', 'nerdtree',
     \ 'startify', 'tagbar', 'vista_kind', 'vista', 'fzf',
     \ 'codi', 'which_key', 'calendar', 'coc', 'floaterm',
-    \ 'any-jump', 'anyjump', 'coc-explorer' ]
+    \ 'any-jump', 'coc-explorer' ]
 
 " Manual auto disable if exclude does not work
-" autocmd Filetype any-jump
-"    \ autocmd BufWinEnter <buffer> IndentGuidesDisable
-" autocmd Filetype any-jump
-"    \ autocmd BufWinLeave <buffer> IndentGuidesEnable
-" 
-" au BufEnter any-jump.* IndentGuidesDisable
-" au BufLeave any-jump.* IndentGuidesEnable
+augroup ManualIndentGuideToggle
+  " Any-jump
+  autocmd!
+  autocmd Filetype any-jump
+    \ autocmd BufWinEnter <buffer> IndentGuidesDisable
+  autocmd Filetype any-jump
+    \ autocmd BufWinLeave <buffer> IndentGuidesEnable
+  autocmd BufEnter any-jump.* IndentGuidesDisable
+  autocmd BufLeave any-jump.* IndentGuidesEnable
+augroup END

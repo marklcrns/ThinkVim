@@ -1,5 +1,6 @@
-" DISPLAY SETTINGS {{{
+" ==================== General Settings ==================== "
 
+" DISPLAY SETTINGS -------------------- {{{
 " Enable true color
 if has('termguicolors')
   set termguicolors
@@ -9,12 +10,9 @@ set number
 set relativenumber
 set scrolloff=3 " Keeps some screen visible while scrolling
 set cmdheight=2 " Height of the command line
+" }}} DISPLAY SETTINGS
 
-" DISPLAY SETTINGS }}}
-
-
-" UI SETTINGS {{{
-
+" UI SETTINGS -------------------- {{{
 " Encoding
 if has('vim_starting')
   set encoding=UTF-8
@@ -24,7 +22,7 @@ endif
 if has('folding')
   set foldenable
   set foldmethod=syntax
-  set foldlevelstart=99
+  set foldlevelstart=0
 endif
 " Status and tab line
 set laststatus=2
@@ -32,34 +30,31 @@ set showtabline=2
 set statusline=-       " hide file name in statusline
 set fillchars+=vert:\| " add a bar for vertical splits
 set hidden             " Hide buffers
-" set textwidth=80  " Text width maximum chars before wrapping text on insert
-set expandtab     " Don't expand tabs to spaces.
-set tabstop=2     " The number of spaces a tab is
-set softtabstop=2 " While performing editing operations
-set shiftwidth=2  " Number of spaces to use in auto(indent)
-set smarttab      " Tab insert blanks according to 'shiftwidth'
-set autoindent    " Use same indenting on new lines
-set smartindent   " Smart autoindenting on new lines
-set shiftround    " Round indent to multiple of 'shiftwidth'
+" set textwidth=80       " Text width maximum chars before wrapping text on insert
+set expandtab          " Don't expand tabs to spaces.
+set tabstop=2          " The number of spaces a tab is
+set softtabstop=2      " While performing editing operations
+set shiftwidth=2       " Number of spaces to use in auto(indent)
+set smarttab           " Tab insert blanks according to 'shiftwidth'
+set autoindent         " Use same indenting on new lines
+set smartindent        " Smart autoindenting on new lines
+set shiftround         " Round indent to multiple of 'shiftwidth'
 set signcolumn=yes:2
 set colorcolumn=80,165,250
-set sidescroll=5  " shows number of chars instantly when scrolling horizontally
+set sidescroll=5       " shows number of chars instantly when scrolling horizontally
 set wrap
-set breakindent   " Enable wrap indentation
-" indent by an additional 2 characters on wrapped lines, when line >= 40 characters, put 'showbreak' at start of line
+set breakindent        " Enable wrap indentation
+" indent by an additional 2 characters on wrapped lines,
+" when line >= 40 characters, put 'showbreak' at start of line
 set breakindentopt=shift:2,min:40,sbr
-set showbreak=>>  " append '>>' to indent
-" let &showbreak=repeat(' ', 2)
-set cursorline      " Highlights entire line of current cursor position"
-" set cursorcolumn    " Highlights column of current cursor position
+set showbreak=>>       " append '>>' to indent
+set cursorline         " Highlights entire line of current cursor position"
+" set cursorcolumn       " Highlights column of current cursor position
 " Live interactive search and replace
-set inccommand=split  " Options: split or nosplit
+set inccommand=split   " Options: split or nosplit
+" }}} UI SETTINGS
 
-" UI SETTINGS }}}
-
-
-" FILE MANAGEMENT SETTINGS {{{
-
+" FILE MANAGEMENT SETTINGS -------------------- {{{
 set autoread
 set autowrite
 set confirm
@@ -97,12 +92,9 @@ if exists('&backupskip')
   set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*
   set backupskip+=.vault.vim
 endif
+" }}} FILE MANAGEMENT SETTINGS
 
-" FILE MANAGEMENT SETTINGS }}}
-
-
-" MISC SETTINGS {{{
-
+" MISC SETTINGS -------------------- {{{
 if has('mac')
   let g:clipboard = {
         \   'name': 'macOS-clipboard',
@@ -127,18 +119,16 @@ set timeoutlen=500 " Time out on mappings
 set updatetime=400 " Idle time to write swap and trigger CursorHold
 set ttimeoutlen=10 " Time out on key codes
 set mouse=a        " Enable mouse support
+set magic          " Enable regex in search without backslashes. Same as '\v'
 " Nvim specific settings
 if !has('nvim')
   set ttymouse=sgr
   set cryptmethod=blowfish2
   set ttyfast
 endif
+" }}} MISC SETTINGS
 
-" MISC SETTINGS }}}
-
-
-" COMPLETION AND SYNTAX SETTINGS {{{
-
+" COMPLETION AND SYNTAX SETTINGS -------------------- {{{
 if has('conceal')
   set conceallevel=2
   " set concealcursor=niv
@@ -165,8 +155,7 @@ set matchtime=1     " Tenths of a second to show the matching paren
 set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
 set grepprg=rg\ --vimgrep\ $*
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
-
-" COMPLETION AND SYNTAX SETTINGS }}}
+" }}} COMPLETION AND SYNTAX SETTINGS
 
 
 " ==================== Autocommands ==================== "
@@ -190,8 +179,8 @@ augroup MyAutoCmds
   " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
   autocmd FileChangedShellPost *
         \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-  " " Disables automatic commenting on newline:
-  " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  " Disables automatic commenting on newline:
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   " " Always choose read-only when SwapExists
   " autocmd SwapExists * let v:swapchoice = "o"
 augroup END
@@ -222,7 +211,6 @@ augroup AutoMkNonExDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
-
 
 " Auto capitalization in start of sentences
 " Ref: https://davidxmoody.com/2014/vim-auto-capitalisation/
