@@ -654,6 +654,7 @@ if dein#tap('vim-fugitive')
   nnoremap <Leader>gdc :<C-u>Git diff --cached<CR>
   nnoremap <Leader>gdd :<C-u>Git diff<CR>
   nnoremap <Leader>gdt :<C-u>Git difftool<CR>
+  nnoremap <Leader>gds :<C-u>Gdiffsplit!<CR>
   nnoremap <Leader>gdh :<C-u>Ghdiffsplit<CR>
   nnoremap <Leader>gdv :<C-u>Gvdiffsplit<CR>
   nnoremap <Leader>gl :<C-u>Glog<CR>
