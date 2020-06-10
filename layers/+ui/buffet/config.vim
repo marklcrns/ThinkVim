@@ -9,10 +9,10 @@ let g:buffet_left_trunc_icon = "\uf0a8"
 let g:buffet_right_trunc_icon = "\uf0a9"
 
 function! g:BuffetSetCustomColors()
-    hi! BuffetCurrentBuffer cterm=NONE ctermbg=106 ctermfg=8 guibg=#D9D7CE guifg=#000000
-    hi! BuffetTrunc cterm=bold ctermbg=10 ctermfg=8 guibg=#999999 guifg=#000000
-    hi! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
-    hi! BuffetTab cterm=NONE ctermbg=66 ctermfg=8 guibg=#59C2FF guifg=#000000
-    hi! BuffetActiveBuffer cterm=NONE ctermbg=10 ctermfg=239 guibg=#504945 guifg=#000000
+  highlight! BuffetCurrentBuffer cterm=NONE ctermbg=106 ctermfg=8 guibg=#D9D7CE guifg=#000000
+  highlight! BuffetTrunc cterm=bold ctermbg=10 ctermfg=8 guibg=#999999 guifg=#000000
+  highlight! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
+  highlight! BuffetTab cterm=NONE ctermbg=66 ctermfg=8 guibg=#59C2FF guifg=#000000
+  highlight! BuffetActiveBuffer cterm=NONE ctermbg=10 ctermfg=239 guibg=#504945 guifg=#000000
 endfunction
 
