@@ -37,6 +37,16 @@ boundaries = {
 	"V": ["||", "||"]
 }
 
+weekdays = {
+	"0": "Monday",
+	"1": "Tuesday",
+	"2": "Wednesday",
+	"3": "Thursday",
+	"4": "Friday",
+	"5": "Saturday",
+	"6": "Sunday"
+}
+
 # Todo meds taskk
 def create_meds_task_head(desc, time):
 	time = int(time)
@@ -244,16 +254,6 @@ today = datetime.strftime(base, '%Y-%m-%d')
 tomorrow = datetime.strftime(base + timedelta(1), '%Y-%m-%d')
 week_after = datetime.strftime(base + timedelta(7), '%Y-%m-%d')
 
-weekdays = {
-  "0": "Monday",
-  "1": "Tuesday",
-  "2": "Wednesday",
-  "3": "Thursday",
-  "4": "Friday",
-  "5": "Saturday",
-  "6": "Sunday"
-}
-
 meta = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n"
 header = "# Daily To-do"
 # Task warrior filters
@@ -262,9 +262,10 @@ sched = f"scheduled:{today}"
 due = f"due:{tomorrow}"
 until = f"until:{week_after}"
 # Result
-result = meta + header + " | " + proj + " " + sched
+result = meta + header + " | " + proj + " " + sched + " " + until
 if match.group(1) == "!":
-	result += " " + due + " " + until
+	result += " " + due
+
 # Output
 snip.rv = result`
 * [ ] $1
