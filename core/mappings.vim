@@ -662,5 +662,3 @@ call TextManipulationMappings()
 call SettingsToggleMappings()
 " Misc Mappings
 call JavaMappings()
-
-" nnoremap <leader>G :silent execute "grep! " . shellescape(expand("<cWORD>")). " **/*"<CR>:cw<CR>

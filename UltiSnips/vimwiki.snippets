@@ -225,7 +225,9 @@ summary: $3
 
 endsnippet
 
-snippet todo "To-do list template" bA
+# Creates Todo list with Task Warrior.
+# Prepend "!" to include "due" and "until" filter.
+snippet '(!)?todo' "To-do list template" rbA
 ---
 title: To-do list for `!p
 date = fn.rstrip('.md')
@@ -252,8 +254,19 @@ weekdays = {
   "6": "Sunday"
 }
 
-# output
-snip.rv = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n# Daily To-do | project:Todo scheduled:{today} due:{tomorrow} until:{week_after}"`
+meta = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n"
+header = "# Daily To-do"
+# Task warrior filters
+proj = "project:Todo"
+sched = f"scheduled:{today}"
+due = f"due:{tomorrow}"
+until = f"until:{week_after}"
+# Result
+result = meta + header + " | " + proj + " " + sched
+if match.group(1) == "!":
+	result += " " + due + " " + until
+# Output
+snip.rv = result`
 * [ ] $1
 * [ ] Read a book
 
@@ -348,14 +361,6 @@ snippet t6 "Table with 6 columns" b
 |   |   |   |   |   |
 endsnippet
 
-# `t` ultisnips variable does not work in coc-snippets
-# snippet box "Box"
-# `!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
-# │ $1 │
-# `!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
-# $0
-# endsnippet
-
 snippet TM "Markdown trademark symbol" i
 &trade;
 endsnippet
@@ -378,41 +383,6 @@ endsnippet
 snippet ttime "Video lecture timestamp item" iA
 - ${1:title} ${2:1:00}
 endsnippet
-
-# VERSION 1
-# Usage: (00:00:00 or 00:00)<youtube-url>&y
-#snippet '\(((\d{1,2}:)?(\d{1,2}):(\d{2}))\)((https:\/\/www\.|www\.)?youtube.com.*)&y' "Youtube video lecture time stamp with link" wrA
-#[(`!p snip.rv = match.group(1)`)](`!p
-#hours = match.group(2)
-#
-## check if hours exist
-#if hours:
-#	hours = int(hours).rstrip(":")
-#else:
-#	hours = 0
-#
-#minutes = int(match.group(3))
-#seconds = int(match.group(4))
-#
-#url = match.group(5)
-#link = ""
-## strip unnecessary url features
-#for i in range(0, len(url)):
-#	if url[i] != "&":
-#		link += url[i]
-#	else:
-#		break
-#
-## check if valid link
-#if "www" not in link:
-#	link = "https://www." + link
-#elif "https://" not in link:
-#  link = "https://" + link
-#
-## convert time to seconds then append to link
-#snip.rv = link + "&t=" + str((hours * 60) + (minutes * 60) + seconds)
-#`)
-#endsnippet
 
 # TODO: Truncate regex match to fix "maxmempattern" error
 # VERSION 2
