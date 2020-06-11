@@ -189,6 +189,7 @@ let g:which_key_map = {
              \ 's' : 'Gina status',
              \ 'v' : 'Git commit browser',
           \ },
+    \ 'G' : 'Grep operator',
     \ 'i' : {
           \ 'name' : '+interface',
           \ 'd' : {
