@@ -124,6 +124,7 @@
   // "tsserver.npm": "/usr/bin/npm",  // `nvm deactivate` to make this work
 
   // java
+  "java.enabled": true,
   "java.implementationsCodeLens.enabled": true,
   "java.referencesCodeLens.enabled": true,
   "java.errors.incompleteClasspath.severity": "error",

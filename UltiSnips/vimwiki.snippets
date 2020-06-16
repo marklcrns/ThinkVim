@@ -204,9 +204,9 @@ endsnippet
 snippet meta "Meta deta template" bA
 ---
 title: ${1:`!p
-fn = fn.rstrip('.md')
-snip.rv = fn.replace('-', ' ').replace('_', ' ').title()`}
-author: ${2:`whoami`}
+title = fn.rstrip('.md')
+snip.rv = title.replace('-', ' ').replace('_', ' ').title()`}
+author: ${2:`Mark Lucernas`}
 date: `date '+%Y-%m-%d'`
 summary: $3
 ---
@@ -218,8 +218,8 @@ endsnippet
 snippet temp "Vimwiki document template" bA
 ---
 title: ${1:`!p
-fn = fn.rstrip('.md')
-snip.rv = fn.replace('-', ' ').replace('_', ' ').title()`}
+title = fn.rstrip('.md')
+snip.rv = title.replace('-', ' ').replace('_', ' ').title()`}
 author: ${2:Mark Lucernas}
 date: `date '+%Y-%m-%d'`
 summary: $3
@@ -241,7 +241,7 @@ snippet '(!)?todo' "To-do list template" rbA
 ---
 title: To-do list for `!p
 date = fn.rstrip('.md')
-snip.rv = date `
+snip.rv = date`
 author: Mark Lucernas
 date: `!p
 from datetime import datetime, timedelta
@@ -589,6 +589,52 @@ summary: $3
 ## $1.4 $7
 
 ## $1.5 $8
+
+
+<br>
+
+# Resources
+
+endsnippet
+
+# ==========CISC 191 Note taking snippets========== #
+snippet cisctemp "Vimwiki CISC 191 Module document template" bA
+---
+title: CISC 190 Week ${1:0}
+author: ${2:Mark Lucernas}
+date: `date '+%Y-%m-%d'`
+summary: Week $1 notes and activities
+---
+
+
+# Week $1
+
+## Notes
+
+	- [Week $1](../notes/w-$1) -- Chapter
+
+endsnippet
+
+snippet ciscntemp "Vimwiki CISC 191 notes template" bA
+---
+title: CISC 190 Week Notes ${1:0}
+author: ${2:Mark Lucernas}
+date: `date '+%Y-%m-%d'`
+summary: $3
+---
+
+
+# Week $1
+
+## Chapter $5: $6
+
+### $5.1
+
+### $5.2
+
+### $5.3
+
+### $5.4
 
 
 <br>

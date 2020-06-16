@@ -460,7 +460,7 @@ let g:which_key_localmap = {
               \ 'H' : 'Vimwiki all to html',
               \ 'i' : 'Vimwiki diary index',
               \ 'l' : 'Vimwiki generate links',
-              \ 'L' : 'Vimwiki custom generate reference links',
+              \ 'L' : 'Vimwiki custom generate resources links',
               \ 'r' : 'Vimwiki rename link',
               \ 's' : 'Vimwiki UI select',
               \ 't' : 'Vimwiki index new tab',

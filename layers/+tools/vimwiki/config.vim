@@ -95,9 +95,9 @@ function! CopyMatches(reg)
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
-function! IndexReferenceLinks()
+function! IndexResourcesLinks()
     " Delete exising links
-    exe 'g/\# References/'
+    exe 'g/\# Resources/'
     exe 'norm! o'
     exe 'norm VGd'
     " Clear `x` register and copy all reference links
@@ -105,7 +105,7 @@ function! IndexReferenceLinks()
     exe 'g/- \[.*](.*)/y A'
     call CopyMatches('x')
     " Paste all links to reference header
-    exe 'g/\# References/'
+    exe 'g/\# Resources/'
     exe 'norm! o'
     exe 'norm VG"xpVG>'
 endfunction
@@ -130,8 +130,8 @@ augroup VimwikiEditMode
   " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
   " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
   autocmd FileType vimwiki
-    \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^a" :
-    \ "\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^a"
+        \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^a" :
+        \ "\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^a"
 augroup END
 
 
@@ -154,7 +154,7 @@ augroup VimwikiCustomMappings
         \ "\<ESC>:VimwikiReturn 1 5\<CR>"
 
   autocmd Filetype vimwiki inoremap <silent><buffer><S-CR> :VimwikiReturn 4 1<CR>
-  autocmd Filetype vimwiki nnoremap <buffer><LocalLeader>wL :call IndexReferenceLinks()<CR>
+  autocmd Filetype vimwiki nnoremap <buffer><LocalLeader>wL :call IndexResourcesLinks()<CR>
 augroup END
 
 " Quick fix hack on <CR> and <S-CR> being remapped when comming back to a session

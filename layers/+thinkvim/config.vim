@@ -249,13 +249,13 @@ endif
 
 if dein#tap('vim-easy-align')
   " Start interactive EasyAlign in visual mode
-  xmap <Leader>raa <Plug>(EasyAlign)
+  xnoremap <Leader>raa <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object
-  nmap <Leader>raa <Plug>(EasyAlign)
+  nnoremap <Leader>raa <Plug>(EasyAlign)
   " Start Live-interactive EasyAlign in visual mode
-  xmap <Leader>rAA <Plug>(LiveEasyAlign)
+  xnoremap <Leader>rAA <Plug>(LiveEasyAlign)
   " Start Live-interactive EasyAlign for a motion/text object
-  nmap <Leader>rAA <Plug>(LiveEasyAlign)
+  nnoremap <Leader>rAA <Plug>(LiveEasyAlign)
 endif
 
 

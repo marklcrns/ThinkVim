@@ -22,7 +22,7 @@ endif
 if has('folding')
   set foldenable
   set foldmethod=syntax
-  set foldlevelstart=0
+  set foldlevelstart=99
 endif
 " Status and tab line
 set laststatus=2
