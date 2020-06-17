@@ -110,6 +110,7 @@ let g:which_key_map = {
           \ },
     \ 'f' : {
           \ 'name' : '+file-management',
+          \ 'D' : "Delete current file",
           \ 'd' : {
                 \ 'name' : '+file-finder',
                 \ 'b' : 'Find on buffers',

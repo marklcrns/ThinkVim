@@ -134,6 +134,7 @@ function! FilePathMappings()
 endfunction
 
 function! FileManagementMappings()
+  nnoremap <Leader>fD :call delete(expand("%")) | bdelete!
   " Set working directory to current file location for all windows
   nnoremap <Leader>frc :cd %:p:h<CR>:pwd<CR>
   " Set working directory to current file location only for the current window
