@@ -570,9 +570,9 @@ function! JavaMappings()
   " Autocompile Java and run last Vimux command
   autocmd FileType java nnoremap <buffer><silent><Leader>ljj :call JavaCompile()<CR>
   " Compile current java file
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac %<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac -Xlint %<CR>
   " Save, complie, and run java file in current buffer <C-c> to exit program
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac % && java %:r<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac -Xlint % && java %:r<CR>
 endfunction
 " }}} MISC MAPPINGS
 
