@@ -62,7 +62,6 @@ function! ExtendedBasicMappings()
   " Remaps macro record key since q has been remapped
   nnoremap Q q
   " Disables esc key on some modes to force new habit
-  noremap <Esc> <nop>
   inoremap <Esc> <nop>
   cnoremap <Esc> <nop>
   " Allow <Esc> to exit terminal-mode back to normal:
@@ -74,8 +73,6 @@ function! ExtendedBasicMappings()
   vnoremap df <Esc>`>
   inoremap kj <Esc>`^
   snoremap kj <Esc>`^
-  inoremap <C-[> <Esc>`^
-  vnoremap <C-[> <Esc>
   cnoremap <C-[> <C-c>
   cnoremap <C-g> <C-c>
   " Yank to end
@@ -191,6 +188,7 @@ function! WindowsManagementMappings()
     execute 'bd' . curBuf
     execute 'tabnext ' . curTab
     " if only one buffer remains, and a split/s exists close all extra splits
+    " Ref: https://superuser.com/questions/345520/vim-number-of-total-buffers
     if len(getbufinfo({'buflisted':1})) ==# 1 && winnr('$') !=# 1
       for i in range(winnr('$') - 1)
         execute "close"
