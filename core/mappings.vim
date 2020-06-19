@@ -160,7 +160,7 @@ function! WindowsManagementMappings()
     " Go to next buffer
     execute 'bnext'
     " If in the same buffer as the last, create empty buffer
-    if curBuf == bufnr('%')
+    if curBuf ==# bufnr('%')
       " Check for splits
       if winnr('$') !=# 1
         execute "close"
@@ -187,10 +187,15 @@ function! WindowsManagementMappings()
         endwhile
       echo 'Exited ' . curBufName
     endfor
-
     " Close buffer, restore active tab
     execute 'bd' . curBuf
     execute 'tabnext ' . curTab
+    " if only one buffer remains, and a split/s exists close all extra splits
+    if len(getbufinfo({'buflisted':1})) ==# 1 && winnr('$') !=# 1
+      for i in range(winnr('$') - 1)
+        execute "close"
+      endfor
+    endif
   endfunction
   noremap <silent> q :call SmartBufClose()<cr>
   " Wipe current buffer
