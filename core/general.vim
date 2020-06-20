@@ -135,8 +135,7 @@ if has('conceal')
 endif
 set shortmess=aFc
 set completefunc=emoji#complete
-" set completeopt=noinsert,menuone,preview
-" set completeopt+=longest
+set completeopt=menuone,preview
 set completeopt+=noselect,noinsert
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←

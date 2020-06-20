@@ -207,6 +207,7 @@ function! WindowsManagementMappings()
   nnoremap <silent> [B :bfirst<CR>
   " Tab operation
   nnoremap <leader>tn :tabnew<cr>
+  nnoremap <leader>tq :tabclose<cr>
   nnoremap <leader>te :tabedit
   nnoremap <leader>tm :tabmove
 
