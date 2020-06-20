@@ -169,19 +169,19 @@ function! WindowsManagementMappings()
     endif
     " Loop through tabs
     for i in range(tabpagenr('$'))
-        " Go to tab (is there a way with inactive tabs?)
-        execute 'tabnext ' . (i + 1)
-        " Store active window nr to restore later
-        let curWin = winnr()
-        " Loop through windows pointing to buffer
+      " Go to tab (is there a way with inactive tabs?)
+      execute 'tabnext ' . (i + 1)
+      " Store active window nr to restore later
+      let curWin = winnr()
+      " Loop through windows pointing to buffer
+      let winnr = bufwinnr(curBuf)
+      while (winnr >= 0)
+        " Go to window and switch to next buffer
+        execute winnr . 'wincmd w | bnext'
+        " Restore active window
+        execute curWin . 'wincmd w'
         let winnr = bufwinnr(curBuf)
-        while (winnr >= 0)
-            " Go to window and switch to next buffer
-            execute winnr . 'wincmd w | bnext'
-            " Restore active window
-            execute curWin . 'wincmd w'
-            let winnr = bufwinnr(curBuf)
-        endwhile
+      endwhile
       echo 'Exited ' . curBufName
     endfor
     " Close buffer, restore active tab
