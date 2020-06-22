@@ -205,10 +205,14 @@ snippet dpln "Java debug System.out.println" wA
 System.out.println(${0:${VISUAL}});
 endsnippet
 
-snippet nulltry "Java NullPointerException handler" bA
+snippet psf "Java private static final field" bA
+private static final $0;
+endsnippet
+
+snippet try "Java try-catch block" bA
 try {
-	${1:${VISUAL}}
-} catch(NullPointerException e) {
-	System.out.println($0);
+	
+} catch(${1:Exception} e) {
+	
 }
 endsnippet
