@@ -2,6 +2,7 @@ let g:which_key_map =  {}
 let g:which_key_map = {
     \ 'name' : '+leader-key',
        \ '-' : 'Choose window' ,
+       \ '_' : 'Choose window to swap with' ,
        \ '/' : {
              \ 'name' : '+commenter',
              \ '/' : 'Comment toggle',
@@ -211,7 +212,7 @@ let g:which_key_map = {
                 \ 'v' : 'Vertical file diff split from current directory',
                 \ 'V' : 'Vertical file diff split from $HOME',
                 \ },
-          \ 'g' : 'Goyo toggle' ,
+          \ 'G' : 'Goyo toggle' ,
           \ 'h' : {
                 \ 'name' : '+quick-highlight',
                 \ 't' : 'Highlight this',

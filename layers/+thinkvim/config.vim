@@ -276,8 +276,8 @@ if dein#tap('vim-mundo')
 endif
 
 if dein#tap('vim-choosewin')
-  nmap - <Plug>(choosewin)
-  nmap <Leader>- :<C-u>ChooseWinSwapStay<CR>
+  nmap <Leader>- <Plug>(choosewin)
+  nmap <Leader>_ :<C-u>ChooseWinSwapStay<CR>
 endif
 
 if dein#tap('caw.vim')
@@ -339,7 +339,7 @@ if dein#tap('python_match.vim')
 endif
 
 if dein#tap('goyo.vim')
-  nnoremap <Leader>ig :Goyo<CR>
+  nnoremap <Leader>iG :Goyo<CR>
 endif
 
 if dein#tap('defx.nvim')
