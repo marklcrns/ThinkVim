@@ -62,17 +62,16 @@ function! ExtendedBasicMappings()
   " Remaps macro record key since q has been remapped
   nnoremap Q q
   " Disables esc key on some modes to force new habit
-  inoremap <Esc> <nop>
-  cnoremap <Esc> <nop>
   " Allow <Esc> to exit terminal-mode back to normal:
   tnoremap <Esc> <C-\><C-n>
   " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
-  snoremap fd <Esc>`^
   inoremap fd <Esc>`^
   vnoremap fd <Esc>`<
   vnoremap df <Esc>`>
   inoremap kj <Esc>`^
   snoremap kj <Esc>`^
+  snoremap fd <Esc>`<
+  snoremap df <Esc>`>
   cnoremap <C-[> <C-c>
   cnoremap <C-g> <C-c>
   " Yank to end
@@ -151,7 +150,7 @@ function! WindowsManagementMappings()
     let curTab = tabpagenr()
     " Quit window/split if buffer is empty ([No Name] buffer)
     if (curBufName ==# '' || !&modifiable || &readonly)
-      execute 'q!'
+      execute 'bdelete'
       return
     endif
     " Go to next buffer
@@ -185,7 +184,7 @@ function! WindowsManagementMappings()
       echo 'Exited ' . curBufName
     endfor
     " Close buffer, restore active tab
-    execute 'bd' . curBuf
+    execute 'bdelete' . curBuf
     execute 'tabnext ' . curTab
     " if only one buffer remains, and a split/s exists close all extra splits
     " Ref: https://superuser.com/questions/345520/vim-number-of-total-buffers
