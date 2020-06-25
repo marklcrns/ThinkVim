@@ -149,8 +149,12 @@ function! WindowsManagementMappings()
     let curBufName = bufname('%')
     let curTab = tabpagenr()
     " Quit window/split if buffer is empty ([No Name] buffer)
-    if (curBufName ==# '' || !&modifiable || &readonly)
+    if (curBufName ==# '' || &readonly)
       execute 'bdelete'
+      return
+    " To quit a floating window without asking to write
+    elseif !&modifiable
+      execute 'q'
       return
     endif
     " Go to next buffer
