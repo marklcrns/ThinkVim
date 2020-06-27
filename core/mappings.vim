@@ -74,6 +74,8 @@ function! ExtendedBasicMappings()
   snoremap df <Esc>`>
   cnoremap <C-[> <C-c>
   cnoremap <C-g> <C-c>
+  " Insert actual tab instead of spaces. Useful when `expandtab` is in use
+  inoremap <S-Tab> <C-v><Tab>
   " Yank to end
   nnoremap Y y$
   " Select last paste
