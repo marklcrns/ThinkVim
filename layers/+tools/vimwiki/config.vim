@@ -130,8 +130,8 @@ augroup VimwikiEditMode
   " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
   " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
   autocmd FileType vimwiki
-        \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^a" :
-        \ "\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq0`^a"
+        \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq`^$a" :
+        \ "\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq`^$a"
 augroup END
 
 
