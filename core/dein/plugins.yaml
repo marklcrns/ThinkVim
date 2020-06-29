@@ -409,6 +409,7 @@
 
 - repo: vimwiki/vimwiki
   on_if: (getcwd() =~ $HOME . "/Docs/wiki.\*" && &filetype == 'markdown')  # load when in wiki directory
+  on_event: BufEnter
   on_cmd: [VimwikIndex, VimwikiDiaryIndex, VimwikiUISelect]
   hook_add: |
     let g:vimwiki_use_calendar = 1
@@ -515,7 +516,7 @@
   hook_add: source $VIM_PATH/layers/+ui/vim-indent-guides/config.vim
 
 - repo: mhinz/vim-startify
-  on_cmd: Startify
+  on_cmd: VimEnter
   depends: vim-devicons
   hook_source: source $VIM_PATH/layers/+ui/startify/config.vim
   hook_post_source: |

@@ -350,10 +350,10 @@ let g:which_key_map = {
           \ },
     \ 't' : {
           \ 'name' : '+tab-operate',
-             \ 'c' : 'Close current tab',
              \ 'n' : 'New tab',
              \ 'e' : 'Tab edit ',
              \ 'm' : 'Move tab',
+             \ 'q' : 'Close current tab',
           \ },
     \ 'T' : 'Load all TODOs in quickfix window',
     \ 'v' : {
