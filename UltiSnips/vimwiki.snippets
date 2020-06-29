@@ -328,6 +328,15 @@ snip.rv = t_header + "\n" + t_sep + "\n" + t_body
 `
 endsnippet
 
+# TODO: use snip.v.test to transform visual selection
+# Replaces all Vim substringg into Neovim
+# Ref: http://vimcasts.org/episodes/ultisnips-visual-placeholder/
+snippet test "Test snippet" i
+${1:`!p
+snip.rv = snip.v.text.replace("Vim" , "Neovim") or "klass"
+`}
+endsnippet
+
 snippet t2 "Table with 2 columns" b
 | $0 |   |
 |---|---|

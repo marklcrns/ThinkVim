@@ -26,15 +26,8 @@
 
 # Must be in root folder for auto package detect to work. Use vim-rooter
 snippet temp "Java class template" bA
-`!p
-import os, re
-root = os.getcwd()
-rel_path = re.sub(root + '/src/', '', path)
-package_path = re.sub(fn, '', rel_path)
-snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
-
 /**
- * Author: Mark Lucernas
+ * @author Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 public class `!p snip.rv = fn.rstrip('.java')` {$0}
@@ -49,7 +42,7 @@ package_path = re.sub(fn, '', rel_path)
 snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
 
 /**
- * Author: Mark Lucernas
+ * @author Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 public class `!p snip.rv = fn.rstrip('.java')` {
@@ -70,7 +63,7 @@ package_path = re.sub(fn, '', rel_path)
 snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
 
 /**
- * Author: Mark Lucernas
+ * @author Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 public class `!p snip.rv = fn.rstrip('.java')` {
@@ -89,7 +82,7 @@ package_path = re.sub(fn, '', rel_path)
 snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
 
 /**
- * Author: Mark Lucernas
+ * @author Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 public interface `!p snip.rv = fn.rstrip('.java')` {
@@ -106,7 +99,7 @@ package_path = re.sub(fn, '', rel_path)
 snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
 
 /**
- * Author: Mark Lucernas
+ * @author Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 public abstract class `!p snip.rv = fn.rstrip('.java')` {
@@ -123,7 +116,7 @@ package_path = re.sub(fn, '', rel_path)
 snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
 
 /**
- * Author: Mark Lucernas
+ * @author Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 public enum `!p snip.rv = fn.rstrip('.java')` {
@@ -142,7 +135,7 @@ snip.rv = "package " + package_path.replace('/', '.')[:-1] + ';'`
 /**
  * ${1:Class description...}
  *
- * @author ${2:Mark Lucernas}
+ * @author${2:Mark Lucernas}
  */
 public class `!p snip.rv = fn.rstrip('.java')` extends Object {
     //////////////////// fields ////////////////////
@@ -177,7 +170,7 @@ endsnippet
 
 snippet head "Java javadoc header" bA
 /**
- * Author: Mark Lucernas
+ * @author Mark Lucernas
  * Date: `date '+%Y-%m-%d'`
  */
 endsnippet

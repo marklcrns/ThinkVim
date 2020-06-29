@@ -67,6 +67,7 @@
     let g:tmux_navigator_disable_when_zoomed = 1
 
 - repo: tpope/vim-unimpaired
+- repo: tpope/vim-eunuch
 # }}}
 
 
