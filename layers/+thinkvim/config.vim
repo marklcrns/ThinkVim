@@ -249,13 +249,13 @@ endif
 
 if dein#tap('vim-easy-align')
   " Start interactive EasyAlign in visual mode
-  xnoremap <Leader>raa :EasyAlign<CR>
+  xmap <Leader>raa <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object
-  nnoremap <Leader>raa :<C-u>EasyAlign<CR>
+  nmap <Leader>raa <Plug>(EasyAlign)
   " Start Live-interactive EasyAlign in visual mode
-  xnoremap <Leader>rAA :LiveEasyAlign<CR>
+  xmap <Leader>rAA <Plug>(LiveEasyAlign)
   " Start Live-interactive EasyAlign for a motion/text object
-  nnoremap <Leader>rAA :<C-u>LiveEasyAlign<CR>
+  nmap <Leader>rAA <Plug>(LiveEasyAlign)
 endif
 
 
@@ -616,9 +616,31 @@ if dein#tap('vim-wordy')
 endif
 
 if dein#tap('vim-grammarous')
-  nnoremap <Leader>lgc :GrammarousCheck<CR>
-  vnoremap <Leader>lgc :GrammarousCheck<CR>
-  nnoremap <Leader>lgr :GrammarousReset<CR>
+  nnoremap <Leader>lgg :GrammarousCheck<CR>
+  vnoremap <Leader>lgg :GrammarousCheck<CR>
+  nnoremap <Leader>lgc :GrammarousCheck --comments-only<CR>
+  vnoremap <Leader>lgc :GrammarousCheck --comments-only<CR>
+  nnoremap <Leader>lgu :Unite grammarous<CR>
+  nnoremap <Leader>lgd :Denite grammarous<CR>
+
+  nmap <Leader>lgG <Plug>(operator-grammarous)
+  nmap <Leader>lgm <Plug>(grammarous-move-to-info-window)
+  nmap <Leader>lgo <Plug>(grammarous-open-info-window)
+  nmap <Leader>lgq <Plug>(grammarous-reset)
+  nmap <Leader>lgf <Plug>(grammarous-fixit)
+  nmap <Leader>lgF <Plug>(grammarous-fixall)
+  nmap <Leader>lgr <Plug>(grammarous-remove-error)
+
+  let g:grammarous#hooks = {}
+  function! g:grammarous#hooks.on_check(errs) abort
+      nmap <buffer><C-n> <Plug>(grammarous-move-to-next-error)
+      nmap <buffer><C-p> <Plug>(grammarous-move-to-previous-error)
+  endfunction
+
+  function! g:grammarous#hooks.on_reset(errs) abort
+      nunmap <buffer><C-n>
+      nunmap <buffer><C-p>
+  endfunction
 endif
 
 if dein#tap('vim-quickhl')
