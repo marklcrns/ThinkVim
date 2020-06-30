@@ -144,17 +144,26 @@ function! FileManagementMappings()
 endfunction
 
 function! WindowsManagementMappings()
+  " Ref: https://stackoverflow.com/a/10102604
+  function! CleanEmptyBuffers()
+    let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0 && !getbufvar(v:val, "&mod")')
+    if !empty(buffers)
+      " Wipe all empty buffers
+      exe 'bw ' . join(buffers, ' ')
+    endif
+  endfunction
   " Smartly close buffers mindful of splits and read-only buffers
   " Ref: https://stackoverflow.com/a/29236158
   function! SmartBufClose()
     let curBuf = bufnr('%')
     let curBufName = bufname('%')
     let curTab = tabpagenr()
+    call CleanEmptyBuffers()
     " Quit window/split if buffer is empty ([No Name] buffer)
     if (curBufName ==# '' || &readonly)
       execute 'bdelete'
       return
-    " To quit a floating window without asking to write
+      " To quit a floating window without asking to write
     elseif !&modifiable
       execute 'q'
       return
@@ -428,15 +437,14 @@ function! TextManipulationMappings()
   nnoremap <silent><Leader>rs :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
   vnoremap <silent><Leader>rs :<C-u>silent! keeppatterns substitute/\s\+$//e<CR>
   " Wrap paragraph to textwidth
-  nnoremap <Leader>rl gqap
-  xnoremap <Leader>rl gqa
+  nnoremap <Leader>rw gqap
+  xnoremap <Leader>rw gqa
   " Duplicate paragraph
   nnoremap <leader>rp yap<S-}>p
   " Duplicate selected line
   " Ref: https://stackoverflow.com/a/3806683/11850077
   vnoremap <Leader>rp y`]p
-  " Change current word in a repeatable manner
-  " Use "." to repeat changes with next occurence
+  " Change current word in a repeatable manner (repeatable with ".")
   nnoremap <leader>rn *``cgn
   nnoremap <leader>rN *``cgN
   " Change selected word in a repeatable manner
@@ -458,23 +466,25 @@ function! TextManipulationMappings()
   " Search and replace last selected with confirmation
   nnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
   xnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
-  " Ref: https://vi.stackexchange.com/a/690
   " To enumerate lines with macro: https://stackoverflow.com/a/32053439/11850077
   " To enumerate lines with few commands: https://stackoverflow.com/a/48408001/11850077
-  nmap <Leader>rE :%s/^/\=line('.').". "<CR>
-  " Fix indentation of while buffer
-  nmap <Leader>ri gg=G
+  " Ref: https://vi.stackexchange.com/a/690
+  nnoremap <Leader>rL :%s/^/\=line('.').". "<CR>
+  " Ref: https://stackoverflow.com/a/51291652
+  vnoremap <silent> <Leader>rl :<C-U>let i=1 \| '<,'>g/^/s//\=i.'. '/ \| let i=i+1 \| nohl<CR>
+  " Fix indentation of whole buffer
+  nnoremap <Leader>ri gg=G<C-o>
   " Ref: https://stackoverflow.com/a/17440797/11850077
   " Capitaliz each word of the selected
-  vnoremap <Leader>rC :s/\<./\u&/g<CR>
+  vnoremap <Leader>rC :s/\<./\u&/g \| nohl<CR>
   " Capitalize each word of current entire file
-  nnoremap <Leader>rC :%s/\<./\u&/g<CR>
+  nnoremap <Leader>rC :%s/\<./\u&/g<CR>:nohl<CR>
   " Lowercase each word of the selected
-  vnoremap <Leader>rc :s/\<./\l&/g<CR>
+  vnoremap <Leader>rc :s/\<./\l&/g<CR>:nohl<CR>
   " Lowercase each word of current entire file
-  nnoremap <Leader>rc :%s/\<./\l&/g<CR>
+  nnoremap <Leader>rc :%s/\<./\l&/g<CR>:nohl<CR>
   " Yank everything from current file
-  nnoremap <Leader>rya ggVGy
+  nnoremap <Leader>rya ggVGy<C-o>
   " Jumps to previously misspelled word and fixes it with the first in the suggestion
   " Update: also echo changes and line and col number
   " Ref: https://castle.Dev/post/lecture-notes-1/
