@@ -96,18 +96,19 @@ endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
 function! IndexResourcesLinks()
-    " Delete exising links
     exe 'g/\# Resources/'
+    " Ensures not on last line
     exe 'norm! o'
-    exe 'norm VGd'
+    " Delete exising links (only first paragraph after the header)
+    exe 'norm V}kd'
     " Clear `x` register and copy all reference links
     exe 'let @x = ""'
+    " Copy all in the file in this format, - [.*](.*)
     exe 'g/- \[.*](.*)/y A'
     call CopyMatches('x')
-    " Paste all links to reference header
     exe 'g/\# Resources/'
-    exe 'norm! o'
-    exe 'norm VG"xpVG>'
+    " Paste all links to reference header
+    exe 'norm "xpV}k>'
 endfunction
 
 " Deprecated by coc-spell-checker
