@@ -96,19 +96,19 @@ endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
 function! IndexResourcesLinks()
-    exe 'g/\# Resources/'
-    " Ensures not on last line
-    exe 'norm! o'
-    " Delete exising links (only first paragraph after the header)
-    exe 'norm V}kd'
-    " Clear `x` register and copy all reference links
-    exe 'let @x = ""'
-    " Copy all in the file in this format, - [.*](.*)
-    exe 'g/- \[.*](.*)/y A'
-    call CopyMatches('x')
-    exe 'g/\# Resources/'
-    " Paste all links to reference header
-    exe 'norm "xpV}k>'
+  exe 'g/\# Resources/'
+  " Ensures not on last line
+  exe 'norm! o'
+  " Delete exising links (only first paragraph after the header)
+  exe 'norm V}kd'
+  " Clear `x` register and copy all reference links
+  exe 'let @x = ""'
+  " Copy all in the file in this format, - [.*](.*)
+  exe 'g/- \[.*](.*)/y A'
+  call CopyMatches('x')
+  exe 'g/\# Resources/'
+  " Paste all links to reference header
+  exe 'norm "xpV}k>'
 endfunction
 
 " Deprecated by coc-spell-checker
@@ -131,10 +131,28 @@ augroup VimwikiEditMode
   " Auto-indent, select, and auto-wrap texts at textwidth 80 after pasting.
   " Useful for long lines. Depends on `gp` nmap. For more info `:verbose nmap gp`
   autocmd FileType vimwiki
-        \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq`^$a" :
-        \ "\<M-p>\<Esc>gp=gv<ESC>a<ESC>gvgq`^$a"
+        \ imap <expr><silent><buffer> <M-p> pumvisible() ? "\<C-e>\<Esc>:call SmartInsertPaste()\<CR>" : "\<Esc>:call SmartInsertPaste()\<CR>"
 augroup END
 
+function! SubstituteOddChars()
+  " `e` flag silence errors, see `s_flags`
+  " TODO: turn into independent function with visual and normal mode support,
+  " and accepts arbitrary args for odd chars
+  exe "norm gv:s/“/\"/ge\<CR>"
+  exe "norm gv:s/”/\"/ge\<CR>"
+  exe "norm gv:s/’/'/ge\<CR>"
+endfunction
+
+function! SmartInsertPaste()
+  " Paste and indent text
+  exe "norm \<M-p>\<Esc>gp=gv"
+  " Format pasted lines
+  exe "norm gvgq"
+  " Substitute odd chars
+  call SubstituteOddChars()
+  " Go to the end of the last selected texts, then insert with `a'
+  exe "norm `>a"
+endfunction
 
 " Vimwiki custom mappings
 augroup VimwikiCustomMappings
