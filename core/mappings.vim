@@ -595,6 +595,13 @@ function! JavaMappings()
   autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac -Xlint -d bin %<CR>
   " Save, complie, and run java file in current buffer <C-c> to exit program
   autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac -Xlint -d bin % && time java -cp %:p:h/bin %:t:r<CR>
+  " F9 to compile, F10/F11 to cycle through errors.
+  " Ref: https://stackoverflow.com/a/14727153
+  autocmd Filetype java set makeprg=javac\ -Xlint\ -d\ bin\ %
+  set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+  map <F9> :make<Return>:copen<Return>
+  map <F10> :cprevious<Return>
+  map <F11> :cnext<Return>
 endfunction
 " }}} MISC MAPPINGS
 
