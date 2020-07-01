@@ -580,18 +580,21 @@ endfunction
 " }}} SETTINGS TOGGLE MAPPINGS
 
 " MISC MAPPINGS -------------------- {{{
+" Compile java in ./bin directory. NOTE: ./bin must exist
+" Ref: https://stackoverflow.com/a/24708245
 function! JavaMappings()
-  function! JavaCompile()
-    exec '!javac %'
-    exec 'VimuxInterruptRunner'
-    exec 'VimuxRunLastCommand'
+  " Compile and run current java file in next tmux pane
+  function! JavaCompileRunVimux()
+    exe '!javac -Xlint -d bin %'
+    exe 'VimuxInterruptRunner'
+    call VimuxRunCommand("clear; time java -cp " . expand("%:p:h") . "/bin " . expand("%:t:r"))
   endfunction
-  " Autocompile Java and run last Vimux command
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljj :call JavaCompile()<CR>
+  " Autocompile Java and run in another tmux pand
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljj :call JavaCompileRunVimux()<CR>
   " Compile current java file
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac -Xlint %<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac -Xlint -d bin %<CR>
   " Save, complie, and run java file in current buffer <C-c> to exit program
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac -Xlint % && java %:r<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac -Xlint -d bin % && time java -cp %:p:h/bin %:t:r<CR>
 endfunction
 " }}} MISC MAPPINGS
 

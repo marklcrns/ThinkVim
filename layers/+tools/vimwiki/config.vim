@@ -141,6 +141,9 @@ function! SubstituteOddChars()
   exe "norm gv:s/“/\"/ge\<CR>"
   exe "norm gv:s/”/\"/ge\<CR>"
   exe "norm gv:s/’/'/ge\<CR>"
+  exe "norm gv:s/—/-/ge\<CR>"
+  " Clear commandline prompt
+  redraw
 endfunction
 
 function! SmartInsertPaste()
@@ -150,7 +153,8 @@ function! SmartInsertPaste()
   exe "norm gvgq"
   " Substitute odd chars
   call SubstituteOddChars()
-  " Go to the end of the last selected texts, then insert with `a'
+  echo "Paste complete!"
+  " Go to the end of the last selected texts, then insert mode with 'a'
   exe "norm `>a"
 endfunction
 
