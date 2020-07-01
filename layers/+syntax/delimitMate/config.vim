@@ -5,7 +5,7 @@ let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_inside_quotes = 0
 let g:delimitMate_jump_expansion = 1
 let g:delimitMate_smart_quotes = 1
-let g:delimitMate_excluded_ft = 'mail,txt'
+let g:delimitMate_excluded_ft = 'mail'
 
 augroup user_plugin_delimitMate
   au!

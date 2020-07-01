@@ -604,6 +604,9 @@ function! JavaMappings()
   map <F10> :cprevious<Return>
   map <F11> :cnext<Return>
 endfunction
+function! GitMappings()
+  nnoremap <Leader>gP :<C-u>terminal git push<CR>
+endfunction
 " }}} MISC MAPPINGS
 
 " ==================== Custom single purpose functions and mappings ==================== "
@@ -693,3 +696,4 @@ call TextManipulationMappings()
 call SettingsToggleMappings()
 " Misc Mappings
 call JavaMappings()
+call GitMappings()

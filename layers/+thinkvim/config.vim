@@ -670,11 +670,9 @@ endif
 
 if dein#tap('vim-fugitive')
   " Ref http://vimcasts.org/episodes/fugitive-vim-exploring-the-history-of-a-git-repository/
-  nnoremap <Leader>ga :<C-u>Git add %:p<CR>
-  nnoremap <Leader>gA :<C-u>Git add .<CR>
-  nnoremap <Leader>gb :<C-u>Git blame<CR>
-  nnoremap <Leader>gdc :<C-u>Git diff --cached<CR>
-  nnoremap <Leader>gdd :<C-u>Git diff<CR>
+  nnoremap <Leader>gb :<C-u>Gblame<CR>
+  nnoremap <Leader>gdc :<C-u>Gdiff --cached<CR>
+  nnoremap <Leader>gdd :<C-u>Gdiff<Space>
   nnoremap <Leader>gdt :<C-u>Git difftool<CR>
   nnoremap <Leader>gds :<C-u>Gdiffsplit!<CR>
   nnoremap <Leader>gdh :<C-u>Ghdiffsplit<CR>
@@ -684,7 +682,6 @@ if dein#tap('vim-fugitive')
   nnoremap <Leader>gF :<C-u>Gfetch<CR>
   nnoremap <Leader>gg :<C-u>Ggrep<Space>
   nnoremap <Leader>gG :<C-u>Glog --grep= -- %<Left><Left><Left><Left><Left>
-  nnoremap <Leader>gP :<C-u>terminal git push<CR>
   nnoremap <Leader>gr :<C-u>Git reset<CR>
   nnoremap <Leader>gs :<C-u>Gstatus<CR>
 endif
@@ -695,6 +692,8 @@ if dein#tap('gv.vim')
 endif
 
 if dein#tap('gina.vim')
+  nnoremap <Leader>ga :<C-u>Gina add %:p<CR>
+  nnoremap <Leader>gA :<C-u>Gina add .<CR>
   nnoremap <Leader>gc :<C-u>Gina commit<CR>
   nnoremap <Leader>go :<C-u>Gina log<CR>
   nnoremap <Leader>gp :<C-u>Gina push<CR>
