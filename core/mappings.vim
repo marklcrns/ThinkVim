@@ -585,19 +585,20 @@ endfunction
 function! JavaMappings()
   " Compile and run current java file in next tmux pane
   function! JavaCompileRunVimux()
-    exe '!javac -Xlint -d bin %'
+    exe '!javac -Xlint %'
     exe 'VimuxInterruptRunner'
-    call VimuxRunCommand("clear; time java -cp " . expand("%:p:h") . "/bin " . expand("%:t:r"))
+    call VimuxRunCommand("clear; time java -cp " . expand("%:p:h") . " " . expand("%:t:r"))
   endfunction
   " Autocompile Java and run in another tmux pand
   autocmd FileType java nnoremap <buffer><silent><Leader>ljj :call JavaCompileRunVimux()<CR>
   " Compile current java file
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac -Xlint -d bin %<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac -Xlint %<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljC :!javac -Xlint *.java<CR>
   " Save, complie, and run java file in current buffer <C-c> to exit program
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac -Xlint -d bin % && time java -cp %:p:h/bin %:t:r<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:!javac -Xlint % && time java -cp %:p:h %:t:r<CR>
   " F9 to compile, F10/F11 to cycle through errors.
   " Ref: https://stackoverflow.com/a/14727153
-  autocmd Filetype java set makeprg=javac\ -Xlint\ -d\ bin\ %
+  autocmd Filetype java set makeprg=javac\ -Xlint\ %
   set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
   map <F9> :make<Return>:copen<Return>
   map <F10> :cprevious<Return>

@@ -227,6 +227,7 @@ let g:which_key_map = {
           \ 'j' : {
                 \ 'name' : '+java',
                 \ 'c' : 'Javac compile',
+                \ 'C' : 'Javac compile all from directory',
                 \ 'j' : 'Save compile run',
                 \ 'r' : 'Compile run in vim',
                 \ },
