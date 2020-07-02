@@ -232,7 +232,7 @@ summary: $3
 endsnippet
 
 # Creates Todo list with Task Warrior.
-# Prepend "!" to include "due" and "until" filter.
+# Prepend "!" to include "until" filter set to week_after.
 snippet '(!)?todo' "To-do list template" rbA
 ---
 title: To-do list for `!p
@@ -258,9 +258,9 @@ sched = f"scheduled:{today}"
 due = f"due:{tomorrow}"
 until = f"until:{week_after}"
 # Result
-result = meta + header + " | " + proj + " " + sched + " " + until
+result = meta + header + " | " + proj + " " + sched + " " + due
 if match.group(1) == "!":
-	result += " " + due
+	result += " " + until
 
 # Output
 snip.rv = result`
