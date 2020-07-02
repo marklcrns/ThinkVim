@@ -538,16 +538,16 @@
 
 - repo: amadeus/vim-convert-color-to
   on_cmd: ConvertColorTo
-- repo: itchyny/vim-cursorword
-  on_event: FileType
-  hook_source: |
-    augroup user_plugin_cursorword
-      autocmd!
-      autocmd FileType denite,qf,easygitblame let b:cursorword = 0
-      autocmd WinEnter * if &diff | let b:cursorword = 0 | endif
-      autocmd InsertEnter * let b:cursorword = 0
-      autocmd InsertLeave * let b:cursorword = 1
-    augroup END
+# - repo: itchyny/vim-cursorword
+#   on_event: FileType
+#   hook_source: |
+#     augroup user_plugin_cursorword
+#       autocmd!
+#       autocmd FileType denite,qf,easygitblame let b:cursorword = 0
+#       autocmd WinEnter * if &diff | let b:cursorword = 0 | endif
+#       autocmd InsertEnter * let b:cursorword = 0
+#       autocmd InsertLeave * let b:cursorword = 1
+#     augroup END
 
 # - repo: yuttie/comfortable-motion.vim
 #   on_func: comfortable_motion#flick

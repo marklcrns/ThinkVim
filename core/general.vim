@@ -28,7 +28,7 @@ endif
 set laststatus=2
 set showtabline=2
 set statusline=-       " hide file name in statusline
-set fillchars+=vert:\| " add a bar for vertical splits
+set fillchars+=vert:\│ " add a bar for vertical splits
 set hidden             " Hide buffers instead of killing when abandoned
 " set textwidth=80       " Text width maximum chars before wrapping text on insert
 set expandtab          " Don't expand tabs to spaces.
@@ -39,15 +39,15 @@ set smarttab           " Tab insert blanks according to 'shiftwidth'
 set autoindent         " Use same indenting on new lines
 set smartindent        " Smart autoindenting on new lines
 set shiftround         " Round indent to multiple of 'shiftwidth'
-set signcolumn=yes:2
-set colorcolumn=80,165,250
+set signcolumn=auto:3
+set colorcolumn=80
 set sidescroll=5       " shows number of chars instantly when scrolling horizontally
 set wrap
 set breakindent        " Enable wrap indentation
 " indent by an additional 2 characters on wrapped lines,
 " when line >= 40 characters, put 'showbreak' at start of line
-set breakindentopt=shift:2,min:40,sbr
-set showbreak=>>       " append '>>' to indent
+set breakindentopt=shift:4,min:40,sbr
+let &showbreak='>>> '       " append '>>> ' to indent wrapped lines
 set cursorline         " Highlights entire line of current cursor position"
 " set cursorcolumn       " Highlights column of current cursor position
 " Live interactive search and replace

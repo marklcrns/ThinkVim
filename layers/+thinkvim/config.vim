@@ -486,6 +486,8 @@ if dein#tap('vim-markdown')
   nmap <LocalLeader>mtt :<C-u>Toc<CR>
   nmap <LocalLeader>mtv :<C-u>Tocv<CR>
   nmap <LocalLeader>mth :<C-u>Toch<CR>
+  " Disable mappings
+  map <Plug> <Plug>Markdown_MoveToCurHeader
 endif
 
 if dein#tap('vimtex')

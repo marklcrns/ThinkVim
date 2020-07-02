@@ -392,16 +392,33 @@ endfunction
 function! DiffMappings()
   " Diff split with a file (auto wildcharm trigger)
   if !&wildcharm | set wildcharm=<C-z> | endif
-  execute 'nnoremap <Leader>idv :vert diffsplit '.expand("%:p:h").'/'.nr2char(&wildcharm)
-  execute 'nnoremap <Leader>idh :diffsplit '.expand("%:p:h").'/'.nr2char(&wildcharm)
-  execute 'nnoremap <Leader>idV :vert diffsplit $HOME/'.nr2char(&wildcharm)
-  execute 'nnoremap <Leader>idH :diffsplit $HOME/'.nr2char(&wildcharm)
+  exe 'nnoremap <Leader>idv :vert diffsplit '.expand("%:p:h").'/'.nr2char(&wildcharm)
+  exe 'nnoremap <Leader>idh :diffsplit '.expand("%:p:h").'/'.nr2char(&wildcharm)
+  exe 'nnoremap <Leader>idV :vert diffsplit $HOME/'.nr2char(&wildcharm)
+  exe 'nnoremap <Leader>idH :diffsplit $HOME/'.nr2char(&wildcharm)
   " Git mappings for mergetools or diff mode
-  nnoremap dor :diffget RE<CR>
-  nnoremap dob :diffget BA<CR>
-  nnoremap dol :diffget LO<CR>
+  " Add the following to .gitconfig, then run `git mergetool nvimdiff <MERGE_CONFLICT_FILE>`
+  " [merge]
+  "   tool = nvimdiff
+  " [mergetool "nvimdiff"]
+  "   cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  " [mergetool]
+  "   prompt = true
+  nnoremap dob :diffget BASE<CR>
+  nnoremap dol :diffget LOCAL<CR>
+  nnoremap dor :diffget REMOTE<CR>
   " Quit nvim with an error code. Useful when aborting git mergetool or git commit
   nnoremap dq :cquit<CR>
+  function! PrintMergeDiffMappings()
+    echom "dob :diffget BASE"
+    echom "dol :diffget LOCAL"
+    echom "dor :diffget REMOTE"
+    echom "dq  :cquit"
+    echom "]c  Next conflict"
+    echom "[c  Previous conflict"
+    echom " "
+    echom "To view these again, type :messages or :call PrintMergeDiffMappings()"
+  endfunction
 endfunction
 
 function! FoldsMappings()
