@@ -103,8 +103,9 @@ function! IndexResourcesLinks()
   exe 'norm V}kd'
   " Clear `x` register and copy all reference links
   exe 'let @x = ""'
-  " Copy all in the file in this format, - [.*](.*)
-  exe 'g/- \[.*](.*)/y A'
+  " Copy all in the file in this format, - [[^+].*](.*)
+  " Excludes links prepended with `+`
+  exe 'g/- \[[^+].*](.*)/y A'
   call CopyMatches('x')
   exe 'g/\# Resources/'
   " Paste all links to reference header
@@ -167,17 +168,17 @@ augroup VimwikiCustomMappings
         \ coc#expandableOrJumpable()  ?
         \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
         \ vimwiki#tbl#kbd_tab()
-
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <S-tab>
         \ vimwiki#tbl#kbd_shift_tab()
-
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <CR>
         \ delimitMate#WithinEmptyPair() ?
         \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
         \ "\<ESC>:VimwikiReturn 1 5\<CR>"
-
   autocmd Filetype vimwiki inoremap <silent><buffer><S-CR> :VimwikiReturn 4 1<CR>
   autocmd Filetype vimwiki nnoremap <buffer><LocalLeader>wL :call IndexResourcesLinks()<CR>
+  " Dependent on `q` mapping to exec `bdelete`. Somehow <S-CR> on normal don't work
+  autocmd Filetype vimwiki nmap <buffer><Leader><CR> :VimwikiFollowLink<CR><C-o>q
+  autocmd Filetype vimwiki nmap <buffer><Leader><BS> :VimwikiGoBackLink<CR><C-o>q
 augroup END
 
 " Quick fix hack on <CR> and <S-CR> being remapped when comming back to a session
