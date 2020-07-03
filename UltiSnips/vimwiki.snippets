@@ -328,43 +328,69 @@ snip.rv = t_header + "\n" + t_sep + "\n" + t_body
 `
 endsnippet
 
-# TODO: use snip.v.test to transform visual selection
-# Replaces all Vim substringg into Neovim
+# Usage: [wrap]?table, optional wrapper char for each table cell
+# Note: Lines should trail '&' char for splitting. Only until second to last.
 # Ref: http://vimcasts.org/episodes/ultisnips-visual-placeholder/
-snippet test "Test snippet" i
-${1:`!p
-snip.rv = snip.v.text.replace("Vim" , "Neovim") or "klass"
-`}
+snippet '(.+)?table' "Description" rb
+`!p
+text = snip.v.text
+
+wrap = ""
+if match.group(1) != None:
+	# '\\' to escape wrapper as char like '$' wont work as expected
+	wrap = "\\" + match.group(1)
+
+lines = text.split("&")
+
+# Delimeter
+delim = " \t"
+
+result = ""
+
+line_count = 0
+for line in lines:
+	line_tmp = ""
+	separator = ""
+	# Split all items in line
+	line = line.split(delim)
+	for item in line:
+		item = item.strip("\n")
+		# Format and append item to line
+		line_tmp += "| " + wrap + item + wrap + " "
+		if line_count == 0:
+			# "-"s multiplied by the length of item
+			separator += "|" + ("-" * (len(item) + 2))
+
+	# Append new line and close table row
+	result += line_tmp + "|\n"
+
+	# Table header and body separator
+	if line_count == 0:
+		result += separator + "|\n"
+
+	line_count += 1
+
+snip.rv = result`
 endsnippet
 
-snippet t2 "Table with 2 columns" b
-| $0 |   |
-|---|---|
-|   |   |
-endsnippet
+snippet t(\d+) "Markdown table" rbA
+`!p
+num = match.group(1) # number of table columns
 
-snippet t3 "Table with 3 columns" b
-| $0 |   |   |
-|---|---|---|
-|   |   |   |
-endsnippet
+result = ""
+for row in range(0, 3):
+	for col in range(0, int(num)):
+		if col == 0 and row == 0: # For first col and first row
+			result += "| $0 "
+		elif row == 1: # Header separator
+			result += "|---"
+		else:
+			result += "|   " # Regular table cells
+	# Close row and insert new line
+	result += "|\n"
 
-snippet t4 "Table with 4 columns" b
-| $0 |   |   |   |
-|---|---|---|---|
-|   |   |   |   |
-endsnippet
-
-snippet t5 "Table with 5 columns" b
-| $0 |   |   |   |
-|---|---|---|---|
-|   |   |   |   |
-endsnippet
-
-snippet t6 "Table with 6 columns" b
-| $0 |   |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
+snip.rv = result
+`
 endsnippet
 
 snippet TM "Markdown trademark symbol" i
@@ -710,6 +736,10 @@ endsnippet
 
 snippet Del "Mathjax triangle delta symbol" i
 \Delta
+endsnippet
+
+snippet mu "Mathjax mu greek symbol" i
+\mu
 endsnippet
 
 snippet eps "Mathjax epsilon symbol" i

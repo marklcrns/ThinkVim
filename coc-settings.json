@@ -164,6 +164,7 @@
     "vimwiki",
     "text"
   ],
+  "cSpell.fixSpellingWithRenameProvider": true,
   // Controls the maximum number of spelling errors per document.
   "cSpell.maxNumberOfProblems": 100,
   // Controls the number of suggestions shown.

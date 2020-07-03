@@ -508,10 +508,10 @@ endif
 if dein#tap('vimwiki')
   nmap <LocalLeader>WW :<C-u>VimwikiIndex<CR>
   nmap <LocalLeader>WI :<C-u>VimwikiDiaryIndex<CR>
-  nmap <LocalLeader>wh :<C-u>Vimwiki2HTML<CR>
-  nmap <LocalLeader>whh :<C-u>Vimwiki2HTMLBrowse<CR>
-  nmap <LocalLeader>wH :<C-u>VimwikiAll2HTML<CR>
-  nmap <LocalLeader>wl :<C-u>VimwikiGenerateLinks<CR>
+  nmap <LocalLeader>wh <Plug>Vimwiki2HTML
+  nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
+  nmap <LocalLeader>wH <Plug>VimwikiAll2HTML
+  nmap <LocalLeader>wl <Plug>VimwikiGenerateLinks
 endif
 
 if dein#tap('taskwarrior.vim')

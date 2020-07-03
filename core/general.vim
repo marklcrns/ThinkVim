@@ -42,7 +42,7 @@ set shiftround         " Round indent to multiple of 'shiftwidth'
 set signcolumn=auto:3
 set colorcolumn=80
 set sidescroll=5       " shows number of chars instantly when scrolling horizontally
-set wrap
+set nowrap             " Disables text wrap
 set breakindent        " Enable wrap indentation
 " indent by an additional 2 characters on wrapped lines,
 " when line >= 40 characters, put 'showbreak' at start of line
