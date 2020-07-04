@@ -139,10 +139,10 @@ function! FileManagementMappings()
   nnoremap <Leader>frc :cd %:p:h<CR>:pwd<CR>
   " Set working directory to current file location only for the current window
   nnoremap <Leader>frl :lcd %:p:h<CR>:pwd<CR>
-  " Open current file with xdg-open
-  nnoremap <silent><Leader>oo :!xdg-open "%:p"<CR>
-  " Open current file in google chrome
-  nnoremap <silent><Leader>og :!google-chrome "%:p"<CR>
+  " Open current file with xdg-open and disown
+  nnoremap <silent><Leader>oo :!xdg-open "%:p" & disown<CR>
+  " Open current file in google chrome and disown
+  nnoremap <silent><Leader>og :!google-chrome "%:p" & disown<CR>
 endfunction
 
 function! WindowsManagementMappings()
