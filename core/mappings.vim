@@ -74,6 +74,8 @@ function! ExtendedBasicMappings()
   snoremap df <Esc>`>
   cnoremap <C-[> <C-c>
   cnoremap <C-g> <C-c>
+  " Exit from terminal-mode to normal
+  tnoremap <Esc> <C-\><C-n>
   " Insert actual tab instead of spaces. Useful when `expandtab` is in use
   inoremap <S-Tab> <C-v><Tab>
   " Yank to end
@@ -159,11 +161,16 @@ function! WindowsManagementMappings()
     let curBufName = bufname('%')
     let curTab = tabpagenr()
     call CleanEmptyBuffers()
-    " Quit window/split if buffer is empty ([No Name] buffer)
+    " Quit from terminal-emulator
+    if &buftype ==# 'terminal'
+      execute 'bw!'
+      return
+    endif
+    " Quit window/split if buffer is empty
     if (curBufName ==# '' || &readonly)
       execute 'bdelete'
       return
-      " To quit a floating window without asking to write
+    " For quitting floating windows without asking to write
     elseif !&modifiable
       execute 'q'
       return

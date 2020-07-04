@@ -4,7 +4,7 @@ let g:calendar_task_delete = 1
 let g:calendar_frame = 'default'
 source ~/.cache/calendar.vim/credentials.vim
 
-augroup calendar-mappings
+augroup CalendarMappings
   autocmd!
   " unmap mappings for other plugins
   " autocmd FileType calendar nunmap <buffer> <C-n>

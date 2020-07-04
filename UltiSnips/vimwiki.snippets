@@ -155,20 +155,24 @@ snippet l "Link tag"
 [${1:${VISUAL}}]($0)
 endsnippet
 
+snippet v "Linkt tag for videos" b
+[VIDEO: ${1:${VISUAL}}]($0)
+endsnippet
+
 snippet f "File Link tag"
-[$1](file:../../../$0)
+[FILE: ${1:${VISUAL}}](file:../../../$0)
 endsnippet
 
 snippet vf "Open file link into vim"
-[$1](vfile:../../../$0)
+[FILE: ${1:${VISUAL}}](vfile:../../../$0)
 endsnippet
 
 snippet img "Image tag for files" w
-![$1](../../../$0)
+![${1:${VISUAL}}](../../../$0)
 endsnippet
 
 snippet uimg "Image tag for urls" w
-![$1]($2)
+![${1:${VISUAL}}]($2)
 endsnippet
 
 snippet anc "Html anchor" bA
@@ -331,41 +335,42 @@ endsnippet
 # Usage: [wrap]?table, optional wrapper char for each table cell
 # Note: Lines should trail '&' char for splitting. Only until second to last.
 # Ref: http://vimcasts.org/episodes/ultisnips-visual-placeholder/
-snippet '(.+)?table' "Description" rb
+snippet '(.+)?tab' "Description" rb
 `!p
+# Fetch visual selected text
 text = snip.v.text
 
-wrap = ""
+if "&" not in text: # Delimiter check
+	snip.rv = text + "\n\n Snippet Error: No line delimiter. Insert '&' at the and of each line"
+
+delim = " \t" # Delimeter
+wrap = "" # Wraper char to wrap table cell items
 if match.group(1) != None:
-	# '\\' to escape wrapper as char like '$' wont work as expected
-	wrap = "\\" + match.group(1)
+	# '\\' to escape wrap as char like '$' wont work as expected
+	if match.group(1) == "$":
+		wrap = "\\" + match.group(1)
+	else:
+		wrap = match.group(1)
+lines = text.split("&") # Split lines delimited by '&'
 
-lines = text.split("&")
-
-# Delimeter
-delim = " \t"
-
-result = ""
+result = "" # String container to be returned
 
 line_count = 0
-for line in lines:
+for line in lines: # Loop over lines
 	line_tmp = ""
 	separator = ""
-	# Split all items in line
-	line = line.split(delim)
-	for item in line:
+	line = line.split(delim) # Split all items in line
+	for item in line: # Loop over items in lines
 		item = item.strip("\n")
-		# Format and append item to line
-		line_tmp += "| " + wrap + item + wrap + " "
 		if line_count == 0:
-			# "-"s multiplied by the length of item
-			separator += "|" + ("-" * (len(item) + 2))
+			line_tmp += "| " + item + " " # Format without wrap and append item to line
+			separator += "|" + ("-" * (len(item) + 2)) # "-"s multiplied by the length of item
+		if line_count >= 1:
+			line_tmp += "| " + wrap + item + wrap + " " # Format with wrap and append item to line
 
-	# Append new line and close table row
-	result += line_tmp + "|\n"
+	result += line_tmp + "|\n" # Append new line and close table row
 
-	# Table header and body separator
-	if line_count == 0:
+	if line_count == 0: # Table header and body separator
 		result += separator + "|\n"
 
 	line_count += 1
@@ -624,7 +629,8 @@ snip.rv = "\\" if match.group(1) == None else "\\" + match.group(1)
 `frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
-snippet '(((-)?\d+)|((-)?\d+)((\^|_)(\{.*\}|(-)?\d+).*)|((-)?\d+)?((\\)([A-Za-z]+)(\{.*\}|(-)?\d+)).*)/' "Mathjax tab auto fraction" wrA
+# TODO: Usage?
+snippet '(((-)?\d+)|((-)?\d+)((\^|_)(\{.*\}|(-)?\d+).*)|((-)?\d+)?((\\)([A-Za-z]+)(\{.*\}|(-)?\d+)).*)/' "Mathjax tab auto fraction" wr
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
