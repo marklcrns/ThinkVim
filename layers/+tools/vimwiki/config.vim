@@ -97,6 +97,7 @@ command! -register CopyMatches call CopyMatches(<q-reg>)
 
 function! IndexResourcesLinks()
   exe 'g/\# Resources/'
+  " TODO: Check not on last line
   " Ensures not on last line
   exe 'norm! o'
   " Delete exising links (only first paragraph after the header)

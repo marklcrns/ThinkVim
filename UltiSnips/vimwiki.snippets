@@ -155,24 +155,32 @@ snippet l "Link tag"
 [${1:${VISUAL}}]($0)
 endsnippet
 
-snippet v "Linkt tag for videos" b
-[VIDEO: ${1:${VISUAL}}]($0)
+snippet + "Vimwiki link tag" w
+[+${1:${VISUAL}}]($0)
 endsnippet
 
-snippet f "File Link tag"
-[FILE: ${1:${VISUAL}}](file:../../../$0)
+snippet v "Linkt tag for videos" w
+[\`${1:${VISUAL}}]($0)
 endsnippet
 
-snippet vf "Open file link into vim"
-[FILE: ${1:${VISUAL}}](vfile:../../../$0)
+snippet f "File Link tag" w
+[*${1:${VISUAL}}](file:../../../$0)
 endsnippet
 
-snippet img "Image tag for files" w
+snippet vf "Open file link into vim" w
+[*${1:${VISUAL}}](vfile:../../../$0)
+endsnippet
+
+snippet fi "Image tag for files" w
 ![${1:${VISUAL}}](../../../$0)
 endsnippet
 
-snippet uimg "Image tag for urls" w
+snippet i "Image tag for urls" w
 ![${1:${VISUAL}}]($2)
+endsnippet
+
+snippet a "Markdown anchor link" w
+[#${1:${VISUAL}}]($0#$1)
 endsnippet
 
 snippet anc "Html anchor" bA
@@ -523,10 +531,6 @@ snippet term "Word or phrase definition" bA
 	- $0
 endsnippet
 
-snippet alink "Markdown anchor link" w
-[${1:${VISUAL}}]($0#$1)
-endsnippet
-
 # Usage: &name-of-link&alink
 snippet '&?([A-Za-z- ]+)\&(t)?alink' "Word or pharse definition auto" wrA
 [`!p
@@ -873,7 +877,7 @@ snippet 'd**' "Mathjax diagonal dots" wA
 endsnippet
 
 priority 100
-snippet -> "to" iA
+snippet -> "to" i
 \to
 endsnippet
 
@@ -881,15 +885,15 @@ snippet !> "mapsto" iA
 \mapsto
 endsnippet
 
-snippet '\\\' "setminus" iA
+snippet '\\\' "setminus" i
 \setminus
 endsnippet
 
-snippet >> ">>" iA
+snippet >> ">>" i
 \gg
 endsnippet
 
-snippet << "<<" iA
+snippet << "<<" i
 \ll
 endsnippet
 
