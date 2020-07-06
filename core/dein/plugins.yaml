@@ -54,6 +54,7 @@
         \ '.git/',
         \ 'README.*',
         \ 'node_modules/',
+        \ 'pom.xml',
         \ 'env/',
         \ 'src/'
       \ ]

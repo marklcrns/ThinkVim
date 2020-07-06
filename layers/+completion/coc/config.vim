@@ -34,7 +34,9 @@ let g:coc_global_extensions =[
       \ 'coc-vimlsp',
       \ 'coc-vimtex',
       \ 'coc-yaml',
-      \ 'coc-yank']
+      \ 'coc-yank',
+      \ 'coc-xml'
+      \]
 
 augroup MyAutoCmd
   autocmd!
