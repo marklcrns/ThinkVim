@@ -133,6 +133,7 @@
   "java.completion.enabled": true,
   "java.completion.importOrder": [
     "java",
+    "javakfx",
     "javax",
     "com",
     "org"
