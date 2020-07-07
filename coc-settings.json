@@ -187,6 +187,7 @@
   // User words to add to dictionary.  Should only be in the user settings.
   "cSpell.userWords": [
     "Lucernas",
+    "Mindfuck",
     "nums"
   ],
   // Specify paths/files to ignore.
