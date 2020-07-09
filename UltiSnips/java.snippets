@@ -181,6 +181,12 @@ snippet jdoc "Java javadoc" bA
  */
 endsnippet
 
+snippet bcom "Java block comment" bA
+/*
+	${0:${VISUAL}}
+ */
+endsnippet
+
 clearsnippets
 snippet 'for(i|j|x|y)' "Java generic for loop" rA
 `!p
@@ -204,8 +210,14 @@ endsnippet
 
 snippet try "Java try-catch block" bA
 try {
-	
+	$2
 } catch(${1:Exception} e) {
-	
+	$0
+}
+endsnippet
+
+snippet psv "Java public static void" b
+public static void ${1:${VISUAL}}($2) {
+	$0
 }
 endsnippet
