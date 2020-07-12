@@ -245,7 +245,7 @@ endsnippet
 
 # Creates Todo list with Task Warrior.
 # Prepend "!" to include "until" filter set to week_after.
-snippet '(!)?todo' "To-do list template" rbA
+snippet '([!#]+)?todo' "To-do list template" rbA
 ---
 title: To-do list for `!p
 date = fn.rstrip('.md')
@@ -261,8 +261,9 @@ base = datetime(int(date[0]), int(date[1]), int(date[2]))
 today = datetime.strftime(base, '%Y-%m-%d')
 tomorrow = datetime.strftime(base + timedelta(1), '%Y-%m-%d')
 week_after = datetime.strftime(base + timedelta(7), '%Y-%m-%d')
-
+# Meta
 meta = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n"
+# Header
 header = "# Daily To-do"
 # Task warrior filters
 proj = "project:Todo"
@@ -270,10 +271,14 @@ sched = f"scheduled:{today}"
 due = f"due:{tomorrow}"
 until = f"until:{week_after}"
 # Result
-result = meta + header + " | " + proj + " " + sched + " " + due
-if match.group(1) == "!":
+result = meta + header
+# Taskwiki Preset headers '||' or Viewport '|'
+result += " || " if "#" in match.group(1) else " | "
+# Filters
+result += proj + " " + sched + " " + due
+# Until filter
+if "!" in match.group(1):
 	result += " " + until
-
 # Output
 snip.rv = result`
 * [ ] $1
@@ -317,7 +322,7 @@ tomorrow = datetime.strftime(base + timedelta(1), '%Y-%m-%d')
 snip.rv = "(" + tomorrow + ")"`
 endsnippet
 
-snippet task "Todo checkbox" b
+snippet cbox "Todo checkbox" bA
 * [ ] $0
 endsnippet
 
@@ -1470,3 +1475,4 @@ endsnippet
 
 
 # ==========ENGL 205 Note taking snippets========== #
+

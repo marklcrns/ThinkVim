@@ -58,6 +58,7 @@ set inccommand=split   " Options: split or nosplit
 set autoread
 set autowrite
 set confirm
+set splitright
 set splitbelow
 set browsedir=buffer
 set undofile noswapfile nobackup

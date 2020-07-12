@@ -73,7 +73,7 @@ function! VimwikiLinkHandler(link)
     endtry
     return 0
   else
-    exe 'tabnew ' . fnameescape(link_infos.filename)
+    exe 'vsplit ' . fnameescape(link_infos.filename)
     return 1
   endif
 endfunction
@@ -175,11 +175,14 @@ augroup VimwikiCustomMappings
         \ delimitMate#WithinEmptyPair() ?
         \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
         \ "\<ESC>:VimwikiReturn 1 5\<CR>"
-  autocmd Filetype vimwiki inoremap <silent><buffer><S-CR> :VimwikiReturn 4 1<CR>
+  autocmd FileType vimwiki inoremap <silent><buffer> <CR>
+              \ <C-]><Esc>:VimwikiReturn 1 5<CR>
+  autocmd FileType vimwiki inoremap <silent><buffer> <S-CR>
+              \ <Esc>:VimwikiReturn 4 1<CR>
   autocmd Filetype vimwiki nnoremap <buffer><LocalLeader>wL :call IndexResourcesLinks()<CR>
   " Dependent on `q` mapping to exec `bdelete`. Somehow <S-CR> on normal don't work
-  autocmd Filetype vimwiki nmap <buffer><Leader><CR> :VimwikiFollowLink<CR><C-o>q
-  autocmd Filetype vimwiki nmap <buffer><Leader><BS> :VimwikiGoBackLink<CR><C-o>q
+  autocmd Filetype vimwiki nmap <buffer><Leader><CR> :VimwikiFollowLink<CR>mZ<C-o>q`ZmZ
+  autocmd Filetype vimwiki nmap <buffer><Leader><BS> :VimwikiGoBackLink<CR>mZ<C-o>q`ZmZ
 augroup END
 
 " Quick fix hack on <CR> and <S-CR> being remapped when comming back to a session

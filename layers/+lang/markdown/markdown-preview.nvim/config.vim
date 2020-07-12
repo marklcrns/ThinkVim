@@ -12,7 +12,7 @@ let g:mkdp_auto_close = 0
 " leave from insert mode, default 0 is auto refresh markdown as you edit or
 " move the cursor
 " default: 0
-let g:mkdp_refresh_slow = 0
+let g:mkdp_refresh_slow = 1
 
 " set to 1, the MarkdownPreview command can be use for all files,
 " by default it can be use in markdown file
@@ -76,7 +76,7 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 
 " use a custom port to start server or random for empty
-let g:mkdp_port = ''
+let g:mkdp_port = '9999'
 
 " preview page title
 " ${name} will be replace with the file name

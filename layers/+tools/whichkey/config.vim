@@ -131,6 +131,7 @@ let g:which_key_map = {
                 \ 'R' : 'Search word in directory recursively',
                 \ 'v' : 'Find vista outline',
                 \ },
+          \ 'g' : 'Vimgrep (project-wide) and load into quickfix',
           \ 'q' : 'Save and quit',
           \ 'Q' : 'Save all and quit',
           \ 'r' : {

@@ -277,9 +277,16 @@ function! UtilityMappings()
   nnoremap <Leader>K :m-2<CR>
   vnoremap J :m'>+<CR>gv=gv
   vnoremap K :m'<-2<CR>gv=gv
-  " Load all TODO's from all files of the same extension as the current buffer within project directory.
+  " Load all a:input value from files of the same extension as the current
+  " buffer within project directory.
   " Ref: https://stackoverflow.com/a/4106211/11850077
-  nnoremap <Leader>T :execute "noautocmd vimgrep /TODO/j **/*." . expand("%:e")<bar>cw<CR>
+  function! VimgrepWrapper(input, ...)
+    " arg2 'c' for ignorecasing and 'C' for match casing
+    let casing = get(a:, 1, "")
+    exec "noautocmd vimgrep /\\" . casing . a:input . "/j **/*." . expand("%:e")
+    exec "cw"
+  endfunction
+  nnoremap <Leader>fg :call VimgrepWrapper("")<Left><Left>
 endfunction
 
 function! CommandMappings()
@@ -376,6 +383,19 @@ function! QuickFixLocationListMappings()
     copen
   endfunction
   nnoremap <LocalLeader>q :call QuickfixToggle()<CR>
+  " When using `dd` in the quickfix list, remove the item from the quickfix list.
+  " Ref: https://stackoverflow.com/a/48817071/11850077
+  function! RemoveQFItem()
+    let curqfidx = line('.') - 1
+    let qfall = getqflist()
+    call remove(qfall, curqfidx)
+    call setqflist(qfall, 'r')
+    execute curqfidx + 1 . "cfirst"
+    :copen
+  endfunction
+  :command! RemoveQFItem :call RemoveQFItem()
+  " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+  autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 endfunction
 
 function! RegisterMappings()
