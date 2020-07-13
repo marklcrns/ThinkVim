@@ -256,6 +256,7 @@ from datetime import datetime, timedelta
 # parse date filename
 fn_date = fn.rstrip('.md')
 date = fn_date.split("-")
+flags = match.group(1) if match.group(1) != None else ""
 # get today, and day after tomorrow's date in string
 base = datetime(int(date[0]), int(date[1]), int(date[2]))
 today = datetime.strftime(base, '%Y-%m-%d')
@@ -273,11 +274,11 @@ until = f"until:{week_after}"
 # Result
 result = meta + header
 # Taskwiki Preset headers '||' or Viewport '|'
-result += " || " if "#" in match.group(1) else " | "
+result += " || " if "#" in flags else " | "
 # Filters
 result += proj + " " + sched + " " + due
 # Until filter
-if "!" in match.group(1):
+if "!" in flags:
 	result += " " + until
 # Output
 snip.rv = result`
