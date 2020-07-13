@@ -245,13 +245,8 @@ endsnippet
 
 # Creates Todo list with Task Warrior.
 # Prepend "!" to include "until" filter set to week_after.
-snippet '([!#]+)?todo' "To-do list template" rbA
----
-title: To-do list for `!p
-date = fn.rstrip('.md')
-snip.rv = date`
-author: Mark Lucernas
-date: `!p
+snippet '([!#&]+)?todo' "To-do list template" rbA
+`!p
 from datetime import datetime, timedelta
 # parse date filename
 fn_date = fn.rstrip('.md')
@@ -262,24 +257,33 @@ base = datetime(int(date[0]), int(date[1]), int(date[2]))
 today = datetime.strftime(base, '%Y-%m-%d')
 tomorrow = datetime.strftime(base + timedelta(1), '%Y-%m-%d')
 week_after = datetime.strftime(base + timedelta(7), '%Y-%m-%d')
+
 # Meta
-meta = f"{today}\nsummary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki.\n---\n\n\n"
-# Header
-header = "# Daily To-do"
+title = f"title: To-do list for {fn_date}"
+author = "author: Mark Lucernas"
+date = f"date: {fn_date}"
+summary = f"summary: {weekdays[str(base.weekday())]} to-do list. Managed by Taskwarrior and Taskwiki."
+meta = f"---\n{title}\n{author}\n{date}\n{summary}\n---\n\n\n"
 # Task warrior filters
 proj = "project:Todo"
 sched = f"scheduled:{today}"
 due = f"due:{tomorrow}"
 until = f"until:{week_after}"
-# Result
-result = meta + header
+
+result = ""
 # Taskwiki Preset headers '||' or Viewport '|'
-result += " || " if "#" in flags else " | "
-# Filters
-result += proj + " " + sched + " " + due
+task_header = " || " if "#" in flags else " | "
+task_filter = proj + " " + sched + " " + due
+# Full or side todo list
+if "&" in flags:
+	result += "# Side Tasks" + task_header + task_filter + " +side"
+else:
+	result += meta + "# Daily To-do" + task_header + task_filter
+
 # Until filter
 if "!" in flags:
 	result += " " + until
+
 # Output
 snip.rv = result`
 * [ ] $1

@@ -672,7 +672,7 @@ endif
 
 if dein#tap('vim-fugitive')
   " Ref http://vimcasts.org/episodes/fugitive-vim-exploring-the-history-of-a-git-repository/
-  nnoremap <Leader>gb :<C-u>Gblame<CR>
+  nnoremap <Leader>gb :<C-u>Git blame<CR>
   nnoremap <Leader>gdc :<C-u>Gdiff --cached<CR>
   nnoremap <Leader>gdd :<C-u>Gdiff<Space>
   nnoremap <Leader>gdt :<C-u>Git difftool<CR>
