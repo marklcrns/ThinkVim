@@ -167,13 +167,13 @@ function! WindowsManagementMappings()
       return
     endif
     " Quit window/split if buffer is empty
-    if (curBufName ==# '' || &readonly)
+    if &buftype ==# 'nofile'
+      execute "normal :q"
+      return
+    elseif (curBufName ==# '' || &readonly)
       execute 'bdelete'
       return
     " For quitting floating windows without asking to write
-    elseif !&modifiable
-      execute 'q'
-      return
     endif
     " Go to next buffer
     execute 'bnext'

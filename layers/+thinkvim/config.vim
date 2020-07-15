@@ -59,8 +59,8 @@ if dein#tap('coc.nvim')
   " Remap for rename current word
   nmap <leader>cn <Plug>(coc-rename)
   " Remap for format selected region
-  vmap <leader>cf  <Plug>(coc-format-selected)
-  nmap <leader>cf  <Plug>(coc-format-selected)
+  vmap <leader>cF  <Plug>(coc-format-selected)
+  nmap <leader>cF  <Plug>(coc-format-selected)
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
   function! s:cocActionsOpenFromSelected(type) abort
     execute 'CocCommand actions.open ' . a:type
@@ -221,22 +221,34 @@ if dein#tap('vim-buffet')
   nmap <leader>0 <Plug>BuffetSwitch(10)
 endif
 
-if dein#tap('fzf.vim')
-  nnoremap <silent> <leader>fdc :<C-u>Colors<CR>
-  nnoremap <silent> <leader>fdb :<C-u>FzfPreviewBuffers -processors=g:fzf_preview_buffer_delete_processors<CR>
-  nnoremap <silent> <leader>fdB :<C-u>FzfPreviewAllBuffers -processors=g:fzf_preview_buffer_delete_processors<CR>
-  nnoremap <silent> <leader>fdf :<C-u>FzfPreviewDirectoryFiles<CR>
-  nnoremap <silent> <leader>fdF :<C-u>call Fzf_dev()<CR>
-  nnoremap <silent> <Leader>fdg :<C-u>FzfPreviewGitStatus -processors=g:fzf_preview_gina_processors<CR>
-  nnoremap <silent> <Leader>fdG :<C-u>GGrep<CR>
-  nnoremap <silent> <leader>fdk :<C-u>FzfPreviewMarks<CR>
-  nnoremap <silent> <leader>fdm :<C-u>FzfPreviewMruFiles<CR>
-  nnoremap <silent> <leader>fdo :<C-u>FzfPreviewOldFiles<CR>
-  nnoremap <silent> <leader>fdp :<C-u>FzfPreviewProjectFiles<CR>
-  nnoremap <silent> <leader>fdP :<C-u>FzfPreviewFromResources project_mru git<CR>
-  nnoremap <silent> <leader>fdr :<C-u>Rg<CR>
-  nnoremap          <leader>fdR :<C-u>FzfPreviewProjectGrep <C-r>=expand('<cword>')<CR><CR>
-  xnoremap          <leader>fdR "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+if dein#tap('vim-clap')
+  nnoremap <silent> <Leader>fdc :<C-u>Clap colors<CR>
+  nnoremap <silent> <Leader>fdb :<C-u>Clap buffers<CR>
+  nnoremap <silent> <Leader>fdr :<C-u>Clap grep2<CR>
+  nnoremap <silent> <Leader>fdm :<C-u>Clap marks<CR>
+  "like emacs counsel-find-file
+  nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
+  nnoremap <silent> <Leader>fdF :<C-u>Clap filer<CR>
+  nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
+  nnoremap <silent> <Leader>fdg :<C-u>Clap gfiles<CR>
+  nnoremap <silent> <Leader>fdR :<C-u>Clap grep ++query=<cword><cr>
+  nnoremap <silent> <Leader>fdh :<C-u>Clap history<CR>
+  nnoremap <silent> <Leader>fdW :<C-u>Clap windows<CR>
+  nnoremap <silent> <Leader>fdl :<C-u>Clap loclist<CR>
+  nnoremap <silent> <Leader>fdu :<C-u>Clap git_diff_files<CR>
+  nnoremap <silent> <Leader>fdv :<C-u>Clap grep ++query=@visual<CR>
+  nnoremap <silent> <Leader>fdp :<C-u>Clap personalconf<CR>
+endif
+
+if dein#tap('coc-clap')
+  nnoremap <silent> <Leader>cfa :<C-u>Clap coc_actions<Cr>
+  nnoremap <silent> <Leader>cfc :<C-u>Clap coc_commands<Cr>
+  nnoremap <silent> <Leader>cfd :<C-u>Clap coc_diagnostics<Cr>
+  nnoremap <silent> <Leader>cfe :<C-u>Clap coc_extensions<Cr>
+  nnoremap <silent> <Leader>cfl :<C-u>Clap coc_location<Cr>
+  nnoremap <silent> <Leader>cfo :<C-u>Clap coc_outline<Cr>
+  nnoremap <silent> <Leader>cfs :<C-u>Clap coc_symbols<Cr>
+  nnoremap <silent> <Leader>cfv :<C-u>Clap coc_services<Cr>
 endif
 
 if dein#tap('unite.vim')
@@ -389,7 +401,6 @@ if dein#tap('vista.vim')
   nnoremap <silent><localleader>vf :Vista focus<CR>
   nnoremap <silent><localleader>vo :Vista<CR>
   nnoremap <silent><localleader>vq :Vista!<CR>
-  nnoremap <silent><leader>fdv     :Vista finder coc<CR>
 endif
 
 if dein#tap('vim-easymotion')

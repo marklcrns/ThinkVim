@@ -331,29 +331,14 @@
   depends: Goyo
   hook_source: source $VIM_PATH/layers/+tools/limelight/config.vim
 
-- repo: junegunn/fzf
-  build: './install --all'
+- repo: liuchengxu/vim-clap
   merged: 0
+  build: 'bash install.sh'
+  on_map: { n: <Plug> }
+  hook_add: source $VIM_PATH/layers/+tools/vim-clap/config.vim
 
-- repo: junegunn/fzf.vim
-  depends: fzf
-  on_cmd: [Colors, Rg]
-  on_func: [Fzf_dev, vista#finder#fzf#Run]
-  hook_source: source $VIM_PATH/layers/+tools/fzf/config.vim
-
-- repo: yuki-ycino/fzf-preview.vim
-  depends: [fzf, vim-fugitive]
-  on_cmd:
-    - FzfPreviewProjectFiles
-    - FzfPreviewDirectoryFile
-    - FzfPreviewBuffers
-    - FzfPreviewMruFiles
-    - FzfPreviewAllBuffers
-    - FzfPreviewProjectGrep
-    - FzfPreviewMruFiles
-    - FzfPreviewFromResources
-    - FzfPreviewGitStatus
-  hook_source: source $VIM_PATH/layers/+tools/fzf/config.vim
+- repo: vn-ki/coc-clap
+  on_source: vim-clap
 
 - repo: junegunn/gv.vim
   depends: vim-fugitive
@@ -520,7 +505,7 @@
   hook_add: source $VIM_PATH/layers/+ui/vim-indent-guides/config.vim
 
 - repo: mhinz/vim-startify
-  on_cmd: VimEnter
+  on_event: VimEnter
   depends: vim-devicons
   hook_source: source $VIM_PATH/layers/+ui/startify/config.vim
   hook_post_source: |
