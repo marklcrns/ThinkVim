@@ -1,5 +1,5 @@
 let g:dashboard_custom_section = {
-   \ 'last_session'        :[' Recently last session                 SPC s l'],
+   \ 'last_session'        :[' Recently last session                 SPC s l  '],
    \ 'find_history'        :['ﭯ Recently opened files                 SPC f d h'],
    \ 'find_file'           :[' Find  File                            SPC f d f'],
    \ 'change_colorscheme'  :[' Change Colorscheme                    SPC f d c'],
