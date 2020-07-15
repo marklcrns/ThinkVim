@@ -7,6 +7,7 @@ let s:user_nvim_core_general     = expand($VIM_PATH . '/core/general.vim')
 let s:user_nvim_coc_settings     = expand($VIM_PATH . '/coc-settings.json')
 let s:user_nvim_plugins          = expand($VIM_PATH . '/core/dein/plugins.yaml')
 let s:user_nvim_plugins_mappings = expand($VIM_PATH . '/layers/+thinkvim/config.vim')
+let s:user_nvim_whichkey         = expand($VIM_PATH . '/layers/+tools/whichkey/config.vim')
 
 let g:clap_cache_directory = $DATA_PATH . '/clap'
 let g:clap_theme = 'material_design_dark'
@@ -27,7 +28,8 @@ let g:clap_provider_personalconf = {
       \ s:user_nvim_core_general,
       \ s:user_nvim_coc_settings,
       \ s:user_nvim_plugins,
-      \ s:user_nvim_plugins_mappings
+      \ s:user_nvim_plugins_mappings,
+      \ s:user_nvim_whichkey,
       \ ],
       \ 'sink': 'e',
       \ }

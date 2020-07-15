@@ -529,6 +529,12 @@ if dein#tap('vimwiki')
   nmap <LocalLeader>whh :<C-u>Vimwiki2HTMLBrowse<CR>
   nmap <LocalLeader>wH :<C-u>VimwikiAll2HTML<CR>
   nmap <LocalLeader>wl :<C-u>VimwikiGenerateLinks<CR>
+  " Setup vim for vimwiki diary note taking
+  function! DToday()
+    exec "VimwikiMakeDiaryNote"
+    setlocal laststatus=0 showtabline=0 colorcolumn=0
+  endfunction
+  nmap <LocalLeader>wT :<C-u>call DToday()<CR>
 endif
 
 if dein#tap('taskwarrior.vim')

@@ -492,6 +492,7 @@ let g:which_key_localmap = {
               \ 'r' : 'Vimwiki rename link',
               \ 's' : 'Vimwiki UI select',
               \ 't' : 'Vimwiki index new tab',
+              \ 'T' : 'Vimwiki create new diary for today',
               \ 'w' : 'Vimwiki index',
               \ ' ' : {
                     \ 'name' : '+diary',

@@ -245,6 +245,8 @@ endsnippet
 
 # Creates Todo list with Task Warrior.
 # Prepend "!" to include "until" filter set to week_after.
+# Prepend "#" to use taskwiki Preset Headers instead of Viewport
+# Prepend "&" to generate nested todo (Must use Preset Headers to nest filters)
 snippet '([!#&]+)?todo' "To-do list template" rbA
 `!p
 from datetime import datetime, timedelta
@@ -276,7 +278,7 @@ task_header = " || " if "#" in flags else " | "
 task_filter = proj + " " + sched + " " + due
 # Full or side todo list
 if "&" in flags:
-	result += "# Side Tasks" + task_header + task_filter + " +side"
+	result += "## ${1:Side Tasks}" + task_header + "${2:+side}"
 else:
 	result += meta + "# Daily To-do" + task_header + task_filter
 
@@ -286,7 +288,7 @@ if "!" in flags:
 
 # Output
 snip.rv = result`
-* [ ] $1
+* [ ] $0
 * [ ] Read a book
 
 endsnippet
