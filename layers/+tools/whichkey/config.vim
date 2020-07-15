@@ -104,14 +104,14 @@ let g:which_key_map = {
     \ 'd' : {
           \ 'name' : '+denite',
              \ 'd' : 'Open denite',
-          \ 'g' : {
-                \ 'name' : '+denite-git',
-                   \ 'b' : 'Denite git change branch',
-                   \ 'c' : 'Denite git changed',
-                   \ 'f' : 'Denite git files',
-                   \ 'l' : 'Denite git log all',
-                   \ 's' : 'Denite git status',
-                \ },
+             \ 'g' : {
+                   \ 'name' : '+denite-git',
+                      \ 'b' : 'Denite git change branch',
+                      \ 'c' : 'Denite git changed',
+                      \ 'f' : 'Denite git files',
+                      \ 'l' : 'Denite git log all',
+                      \ 's' : 'Denite git status',
+                    \ },
           \ },
     \ 'e' : {
           \ 'name' : '+file-explorer',
@@ -363,12 +363,15 @@ let g:which_key_map = {
                   \ },
           \ },
     \ 's' : {
-          \ 'name' : '+sessions',
-          \ 'c' : 'Close session',
-          \ 'd' : 'Delete session {prompt}',
-          \ 'l' : 'Load session {prompt}',
+          \ 'name' : '+startup',
+          \ 'c' : 'Close session (Startify)',
+          \ 'd' : 'Delete session (Startify)',
+          \ 'l' : 'Load session (Startify)',
+          \ 'L' : 'Load session (Dashboard)',
           \ 'o' : 'Startify open',
-          \ 's' : 'Save session {prompt}',
+          \ 'O' : 'Dashboard open',
+          \ 's' : 'Save session (Startify)',
+          \ 'S' : 'Save session (Dashboard)',
           \ },
     \ 't' : {
           \ 'name' : '+tab-operate',

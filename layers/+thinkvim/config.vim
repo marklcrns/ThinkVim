@@ -251,6 +251,12 @@ if dein#tap('coc-clap')
   nnoremap <silent> <Leader>cfv :<C-u>Clap coc_services<Cr>
 endif
 
+if dein#tap('dashboard-nvim')
+  nmap <Leader>sS :<C-u>SessionSave<CR>
+  nmap <Leader>sL :<C-u>SessionLoad<CR>
+  nnoremap <silent> <Leader>sO  :<C-u>Dashboard<CR>
+endif
+
 if dein#tap('unite.vim')
   nnoremap <Leader>fua :<C-u>Unite file buffer<CR>
   nnoremap <Leader>fub :<C-u>Unite buffer<CR>

@@ -9,7 +9,7 @@ let g:indent_guides_exclude_filetypes =
     \ [ 'help', 'terminal', 'defx', 'denite', 'nerdtree',
     \ 'startify', 'tagbar', 'vista_kind', 'vista', 'fzf',
     \ 'codi', 'which_key', 'calendar', 'coc', 'floaterm',
-    \ 'any-jump', 'coc-explorer', 'clap_input']
+    \ 'any-jump', 'coc-explorer', 'clap_input', 'dashboard']
 
 " Manual auto disable if exclude does not work
 augroup ManualIndentGuideToggle
