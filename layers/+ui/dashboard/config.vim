@@ -7,5 +7,3 @@ let g:dashboard_custom_section = {
    \ 'book_marks'          :[' Jump to book marks                    SPC f d b'],
    \ 'open_personal'       :[' Open Personal Config File             SPC f d p'],
    \}
-
-let g:dashboard_session_directory = '~/.vim/session'

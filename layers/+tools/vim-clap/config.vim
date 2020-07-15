@@ -1,4 +1,5 @@
 let s:user_bashrc                = expand($HOME . '/.bashrc')
+let s:user_bash_aliases          = expand($HOME . '/.bash_aliases')
 let s:user_zshrc                 = expand($HOME . '/.zshrc')
 let s:user_tmux_conf             = expand($HOME . '/.tmux.conf')
 let s:user_nvim_core_mappings    = expand($VIM_PATH . '/core/mappings.vim')
@@ -17,7 +18,9 @@ let g:clap_provider_grep_enable_icon = 1
 let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%:'
 
 let g:clap_provider_personalconf = {
-      \ 'source': [ s:user_bashrc,
+      \ 'source': [
+      \ s:user_bashrc,
+      \ s:user_bash_aliases,
       \ s:user_zshrc,
       \ s:user_tmux_conf,
       \ s:user_nvim_core_mappings,
