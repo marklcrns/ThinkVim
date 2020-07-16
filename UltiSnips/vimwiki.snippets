@@ -278,7 +278,7 @@ task_header = " || " if "#" in flags else " | "
 task_filter = proj + " " + sched + " " + due
 # Full or side todo list
 if "&" in flags:
-	result += "## ${1:Side Tasks}" + task_header + "${2:+side}"
+	result += "## ${1:Side Tasks}" + task_header + "+${2:side}"
 else:
 	result += meta + "# Daily To-do" + task_header + task_filter
 
@@ -288,8 +288,8 @@ if "!" in flags:
 
 # Output
 snip.rv = result`
-* [ ] $0
 * [ ] Read a book
+* [ ] $0
 
 endsnippet
 
