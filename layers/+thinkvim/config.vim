@@ -229,7 +229,7 @@ if dein#tap('vim-clap')
   "like emacs counsel-find-file
   nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
   nnoremap <silent> <Leader>fdF :<C-u>Clap filer<CR>
-  nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
+  nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --ignore --hidden --files --follow --glob="!.git/*" --glob="!*.class" --glob="!node_modules/*" --glob="!env/*"<cr>
   nnoremap <silent> <Leader>fdg :<C-u>Clap gfiles<CR>
   nnoremap <silent> <Leader>fdR :<C-u>Clap grep ++query=<cword><cr>
   nnoremap <silent> <Leader>fdh :<C-u>Clap history<CR>
