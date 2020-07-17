@@ -20,6 +20,7 @@ let g:coc_global_extensions =[
       \ 'coc-java',
       \ 'coc-kite',
       \ 'coc-lists',
+      \ 'coc-markdownlint',
       \ 'coc-marketplace',
       \ 'coc-post',
       \ 'coc-prettier',

@@ -334,7 +334,7 @@ function! EmacsLikeMappings()
   " no longer needed. Ref: https://vim.fandom.com/wiki/Recover_from_accidental_Ctrl-U
   " imap <C-u> <C-G>u<C-U>
   inoremap <C-h> <BS>
-  inoremap <C-l> <Del>
+  inoremap <C-d> <Del>
   inoremap <C-k> <C-[>Da
   inoremap <C-a> <Home>
   inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
@@ -404,11 +404,11 @@ function! RegisterMappings()
   " `j` cycles forward, `k` cycles backward
   nnoremap <Leader>rej :let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
   nnoremap <Leader>rek :let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
-  " Paste register `+` then cycle through registers
-  nnoremap <Leader>reJ p:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
-  nnoremap <Leader>reK p:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
-  vnoremap <Leader>reJ p:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
-  vnoremap <Leader>reK p:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
+  " Cycle through registers then paste register `+`
+  nnoremap <Leader>reJ :let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>p
+  nnoremap <Leader>reK :let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>p
+  vnoremap <Leader>reJ :let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>p
+  vnoremap <Leader>reK :let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>p
   " Copy selected then cycle through registers
   vnoremap <Leader>rej y<ESC>:let @x=@k \| let @k=@j \| let @j=@b \| let @b=@a \| let @a=@+ \| let @+=@x \| reg +abjk<CR>
   vnoremap <Leader>rek y<ESC>:let @x=@+ \| let @+=@a \| let @a=@b \| let @b=@j \| let @j=@k \| let @k=@x \| reg +abjk<CR>
