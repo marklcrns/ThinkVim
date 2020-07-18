@@ -28,6 +28,7 @@ let g:coc_global_extensions =[
       \ 'coc-tabnine',
       \ 'coc-template',
       \ 'coc-tsserver',
+      \ 'coc-sh',
       \ 'coc-snippets',
       \ 'coc-spell-checker',
       \ 'coc-stylelint',

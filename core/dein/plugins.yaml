@@ -520,7 +520,7 @@
       endfunction
 
 - repo: hardcoreplayers/dashboard-nvim
-  hook_source: source $VIM_PATH/layers/+ui/dashboard/config.vim
+  hook_add: source $VIM_PATH/layers/+ui/dashboard/config.vim
 
 - repo: norcalli/nvim-colorizer.lua
   if: has('nvim') && has('nvim-0.4.0')

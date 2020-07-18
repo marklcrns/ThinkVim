@@ -140,6 +140,9 @@
     "org"
   ],
 
+  // Bash language server
+  "sh.enable": true,
+
   //-------- Code Spell Checker Configuration --------
   // Enable / Disable the spell checker.
   "cSpell.enabled": true,
