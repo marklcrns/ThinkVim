@@ -104,13 +104,13 @@ function! IndexResourcesLinks()
   exe 'norm V}kd'
   " Clear `x` register and copy all reference links
   exe 'let @x = ""'
-  " Copy all in the file in this format, - [[^+].*](.*)
-  " Excludes links prepended with `+`
-  exe 'g/- \[[^+].*](.*)/y A'
+  " Copy all in the file in this format (excluding back ticks) `[-*+] [[^+].*](.*)`
+  " Excludes links with description prepended with `+`
+  exe 'g/.*[-*+] \[[^+].*](.*)/y A'
   call CopyMatches('x')
   exe 'g/\# Resources/'
   " Paste all links to reference header
-  exe 'norm "xpV}k>'
+  exe 'norm "xp'
 endfunction
 
 " Deprecated by coc-spell-checker
