@@ -1,11 +1,11 @@
 " Defx
 call defx#custom#option('_', {
-	\ 'columns': 'indent:git:icons:filename',
-	\ 'winwidth': 30,
-	\ 'split': 'vertical',
-	\ 'direction': 'topleft',
-	\ 'show_ignored_files': 0,
-	\ })
+  \ 'columns': 'indent:git:icons:filename',
+  \ 'winwidth': 30,
+  \ 'split': 'vertical',
+  \ 'direction': 'topleft',
+  \ 'show_ignored_files': 0,
+  \ })
 
 
 " Events
@@ -30,159 +30,159 @@ augroup END
 " ---
 
 function! s:defx_close_tab(tabnr)
-	" When a tab is closed, find and delete any associated defx buffers
-	for l:nr in range(1, bufnr('$'))
-		let l:defx = getbufvar(l:nr, 'defx')
-		if empty(l:defx)
-			continue
-		endif
-		let l:context = get(l:defx, 'context', {})
-		if get(l:context, 'buffer_name', '') ==# 'tab' . a:tabnr
-			silent! execute 'bdelete '.l:nr
-			break
-		endif
-	endfor
+  " When a tab is closed, find and delete any associated defx buffers
+  for l:nr in range(1, bufnr('$'))
+    let l:defx = getbufvar(l:nr, 'defx')
+    if empty(l:defx)
+      continue
+    endif
+    let l:context = get(l:defx, 'context', {})
+    if get(l:context, 'buffer_name', '') ==# 'tab' . a:tabnr
+      silent! execute 'bdelete '.l:nr
+      break
+    endif
+  endfor
 endfunction
 
 " Internal functions
 " ---
 function! s:jump_dirty(dir) abort
-	" Jump to the next position with defx-git dirty symbols
-	let l:icons = get(g:, 'defx_git_indicators', {})
-	let l:icons_pattern = join(values(l:icons), '\|')
+  " Jump to the next position with defx-git dirty symbols
+  let l:icons = get(g:, 'defx_git_indicators', {})
+  let l:icons_pattern = join(values(l:icons), '\|')
 
-	if ! empty(l:icons_pattern)
-		let l:direction = a:dir > 0 ? 'w' : 'bw'
-		return search(printf('\(%s\)', l:icons_pattern), l:direction)
-	endif
+  if ! empty(l:icons_pattern)
+    let l:direction = a:dir > 0 ? 'w' : 'bw'
+    return search(printf('\(%s\)', l:icons_pattern), l:direction)
+  endif
 endfunction
 
 function! s:defx_toggle_tree() abort
-	" Open current file, or toggle directory expand/collapse
-	if defx#is_directory()
-		return defx#do_action('open_or_close_tree')
-	endif
-	return defx#do_action('multi', ['drop'])
+  " Open current file, or toggle directory expand/collapse
+  if defx#is_directory()
+    return defx#do_action('open_or_close_tree')
+  endif
+  return defx#do_action('multi', ['drop'])
 endfunction
 
 function! s:defx_mappings() abort
-	" Defx window keyboard mappings
-	setlocal signcolumn=no
+  " Defx window keyboard mappings
+  setlocal signcolumn=no
 
   nnoremap <silent><buffer><expr> <CR>  defx#do_action('multi', ['drop', 'quit'])
-	nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
-	nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
-	nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
-	nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
-	nnoremap <silent><buffer><expr> <C-h> defx#do_action('open', 'botright split')
-	nnoremap <silent><buffer><expr> <C-v> defx#do_action('open', 'botright vsplit')
-	nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
-	nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
-	nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')
-	nnoremap <silent><buffer><expr> dd    defx#do_action('remove_trash')
-	nnoremap <silent><buffer><expr> r     defx#do_action('rename')
-	nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')
-	nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
-	nnoremap <silent><buffer><expr> yy    defx#do_action('yank_path')
-	nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
-	nnoremap <silent><buffer><expr> q     defx#do_action('quit')
-	nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
-		\ ':<C-u>wincmd w<CR>' :
-		\ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
+  nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
+  nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
+  nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
+  nnoremap <silent><buffer><expr> <C-h> defx#do_action('open', 'botright split')
+  nnoremap <silent><buffer><expr> <C-v> defx#do_action('open', 'botright vsplit')
+  nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
+  nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')
+  nnoremap <silent><buffer><expr> dd    defx#do_action('remove_trash')
+  nnoremap <silent><buffer><expr> r     defx#do_action('rename')
+  nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')
+  nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> yy    defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
+  nnoremap <silent><buffer><expr> q     defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
+    \ ':<C-u>wincmd w<CR>' :
+    \ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
 
-	nnoremap <silent><buffer>       [g :<C-u>call <SID>jump_dirty(-1)<CR>
-	nnoremap <silent><buffer>       ]g :<C-u>call <SID>jump_dirty(1)<CR>
+  nnoremap <silent><buffer>       [g :<C-u>call <SID>jump_dirty(-1)<CR>
+  nnoremap <silent><buffer>       ]g :<C-u>call <SID>jump_dirty(1)<CR>
 
-	nnoremap <silent><buffer><expr><nowait> \  defx#do_action('cd', getcwd())
-	nnoremap <silent><buffer><expr><nowait> &  defx#do_action('cd', getcwd())
-	nnoremap <silent><buffer><expr><nowait> c  defx#do_action('copy')
-	nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
-	nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
+  nnoremap <silent><buffer><expr><nowait> \  defx#do_action('cd', getcwd())
+  nnoremap <silent><buffer><expr><nowait> &  defx#do_action('cd', getcwd())
+  nnoremap <silent><buffer><expr><nowait> c  defx#do_action('copy')
+  nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
+  nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
 
-	nnoremap <silent><buffer><expr><nowait> <Space>
-		\ defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr><nowait> <Space>
+    \ defx#do_action('toggle_select') . 'j'
 
-	nnoremap <silent><buffer><expr> '      defx#do_action('toggle_select') . 'j'
-	nnoremap <silent><buffer><expr> *      defx#do_action('toggle_select_all')
-	nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
-	nnoremap <silent><buffer><expr> <C-g>  defx#do_action('print')
+  nnoremap <silent><buffer><expr> '      defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> *      defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> <C-g>  defx#do_action('print')
 
-	nnoremap <silent><buffer><expr> S  defx#do_action('toggle_sort', 'Time')
-	nnoremap <silent><buffer><expr> C
-		\ defx#do_action('toggle_columns', 'indent:mark:filename:type:size:time')
+  nnoremap <silent><buffer><expr> S  defx#do_action('toggle_sort', 'Time')
+  nnoremap <silent><buffer><expr> C
+    \ defx#do_action('toggle_columns', 'indent:mark:filename:type:size:time')
 
-	" Tools
-	nnoremap <silent><buffer><expr> gx  defx#async_action('execute_system')
-	nnoremap <silent><buffer><expr> gd  defx#async_action('multi', ['drop', ['call', '<SID>git_diff']])
-	nnoremap <silent><buffer><expr> gl  defx#async_action('call', '<SID>explorer')
-	nnoremap <silent><buffer><expr> gr  defx#do_action('call', '<SID>grep')
-	nnoremap <silent><buffer><expr> gf  defx#do_action('call', '<SID>find_files')
-	nnoremap <silent><buffer><expr> w   defx#async_action('call', '<SID>toggle_width')
-	nnoremap <silent><buffer><expr> > defx#do_action('resize',
-	\ defx#get_context().winwidth + 10)
-	nnoremap <silent><buffer><expr> < defx#do_action('resize',
-	\ defx#get_context().winwidth - 10)
+  " Tools
+  nnoremap <silent><buffer><expr> gx  defx#async_action('execute_system')
+  nnoremap <silent><buffer><expr> gd  defx#async_action('multi', ['drop', ['call', '<SID>git_diff']])
+  nnoremap <silent><buffer><expr> gl  defx#async_action('call', '<SID>explorer')
+  nnoremap <silent><buffer><expr> gr  defx#do_action('call', '<SID>grep')
+  nnoremap <silent><buffer><expr> gf  defx#do_action('call', '<SID>find_files')
+  nnoremap <silent><buffer><expr> w   defx#async_action('call', '<SID>toggle_width')
+  nnoremap <silent><buffer><expr> > defx#do_action('resize',
+  \ defx#get_context().winwidth + 10)
+  nnoremap <silent><buffer><expr> < defx#do_action('resize',
+  \ defx#get_context().winwidth - 10)
 endfunction
 
 " TOOLS
 " ---
 
 function! s:git_diff(context) abort
-	execute 'GdiffThis'
+  execute 'GdiffThis'
 endfunction
 
 function! s:find_files(context) abort
-	" Find files in parent directory with Denite
-	let l:target = a:context['targets'][0]
-	let l:parent = fnamemodify(l:target, ':h')
-	silent execute 'wincmd w'
-	silent execute 'Denite file/rec:'.l:parent
+  " Find files in parent directory with Denite
+  let l:target = a:context['targets'][0]
+  let l:parent = fnamemodify(l:target, ':h')
+  silent execute 'wincmd w'
+  silent execute 'Denite file/rec:'.l:parent
 endfunction
 
 function! s:grep(context) abort
-	" Grep in parent directory with Denite
-	let l:target = a:context['targets'][0]
-	let l:parent = fnamemodify(l:target, ':h')
-	silent execute 'wincmd w'
-	silent execute 'Denite grep:'.l:parent
+  " Grep in parent directory with Denite
+  let l:target = a:context['targets'][0]
+  let l:parent = fnamemodify(l:target, ':h')
+  silent execute 'wincmd w'
+  silent execute 'Denite grep:'.l:parent
 endfunction
 
 function! s:toggle_width(context) abort
-	" Toggle between defx window width and longest line
-	let l:max = 0
-	let l:original = a:context['winwidth']
-	for l:line in range(1, line('$'))
-		let l:len = len(getline(l:line))
-		if l:len > l:max
-			let l:max = l:len
-		endif
-	endfor
-	execute 'vertical resize ' . (l:max == winwidth('.') ? l:original : l:max)
+  " Toggle between defx window width and longest line
+  let l:max = 0
+  let l:original = a:context['winwidth']
+  for l:line in range(1, line('$'))
+    let l:len = len(getline(l:line))
+    if l:len > l:max
+      let l:max = l:len
+    endif
+  endfor
+  execute 'vertical resize ' . (l:max == winwidth('.') ? l:original : l:max)
 endfunction
 
 function! s:explorer(context) abort
-	" Open file-explorer split with tmux
-	let l:explorer = s:find_file_explorer()
-	if empty('$TMUX') || empty(l:explorer)
-		return
-	endif
-	let l:target = a:context['targets'][0]
-	let l:parent = fnamemodify(l:target, ':h')
-	let l:cmd = 'split-window -p 30 -c ' . l:parent . ' ' . l:explorer
-	silent execute '!tmux ' . l:cmd
+  " Open file-explorer split with tmux
+  let l:explorer = s:find_file_explorer()
+  if empty('$TMUX') || empty(l:explorer)
+    return
+  endif
+  let l:target = a:context['targets'][0]
+  let l:parent = fnamemodify(l:target, ':h')
+  let l:cmd = 'split-window -p 30 -c ' . l:parent . ' ' . l:explorer
+  silent execute '!tmux ' . l:cmd
 endfunction
 
 function! s:find_file_explorer() abort
-	" Detect terminal file-explorer
-	let s:file_explorer = get(g:, 'terminal_file_explorer', '')
-	if empty(s:file_explorer)
-		for l:explorer in ['lf', 'hunter', 'ranger', 'vifm']
-			if executable(l:explorer)
-				let s:file_explorer = l:explorer
-				break
-			endif
-		endfor
-	endif
-	return s:file_explorer
+  " Detect terminal file-explorer
+  let s:file_explorer = get(g:, 'terminal_file_explorer', '')
+  if empty(s:file_explorer)
+    for l:explorer in ['lf', 'hunter', 'ranger', 'vifm']
+      if executable(l:explorer)
+        let s:file_explorer = l:explorer
+        break
+      endif
+    endfor
+  endif
+  return s:file_explorer
 endfunction
 

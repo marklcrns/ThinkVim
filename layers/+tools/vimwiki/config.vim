@@ -104,9 +104,9 @@ function! IndexResourcesLinks()
   exe 'norm V}kd'
   " Clear `x` register and copy all reference links
   exe 'let @x = ""'
-  " Copy all in the file in this format (excluding back ticks) `[-*+] [[^+].*](.*)`
+  " Copy all in the file in this format (excluding back ticks) `[-*] [[^+].*](.*)`
   " Excludes links with description prepended with `+`
-  exe 'g/.*[-*+] \[[^+].*](.*)/y A'
+  exe 'g/.*[-*] \[[^+].*](.*)/y A'
   call CopyMatches('x')
   exe 'g/\# Resources/'
   " Paste all links to reference header
