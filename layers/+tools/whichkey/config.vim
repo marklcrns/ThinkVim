@@ -239,8 +239,7 @@ let g:which_key_map = {
                 \ 'c' : 'Javac compile',
                 \ 'C' : 'Javac compile all from directory',
                 \ 'j' : 'Save compile and run in next tmux pane',
-                \ 'r' : 'Run Java in vim terminal',
-                \ 'R' : 'Compile and run Java in vim terminal',
+                \ 'r' : 'Save compile and run Java in vim terminal',
                 \ },
           \ 'g' : {
                   \ 'name' : '+grammar',

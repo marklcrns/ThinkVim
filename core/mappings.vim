@@ -639,8 +639,7 @@ function! JavaMappings()
   autocmd FileType java nnoremap <buffer><silent><Leader>ljc :!javac -Xlint %<CR>
   autocmd FileType java nnoremap <buffer><silent><Leader>ljC :!javac -Xlint *.java<CR>
   " Save, complie, and run java file in current buffer <C-c> to exit program
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:terminal time java -cp %:p:h %:t:r<CR>
-  autocmd FileType java nnoremap <buffer><silent><Leader>ljR :w<CR>:terminal javac -Xlint % && time java -cp %:p:h %:t:r<CR>
+  autocmd FileType java nnoremap <buffer><silent><Leader>ljr :w<CR>:terminal javac -Xlint % && time java -cp %:p:h %:t:r<CR>
   " F9 to compile, F10/F11 to cycle through errors.
   " Ref: https://stackoverflow.com/a/14727153
   autocmd Filetype java set makeprg=javac\ -Xlint\ %
