@@ -228,11 +228,11 @@ snippet psf "Java private static final field" bA
 private static final $0;
 endsnippet
 
-snippet try "Java try-catch block" b
+snippet try "Java try-catch block" bw
 try {
-	${2:${VISUAL}}
+	${0:${VISUAL}}
 } catch(${1:Exception} e) {
-	$0
+	e.printStackTrace();
 }
 endsnippet
 
