@@ -670,14 +670,14 @@ endsnippet
 # Auto exponent/superscript
 # Matches any number of digits, words, or outside of enclosing brackets
 # or parenthesis character followed by '^' using negative lookbehind
-snippet '(?<=\d+|\w+|\(.*\)|\[.*\]|\{.*\})\^' "Mathjax auto exponent/superscript" irA
+snippet '(?<=\d+|\w+|\(.*\)|\[.*\]|\{.*\})\^' "Mathjax auto exponent/superscript" ir
 ^{$1}$0
 endsnippet
 
 # Auto subscript
 # Matches any number of digits, words, or outside of enclosing brackets
 # or parenthesis character followed by '_' using negative lookbehind
-snippet '(?<=\d+|\w+|\(.*\)|\[.*\]|\{.*\})_' "Mathjax auto subscript" irA
+snippet '(?<=\d+|\w+|\(.*\)|\[.*\]|\{.*\})_' "Mathjax auto subscript" ir
 _{$1}$0
 endsnippet
 
