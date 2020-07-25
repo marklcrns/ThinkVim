@@ -212,6 +212,11 @@ augroup AutoMkNonExDir
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
+augroup JavaEditorConfig
+  autocmd!
+  autocmd Filetype java set tabstop=4 softtabstop=4 shiftwidth=4
+augroup END
+
 " Auto capitalization in start of sentences
 " Ref: https://davidxmoody.com/2014/vim-auto-capitalisation/
 " func! WordProcessorMode()
