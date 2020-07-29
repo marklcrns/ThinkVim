@@ -133,6 +133,7 @@
 # ----------------------------------------
 - repo: junegunn/vim-easy-align
   on_ft: [vim, md, vimwiki, json, go, html, js, jsx, py, css, java, less, tmpl, toml, xml, sql, Dockerfile]
+  hook_source: source $VIM_PATH/layers/+tools/vim-easy-align/config.vim
 
 - repo: AndrewRadev/splitjoin.vim
   on_map: { n: <Plug>Splitjoin }
