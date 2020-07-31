@@ -231,7 +231,7 @@ if dein#tap('vim-clap')
   nnoremap <silent> <Leader>fdF :<C-u>Clap filer<CR>
   nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --hidden --files<cr>
   nnoremap <silent> <Leader>fdg :<C-u>Clap gfiles<CR>
-  nnoremap <silent> <Leader>fdR :<C-u>Clap grep ++query=<cword><cr>
+  nnoremap <silent> <Leader>fdw :<C-u>Clap grep ++query=<cword><cr>
   nnoremap <silent> <Leader>fdh :<C-u>Clap history<CR>
   nnoremap <silent> <Leader>fdW :<C-u>Clap windows<CR>
   nnoremap <silent> <Leader>fdl :<C-u>Clap loclist<CR>
