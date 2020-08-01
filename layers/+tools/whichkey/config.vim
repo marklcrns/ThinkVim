@@ -128,7 +128,7 @@ let g:which_key_map = {
                 \ 'b' : 'Find on buffers',
                 \ 'c' : 'Find colorscheme',
                 \ 'f' : 'Find files on directory',
-                \ 'F' : 'Find files with filer',
+                \ 'F' : 'Find files on directory (includes hidden files)',
                 \ 'g' : 'Find git files',
                 \ 'h' : 'Find on history',
                 \ 'l' : 'Find on locationlist',

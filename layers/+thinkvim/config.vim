@@ -228,8 +228,8 @@ if dein#tap('vim-clap')
   nnoremap <silent> <Leader>fdm :<C-u>Clap marks<CR>
   "like emacs counsel-find-file
   nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
-  nnoremap <silent> <Leader>fdF :<C-u>Clap filer<CR>
-  nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --hidden --files<cr>
+  nnoremap <silent> <Leader>fdF :<C-u>Clap files ++finder=rg --hidden --files<cr>
+  nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --files<cr>
   nnoremap <silent> <Leader>fdg :<C-u>Clap gfiles<CR>
   nnoremap <silent> <Leader>fdw :<C-u>Clap grep ++query=<cword><cr>
   nnoremap <silent> <Leader>fdh :<C-u>Clap history<CR>
