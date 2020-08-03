@@ -24,8 +24,109 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
+snippet h1 "Header 1" bA
+# $1
+$0
+endsnippet
+
+snippet h2 "Header 2" bA
+## $1
+$0
+endsnippet
+
+snippet h3 "Header 3" bA
+### $1
+$0
+endsnippet
+
+snippet h4 "Header 4" bA
+#### $1
+$0
+endsnippet
+
+snippet h5 "Header 5" bA
+##### $1
+$0
+endsnippet
+
+snippet h6 "Header 6" bA
+###### $1
+$0
+endsnippet
+
 snippet (.+)?fen "Fenced code block" rbA
 \`\`\``!p snip.rv = "" if match.group(1) == None else match.group(1)`
 ${0:${VISUAL}}
 \`\`\`
 endsnippet
+
+snippet mcom "Markdown comment" bA
+[$1]: # $0
+endsnippet
+
+snippet hcom "Markdown comment" bA
+<!--- $1 --->$0
+endsnippet
+
+snippet br "Markdown breakline" w
+<br>
+endsnippet
+
+snippet l "Link tag"
+[${1:${VISUAL}}]($0)
+endsnippet
+
+snippet fi "Image tag for files" w
+![${1:${VISUAL}}](../../../$0)
+endsnippet
+
+snippet i "Image tag for urls" w
+![${1:${VISUAL}}]($2)
+endsnippet
+
+snippet a "Markdown anchor link" w
+[#${1:${VISUAL}}]($0#$1)
+endsnippet
+
+snippet anc "Html anchor" bA
+<a name="${1:${VISUAL}}">$2</a>
+endsnippet
+
+snippet pre "Html code block tag" w
+<pre>
+$0
+</pre>
+endsnippet
+
+snippet kbd "Markdown key bindings tag" wA
+<kbd>${1:${VISUAL}}</kbd>$0
+endsnippet
+
+snippet mbo "Markdown Bold tag" wA
+**${1:${VISUAL}}**$0
+endsnippet
+
+snippet mit "Markdown Italic tag" wA
+_${1:${VISUAL}}_$0
+endsnippet
+
+snippet hbo "Html bold tag" wA
+<b>${1:${VISUAL}}</b>$0
+endsnippet
+
+snippet hit "Html italic tag" wA
+<i>${1:${VISUAL}}</i>$0
+endsnippet
+
+snippet meta "Meta deta template" b
+---
+title: ${1:(Insert Title Here)}
+author: ${2:Mark Lucernas}
+date: `date '+%Y-%m-%d'`
+summary: $3
+---
+
+
+$0
+endsnippet
+
