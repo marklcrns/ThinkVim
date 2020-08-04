@@ -166,12 +166,12 @@ function! WindowsManagementMappings()
       execute 'bw!'
       return
     endif
-    " Quit window/split if buffer is empty
-    if &buftype ==# 'nofile'
-      execute "normal :q"
+    " Quit window/split if buffer is empty or not modifiable
+    if (&buftype ==# 'nofile' || !&modifiable)
+      silent execute 'q!'
       return
     elseif (curBufName ==# '' || &readonly)
-      execute 'bdelete'
+      silent execute 'bdelete'
       return
     " For quitting floating windows without asking to write
     endif
@@ -206,8 +206,8 @@ function! WindowsManagementMappings()
       echo 'Exited ' . curBufName
     endfor
     " Close buffer, restore active tab
-    execute 'bdelete' . curBuf
-    execute 'tabnext ' . curTab
+    silent execute 'bdelete' . curBuf
+    silent execute 'tabnext ' . curTab
     " if only one buffer remains, and a split/s exists close all extra splits
     " Ref: https://superuser.com/questions/345520/vim-number-of-total-buffers
     if len(getbufinfo({'buflisted':1})) ==# 1 && winnr('$') !=# 1
