@@ -61,7 +61,7 @@
       \ ]
     let g:rooter_silent_chdir = 1
     let g:rooter_resolve_links = 1
-    let g:rooter_use_lcd = 1
+    let g:rooter_cd_cmd = 'lcd'
 
 - repo: christoomey/vim-tmux-navigator
   if: "! (has('win32') || has('win64'))"
@@ -521,8 +521,8 @@
         return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
       endfunction
 
-- repo: hardcoreplayers/dashboard-nvim
-  hook_add: source $VIM_PATH/layers/+ui/dashboard/config.vim
+# - repo: hardcoreplayers/dashboard-nvim
+#   hook_add: source $VIM_PATH/layers/+ui/dashboard/config.vim
 
 - repo: norcalli/nvim-colorizer.lua
   if: has('nvim') && has('nvim-0.4.0')

@@ -736,17 +736,6 @@ if dein#tap('calendar.vim')
 endif
 
 if dein#tap('vim-rooter')
-  " Change directory for the current window only
-  let g:rooter_use_lcd = 1
-  " Resolve symbolic link
-  let g:rooter_resolve_links = 1
-  " Stop echoing project directory
-  let g:rooter_silent_chdir = 1
-  " Change to current file's directory for non-project files
-  let g:rooter_change_directory_for_non_project_files = 'current'
-  " Disables automatic directory change
-  let g:rooter_manual_only = 1
-
   nnoremap <Leader>frr :Rooter<CR>
 endif
 

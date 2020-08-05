@@ -152,24 +152,26 @@
   // Specify file types to spell check.
   "cSpell.enabledLanguageIds": [
     "csharp",
+    "css",
     "go",
+    "html",
     "java",
     "javascript",
     "javascriptreact",
+    "less",
     "markdown",
     "php",
     "plaintext",
+    "python",
+    "scss",
+    "sh",
+    "text",
     "typescript",
     "typescriptreact",
-    "yml",
-    "python",
-    "html",
-    "css",
-    "less",
-    "scss",
     "vim",
     "vimwiki",
-    "text"
+    "yml",
+    "zsh"
   ],
   "cSpell.fixSpellingWithRenameProvider": true,
   // Controls the maximum number of spelling errors per document.
