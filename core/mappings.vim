@@ -283,7 +283,14 @@ function! UtilityMappings()
   function! VimgrepWrapper(input, ...)
     " arg2 'c' for ignorecasing and 'C' for match casing
     let casing = get(a:, 1, "")
-    exec "noautocmd vimgrep /\\" . casing . a:input . "/j **/*." . expand("%:e")
+    let ext = expand("%:e")
+    " Find files only with same extension as current buffer if theres a file
+    " extension, else no file type filter.
+    if ext
+      exec "noautocmd vimgrep /\\" . casing . a:input . "/j **/*." . expand("%:e")
+    else
+      exec "noautocmd vimgrep /\\" . casing . a:input . "/j **/*"
+    endif
     exec "cw"
   endfunction
   nnoremap <Leader>fg :call VimgrepWrapper("")<Left><Left>
