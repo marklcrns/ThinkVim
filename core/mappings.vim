@@ -159,22 +159,21 @@ function! WindowsManagementMappings()
   function! SmartBufClose()
     let curBuf = bufnr('%')
     let curBufName = bufname('%')
+    let curBufCount = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
     let curTab = tabpagenr()
     call CleanEmptyBuffers()
-    " Quit from terminal-emulator
-    if &buftype ==# 'terminal'
-      execute 'bw!'
-      return
-    endif
-    " Quit window/split if buffer is empty or not modifiable
-    if (&buftype ==# 'nofile' || !&modifiable)
+    " Smart quit and bwipe
+    if (&buftype ==# 'nofile' || !&modifiable) " Quit close floating vim-clap buffer or not modifiable
       silent execute 'q!'
       return
-    elseif (curBufName ==# '' || &readonly)
-      silent execute 'bdelete'
+    elseif (curBufCount ==# 1 && curBufName ==# '') " Quit when only buffer and empty
+      silent execute 'q!'
       return
-    " For quitting floating windows without asking to write
+    elseif (curBufName ==# '' || &readonly || &buftype ==# 'terminal') " Wipe readonly buffer, terminal, and empty to remove from jump stack
+      silent execute 'bw!'
+      return
     endif
+
     " Go to next buffer
     execute 'bnext'
     " If in the same buffer as the last, create empty buffer
