@@ -223,7 +223,7 @@
   // snippets
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.pythonVersion": 3,
-  "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
+  "snippets.userSnippetsDirectory": "~/.config/UltiSnips",
 
   // Coc-yank
   "yank.highlight.duration": 150,
