@@ -1,5 +1,7 @@
 # why use yaml to manage plugins
 # see http://genkisugimoto.com/blog/manage-vim-plugins-via-yaml/
+# hook_source: only sourced once
+# hook_add:    sourced everytime vim starts
 
 # Normal Loading
 # ==========================================
@@ -98,16 +100,7 @@
 # Syntax{{{
 # Linters & Formaters
 # ----------------------------------------
-# - repo: sbdchd/neoformat
-#   on_cmd: [Neoformat, Neoformat!]
-#   hook_source: source  $VIM_PATH/layers/+syntax/neoformat/config.vim
-#
-# - repo: benekastah/neomake
-#   on_event: FileType
-#   on_cmd: [Neomake, NeomakeFile, NeomakeEnable, NeomakeToggle, NeomakeInfo]
-#   hook_source: |
-#     source $VIM_PATH/layers/+syntax/neomake/config.vim
-#     call neomake#configure#automake('rwn', 300)
+
 
 # Syntax Helpers
 # ----------------------------------------
@@ -168,6 +161,24 @@
 - repo: lambdalisue/gina.vim
   on_cmd: Gina
 
+- repo: rhysd/committia.vim
+  hook_add: |
+    let g:committia_hooks = {}
+    function! g:committia_hooks.edit_open(info)
+        " Additional settings
+        setlocal spell
+
+        " If no commit message, start with insert mode
+        if a:info.vcs ==# 'git' && getline(1) ==# ''
+            startinsert
+        endif
+
+        " Scroll the diff window from insert mode
+        " Map <C-n> and <C-p>
+        imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+        imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+    endfunction
+
 - repo: kristijanhusak/defx-git
   on_source: defx.nvim
   hook_source: source  $VIM_PATH/layers/+ui/defx/+defx-git.vim
@@ -200,37 +211,15 @@
     let g:any_jump_window_top_offset   = 10
     let g:any_jump_search_prefered_engine = 'rg'
 
-# CSS
-# ----------------------------------------
-# - repo: hail2u/vim-css3-syntax
-#   on_ft: css
-# - repo: cakebaker/scss-syntax.vim
-#   on_ft: [scss, sass]
-# Go
-# ----------------------------------------
-# - repo: fatih/vim-go
-#   on_ft: go
-#   hook_source: source $VIM_PATH/layers/+lang/go/vim-go/config.vim
-
-# HTML
-# ---------------------------------------
-# - repo: othree/html5.vim
-#   on_ft: html
-#   hook_add: |
-#     let g:html5_event_handler_attributes_complete = 0
-#     let g:html5_rdfa_attributes_complete = 0
-#     let g:html5_microdata_attributes_complete = 0
-#     let g:html5_aria_attributes_complete = 0
-
 # Java
 # ----------------------------------------
-- repo: tpope/vim-classpath
-  on_ft: java
+# - repo: tpope/vim-classpath
+#   on_ft: java
 
 # Javascript
 # ----------------------------------------
-- repo: chemzqm/vim-jsx-improve
-  on_ft: [javascript, javascriptreact]
+# - repo: chemzqm/vim-jsx-improve
+#   on_ft: [javascript, javascriptreact]
 
 # JSON
 # ----------------------------------------
@@ -260,14 +249,14 @@
 
 # LaTeX
 # ---------------------------------------
-- repo: lervag/vimtex
-  on_ft: [tex, latex, plaintex]
-  hook_source: source $VIM_PATH/layers/+lang/latex/vimtex/config.vim
-
-- repo: KeitaNakamura/tex-conceal.vim
-  on_ft: [tex, latex, plaintex]
-  hook_source: |
-    let g:tex_conceal='abdmg'
+# - repo: lervag/vimtex
+#   on_ft: [tex, latex, plaintex]
+#   hook_source: source $VIM_PATH/layers/+lang/latex/vimtex/config.vim
+#
+# - repo: KeitaNakamura/tex-conceal.vim
+#   on_ft: [tex, latex, plaintex]
+#   hook_source: |
+#     let g:tex_conceal='abdmg'
 
 # Python
 # ----------------------------------------
@@ -351,16 +340,6 @@
 - repo: junegunn/gv.vim
   depends: vim-fugitive
   on_cmd: GV
-
-- repo: Shougo/neomru.vim
-  on_source: [denite.vim, fzf-preview.vim]
-  hook_add: |
-    let g:neomru#directory_mru_path = $DATA_PATH . '/mru/dir'
-    let g:neomru#file_mru_path = $DATA_PATH . '/mru/file'
-    let g:unite_source_file_mru_limit = 5000
-
-- repo: Shougo/unite.vim
-  on_cmd: Unite
 
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
@@ -454,9 +433,6 @@
     let g:SignatureMarkerTextHLDynamic = 1
     let g:SignatureIncludeMarkers = repeat('⚐', 10)
 
-# autocmd user_events User GitGutter call signature#sign#Refresh()
-# depends: vim-gitgutter
-
 - repo: Ron89/thesaurus_query.vim
   on_cmd:
     - Thesaurus
@@ -494,11 +470,6 @@
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_use_smartsign_us = 1
 
-# - repo: haya14busa/vim-asterisk
-#   on_map: { nv: <Plug> }
-#   hook_add: |
-#     let g:asterisk#keeppos = 1
-
 - repo: t9md/vim-quickhl
   on_map: { nv: <Plug> }
 
@@ -521,9 +492,6 @@
         return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
       endfunction
 
-# - repo: hardcoreplayers/dashboard-nvim
-#   hook_add: source $VIM_PATH/layers/+ui/dashboard/config.vim
-
 - repo: norcalli/nvim-colorizer.lua
   if: has('nvim') && has('nvim-0.4.0')
   on_event: FileType
@@ -538,6 +506,7 @@
 
 - repo: amadeus/vim-convert-color-to
   on_cmd: ConvertColorTo
+
 # - repo: itchyny/vim-cursorword
 #   on_event: FileType
 #   hook_source: |
@@ -548,12 +517,6 @@
 #       autocmd InsertEnter * let b:cursorword = 0
 #       autocmd InsertLeave * let b:cursorword = 1
 #     augroup END
-
-# - repo: yuttie/comfortable-motion.vim
-#   on_func: comfortable_motion#flick
-#   hook_add: |
-#     let g:comfortable_motion_no_default_key_mappings = 1
-#     let g:comfortable_motion_impulse_multiplier = 1
 
 - repo: psliwka/vim-smoothie
   on_func: smoothie#
@@ -578,63 +541,8 @@
 # ETC {{{
 - repo: ThePrimeagen/vim-be-good
   on_cmd: VimBeGood
+
+- repo: dstein64/vim-startuptime
+  on_event: VimEnter
 # }}}
-
-
-# Commented plugins too old, or found much better
-# ==================================================
-# - repo: taigacute/spaceline.vim
-
-# - repo: rhysd/vim-operator-surround
-#   depends: [vim-operator-user, vim-textobj-multiblock]
-#   on_map:  { vnx : <Plug> }
-
-# use coc-git instead of vim-gitgutter
-# - repo: airblade/vim-gitgutter
-#   on_event: FileType
-#   hook_source: source ~/.config/nvim/core/plugins/vim-gitgutter.vim
-
-# - repo: Yggdroot/indentLine
-#   on_ft: [python,html,css,vim,javascript,javascriptreact,vue]
-#   hook_source: source $VIM_PATH/layers/+ui/indentline/config.vim
-
-# - repo: w0rp/ale
-#   hook_add: source ~/.config/nvim/layers/+syntax/ale/config.vim
-# }}}
-
-
-# - repo: rizzatti/dash.vim
-#   on_map: { n: <Plug> }
-#   hook_add: |
-#       let g:dash_map = {
-#         \ 'javascript': ['javascript', 'NodeJS'],
-#         \ 'javascriptreact': ['react'],
-#         \ 'html': ['html', 'svg'],
-#         \ 'go' : 'Go',
-#         \}
-
-# - repo: tpope/vim-markdown
-#   on_ft: markdown
-#   hook_add: |
-#         let g:markdown_fenced_languages = [
-#           \ 'html',
-#           \ 'bash=sh',
-#           \ 'css',
-#           \ 'javascript',
-#           \ 'jsx=javascriptreact',
-#           \ 'go',
-#           \]
-
-# - repo: osyo-manga/vim-textobj-multiblock
-#   depends: vim-textobj-user
-#   on_map: { ox: <Plug> }
-#   hook_add:  let g:textobj_multiblock_no_default_key_mappings = 1
-
-# Git
-# ----------------------------------------
-# - repo: itchyny/vim-gitbranch
-
-# - repo: airblade/vim-gitgutter
-#   on_event: FileType
-#   hook_source: source $VIM_PATH/layers/+git/vim-gitgutter/config.vim
 

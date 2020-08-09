@@ -20,5 +20,5 @@ augroup ManualIndentGuideToggle
   autocmd Filetype any-jump
     \ autocmd BufWinLeave <buffer> IndentGuidesEnable
   autocmd BufEnter any-jump.* IndentGuidesDisable
-  autocmd BufLeave any-jumss.* IndentGuidesEnable
+  autocmd BufLeave any-jump.* IndentGuidesEnable
 augroup END

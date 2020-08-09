@@ -276,7 +276,6 @@ if dein#tap('vim-easy-align')
   nmap <Leader>rAA <Plug>(LiveEasyAlign)
 endif
 
-
 if dein#tap('vim-go')
   nnoremap <silent> <LocalLeader>gi :GoImpl<CR>
   nnoremap <silent> <LocalLeader>gd :GoDescribe<CR>
