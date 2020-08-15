@@ -411,8 +411,8 @@ if dein#tap('vim-floaterm')
   tnoremap <silent> <Leader>ott <C-\><C-n>:FloatermToggle<CR>
   nnoremap <silent> <Leader>otu :FloatermUpdate<CR>
   tnoremap <silent> <Leader>otu <C-\><C-n>:FloatermUpdate<CR>
-  nnoremap <silent> <Leader>otv :FloatermUpdate --wintype=normal --position=right<CR>
   tnoremap <silent> <Leader>otv <C-\><C-n>:FloatermUpdate --wintype=normal --position=right<CR>
+  nnoremap <silent> <Leader>otv :FloatermUpdate --wintype=normal --position=right<CR>
 endif
 
 if dein#tap('vim-expand-region')

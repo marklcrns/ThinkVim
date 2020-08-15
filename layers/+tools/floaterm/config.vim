@@ -1,4 +1,5 @@
 let g:floaterm_position = 'center'
+let g:floaterm_autoinsert = 0
 
 " Set floaterm window's background to default
 hi FloatermNF guibg=none
