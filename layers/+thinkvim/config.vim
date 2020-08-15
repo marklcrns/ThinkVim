@@ -139,9 +139,6 @@ if dein#tap('coc.nvim')
 
   nmap <leader>cr <Plug>(coc-refactor)
 
-  " Open floaterm
-  nnoremap <silent> <leader>ot :<C-u>CocCommand floaterm.new<cr>
-
   " coc-explorer
   noremap <silent> <leader>ec :execute 'CocCommand explorer' .
         \ ' --toggle' .
@@ -387,6 +384,36 @@ endif
 "   map g* <Plug>(asterisk-gz*)
 "   map g# <Plug>(asterisk-gz#)
 " endif
+
+if dein#tap('vim-floaterm')
+  nnoremap <silent> <Leader>ota :Clap floaterm<CR>
+  tnoremap <silent> <Leader>ota <C-\><C-n>:Clap floaterm<CR>
+  nnoremap <silent> <Leader>otb :FloatermUpdate --wintype=normal --position=bottom<CR>
+  tnoremap <silent> <Leader>otb <C-\><C-n>:FloatermUpdate --wintype=normal --position=bottom<CR>
+  nnoremap <silent> <Leader>oth :FloatermHide<CR>
+  tnoremap <silent> <Leader>oth <C-\><C-n>:FloatermHide<CR>
+  nnoremap <silent> <Leader>otn :FloatermNext<CR>
+  tnoremap <silent> <Leader>otn <C-\><C-n>:FloatermNext<CR>
+  nnoremap <silent> <Leader>oto :FloatermNew<CR>
+  tnoremap <silent> <Leader>oto <C-\><C-n>:FloatermNew<CR>
+  nnoremap <silent> <Leader>otp :FloatermPrev<CR>
+  tnoremap <silent> <Leader>otp <C-\><C-n>:FloatermPrev<CR>
+  nnoremap <silent> <Leader>otq :FloatermKill<CR>
+  tnoremap <silent> <Leader>otq <C-\><C-n>:FloatermKill<CR>
+  nnoremap <silent> <Leader>otQ :FloatermKill!<CR>
+  tnoremap <silent> <Leader>otQ <C-\><C-n>:FloatermKill!<CR>
+  nnoremap <silent> <Leader>otr :FloatermNew ranger<CR>
+  tnoremap <silent> <Leader>otr <C-\><C-n>:FloatermNew ranger<CR>
+  nnoremap <silent> <Leader>ots :FloatermShow<CR>
+  tnoremap <silent> <Leader>ots <C-\><C-n>:FloatermShow<CR>
+  nnoremap <silent> <Leader>otS :FloatermSend<CR>
+  nnoremap <silent> <Leader>ott :FloatermToggle<CR>
+  tnoremap <silent> <Leader>ott <C-\><C-n>:FloatermToggle<CR>
+  nnoremap <silent> <Leader>otu :FloatermUpdate<CR>
+  tnoremap <silent> <Leader>otu <C-\><C-n>:FloatermUpdate<CR>
+  nnoremap <silent> <Leader>otv :FloatermUpdate --wintype=normal --position=right<CR>
+  tnoremap <silent> <Leader>otv <C-\><C-n>:FloatermUpdate --wintype=normal --position=right<CR>
+endif
 
 if dein#tap('vim-expand-region')
   xmap v <Plug>(expand_region_expand)
