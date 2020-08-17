@@ -178,7 +178,7 @@ let g:which_key_map = {
              \ 'a' : 'Git add',
              \ 'A' : 'Git add all',
              \ 'b' : 'Git blame',
-             \ 'B' : 'Gbrowse',
+             \ 'B' : 'Gina blame',
              \ 'c' : 'Gina commit',
              \ 'd' : {
                    \ 'name' : '+git-diff',

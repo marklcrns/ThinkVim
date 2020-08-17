@@ -2,8 +2,8 @@
 
 if dein#tap('any-jump.vim')
   nnoremap <silent> <leader>ab :AnyJumpBack<CR>
-	nnoremap <silent> <Leader>aj :AnyJump<CR>
-	xnoremap <silent> <Leader>aj :AnyJumpVisual<CR>
+  nnoremap <silent> <Leader>aj :AnyJump<CR>
+  xnoremap <silent> <Leader>aj :AnyJumpVisual<CR>
   nnoremap <silent> <leader>al :AnyJumpLastResults<CR>
 endif
 
@@ -332,15 +332,8 @@ if dein#tap('caw.vim')
   call InitCaw()
 endif
 
-" if dein#tap('comfortable-motion.vim')
-"   nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-"   nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-"   nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-"   nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
-" endif
-
 if dein#tap('vim-smoothie')
-	nnoremap <silent> <C-f> :<C-U>call smoothie#forwards()<CR>
+  nnoremap <silent> <C-f> :<C-U>call smoothie#forwards()<CR>
   nnoremap <silent> <C-b> :<C-U>call smoothie#backwards()<CR>
   nnoremap <silent> <C-d> :<C-U>call smoothie#downwards()<CR>
   nnoremap <silent> <C-u> :<C-U>call smoothie#upwards()<CR>
@@ -630,30 +623,30 @@ if dein#tap('vim-indent-guides')
 endif
 
 if dein#tap('vim-signature')
-	let g:SignatureIncludeMarks = 'abcdefghijkloqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-	let g:SignatureMap = {
-		\ 'Leader':            'm',
-		\ 'ListBufferMarks':   'm/',
-		\ 'ListBufferMarkers': 'm?',
-		\ 'PlaceNextMark':     'm,',
-		\ 'ToggleMarkAtLine':  'mm',
-		\ 'PurgeMarksAtLine':  'm-',
-		\ 'DeleteMark':        'dm',
-		\ 'PurgeMarks':        'm<Space>',
-		\ 'PurgeMarkers':      'm<BS>',
-		\ 'GotoNextLineAlpha': "']",
-		\ 'GotoPrevLineAlpha': "'[",
-		\ 'GotoNextSpotAlpha': '`]',
-		\ 'GotoPrevSpotAlpha': '`[',
-		\ 'GotoNextLineByPos': "]'",
-		\ 'GotoPrevLineByPos': "['",
-		\ 'GotoNextSpotByPos': 'mn',
-		\ 'GotoPrevSpotByPos': 'mp',
-		\ 'GotoNextMarker':    ']-',
-		\ 'GotoPrevMarker':    '[-',
-		\ 'GotoNextMarkerAny': ']=',
-		\ 'GotoPrevMarkerAny': '[=',
-		\ }
+  let g:SignatureIncludeMarks = 'abcdefghijkloqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  let g:SignatureMap = {
+    \ 'Leader':            'm',
+    \ 'ListBufferMarks':   'm/',
+    \ 'ListBufferMarkers': 'm?',
+    \ 'PlaceNextMark':     'm,',
+    \ 'ToggleMarkAtLine':  'mm',
+    \ 'PurgeMarksAtLine':  'm-',
+    \ 'DeleteMark':        'dm',
+    \ 'PurgeMarks':        'm<Space>',
+    \ 'PurgeMarkers':      'm<BS>',
+    \ 'GotoNextLineAlpha': "']",
+    \ 'GotoPrevLineAlpha': "'[",
+    \ 'GotoNextSpotAlpha': '`]',
+    \ 'GotoPrevSpotAlpha': '`[',
+    \ 'GotoNextLineByPos': "]'",
+    \ 'GotoPrevLineByPos': "['",
+    \ 'GotoNextSpotByPos': 'mn',
+    \ 'GotoPrevSpotByPos': 'mp',
+    \ 'GotoNextMarker':    ']-',
+    \ 'GotoPrevMarker':    '[-',
+    \ 'GotoNextMarkerAny': ']=',
+    \ 'GotoPrevMarkerAny': '[=',
+    \ }
 endif
 
 if dein#tap('vim-wordy')
@@ -751,7 +744,6 @@ if dein#tap('gina.vim')
   nnoremap <Leader>gp :<C-u>Gina push<CR>
 endif
 
-
 if dein#tap('calendar.vim')
   nnoremap <LocalLeader>cc :Calendar -view=year -first_day=sunday<CR>
   nnoremap <LocalLeader>cd :Calendar -view=day<CR>
@@ -824,8 +816,4 @@ endif
 "   let g:spaceline_lineformat_right = ''
 "   let g:spaceline_seperate_endseperate = ''
 "   let g:spaceline_seperate_emptyseperate = ''
-" endif
-
-" if dein#tap('dash.vim')
-"   nnoremap <silent><leader>d :Dash<CR>
 " endif
