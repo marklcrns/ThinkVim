@@ -548,4 +548,3 @@
 - repo: dstein64/vim-startuptime
   on_event: VimEnter
 # }}}
-
