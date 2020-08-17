@@ -163,10 +163,10 @@ function! WindowsManagementMappings()
     let curTab = tabpagenr()
     call CleanEmptyBuffers()
     " Smart quit and bwipe
-    if (&buftype ==# 'nofile' || !&modifiable) " Quit close floating vim-clap buffer or not modifiable
-      silent execute 'q!'
+    if !&modifiable
+      silent execute 'bw!'
       return
-    elseif (curBufCount ==# 1 && curBufName ==# '') " Quit when only buffer and empty
+    elseif ((curBufCount ==# 1 && curBufName ==# '') || &buftype ==# 'nofile') " Quit when only buffer and empty
       silent execute 'q!'
       return
     elseif (curBufName ==# '' || &readonly || &buftype ==# 'terminal') " Wipe readonly buffer, terminal, and empty to remove from jump stack

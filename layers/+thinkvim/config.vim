@@ -745,6 +745,7 @@ endif
 if dein#tap('gina.vim')
   nnoremap <Leader>ga :<C-u>Gina add %:p<CR>
   nnoremap <Leader>gA :<C-u>Gina add .<CR>
+  nnoremap <Leader>gB :<C-u>Gina blame<CR>
   nnoremap <Leader>gc :<C-u>Gina commit<CR>
   nnoremap <Leader>go :<C-u>Gina log<CR>
   nnoremap <Leader>gp :<C-u>Gina push<CR>
