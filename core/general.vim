@@ -13,6 +13,7 @@ set cmdheight=2 " Height of the command line
 " }}} DISPLAY SETTINGS
 
 " UI SETTINGS -------------------- {{{
+set lazyredraw          " improve scrolling performance when navigating through large results
 " Encoding
 if has('vim_starting')
   set encoding=UTF-8
