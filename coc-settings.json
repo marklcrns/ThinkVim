@@ -226,7 +226,9 @@
   "snippets.userSnippetsDirectory": "~/.config/UltiSnips",
 
   // Coc-yank
-  "yank.highlight.duration": 150,
+  "yank.highlight.enable": true,
+  "yank.highlight.duration": 200,
+  "yank.enableCompletion": false,
 
   // add your languageServer into this list
   "languageserver": {}

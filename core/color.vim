@@ -28,7 +28,7 @@ hi CocWarningSign  ctermfg=32 ctermbg=NONE guifg=#0087d7 guibg=NONE
 " coc-yank highlight
 highlight HighlightedyankRegion term=bold ctermbg=0 guibg=#d0d0d0
 
-"GitGutter Coc-git Highlight
+"GitGutter
 " ---------------------------------------------------------
 highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
