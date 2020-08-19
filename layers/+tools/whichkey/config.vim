@@ -87,6 +87,7 @@ let g:which_key_map = {
                      \ 's' : 'Search workspace symbols',
                      \ 'w' : 'Coc rgrep selected word or motion',
                      \ 'W' : 'Coc grep cursor word in buffer',
+                     \ 'y' : 'Coc yank list',
                    \ },
             \ 'n' : 'Coc rename variable under cursor',
             \ 'r' : 'Coc refactor word under cursor',

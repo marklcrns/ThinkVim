@@ -1,23 +1,22 @@
-
 " Don't load the defx-git plugin file, not needed
 let b:defx_git_loaded = 1
 
-"CoC configlet
+" CoC config
 let g:coc_status_error_sign = ''
 let g:coc_status_warning_sign = ' '
 let g:coc_global_extensions =[
       \ 'coc-actions',
       \ 'coc-css',
-      \ 'coc-eslint',
       \ 'coc-emmet',
       \ 'coc-emoji',
+      \ 'coc-eslint',
       \ 'coc-explorer',
-      \ 'coc-html',
+      \ 'coc-floaterm',
       \ 'coc-git',
       \ 'coc-gitignore',
-      \ 'coc-floaterm',
-      \ 'coc-json',
+      \ 'coc-html',
       \ 'coc-java',
+      \ 'coc-json',
       \ 'coc-kite',
       \ 'coc-lists',
       \ 'coc-markdownlint',
@@ -25,20 +24,20 @@ let g:coc_global_extensions =[
       \ 'coc-post',
       \ 'coc-prettier',
       \ 'coc-python',
-      \ 'coc-tabnine',
-      \ 'coc-template',
-      \ 'coc-tsserver',
       \ 'coc-sh',
       \ 'coc-snippets',
       \ 'coc-spell-checker',
       \ 'coc-stylelint',
+      \ 'coc-template',
+      \ 'coc-tsserver',
       \ 'coc-vetur',
       \ 'coc-vimlsp',
       \ 'coc-vimtex',
+      \ 'coc-xml',
       \ 'coc-yaml',
       \ 'coc-yank',
-      \ 'coc-xml'
       \]
+      "\ 'coc-tabnine',
 
 augroup MyAutoCmd
   autocmd!
@@ -48,9 +47,6 @@ augroup MyAutoCmd
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 	autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup end
-
-" Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Snippets jump
 let g:coc_snippet_next = '<C-j>'
