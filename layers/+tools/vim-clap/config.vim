@@ -22,6 +22,8 @@ let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelect
 let g:clap_layout = { 'relative': 'editor' }
 let g:clap_enable_icon = 1
 let g:clap_search_box_border_style = 'curve'
+let g:clap_provider_grep_executable = 'rg'
+let g:clap_provider_grep_opts = '--glob !.git/ --hidden --no-heading --smart-case --vimgrep'
 let g:clap_provider_grep_enable_icon = 1
 let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%:'
 
