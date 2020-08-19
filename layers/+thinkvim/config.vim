@@ -91,6 +91,7 @@ if dein#tap('coc.nvim')
   " show git status
   nnoremap <silent> <leader>cgs  :<C-u>CocList --normal gstatus<CR>
   nnoremap <Leader>cgb :CocCommand git.browserOpen<CR>
+  nnoremap <Leader>cgB :CocCommand git.copyUrl<CR>
   nnoremap <Leader>cgd :CocCommand git.diffCached<CR>
   nnoremap <Leader>cgf :CocCommand git.foldUnchanged<CR>
   nnoremap <Leader>cgt :CocCommand git.chunkStage<CR>
