@@ -161,6 +161,7 @@ let g:which_key_map = {
                 \ 'f' : 'Open files from current directory',
                 \ 'u' : 'Custom Unite command',
                 \ },
+          \ 'w' : 'Wipe buffer',
           \ 'y' : {
                 \ 'name' : '+yank-path',
                   \ 'e' : 'Yank relative file path without extension',

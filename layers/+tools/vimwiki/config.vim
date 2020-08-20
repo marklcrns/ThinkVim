@@ -14,7 +14,7 @@ let g:vimwiki_list = [
       \     'template_path': '~/.pandoc/templates/html5/github/',
       \     'template_default': 'GitHub',
       \     'template_ext':'.html5',
-      \     'custom_wiki2html': '~/bin/wiki2html' },
+      \     'custom_wiki2html': '~/bin/misc/wiki2html' },
       \   { 'path': '~/Docs/wiki/docs/md/',
       \     'path_html': '~/Docs/wiki/docs/html',
       \     'index': 'index',
@@ -27,7 +27,7 @@ let g:vimwiki_list = [
       \     'template_path': '~/.pandoc/templates/html5/github/',
       \     'template_default': 'GitHub',
       \     'template_ext':'.html5',
-      \     'custom_wiki2html': '~/bin/wiki2html' },
+      \     'custom_wiki2html': '~/bin/misc/wiki2html' },
       \   { 'path': '~/Docs/wiki/school/md',
       \     'path_html': '~/Docs/wiki/school/html',
       \     'index': 'index',
@@ -40,7 +40,7 @@ let g:vimwiki_list = [
       \     'template_path': '~/.pandoc/templates/html5/github/',
       \     'template_default': 'GitHub',
       \     'template_ext':'.html5',
-      \     'custom_wiki2html': '~/bin/wiki2html' },
+      \     'custom_wiki2html': '~/bin/misc/wiki2html' },
       \ ]
 
 " Custom link handler for external files

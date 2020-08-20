@@ -20,6 +20,9 @@ function! ExitMappings()
   " SAve all and quit
   nnoremap <leader>fQ :confirm wqa!<CR>
   vnoremap <leader>fQ :<Esc>confirm wqa!<CR>
+  " Wipe buffer
+  nnoremap <leader>fw :bw<CR>
+  vnoremap <leader>fw :<Esc>bw<CR>
 endfunction
 
 function! ImprovedDefaultMappings()
