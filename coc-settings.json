@@ -90,6 +90,14 @@
   // css
   "css.enable": true,
 
+  // Markdown
+  "markdownlint.config": {
+    "line_length": false
+  },
+  "markdownlint.onOpen": true,
+  "markdownlint.onSave": true,
+  "markdownlint.onChange": false,
+
   // html/emmet
   "html.enable": true,
   "html.filetypes": [
