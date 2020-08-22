@@ -1,4 +1,4 @@
-" ==================== Mappings Functions ==================== "
+" ==================== Mappings ==================== "
 
 " BASIC MAPPINGS -------------------- {{{
 function! ExitMappings()
@@ -95,8 +95,8 @@ function! ExtendedBasicMappings()
   nnoremap <silent> <M-a> :<C-u>call AddSubtract("\<C-a>", '')<CR>
   nnoremap <silent> <M-x> :<C-u>call AddSubtract("\<C-x>", '')<CR>
   " Increment/Decrement previous searcheable number by one. Wraps at start of file.
-  " nnoremap <silent> <Leader><M-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
-  " nnoremap <silent> <Leader><M-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
+  nnoremap <silent> <Leader><M-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
+  nnoremap <silent> <Leader><M-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 endfunction
 " }}} BASIC MAPPINGS
 
