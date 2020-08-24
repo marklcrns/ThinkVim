@@ -252,18 +252,18 @@ function! WindowsManagementMappings()
   " Resize splits vertically
   nnoremap <Leader>wh :vertical resize -3<CR>
   nnoremap <Leader>wl :vertical resize +3<CR>
-  nnoremap <Left> :vertical resize -3<CR>
-  nnoremap <Right> :vertical resize +3<CR>
+  nnoremap <Left>     :vertical resize -3<CR>
+  nnoremap <Right>    :vertical resize +3<CR>
   " Resize splits horizontally
   nnoremap <Leader>wk :resize -3<CR>
   nnoremap <Leader>wj :resize +3<CR>
-  nnoremap <Up> :resize -3<CR>
-  nnoremap <Down> :resize +3<CR>
-  " Switch window (deprecated by vim-tmux-navigator)
-  " nnoremap <C-h> <C-w>h
-  " nnoremap <C-l> <C-w>l
-  " nnoremap <C-j> <C-w>j
-  " nnoremap <C-k> <C-w>k
+  nnoremap <Up>       :resize -3<CR>
+  nnoremap <Down>     :resize +3<CR>
+  " Switch between splits
+  nnoremap <M-h> <C-w>h
+  nnoremap <M-l> <C-w>l
+  nnoremap <M-j> <C-w>j
+  nnoremap <M-k> <C-w>k
 endfunction
 " }}} FILE AND WINDOWS MAPPINGS
 
