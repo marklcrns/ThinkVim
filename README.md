@@ -47,36 +47,10 @@
 
 **_1._**
 
+Run install script
+
 ```bash
-# Set up neovim
-1. git clone https://github.com/marklcrns/ThinkVim ~/.config/nvim
-2. mkdir ~/.thinkvim.d
-3. ln -s ~/.config/nvim/.thinkvim.d/local_plugins.yaml ~/.thinkvim.d/
-4. ln -s ~/.config/nvim/.thinkvim.d/local_settings.vim ~/.thinkvim.d/
-6. make or open nvim
-
-# Setting up virtualenv for neovim
-1. cd ~/.config/nvim
-2. mkdir -p env/python env/python3
-3. virtualenv --python=python ./env/python/env
-4. source ./env/python/env/bin/activate
-5. pip install neovim
-6. deactivate
-7. virtualenv --python=python3 ./env/python3/env
-8. source ./env/python3/env/bin/activate
-9. pip install neovim
-10. deactivate
-
-# Recommended Linters
-1. npm install -g eslint stylelint prettier
-2. pip3 install vim-vint
-3. cd ~/.config/nvim
-4. source ./env/python/env/bin/activate
-5. pip install flake8 pylint autopep8
-6. deactivate
-7. source ./env/python3/env/bin/activate
-8. pip3 install flake8 pylint autopep8
-9. deactivate
+scripts/install.sh
 ```
 
 - Shell lint: [shellcheck.net](https://www.shellcheck.net/)
@@ -93,26 +67,12 @@ Taskwiki Taskwarrior integration (Debian installation)
 
 Extras
 
-- `Send2Trash`
-
-```bash
-3. cd ~/.config/nvim
-7. source ./env/python3/env/bin/activate
-8. pip3 install send2trash
-9. deactivate
-```
-
 - [Yad](https://www.howtoinstall.co/en/debian/stretch/yad) or
   [Zenity](https://wiki.gnome.org/action/show/Projects/Zenity) for
   [Color Picker](https://github.com/KabbAmine/vCoolor.vim) - GUI color picker
 
 > VCoolor defaults to Yad
 
-```bash
-sudo apt install yad
-# and/or
-sudo apt install zenity
-```
 
 - `LanguageTools` - grammar checker
 
@@ -125,10 +85,6 @@ offline use_ and download the zip file
 **_2._** open the nvim ,it will auto install dein and plugins,when the plugins install success,it will install coc extensions.
 
 **_3._** if you see the coc extesions installed success in your vim commandline .Congratulations‼️
-
-### Delete Kite Completion (Optional for non linux or mac)
-
-- `rm -r ~/.config/nvim/pack`
 
 ## PluginsDetail
 
