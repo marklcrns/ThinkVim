@@ -14,8 +14,8 @@ echo $NVIM_ROOT
 sudo apt install yad zenity
 # Taskwarrior
 sudo apt install taskwarrior
-
-# Install pip neovim
+# C/C++ language server for coc (Debian based and Ubuntu 20.04 only)
+sudo apt install ccls
 
 # python host prog
 if command -v python &> /dev/null; then
