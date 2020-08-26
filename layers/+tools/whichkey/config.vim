@@ -201,7 +201,7 @@ let g:which_key_map = {
              \ 'o' : 'Gina log',
              \ 'p' : 'Git push',
              \ 'P' : 'Terminal git push',
-             \ 's' : 'Gina status',
+             \ 's' : 'Git status',
              \ 'v' : 'Git commit browser',
           \ },
     \ 'G' : 'Grep operator',

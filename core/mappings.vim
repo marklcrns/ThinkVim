@@ -440,16 +440,17 @@ function! DiffMappings()
   "   cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
   " [mergetool]
   "   prompt = true
-  nnoremap dob :diffget BASE<CR>
-  nnoremap dol :diffget LOCAL<CR>
-  nnoremap dor :diffget REMOTE<CR>
+  nnoremap <expr> dob &diff ? ':diffget BASE<CR>'   : ''
+  nnoremap <expr> dob &diff ? ':diffget BASE<CR>'   : ''
+  nnoremap <expr> dol &diff ? ':diffget LOCAL<CR>'  : ''
+  nnoremap <expr> dor &diff ? ':diffget REMOTE<CR>' : ''
   " Quit nvim with an error code. Useful when aborting git mergetool or git commit
-  nnoremap dq :cquit<CR>
+  nnoremap <expr> cq  &diff ? ':cquit<CR>'          : ''
   function! PrintMergeDiffMappings()
     echom "dob :diffget BASE"
     echom "dol :diffget LOCAL"
     echom "dor :diffget REMOTE"
-    echom "dq  :cquit"
+    echom "cq  :cquit"
     echom "]c  Next conflict"
     echom "[c  Previous conflict"
     echom " "
