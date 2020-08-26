@@ -165,8 +165,12 @@ function! WindowsManagementMappings()
     let curBufCount = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
     let curTab = tabpagenr()
     call CleanEmptyBuffers()
-    " Smart quit and bwipe
-    if !&modifiable
+
+    " Smart quit
+    if &filetype ==# 'gitcommit'
+      silent execute 'q!'
+      return
+    elseif !&modifiable
       silent execute 'bw!'
       return
     elseif ((curBufCount ==# 1 && curBufName ==# '') || &buftype ==# 'nofile') " Quit when only buffer and empty
