@@ -1,15 +1,15 @@
 call denite#custom#option('_', {
-		\ 'cached_filter': v:true,
-		\ 'cursor_shape': v:true,
-		\ 'cursor_wrap': v:true,
-		\ 'highlight_filter_background': 'DeniteFilter',
-		\ 'highlight_matched_char': 'Underlined',
-		\ 'matchers': 'matcher/fuzzy',
-		\ 'prompt': 'λ ',
-		\ 'split': 'floating',
-		\ 'start_filter': v:false,
-		\ 'statusline': v:false,
-		\ })
+      \ 'cached_filter': v:true,
+      \ 'cursor_shape': v:true,
+      \ 'cursor_wrap': v:true,
+      \ 'highlight_filter_background': 'DeniteFilter',
+      \ 'highlight_matched_char': 'Underlined',
+      \ 'matchers': 'matcher/fuzzy',
+      \ 'prompt': 'λ ',
+      \ 'split': 'floating',
+      \ 'start_filter': v:false,
+      \ 'statusline': v:false,
+      \ })
 function! s:denite_detect_size() abort
     let s:denite_winheight = 20
     let s:denite_winrow = &lines > s:denite_winheight ? (&lines - s:denite_winheight) / 2 : 0
@@ -42,48 +42,48 @@ call denite#custom#source('tag', 'matchers', ['matcher/substring'])
 call denite#custom#source('file/rec', 'matchers', ['matcher/fuzzy'])
 
 if has('nvim') && &runtimepath =~# '\/cpsm'
-	call denite#custom#source(
-		\ 'buffer,file_mru,file/old,file/rec,grep,mpc,line,neoyank',
-		\ 'matchers', ['matcher/cpsm', 'matcher/fuzzy'])
+   call denite#custom#source(
+      \ 'buffer,file_mru,file/old,file/rec,grep,mpc,line,neoyank',
+      \ 'matchers', ['matcher/cpsm', 'matcher/fuzzy'])
 endif
 
 
 " CONVERTERS
 " Default is none
 call denite#custom#source(
-	\ 'buffer,file_mru,file/old,file/rec,directory/rec,directory_mru',
-	\ 'converters', ['devicons_denite_converter','converter_relative_word'])
+   \ 'buffer,file_mru,file/old,file/rec,directory/rec,directory_mru',
+   \ 'converters', ['devicons_denite_converter','converter_relative_word'])
 
 " FIND and GREP COMMANDS
 if executable('ag')
-	" The Silver Searcher
-	call denite#custom#var('file/rec', 'command',
-		\ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
+   " The Silver Searcher
+   call denite#custom#var('file/rec', 'command',
+      \ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
-	" Setup ignore patterns in your .agignore file!
-	" https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage
+   " Setup ignore patterns in your .agignore file!
+   " https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage
 
-	call denite#custom#var('grep', 'command', ['ag'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', [])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
-	call denite#custom#var('grep', 'default_opts',
-		\ [ '--skip-vcs-ignores', '--vimgrep', '--smart-case', '--hidden' ])
+   call denite#custom#var('grep', 'command', ['ag'])
+   call denite#custom#var('grep', 'recursive_opts', [])
+   call denite#custom#var('grep', 'pattern_opt', [])
+   call denite#custom#var('grep', 'separator', ['--'])
+   call denite#custom#var('grep', 'final_opts', [])
+   call denite#custom#var('grep', 'default_opts',
+      \ [ '--skip-vcs-ignores', '--vimgrep', '--smart-case', '--hidden' ])
 
 elseif executable('ack')
-	" Ack command
-	call denite#custom#var('grep', 'command', ['ack'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', ['--match'])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
-	call denite#custom#var('grep', 'default_opts',
-			\ ['--ackrc', $HOME.'/.config/ackrc', '-H',
-			\ '--nopager', '--nocolor', '--nogroup', '--column'])
+   " Ack command
+   call denite#custom#var('grep', 'command', ['ack'])
+   call denite#custom#var('grep', 'recursive_opts', [])
+   call denite#custom#var('grep', 'pattern_opt', ['--match'])
+   call denite#custom#var('grep', 'separator', ['--'])
+   call denite#custom#var('grep', 'final_opts', [])
+   call denite#custom#var('grep', 'default_opts',
+         \ ['--ackrc', $HOME.'/.config/ackrc', '-H',
+         \ '--nopager', '--nocolor', '--nogroup', '--column'])
 
 elseif executable('rg')
-	" Ripgrep
+   " Ripgrep
   call denite#custom#var('file/rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
   call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
@@ -98,37 +98,35 @@ endif
 " KEY MAPPINGS
 autocmd FileType denite call s:denite_settings()
 function! s:denite_settings() abort
-	highlight! link CursorLine Visual
-	nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
-	nnoremap <silent><buffer><expr> i       denite#do_map('open_filter_buffer')
-	nnoremap <silent><buffer><expr> d       denite#do_map('do_action', 'delete')
-	nnoremap <silent><buffer><expr> p       denite#do_map('do_action', 'preview')
-	nnoremap <silent><buffer><expr> <C-t>   denite#do_map('do_action', 'tabopen')
-	nnoremap <silent><buffer><expr> <C-h>   denite#do_map('do_action', 'split')
-	nnoremap <silent><buffer><expr> <C-v>   denite#do_map('do_action', 'vsplit')
-	nnoremap <silent><buffer><expr> '       denite#do_map('quick_move')
-	nnoremap <silent><buffer><expr> q       denite#do_map('quit')
-	nnoremap <silent><buffer><expr> r       denite#do_map('redraw')
-	nnoremap <silent><buffer><expr> yy      denite#do_map('do_action', 'yank')
-	nnoremap <silent><buffer><expr> <Esc>   denite#do_map('quit')
-	nnoremap <silent><buffer><expr> <C-u>   denite#do_map('restore_sources')
-	nnoremap <silent><buffer><expr> <C-f>   denite#do_map('do_action', 'defx')
-	nnoremap <silent><buffer><expr> <C-x>   denite#do_map('choose_action')
-	nnoremap <silent><buffer><expr><nowait> <Space> denite#do_map('toggle_select').'j'
+   highlight! link CursorLine Visual
+   nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
+   nnoremap <silent><buffer><expr> i       denite#do_map('open_filter_buffer')
+   nnoremap <silent><buffer><expr> d       denite#do_map('do_action', 'delete')
+   nnoremap <silent><buffer><expr> p       denite#do_map('do_action', 'preview')
+   nnoremap <silent><buffer><expr> <C-t>   denite#do_map('do_action', 'tabopen')
+   nnoremap <silent><buffer><expr> <C-h>   denite#do_map('do_action', 'split')
+   nnoremap <silent><buffer><expr> <C-v>   denite#do_map('do_action', 'vsplit')
+   nnoremap <silent><buffer><expr> '       denite#do_map('quick_move')
+   nnoremap <silent><buffer><expr> q       denite#do_map('quit')
+   nnoremap <silent><buffer><expr> r       denite#do_map('redraw')
+   nnoremap <silent><buffer><expr> yy      denite#do_map('do_action', 'yank')
+   nnoremap <silent><buffer><expr> <Esc>   denite#do_map('quit')
+   nnoremap <silent><buffer><expr> <C-u>   denite#do_map('restore_sources')
+   nnoremap <silent><buffer><expr> <C-f>   denite#do_map('do_action', 'defx')
+   nnoremap <silent><buffer><expr> <C-x>   denite#do_map('choose_action')
+   nnoremap <silent><buffer><expr><nowait> <Space> denite#do_map('toggle_select').'j'
 endfunction
 
 autocmd FileType denite-filter call s:denite_filter_settings()
 function! s:denite_filter_settings() abort
-	nnoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
-	" inoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
-	nnoremap <silent><buffer><expr> q      denite#do_map('quit')
-	imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)
-	"inoremap <silent><buffer><expr> <C-c>  denite#do_map('quit')
-	nnoremap <silent><buffer><expr> <C-c>  denite#do_map('quit')
-	inoremap <silent><buffer>       kk     <Esc><C-w>p
-	nnoremap <silent><buffer>       kk     <C-w>p
-	inoremap <silent><buffer>       jj     <Esc><C-w>p
-	nnoremap <silent><buffer>       jj     <C-w>p
+   nnoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
+   " inoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
+   nnoremap <silent><buffer><expr> q      denite#do_map('quit')
+   imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)
+   "inoremap <silent><buffer><expr> <C-c>  denite#do_map('quit')
+   nnoremap <silent><buffer><expr> <C-c>  denite#do_map('quit')
+   inoremap <silent><buffer>       kk     <Esc><C-w>p
+   nnoremap <silent><buffer>       kk     <C-w>p
+   inoremap <silent><buffer>       jj     <Esc><C-w>p
+   nnoremap <silent><buffer>       jj     <C-w>p
 endfunction
-
-" vim: set ts=3 sw=2 tw=80 noet :
