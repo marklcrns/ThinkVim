@@ -795,10 +795,10 @@ if dein#tap('vim-abolish')
   nnoremap <Leader>rbS :<C-u>%Subvert//g<Left><Left>
   nnoremap <Leader>rba :<C-u>Abolish<Space>
   vnoremap <Leader>rba :Abolish<Space>
-  " Duplicate line and subvert
-  inoremap <M-y> <ESC>yypV:Subvert//g<bar>norm`.$
-    \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-  nnoremap <M-y> yypV:Subvert//g<bar>norm`.$
+  " Duplicate line and subvert. Uses "x register for yanking and pasting
+  nnoremap <M-y> "xyy"xpV:Subvert//g<bar>norm`.$
+        \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+  inoremap <M-y> <ESC>"xyy"xpV:Subvert//g<bar>norm`.$
     \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 endif
 

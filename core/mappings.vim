@@ -321,11 +321,11 @@ function! CommandMappings()
 endfunction
 
 function! YankPasteMappings()
-  " Yank and paste line immediatly below
-  nnoremap <C-y> yyp$
-  inoremap <C-y> <Esc>yyp`.A
-  " Duplicate current line then enter line substitution
-  " inoremap <C-y> <ESC>yypV:s//g<Left><Left>  " Deprecated by vim-abolish
+  " Yank and paste line under cursor to and from "x register
+  nnoremap <C-y> "xyy"xp$
+  inoremap <C-y> <Esc>"xyy"xp`.A
+  " Duplicate current line then enter line substitution. DEPRECATED by vim-abolish
+  " inoremap <C-y> <ESC>yypV:s//g<Left><Left>
   " Auto indent while pasting
   function! AutoIndentPaste()
     " Don't apply on these filetypes
