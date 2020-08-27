@@ -522,8 +522,8 @@ function! TextManipulationMappings()
     let @s = temp
   endfunction
   " Search and replace last selected with confirmation
-  nnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
-  xnoremap <Leader>rf :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
+  nnoremap <Leader>rF :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
+  xnoremap <Leader>rF :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
   " To enumerate lines with macro: https://stackoverflow.com/a/32053439/11850077
   " To enumerate lines with few commands: https://stackoverflow.com/a/48408001/11850077
   " Ref: https://vi.stackexchange.com/a/690

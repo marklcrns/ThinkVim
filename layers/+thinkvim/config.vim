@@ -368,8 +368,9 @@ if dein#tap('vim-startify')
 endif
 
 if dein#tap('vim-quickrun')
-  nnoremap <silent> <localleader>r :QuickRun -mode n<CR>
-  vnoremap <silent> <localLeader>r :QuickRun -mode v<CR>
+  nnoremap <silent> <Localleader>r :QuickRun -mode n<CR>
+  vnoremap <silent> <LocalLeader>r :QuickRun -mode v<CR>
+  nnoremap <silent> <localLeader><CR> :<C-u>set opfunc=quickrun#operator<CR>g@ip
 endif
 
 " if dein#tap('vim-asterisk')
@@ -430,9 +431,16 @@ if dein#tap('vista.vim')
 endif
 
 if dein#tap('vim-easymotion')
+  nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
   nmap <Leader><Leader>w <Plug>(easymotion-w)
   nmap <Leader><Leader>f <Plug>(easymotion-f)
   nmap <Leader><Leader>b <Plug>(easymotion-b)
+  map <Leader><Leader>l <Plug>(easymotion-sl)
+  map <Leader><Leader>j <Plug>(easymotion-j)
+  map <Leader><Leader>k <Plug>(easymotion-k)
+  map <Leader><Leader>h <Plug>(easymotion-linebackward)
+  map  / <Plug>(easymotion-sn)
+  omap / <Plug>(easymotion-tn)
 endif
 
 if dein#tap('vim-which-key')
@@ -800,6 +808,19 @@ if dein#tap('vim-abolish')
         \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
   inoremap <M-y> <ESC>"xyy"xpV:Subvert//g<bar>norm`.$
     \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+endif
+
+if dein#tap('far.vim')
+  " shortcut for far.vim find
+  nnoremap <silent> <Leader>rff  :Farf<cr>
+  vnoremap <silent> <Leader>rff  :Farf<cr>
+
+  " shortcut for far.vim replace
+  nnoremap <silent> <Leader>rfr  :Farr<cr>
+  vnoremap <silent> <Leader>rfr  :Farr<cr>
+
+  nnoremap <silent> <Leader>rfd  :Fardo<cr>
+  nnoremap <silent> <Leader>rfu  :Farundo<cr>
 endif
 
 

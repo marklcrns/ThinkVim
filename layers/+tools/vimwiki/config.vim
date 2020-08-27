@@ -153,10 +153,10 @@ function! SubstituteOddChars()
   " `e` flag silence errors, see `s_flags`
   " TODO: turn into independent function with visual and normal mode support,
   " and accepts arbitrary args for odd chars
-  exe "norm gv:s/“/\"/ge\<CR>"
-  exe "norm gv:s/”/\"/ge\<CR>"
-  exe "norm gv:s/’/'/ge\<CR>"
-  exe "norm gv:s/—/-/ge\<CR>"
+  exe "norm! gv:s/“/\"/ge\<CR>"
+  exe "norm! gv:s/”/\"/ge\<CR>"
+  exe "norm! gv:s/’/'/ge\<CR>"
+  exe "norm! gv:s/—/--/ge\<CR>"
   " Clear commandline prompt
   redraw
 endfunction

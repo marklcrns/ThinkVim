@@ -166,18 +166,18 @@
   hook_add: |
     let g:committia_hooks = {}
     function! g:committia_hooks.edit_open(info)
-        " Additional settings
-        setlocal spell
+      " Additional settings
+      setlocal spell
 
-        " If no commit message, start with insert mode
-        if a:info.vcs ==# 'git' && getline(1) ==# ''
-            startinsert
-        endif
+      " If no commit message, start with insert mode
+      if a:info.vcs ==# 'git' && getline(1) ==# ''
+          startinsert
+      endif
 
-        " Scroll the diff window from insert mode
-        " Map <C-n> and <C-p>
-        imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
-        imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+      " Scroll the diff window from insert mode
+      " Map <C-n> and <C-p>
+      imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+      imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
     endfunction
 
 - repo: kristijanhusak/defx-git
@@ -467,9 +467,9 @@
   hook_source: |
     let g:EasyMotion_do_mapping = 0
     let g:EasyMotion_prompt = 'Jump to → '
-    let g:EasyMotion_keys = 'fjdkswbeoavn'
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_use_smartsign_us = 1
+    let g:EasyMotion_startofline = 0
 
 - repo: t9md/vim-quickhl
   on_map: { nv: <Plug> }
@@ -478,6 +478,7 @@
   on_cmd: [Far, Farr, Farf]
   hook_source: |
     let g:far#enable_undo=1
+    let g:far#source='rg'
 # }}}
 
 # UI{{{
