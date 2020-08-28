@@ -262,7 +262,7 @@ let g:which_key_map = {
                         \ 'p' : 'Prev wordy',
                         \ 'n' : 'Next wordy',
                         \ 'r' : 'Remove wordy',
-                        \ 'w' : 'Wordy',
+                        \ 'w' : 'Wordy select',
                         \ },
                   \ },
           \ 'n' : {

@@ -661,7 +661,7 @@ endif
 if dein#tap('vim-wordy')
   " auto wildcharm trigger
   if !&wildcharm | set wildcharm=<C-z> | endif
-  execute 'nnoremap <leader>igww :Wordy<space>'.nr2char(&wildcharm)
+  execute 'nnoremap <leader>lgww :Wordy<space>'.nr2char(&wildcharm)
 
   nnoremap <leader>lgwn :NextWordy<CR>
   nnoremap <leader>lgwp :PrevWordy<CR>
