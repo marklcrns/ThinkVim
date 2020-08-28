@@ -18,12 +18,12 @@
   rev: release
   hook_add: source $VIM_PATH/layers/+completion/coc/config.vim
 
-# - repo: SirVer/ultisnips
-#   hook_add: source $VIM_PATH/layers/+tools/ultisnips/config.vim
+- repo: SirVer/ultisnips
+  hook_add: source $VIM_PATH/layers/+tools/ultisnips/config.vim
 
 - repo: honza/vim-snippets
-  depends: coc.nvim
-  # depends: ultisnips
+  depends: ultisnips
+  # depends: coc.nvim
 
 # UI
 # ----------------------------------------

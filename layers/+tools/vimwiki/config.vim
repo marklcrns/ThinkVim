@@ -178,10 +178,7 @@ augroup VimwikiCustomMappings
   autocmd!
   " Integration with delimitMate and coc-snippet
   autocmd FileType vimwiki inoremap <silent><buffer><expr> <TAB>
-        \ pumvisible() ? coc#_select_confirm() :
-        \ coc#expandableOrJumpable()  ?
-        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        \ vimwiki#tbl#kbd_tab()
+        \ pumvisible() ? coc#_select_confirm() : vimwiki#tbl#kbd_tab()
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <S-tab>
         \ vimwiki#tbl#kbd_shift_tab()
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <CR>
