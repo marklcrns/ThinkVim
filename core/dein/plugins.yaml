@@ -35,15 +35,10 @@
 - repo: itchyny/lightline.vim
   hook_add: source $VIM_PATH/layers/+ui/lightline/config.vim
 
-- repo: hardcoreplayers/vim-buffet
-  on_event: [ VimEnter, BufReadPre, BufNew ]
-  hook_add: source $VIM_PATH/layers/+ui/buffet/config.vim
+- repo: bagrat/vim-buffet
+  on_event: [ VimEnter, BufEnter ]
+  hook_source: source $VIM_PATH/layers/+ui/buffet/config.vim
   depends: lightline.vim
-
-# - repo: bagrat/vim-buffet
-#   on_event: [ VimEnter, BufReadPre, BufNew ]
-#   hook_add: source $VIM_PATH/layers/+ui/buffet/config.vim
-#   depends: lightline.vim
 
 # Tools
 # ----------------------------------------
