@@ -8,7 +8,7 @@ let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777'
 
 " Default: 0.5
-let g:limelight_default_coefficient = 0.7
+let g:limelight_default_coefficient = 0.5
 
 " Number of preceding/following paragraphs to include (default: 0)
 let g:limelight_paragraph_span = 10

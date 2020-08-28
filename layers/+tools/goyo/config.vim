@@ -12,21 +12,19 @@ function! s:goyo_enter()
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   endif
   " Backup and disable some settings
-  let b:signcolumn_goyo_bak=&signcolumn
-  let b:scrolloff_goyo_bak=&scrolloff
+  let g:signcolumn_goyo_bak=&signcolumn
+  let g:scrolloff_goyo_bak=&scrolloff
+  let g:showmode_goyo_bak=0
+  let g:showcmd_goyo_bak=0
   set signcolumn=no
   set scrolloff=999
   if &showmode
-    let b:showmode_goyo_bak=1
+    let g:showmode_goyo_bak=1
     set noshowmode
-  else
-    let b:showmode_goyo_bak=0
   endif
   if &showcmd
-    let b:showcmd_goyo_bak=1
+    let g:showcmd_goyo_bak=1
     set noshowcmd
-  else
-    let b:showcmd_goyo_bak=0
   endif
   " Activate Limelight
   Limelight
@@ -43,12 +41,12 @@ function! s:goyo_leave()
     silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   endif
   " Restore backed up settings
-  execute "set signcolumn=" . b:signcolumn_goyo_bak
-  execute "set scrolloff=" . b:scrolloff_goyo_bak
-  if b:showmode_goyo_bak
+  execute "set signcolumn=" . g:signcolumn_goyo_bak
+  execute "set scrolloff=" . g:scrolloff_goyo_bak
+  if g:showmode_goyo_bak
     set showmode
   endif
-  if b:showcmd_goyo_bak
+  if g:showcmd_goyo_bak
     set showcmd
   endif
   " Source custom colors
