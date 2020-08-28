@@ -2,23 +2,33 @@ let g:goyo_width=100 "(default: 80)
 let g:goyo_height=100 "(default: 85%)
 let g:goyo_linenr=1 "(default: 0)
 
-" Disable visual candy in Goyo mode
 function! s:goyo_enter()
   if has('gui_running')
     " Gui fullscreen
     set fullscreen
-    set background=light
     set linespace=7
   elseif exists('$TMUX')
-    " Hide tmux status
+    " Hide tmux statusline and go fullscreen
     silent !tmux set status off
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   endif
-
-  " set signcolumn=no
-  " set noshowmode
-  " set noshowcmd
-  " set scrolloff=999
+  " Backup and disable some settings
+  let b:signcolumn_goyo_bak=&signcolumn
+  let b:scrolloff_goyo_bak=&scrolloff
+  set signcolumn=no
+  set scrolloff=999
+  if &showmode
+    let b:showmode_goyo_bak=1
+    set noshowmode
+  else
+    let b:showmode_goyo_bak=0
+  endif
+  if &showcmd
+    let b:showcmd_goyo_bak=1
+    set noshowcmd
+  else
+    let b:showcmd_goyo_bak=0
+  endif
   " Activate Limelight
   Limelight
 endfunction
@@ -30,15 +40,21 @@ function! s:goyo_leave()
     set nofullscreen
     set linespace=0
   elseif exists('$TMUX')
-    " Show tmux status
+    " Show tmux status and exit fullscreen
     silent !tmux set status on
     silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   endif
-
-  " set signcolumn=yes:2
-  " set showmode
-  " set showcmd
-  " set scrolloff=5
+  " Restore backed up settings
+  execute "set signcolumn=" . b:signcolumn_goyo_bak
+  execute "set scrolloff=" . b:scrolloff_goyo_bak
+  if b:showmode_goyo_bak
+    set showmode
+  endif
+  if b:showcmd_goyo_bak
+    set showcmd
+  endif
+  " Source custom colors
+  source $VIM_PATH/core/color.vim
   " De-activate Limelight
   Limelight!
 endfunction
@@ -49,5 +65,7 @@ augroup user_plugin_goyo
   autocmd! User GoyoLeave
   autocmd  User GoyoEnter nested call <SID>goyo_enter()
   autocmd  User GoyoLeave nested call <SID>goyo_leave()
+  " Auto resize goyo width and height when resized or toggled fullscreen
+  autocmd VimResized * if exists('#goyo') | exe "normal \<c-w>=" | endif
 augroup END
 
