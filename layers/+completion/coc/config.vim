@@ -40,7 +40,6 @@ let g:coc_global_extensions = [
       \ 'coc-yaml',
       \ 'coc-yank',
       \ ]
-      "\ 'coc-snippets',
       "\ 'coc-tabnine',
 
 augroup MyAutoCmd
@@ -52,28 +51,13 @@ augroup MyAutoCmd
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup end
 
-" " Snippets jump
-" let g:coc_snippet_next = '<C-j>'
-" let g:coc_snippet_prev = '<C-k>'
-"
-" " Use <TAB> for select text for visual placeholder of snippet.
-" " Visual mode and other Ultisnips tricks tutorial blog
-" " https://yufanlu.net/2016/10/30/ultisnips/
-" vmap <TAB> <Plug>(coc-snippets-select)
-"
-" inoremap <silent><expr> <Tab>
-"      \ pumvisible() ? coc#_select_confirm() :
-"      \ coc#expandableOrJumpable()  ?
-"      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"      \ "\<TAB>"
-"
-" " Integration with delimitMate plugin. Also ignores completion.
-" inoremap <silent><expr> <CR>
-"      \ delimitMate#WithinEmptyPair() ?
-"      \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-"      \ pumvisible() ? "\<C-]>\<CR>" : "\<C-g>u\<CR>"
-"
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
+inoremap <silent><expr> <Tab>
+     \ pumvisible() ? coc#_select_confirm() :
+     \ "\<TAB>"
+
+" Integration with delimitMate plugin. Also ignores completion.
+inoremap <silent><expr> <CR>
+     \ delimitMate#WithinEmptyPair() ?
+     \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+     \ pumvisible() ? "\<C-]>\<CR>" : "\<C-g>u\<CR>"
+

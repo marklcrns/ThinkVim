@@ -23,7 +23,6 @@
 
 - repo: honza/vim-snippets
   depends: ultisnips
-  # depends: coc.nvim
 
 # UI
 # ----------------------------------------
