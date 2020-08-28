@@ -225,7 +225,7 @@ let g:which_key_map = {
                 \ 'v' : 'Vertical file diff split from current directory',
                 \ 'V' : 'Vertical file diff split from $HOME',
                 \ },
-          \ 'G' : 'Goyo toggle' ,
+          \ 'g' : 'Goyo toggle' ,
           \ 'h' : {
                 \ 'name' : '+quick-highlight',
                 \ 't' : 'Highlight this',

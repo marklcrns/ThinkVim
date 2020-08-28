@@ -347,7 +347,7 @@ if dein#tap('python_match.vim')
 endif
 
 if dein#tap('goyo.vim')
-  nnoremap <Leader>iG :Goyo<CR>
+  nnoremap <Leader>ig :Goyo<CR>
 endif
 
 if dein#tap('defx.nvim')

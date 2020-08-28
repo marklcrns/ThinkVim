@@ -6,9 +6,8 @@ function! s:goyo_enter()
   if has('gui_running')
     " Gui fullscreen
     set fullscreen
-    set linespace=7
-  elseif exists('$TMUX')
-    " Hide tmux statusline and go fullscreen
+  elseif executable('tmux') && strlen($TMUX)
+    " Tmux fullscreen
     silent !tmux set status off
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   endif
@@ -38,9 +37,8 @@ function! s:goyo_leave()
   if has('gui_running')
     " Gui exit fullscreen
     set nofullscreen
-    set linespace=0
-  elseif exists('$TMUX')
-    " Show tmux status and exit fullscreen
+  elseif executable('tmux') && strlen($TMUX)
+    " Exit tmux fullscreen
     silent !tmux set status on
     silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   endif
