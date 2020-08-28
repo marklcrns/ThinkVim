@@ -18,7 +18,6 @@ let g:coc_global_extensions = [
       \ 'coc-html',
       \ 'coc-java',
       \ 'coc-json',
-      \ 'coc-kite',
       \ 'coc-lists',
       \ 'coc-markdownlint',
       \ 'coc-marketplace',
