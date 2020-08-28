@@ -92,11 +92,22 @@
 
   // Markdown
   "markdownlint.config": {
+    "default": true,
     "line_length": false
   },
   "markdownlint.onOpen": true,
   "markdownlint.onSave": true,
   "markdownlint.onChange": false,
+
+  "coc.source.dictionary.filetypes": [
+    "markdown",
+    "vimwiki"
+  ],
+
+  "coc.source.word.filetypes": [
+    "markdown",
+    "vimwiki"
+  ],
 
   // html/emmet
   "html.enable": true,
