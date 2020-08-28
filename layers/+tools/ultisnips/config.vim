@@ -1,6 +1,6 @@
 let g:UltiSnipsExpandTrigger = "<Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<C-b>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsSnippetDirectories = [
       \ "~/.vim/UltiSnips/"
       \ ]
