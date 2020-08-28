@@ -153,14 +153,6 @@ let g:which_key_map = {
                 \ },
           \ 's' : 'Save buffer',
           \ 'S' : 'Save all buffers',
-          \ 'u' : {
-                \ 'name' : '+unite',
-                \ 'a' : 'Open files form current directory and buffers',
-                \ 'b' : 'Open files from buffers',
-                \ 'd' : 'Open files from current directory recursively',
-                \ 'f' : 'Open files from current directory',
-                \ 'u' : 'Custom Unite command',
-                \ },
           \ 'w' : 'Wipe buffer',
           \ 'y' : {
                 \ 'name' : '+yank-path',
