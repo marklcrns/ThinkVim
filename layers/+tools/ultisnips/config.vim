@@ -16,17 +16,3 @@ let g:UltiSnipsEditSplit = "vertical"
 "
 " inoremap <expr> <Tab> (g:Ulti_ExpandOrJump_and_getRes() > 0) ? "" : "IMAP_Jumpfunc('', 0)<CR>"
 
-function! GetAllSnippets()
-  call UltiSnips#SnippetsInCurrentScope(1)
-  let list = []
-  for [key, info] in items(g:current_ulti_dict_info)
-    let parts = split(info.location, ':')
-    call add(list, {
-      \"key": key,
-      \"path": parts[0],
-      \"linenr": parts[1],
-      \"description": info.description,
-      \})
-  endfor
-  return list
-endfunction
