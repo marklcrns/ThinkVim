@@ -176,9 +176,12 @@ endfunction
 " Vimwiki custom mappings
 augroup VimwikiCustomMappings
   autocmd!
-  " Integration with delimitMate and coc-snippet
+  " Integration with delimitMate, coc completion and Ultisnips
   autocmd FileType vimwiki inoremap <silent><buffer><expr> <TAB>
-        \ pumvisible() ? coc#_select_confirm() : vimwiki#tbl#kbd_tab()
+        \ pumvisible() ? coc#_select_confirm() :
+        \ IsExpandable() ?
+        \ "\<C-R>=UltiSnips#ExpandSnippet()\<CR>" :
+        \ vimwiki#tbl#kbd_tab()
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <S-tab>
         \ vimwiki#tbl#kbd_shift_tab()
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <CR>

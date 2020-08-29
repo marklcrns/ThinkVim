@@ -50,10 +50,11 @@ augroup MyAutoCmd
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup end
 
+" Integration with delimitMate and Ultisnips
 inoremap <silent><expr> <Tab>
      \ pumvisible() ? coc#_select_confirm() :
-     \ "\<TAB>"
-
+     \ IsExpandable() ?
+     \ "\<C-R>=UltiSnips#ExpandSnippet()\<CR>" : "\<Tab>"
 " Integration with delimitMate plugin. Also ignores completion.
 inoremap <silent><expr> <CR>
      \ delimitMate#WithinEmptyPair() ?
