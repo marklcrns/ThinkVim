@@ -6,10 +6,6 @@ function! s:goyo_enter()
   if has('gui_running')
     " Gui fullscreen
     set fullscreen
-  elseif executable('tmux') && strlen($TMUX)
-    " Tmux fullscreen
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   endif
   " Backup and disable some settings
   let g:signcolumn_goyo_bak=&signcolumn
@@ -35,10 +31,6 @@ function! s:goyo_leave()
   if has('gui_running')
     " Gui exit fullscreen
     set nofullscreen
-  elseif executable('tmux') && strlen($TMUX)
-    " Exit tmux fullscreen
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   endif
   " Restore backed up settings
   execute "set signcolumn=" . g:signcolumn_goyo_bak
