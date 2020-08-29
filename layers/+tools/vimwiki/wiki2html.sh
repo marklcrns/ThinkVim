@@ -26,7 +26,7 @@ TEMPLATE_PATH="$7"
 TEMPLATE_DEFAULT="$8"
 # The extension of template files
 TEMPLATE_EXT="$9"
-# Count of '../' for pages buried in subdirs
+# Count of '../' for pages buried in subdirs up to wiki md root
 ROOT_PATH="${10}"
 
 # If file is in vimwiki base dir, the root path is '-'
@@ -56,14 +56,14 @@ cd "$OUTPUTDIR"
 pandoc_template="pandoc \
     --mathjax=$MATHJAX \
     --template=$TEMPLATE_PATH$TEMPLATE_DEFAULT$TEMPLATE_EXT \
-    -f $SYNTAX \
-    -t html \
-    --toc \
-    --resource-path=$OUTPUTDIR \
+    --from=$SYNTAX \
+    --to=html \
+    --include-before-body $ROOT_PATH../nav \
+    --table-of-contents \
     --toc-depth=3 \
-    -c $CSSFILENAME \
-    -s \
-    -M root_path:$ROOT_PATH"
+    --standalone \
+    --resource-path=$OUTPUTDIR \
+    --metadata=root_path:$ROOT_PATH"
     # --filter=R-pandoc \
     # --filter=diagrams-pandoc \
 

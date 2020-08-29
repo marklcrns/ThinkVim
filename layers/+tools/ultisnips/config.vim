@@ -1,6 +1,6 @@
 " Let coc.nvim coc-ultisnips plugin handle the expand trigger mapping
 " See coc configs
-let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsExpandTrigger = "<NOP>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsSnippetDirectories = [
