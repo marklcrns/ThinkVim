@@ -1,13 +1,13 @@
-
 " Vim Colors
 " ---------------------------------------------------------
 highlight Whitespace ctermfg=238 guifg=#424450 guibg=NONE ctermbg=NONE
 highlight VertSplit  ctermfg=Black  guifg=Black guibg=NONE ctermbg=NONE
-"highlight Normal guibg=NONE ctermbg=NONE
 highlight LineNr ctermbg=NONE guibg=NONE
 highlight SignColumn ctermfg=187 ctermbg=NONE guifg=#ebdbb2 guibg=NONE guisp=NONE cterm=NONE gui=NONE
 highlight! link pythonSpaceError  NONE
 highlight! link pythonIndentError NONE
+" Transparent bg
+highlight Normal guibg=NONE ctermbg=NONE
 " highlight NormalFloat cterm=NONE ctermfg=14 ctermbg=0 gui=NONE guifg=#93a1a1 guibg=#002931
 
 " Pmenu Colors
