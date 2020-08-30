@@ -46,7 +46,6 @@ OUTPUT=$OUTPUTDIR$FILENAME
 # Mathjax tutorial for markdown: https://yihui.org/en/2018/07/latex-math-markdown/
 # If you have Mathjax locally use this:
 MATHJAX="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/latest.js?config=TeX-AMS-MML_HTMLorMML"
-# MATHJAX="/usr/share/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
 # PREPANDOC PROCESSING AND PANDOC
 
@@ -89,8 +88,9 @@ pandoc_output=$(echo "$pandoc_input" | $pandoc_template)
 
 # POSTPANDOC PROCESSING
 
-# Removes "vfile" and "file" from ![pic of sharks](file:../sharks.jpg)
+# Removes "vfile" and "file" from links
+# e.g., ![pic of sharks](file:../sharks.jpg) -> ![pic of sharks](../sharks.jpg)
 regex4='s/vfile://g'
 regex5='s/file://g'
 
-echo "$pandoc_output" | sed -r "$regex4" | sed -r "$regex5" > "$OUTPUT.html"
+echo "$pandoc_output" | sed -r "$regex4;$regex5" > "$OUTPUT.html"

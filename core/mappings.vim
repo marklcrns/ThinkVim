@@ -69,12 +69,9 @@ function! ExtendedBasicMappings()
   tnoremap <Esc> <C-\><C-n>
   " Esc from insert, visual and command mode shortcuts (also moves cursor to the right)
   inoremap fd <Esc>`^
+  inoremap kj <Esc>`^
   vnoremap fd <Esc>`<
   vnoremap df <Esc>`>
-  inoremap kj <Esc>`^
-  snoremap kj <Esc>`^
-  snoremap fd <Esc>`<
-  snoremap df <Esc>`>
   cnoremap <C-[> <C-c>
   cnoremap <C-g> <C-c>
   " Exit from terminal-mode to normal
