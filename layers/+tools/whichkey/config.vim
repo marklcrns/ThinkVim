@@ -357,9 +357,10 @@ let g:which_key_map = {
                    \ },
             \ 'f' : {
                   \ 'name' : '+far',
+                    \ 'd' : 'Do (apply) find and replace',
                     \ 'f' : 'Find',
-                    \ 'r' : 'Find and replace',
-                    \ 'd' : 'Apply find and replace',
+                    \ 'r' : 'Reexecute last far command',
+                    \ 's' : 'Find and replace',
                     \ 'u' : 'Undo find and replace',
                   \ },
             \ 'F' : 'Search and replace confirmation last selected',
