@@ -16,9 +16,10 @@ let g:which_key_map = {
              \ },
        \ ' ' : {
              \ 'name' : '+easymotion',
-             \ 'b' : 'Beginning of word backward',
-             \ 'f' : 'Find {char} to the left',
-             \ 'w' : 'Beginning of word forward',
+             \ 'b' : 'Jump to word backward',
+             \ 'f' : 'Jump to word forward (silent)',
+             \ 's' : 'Bidrectional jump word on all windows',
+             \ 'w' : 'Jump to word forward',
        \ },
        \ '<Tab>' : 'Next buffer',
        \ '<S-Tab>' : 'Prev buffer',
