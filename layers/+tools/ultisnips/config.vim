@@ -18,3 +18,7 @@ function! IsExpandable()
         \ || empty(UltiSnips#SnippetsInCurrentScope())
         \ )
 endfunction
+
+" Manual mapping of Visual selection
+xnoremap <silent> <Tab> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
+
