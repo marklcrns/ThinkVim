@@ -99,6 +99,11 @@
   "markdownlint.onSave": true,
   "markdownlint.onChange": false,
 
+  "coc.source.emoji.filetypes": [
+    "markdown",
+    "vimwiki"
+  ],
+
   "coc.source.dictionary.filetypes": [
     "markdown",
     "vimwiki"
