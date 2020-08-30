@@ -6,9 +6,12 @@ highlight LineNr ctermbg=NONE guibg=NONE
 highlight SignColumn ctermfg=187 ctermbg=NONE guifg=#ebdbb2 guibg=NONE guisp=NONE cterm=NONE gui=NONE
 highlight! link pythonSpaceError  NONE
 highlight! link pythonIndentError NONE
+hi Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+" highlight NormalFloat cterm=NONE ctermfg=14 ctermbg=0 gui=NONE guifg=#93a1a1 guibg=#002931
+
 " Transparent bg
 highlight Normal guibg=NONE ctermbg=NONE
-" highlight NormalFloat cterm=NONE ctermfg=14 ctermbg=0 gui=NONE guifg=#93a1a1 guibg=#002931
 
 " Pmenu Colors
 " ---------------------------------------------------------
@@ -19,16 +22,16 @@ highlight Normal guibg=NONE ctermbg=NONE
 " highlight PmenuThumb ctermfg=NONE ctermbg=60 guifg=NONE guibg=#5d4d7a guisp=NONE cterm=NONE gui=NONE
 
 
-"coc setting
+" Coc setting
 " ---------------------------------------------------------
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 hi default CocHighlightText  guibg=#725972 ctermbg=96
 hi CocWarningSign  ctermfg=32 ctermbg=NONE guifg=#0087d7 guibg=NONE
 
-" coc-yank highlight
+" Coc-yank highlight
 highlight HighlightedyankRegion term=bold ctermbg=0 guibg=#d0d0d0
 
-"GitGutter
+" GitGutter
 " ---------------------------------------------------------
 highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
@@ -46,11 +49,11 @@ highlight def link Defx_filename_3_Renamed Title
 highlight def link Defx_filename_3_Unmerged Label
 " highlight Defx_git_Deleted   ctermfg=13 guifg=#b294bb
 
-" buftabline highlight
+" Buftabline highlight
 " ---------------------------------------------------------
 highlight BufTabLineCurrent ctermbg=96 guibg=#5d4d7a
 
-" magit highlight
+" Magit highlight
 " ---------------------------------------------------------
 highlight  gitInfoRepotitle    guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitInfoHeadtitle   guibg=NONE guisp=NONE gui=bold cterm=bold
@@ -64,37 +67,6 @@ highlight  gitSectionsCommitMsg guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cte
 highlight  gitSectionsCommitStash  guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
 highlight  gitSectionsRecentCommit guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
 
-" tsx highlight
-" ---------------------------------------------------------
-" dark red
-highlight tsxTagName guifg=#E06C75
-
-" orange
-highlight tsxCloseString guifg=#F99575
-highlight tsxCloseTag guifg=#F99575
-highlight tsxAttributeBraces guifg=#F99575
-highlight tsxEqual guifg=#F99575
-" light-grey
-highlight tsxTypeBraces guifg=#999999
-" dark-grey
-highlight tsxTypes guifg=#666666
-highlight ReactState guifg=#C176A7
-highlight ReactProps guifg=#D19A66
-highlight ApolloGraphQL guifg=#CB886B
-highlight Events ctermfg=204 guifg=#56B6C2
-highlight ReduxKeywords ctermfg=204 guifg=#C678DD
-highlight ReduxHooksKeywords ctermfg=204 guifg=#C176A7
-highlight WebBrowser ctermfg=204 guifg=#56B6C2
-highlight ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
-" yellow
-highlight tsxAttrib guifg=#F8BD7F cterm=italic
-
-"GetColorSynatxGroup
-" ---------------------------------------------------------
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
 " Janah Color Scheme
 " ---------------------------------------------------------
 " Repo: https://github.com/mhinz/vim-janah
@@ -106,9 +78,9 @@ highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cte
 highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
 highlight IndentGuidesEven guibg=#303030 ctermbg=236
 
-" Conceal
-hi Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
+" GetColorSynatxGroup
+" ---------------------------------------------------------
+" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+"\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+"\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Bracket match color
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-" }}}
