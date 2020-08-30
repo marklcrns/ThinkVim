@@ -56,7 +56,7 @@ cd "$OUTPUTDIR"
 pandoc_template="pandoc \
     --mathjax=$MATHJAX \
     --template=$TEMPLATE_PATH$TEMPLATE_DEFAULT$TEMPLATE_EXT \
-    --from=$SYNTAX \
+    --from=$SYNTAX+emoji \
     --to=html \
     --include-before-body $ROOT_PATH../nav \
     --table-of-contents \
