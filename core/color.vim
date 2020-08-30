@@ -6,9 +6,8 @@ highlight LineNr ctermbg=NONE guibg=NONE
 highlight SignColumn ctermfg=187 ctermbg=NONE guifg=#ebdbb2 guibg=NONE guisp=NONE cterm=NONE gui=NONE
 highlight! link pythonSpaceError  NONE
 highlight! link pythonIndentError NONE
-hi Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-" highlight NormalFloat cterm=NONE ctermfg=14 ctermbg=0 gui=NONE guifg=#93a1a1 guibg=#002931
+highlight Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
+highlight MatchParen cterm=bold ctermbg=NONE ctermfg=magenta
 
 " Transparent bg
 highlight Normal guibg=NONE ctermbg=NONE
@@ -24,9 +23,9 @@ highlight Normal guibg=NONE ctermbg=NONE
 
 " Coc setting
 " ---------------------------------------------------------
-hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
-hi default CocHighlightText  guibg=#725972 ctermbg=96
-hi CocWarningSign  ctermfg=32 ctermbg=NONE guifg=#0087d7 guibg=NONE
+highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
+highlight default CocHighlightText  guibg=#725972 ctermbg=96
+highlight CocWarningSign  ctermfg=32 ctermbg=NONE guifg=#0087d7 guibg=NONE
 
 " Coc-yank highlight
 highlight HighlightedyankRegion term=bold ctermbg=0 guibg=#d0d0d0
@@ -72,11 +71,11 @@ highlight  gitSectionsRecentCommit guifg=#0087d7 guibg=NONE guisp=NONE gui=bold 
 " Repo: https://github.com/mhinz/vim-janah
 highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
-" Plugin: vim-indent-guides {{{
-" Ref: https://github.com/rafi/vim-config/blob/master/themes/rafi-2016.vim
+" Vim-indent-guides
+" NOTE: g:indent_guides_auto_colors must be 0
 " ---------------------------------------------------------
-highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
-highlight IndentGuidesEven guibg=#303030 ctermbg=236
+autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
+autocmd VimEnter,Colorscheme * :highlight IndentGuidesEven guibg=#303030 ctermbg=236
 
 " GetColorSynatxGroup
 " ---------------------------------------------------------
