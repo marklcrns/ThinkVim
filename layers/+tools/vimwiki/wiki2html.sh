@@ -59,7 +59,7 @@ pandoc_template="pandoc \
     --to=html \
     --include-before-body $ROOT_PATH../nav \
     --table-of-contents \
-    --toc-depth=3 \
+    --toc-depth=4 \
     --standalone \
     --resource-path=$OUTPUTDIR \
     --metadata=root_path:$ROOT_PATH"
