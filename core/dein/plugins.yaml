@@ -67,6 +67,14 @@
 
 - repo: tpope/vim-unimpaired
 - repo: tpope/vim-eunuch
+- repo: Shougo/context_filetype.vim
+- repo: itchyny/vim-parenmatch
+- repo: sgur/vim-editorconfig
+  hook_source: |
+    let g:editorconfig_blacklist = {
+      \ 'filetype': ['git.*', 'fugitive'],
+      \ 'pattern': ['\.un~$'],
+      \ }
 # }}}
 
 
@@ -506,16 +514,16 @@
 - repo: amadeus/vim-convert-color-to
   on_cmd: ConvertColorTo
 
-# - repo: itchyny/vim-cursorword
-#   on_event: FileType
-#   hook_source: |
-#     augroup user_plugin_cursorword
-#       autocmd!
-#       autocmd FileType denite,qf,easygitblame let b:cursorword = 0
-#       autocmd WinEnter * if &diff | let b:cursorword = 0 | endif
-#       autocmd InsertEnter * let b:cursorword = 0
-#       autocmd InsertLeave * let b:cursorword = 1
-#     augroup END
+- repo: itchyny/vim-cursorword
+  on_event: FileType
+  hook_source: |
+    augroup user_plugin_cursorword
+      autocmd!
+      autocmd FileType defx,denite,fern,qf let b:cursorword = 0
+      autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif
+      autocmd InsertEnter * let b:cursorword = 0
+      autocmd InsertLeave * let b:cursorword = 1
+    augroup END
 
 - repo: psliwka/vim-smoothie
   on_func: smoothie#

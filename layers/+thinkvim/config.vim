@@ -274,14 +274,6 @@ if dein#tap('vim-easy-align')
   nmap <Leader>rAA <Plug>(LiveEasyAlign)
 endif
 
-if dein#tap('vim-go')
-  nnoremap <silent> <LocalLeader>gi :GoImpl<CR>
-  nnoremap <silent> <LocalLeader>gd :GoDescribe<CR>
-  nnoremap <silent> <LocalLeader>gc :GoCallees<CR>
-  nnoremap <silent> <LocalLeader>gC :GoCallers<CR>
-  nnoremap <silent> <LocalLeader>gs :GoCallstack<CR>
-endif
-
 if dein#tap('vimagit')
   nnoremap <silent> <Leader>gm :Magit<CR>
 endif

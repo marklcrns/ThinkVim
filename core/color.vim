@@ -7,7 +7,7 @@ highlight SignColumn ctermfg=187 ctermbg=NONE guifg=#ebdbb2 guibg=NONE guisp=NON
 highlight! link pythonSpaceError  NONE
 highlight! link pythonIndentError NONE
 highlight Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
-highlight MatchParen cterm=bold ctermbg=NONE ctermfg=magenta
+" highlight MatchParen cterm=bold ctermbg=NONE ctermfg=magenta
 
 " Transparent bg
 highlight Normal guibg=NONE ctermbg=NONE
