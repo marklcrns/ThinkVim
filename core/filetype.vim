@@ -12,13 +12,7 @@ augroup user_plugin_filetype "{{{
   " autocmd FileType css setlocal equalprg=csstidy\ -\ --silent=true
   " autocmd FileType css setlocal equalprg=css-beautify
 
-  autocmd FileType javascript,javascriptreact set shiftwidth=2
-
   autocmd FileType json syntax match Comment +\/\/.\+$+
-
-  " Go (Google)
-  autocmd FileType go let b:coc_pairs_disabled = ['<']
-  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
   " HTML (.gohtml and .tpl for server side)
   autocmd BufNewFile,BufRead *.html,*.htm,*.gohtml,*.tpl setf html
