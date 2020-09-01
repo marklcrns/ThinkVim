@@ -5,7 +5,7 @@ let s:menus.dein.command_candidates = [
   \   ['🐬 Dein: Plugins update         🔸', 'call dein#update()'],
   \   ['🐬 Dein: Plugins List           🔸', 'Denite dein'],
   \   ['🐬 Dein: RecacheRuntimePath     🔸', 'call dein#recache_runtimepath()'],
-  \   ['🐬 Dein: Delete unused plugins  🔸', 'call map(dein#check_clean(), "delete(v:val, rf)")'],
+  \   ['🐬 Dein: Delete unused plugins  🔸', 'call map(dein#check_clean(), "delete(v:val, \"rf\")")'],
   \   ['🐬 Dein: Update log             🔸', 'echo dein#get_updates_log()'],
   \   ['🐬 Dein: Log                    🔸', 'echo dein#get_log()'],
   \ ]

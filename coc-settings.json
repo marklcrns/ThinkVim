@@ -121,6 +121,7 @@
       "html",
       "handlebars"
   ],
+
   "html.format.enable": true,
   "html.validate.styles": true,
   "html.validate.scripts": true,
@@ -150,6 +151,7 @@
   // java
   "java.enabled": true,
   "java.import.maven.enabled": true,
+  "java.import.gradle.enabled": true,
   "java.maven.downloadSources": true,
   "java.implementationsCodeLens.enabled": true,
   "java.referencesCodeLens.enabled": true,
@@ -158,7 +160,7 @@
   "java.completion.guessMethodArguments": true,
   "java.completion.importOrder": [
     "java",
-    "javakfx",
+    "javafx",
     "javax",
     "com",
     "org"
@@ -251,7 +253,7 @@
 
   // Coc-yank
   "yank.highlight.enable": true,
-  "yank.highlight.duration": 200,
+  "yank.highlight.duration": 100,
   "yank.enableCompletion": false,
 
   // add your languageServer into this list

@@ -76,7 +76,7 @@
 # Completion{{{
 - repo: mattn/emmet-vim
   on_event: InsertEnter
-  on_ft: [ html, css, javascript, javascriptreact ]
+  on_ft: [ html,css,javascript,javascriptreact,vue,typescript,typescriptreact ]
   hook_source: |
     let g:user_emmet_complete_tag = 0
     let g:user_emmet_install_global = 0
@@ -119,6 +119,12 @@
 
 # Coding tools
 # ----------------------------------------
+- repo: editorconfig/editorconfig-vim
+  on_event: BufReadPre
+  hook_source: |
+    # Excludes fugitive and remote files over ssh
+    let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
 - repo: junegunn/vim-easy-align
   on_ft: [vim, md, vimwiki, json, go, html, js, jsx, py, css, java, less, tmpl, toml, xml, sql, Dockerfile]
   hook_source: source $VIM_PATH/layers/+tools/vim-easy-align/config.vim
@@ -196,16 +202,6 @@
 # }}}
 
 # Language{{{
-- repo: pechorin/any-jump.vim
-  on_cmd: AnyJump
-  depends: vim-indent-guides
-  hook_add: |
-    let g:any_jump_disable_default_keybindings = 1
-    let g:any_jump_window_width_ratio  = 0.6
-    let g:any_jump_window_height_ratio = 0.6
-    let g:any_jump_window_top_offset   = 10
-    let g:any_jump_search_prefered_engine = 'rg'
-
 # Java
 # ----------------------------------------
 # - repo: tpope/vim-classpath
@@ -473,6 +469,16 @@
   hook_source: |
     let g:far#enable_undo=1
     let g:far#source='rgnvim'
+
+- repo: pechorin/any-jump.vim
+  on_cmd: AnyJump
+  depends: vim-indent-guides
+  hook_add: |
+      let g:any_jump_disable_default_keybindings = 1
+      let g:any_jump_window_width_ratio  = 0.6
+      let g:any_jump_window_height_ratio = 0.6
+      let g:any_jump_window_top_offset   = 10
+      let g:any_jump_search_prefered_engine = 'rg'
 # }}}
 
 # UI{{{
