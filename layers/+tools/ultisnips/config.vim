@@ -1,6 +1,6 @@
 " Let coc.nvim coc-ultisnips plugin handle the expand trigger mapping
 " See coc configs
-let g:UltiSnipsExpandTrigger = "<NOP>"
+let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsSnippetDirectories = [
@@ -11,14 +11,7 @@ let g:UltiSnipsSnippetDirectories = [
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit = "vertical"
 
-function! IsExpandable()
-  return !(
-        \ col('.') <= 1
-        \ || !empty(matchstr(getline('.'), '\%' . (col('.') - 1) . 'c\s'))
-        \ || empty(UltiSnips#SnippetsInCurrentScope())
-        \ )
-endfunction
-
-" Manual mapping of Visual selection
-xnoremap <silent> <Tab> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
+" Manual mapping of Visual and Selection
+" snoremap <silent> <Tab> <Esc>:call UltiSnips#ExpandSnippet()<cr>
+" xnoremap <silent> <Tab> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
 

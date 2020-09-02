@@ -173,15 +173,28 @@ function! SmartInsertPaste()
   exe "norm `>a"
 endfunction
 
+" Ref: https://stackoverflow.com/a/61275100/11850077
+"      https://github.com/vim/vim/issues/2004#issuecomment-324357529
+function! IntegratedVimwikiTab() abort
+  " First, try to expand or jump on UltiSnips.
+  let snippet = UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res > 0
+    return snippet
+  endif
+  " Then, check if we're in a completion menu
+  if pumvisible()
+    return coc#_select_confirm()
+  endif
+  " Finally, trigger vimwiki table jump.
+  return vimwiki#tbl#kbd_tab()
+endfunction
+
 " Vimwiki custom mappings
 augroup VimwikiCustomMappings
   autocmd!
   " Integration with delimitMate, coc completion and Ultisnips
-  autocmd FileType vimwiki inoremap <silent><buffer><expr> <TAB>
-        \ pumvisible() ? coc#_select_confirm() :
-        \ IsExpandable() ?
-        \ "\<C-R>=UltiSnips#ExpandSnippet()\<CR>" :
-        \ vimwiki#tbl#kbd_tab()
+  autocmd FileType vimwiki inoremap <silent><buffer> <Tab>
+        \ <C-R>=IntegratedVimwikiTab()<CR>
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <S-tab>
         \ vimwiki#tbl#kbd_shift_tab()
   autocmd Filetype vimwiki inoremap <silent><buffer><expr> <CR>

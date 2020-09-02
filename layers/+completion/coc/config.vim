@@ -50,14 +50,29 @@ augroup MyAutoCmd
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup end
 
+
+" Ref: https://stackoverflow.com/a/61275100/11850077
+"      https://github.com/vim/vim/issues/2004#issuecomment-324357529
+function! IntegratedCocTab() abort
+  " First, try to expand or jump on UltiSnips.
+  let snippet = UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res > 0
+    return snippet
+  endif
+  " Then, check if we're in a completion menu
+  if pumvisible()
+    return coc#_select_confirm()
+  endif
+  " Finally, do regular tab if no trigger
+  return "\<Tab>"
+endfunction
+
 " Integration with delimitMate and Ultisnips
-inoremap <silent><expr> <Tab>
-     \ pumvisible() ? coc#_select_confirm() :
-     \ IsExpandable() ?
-     \ "\<C-R>=UltiSnips#ExpandSnippet()\<CR>" : "\<Tab>"
+autocmd FileType * inoremap <silent> <Tab>
+      \ <C-R>=IntegratedCocTab()<CR>
 " Integration with delimitMate plugin. Also ignores completion.
 inoremap <silent><expr> <CR>
-     \ delimitMate#WithinEmptyPair() ?
-     \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
-     \ pumvisible() ? "\<C-]>\<CR>" : "\<C-g>u\<CR>"
+      \ delimitMate#WithinEmptyPair() ?
+      \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+      \ pumvisible() ? "\<C-]>\<CR>" : "\<C-g>u\<CR>"
 
