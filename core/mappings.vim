@@ -178,7 +178,7 @@ function! WindowsManagementMappings()
       return
     endif
 
-    " Go to next buffer
+    " Go to next buffer (most likely empty to be deleted)
     execute 'bnext'
     " If in the same buffer as the last, create empty buffer
     if curBuf ==# bufnr('%')
@@ -190,7 +190,12 @@ function! WindowsManagementMappings()
         " create new buffer empty if no splits
         execute 'enew'
       endif
+    else
+      " Go to buffer prior to the deleted one
+      execute 'bprev'
+      execute 'bprev'
     endif
+
     " Loop through tabs
     for i in range(tabpagenr('$'))
       " Go to tab (is there a way with inactive tabs?)
@@ -214,12 +219,18 @@ function! WindowsManagementMappings()
     " if only one buffer remains, and a split/s exists close all extra splits
     " Ref: https://superuser.com/questions/345520/vim-number-of-total-buffers
     if len(getbufinfo({'buflisted':1})) ==# 1 && winnr('$') !=# 1
-      for i in range(winnr('$') - 1)
+      for i in range(winnr('$') - 0)
         execute "close"
       endfor
     endif
   endfunction
   noremap <silent> q :call SmartBufClose()<cr>
+
+  " bufkill.vim
+  nmap <C-x>b :BD<CR>
+  nmap <silent> <Leader>bd <Plug>BufKillBd
+  nmap <silent> <Leader>bu <Plug>BufKillUndo
+
   " Delete buffer while keeping window layout (don't close buffer's windows).
   " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
   let g:bclose_multiple = 0
@@ -295,10 +306,12 @@ function! WindowsManagementMappings()
   " Wipe all buffer except current
   noremap <LocalLeader><S-Tab> :Bonly<CR>
   " Move between buffers
-  nnoremap <silent> [b :bprevious<CR>
+  nmap <silent> [b <Plug>BufKillBack
+  nmap <silent> ]b <Plug>BufKillForward
   nnoremap <silent> ]b :bnext<CR>
   nnoremap <silent> ]B :blast<CR>
   nnoremap <silent> [B :bfirst<CR>
+
   " Tab operation
   nnoremap <leader>tn :tabnew<cr>
   nnoremap <leader>tq :tabclose<cr>
@@ -367,6 +380,7 @@ function! UtilityMappings()
     exec "cw"
   endfunction
   nnoremap <Leader>fg :call VimgrepWrapper("")<Left><Left>
+  nnoremap <Leader>gD :GitOpenDirty<CR>
 endfunction
 
 function! CommandMappings()
@@ -527,6 +541,8 @@ function! DiffMappings()
     echom " "
     echom "To view these again, type :messages or :call PrintMergeDiffMappings()"
   endfunction
+
+  nmap <silent> <Leader>idd :DiffOrig<CR>
 endfunction
 
 function! FoldsMappings()
@@ -558,9 +574,9 @@ endfunction
 
 " TEXT MANIPULATION MAPPINGS -------------------- {{{
 function! TextManipulationMappings()
-  " Remove spaces at the end of lines
-  nnoremap <silent><Leader>rs :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
-  vnoremap <silent><Leader>rs :<C-u>silent! keeppatterns substitute/\s\+$//e<CR>
+  " whitespace.vim
+  nnoremap <silent><Leader>rs :<C-u>WhitespaceErase<CR>
+  vnoremap <silent><Leader>rs :WhitespaceErase<CR>
   " Wrap paragraph to textwidth
   nnoremap <Leader>rw gqap
   xnoremap <Leader>rw gqa

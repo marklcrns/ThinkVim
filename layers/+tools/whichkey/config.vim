@@ -47,6 +47,13 @@ let g:which_key_map = {
           \ 'l' : 'Open last jump to definition result',
           \ 'j' : 'Open jump to definition window',
           \ },
+    \ 'b' : {
+          \ 'name' : '+bufkill',
+          \ 'n' : 'Kill buffer backward',
+          \ 'p' : 'Kill buffer forward',
+          \ 'd' : 'Kill current buffer',
+          \ 'u' : 'Undo buffer kill',
+          \ },
     \ 'c' : {
           \ 'name' : '+coc',
              \ 'a' : 'Code action text object',
@@ -185,6 +192,7 @@ let g:which_key_map = {
                    \ 'h' : 'Git diffsplit horizontal',
                    \ 'v' : 'Git diffsplit vertical',
                    \ },
+             \ 'D' : 'Git open all dirty files (uncommited) in H splits',
              \ 'F' : 'Git fetch',
              \ 'g' : 'Ggrep {word}',
              \ 'G' : 'Git log grep current file',
@@ -202,6 +210,7 @@ let g:which_key_map = {
           \ 'name' : '+interface',
           \ 'd' : {
                 \ 'name' : '+diff',
+                \ 'd' : 'Diff unsaved changes',
                 \ 'l' : {
                       \ 'name' : '+linediff',
                       \ 'a' : 'Linediff add',
