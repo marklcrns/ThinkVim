@@ -68,6 +68,7 @@
 - repo: tpope/vim-eunuch
 - repo: Shougo/context_filetype.vim
 - repo: itchyny/vim-parenmatch
+- repo: andymass/vim-matchup
 - repo: sgur/vim-editorconfig
   hook_source: |
     let g:editorconfig_blacklist = {
@@ -124,6 +125,17 @@
 - repo: Raimondi/delimitMate
   on_event: FileType
   hook_source: source $VIM_PATH/layers/+syntax/delimitMate/config.vim
+
+- repo: tweekmonster/braceless.vim
+  on_event: FileType
+  hook_source: |
+    let g:braceless_jump_prev_key = ""
+    let g:braceless_jump_next_key = ""
+    let g:braceless_segment_prev_key = ""
+    let g:braceless_segment_next_key = ""
+    let g:braceless_enable_easymotion = 0
+    let g:braceless_enable_jump_indent = 0
+    autocmd FileType * BracelessEnable +highlight
 
 # Coding tools
 # ----------------------------------------

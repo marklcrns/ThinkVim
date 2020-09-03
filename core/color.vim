@@ -77,6 +77,10 @@ highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cte
 autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
 autocmd VimEnter,Colorscheme * :highlight IndentGuidesEven guibg=#303030 ctermbg=236
 
+" Braceless.vim
+" ---------------------------------------------------------
+highlight BracelessIndent ctermfg=8 ctermbg=66 cterm=NONE guibg=#88C0D0
+
 " GetColorSynatxGroup
 " ---------------------------------------------------------
 " map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
