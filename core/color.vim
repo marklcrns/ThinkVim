@@ -74,8 +74,8 @@ highlight Comment guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cte
 " Vim-indent-guides
 " NOTE: g:indent_guides_auto_colors must be 0
 " ---------------------------------------------------------
-autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
-autocmd VimEnter,Colorscheme * :highlight IndentGuidesEven guibg=#303030 ctermbg=236
+highlight IndentGuidesOdd  guibg=#262626 ctermbg=235
+highlight IndentGuidesEven guibg=#303030 ctermbg=236
 
 " Braceless.vim
 " ---------------------------------------------------------

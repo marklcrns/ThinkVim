@@ -521,27 +521,27 @@ if dein#tap('markdown-preview.nvim')
 endif
 
 if dein#tap('vim-markdown')
-  nmap <LocalLeader>mtt :<C-u>Toc<CR>
-  nmap <LocalLeader>mtv :<C-u>Tocv<CR>
-  nmap <LocalLeader>mth :<C-u>Toch<CR>
+  nnoremap <LocalLeader>mtt :<C-u>Toc<CR>
+  nnoremap <LocalLeader>mtv :<C-u>Tocv<CR>
+  nnoremap <LocalLeader>mth :<C-u>Toch<CR>
   " Disable mappings
   map <Plug> <Plug>Markdown_MoveToCurHeader
 endif
 
-if dein#tap('vimtex')
-  nnoremap <Leader>fdl :call vimtex#fzf#run()<cr>
-endif
+" if dein#tap('vimtex')
+"   nnoremap <Leader>fdl :call vimtex#fzf#run()<cr>
+" endif
 
-if dein#tap('accelerated-jk')
-  " conservative deceleration
-  let g:accelerated_jk_enable_deceleration = 1
-  " if default key-repeat interval check(150 ms) is too short
-  let g:accelerated_jk_acceleration_limit = 300
-
-  " Time-driven acceleration
-  nmap j <Plug>(accelerated_jk_gj_position)
-  nmap k <Plug>(accelerated_jk_gk_position)
-endif
+" if dein#tap('accelerated-jk')
+"   " conservative deceleration
+"   let g:accelerated_jk_enable_deceleration = 1
+"   " if default key-repeat interval check(150 ms) is too short
+"   let g:accelerated_jk_acceleration_limit = 300
+" 
+"   " Time-driven acceleration
+"   nmap j <Plug>(accelerated_jk_gj_position)
+"   nmap k <Plug>(accelerated_jk_gk_position)
+" endif
 
 if dein#tap('vimwiki')
   nmap <LocalLeader>WW :<C-u>VimwikiIndex<CR>
