@@ -220,12 +220,14 @@ if dein#tap('vim-buffet')
 endif
 
 if dein#tap('vim-clap')
+  nnoremap <silent> <Leader>fd: :<C-u>Clap command_history<CR>
   nnoremap <silent> <Leader>fdc :<C-u>Clap colors<CR>
   nnoremap <silent> <Leader>fdb :<C-u>Clap buffers<CR>
-  nnoremap <silent> <Leader>fdr :<C-u>Clap grep2<CR>
+  nnoremap <silent> <Leader>fdr :<C-u>Clap grep<CR>
+  nnoremap <silent> <Leader>fdR :<C-u>Clap grep2<CR>
   nnoremap <silent> <Leader>fdm :<C-u>Clap marks<CR>
-  nnoremap <silent> <Leader>fdF :<C-u>Clap files ++finder=rg --hidden --files<cr>
   nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --files<cr>
+  nnoremap <silent> <Leader>fdF :<C-u>Clap files ++finder=rg --hidden --files<cr>
   nnoremap <silent> <Leader>fdg :<C-u>Clap gfiles<CR>
   nnoremap <silent> <Leader>fdw :<C-u>Clap grep ++query=<cword><cr>
   nnoremap <silent> <Leader>fdh :<C-u>Clap history<CR>

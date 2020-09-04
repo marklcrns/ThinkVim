@@ -2,11 +2,13 @@ let s:user_profile               = expand($HOME . '/.profile')
 let s:user_bash_profile          = expand($HOME . '/.bash_profile')
 let s:user_bashrc                = expand($HOME . '/.bashrc')
 let s:user_bash_aliases          = expand($HOME . '/.bash_aliases')
+let s:user_dotfilesrc            = expand($HOME . '/.dotfilesrc')
 let s:user_zsh_profile           = expand($HOME . '/.zprofile')
 let s:user_zshrc                 = expand($HOME . '/.zshrc')
 let s:user_tmux_conf             = expand($HOME . '/.tmux.conf')
 let s:user_git_config            = expand($HOME . '/.gitconfig')
-let s:user_git_alias             = expand($HOME . '/.gitalias.txt')
+let s:user_git_alias             = expand($HOME . '/.gitconfig.d/gitalias.txt')
+let s:user_git_ignore_global     = expand($HOME . '/.gitignore_global')
 let s:user_task_config           = expand($HOME . '/.taskrc')
 let s:user_timewarrior_config    = expand($HOME . '/.timewarrior/timewarrior.cfg')
 let s:user_nvim_core_mappings    = expand($VIM_PATH . '/core/mappings.vim')
@@ -33,11 +35,13 @@ let g:clap_provider_personalconf = {
       \ s:user_bash_profile,
       \ s:user_bashrc,
       \ s:user_bash_aliases,
+      \ s:user_dotfilesrc,
       \ s:user_zsh_profile,
       \ s:user_zshrc,
       \ s:user_tmux_conf,
       \ s:user_git_config,
       \ s:user_git_alias,
+      \ s:user_git_ignore_global,
       \ s:user_task_config,
       \ s:user_timewarrior_config,
       \ s:user_nvim_core_mappings,
@@ -47,7 +51,7 @@ let g:clap_provider_personalconf = {
       \ s:user_nvim_plugins_mappings,
       \ s:user_nvim_whichkey,
       \ ],
-      \ 'sink': 'e',
+      \ 'sink': 'edit',
       \ }
 
 " A function to config highlight of ClapSymbol
