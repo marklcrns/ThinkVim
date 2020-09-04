@@ -282,12 +282,6 @@ let g:which_key_map = {
                         \ 'w' : 'Wordy select',
                         \ },
                   \ },
-          \ 'n' : {
-                  \ 'name' : '+neomake/neoformat',
-                    \ 'c' : 'Clean neomake',
-                    \ 'f' : 'Neoformat',
-                    \ 'm' : 'Neomake',
-                  \ },
           \ 't' : {
                 \ 'name' : '+tools',
                 \ 'c' : {
@@ -627,10 +621,10 @@ let g:which_key_smap = {
       \ 'k' : 'Join split',
       \ }
 
-let s:current_colorscheme = get(g:,"colors_name","")
-if  s:current_colorscheme == "base16-default-dark"
-    highlight WhichKeySeperator guibg=NONE ctermbg=NONE guifg=#a1b56c ctermfg=02
-endif
+" let s:current_colorscheme = get(g:,"colors_name","")
+" if  s:current_colorscheme == "base16-default-dark"
+"     highlight WhichKeySeperator guibg=NONE ctermbg=NONE guifg=#a1b56c ctermfg=02
+" endif
 
 let g:which_key_timeout = 200
 let g:which_key_exit = ["\<C-[>", "\<C-c>", "\<C-g>"]

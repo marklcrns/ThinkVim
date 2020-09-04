@@ -20,7 +20,6 @@ highlight Normal guibg=NONE ctermbg=NONE
 " highlight PmenuSel ctermfg=NONE ctermbg=60 guifg=NONE guibg=#5e5079 guisp=NONE cterm=NONE gui=NONE
 " highlight PmenuThumb ctermfg=NONE ctermbg=60 guifg=NONE guibg=#5d4d7a guisp=NONE cterm=NONE gui=NONE
 
-
 " Coc setting
 " ---------------------------------------------------------
 highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
@@ -80,6 +79,10 @@ highlight IndentGuidesEven guibg=#303030 ctermbg=236
 " Braceless.vim
 " ---------------------------------------------------------
 highlight BracelessIndent ctermfg=8 ctermbg=66 cterm=NONE guibg=#88C0D0
+
+" Whichkey.vim
+" ---------------------------------------------------------
+highlight WhichKeySeperator guibg=NONE ctermbg=NONE guifg=#303030 ctermfg=02
 
 " GetColorSynatxGroup
 " ---------------------------------------------------------

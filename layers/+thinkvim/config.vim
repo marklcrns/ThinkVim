@@ -540,12 +540,12 @@ if dein#tap('vim-markdown')
 endif
 
 if dein#tap('vimwiki')
-  nmap <LocalLeader>WW :<C-u>VimwikiIndex<CR>
-  nmap <LocalLeader>WI :<C-u>VimwikiDiaryIndex<CR>
-  nmap <LocalLeader>wh :<C-u>Vimwiki2HTML<CR>
+  nmap <LocalLeader>WW  :<C-u>VimwikiIndex<CR>
+  nmap <LocalLeader>WI  :<C-u>VimwikiDiaryIndex<CR>
+  nmap <LocalLeader>wh  :<C-u>Vimwiki2HTML<CR>
   nmap <LocalLeader>whh :<C-u>Vimwiki2HTMLBrowse<CR>
-  nmap <LocalLeader>wH :<C-u>VimwikiAll2HTML<CR>
-  nmap <LocalLeader>wl :<C-u>VimwikiGenerateLinks<CR>
+  nmap <LocalLeader>wH  :<C-u>VimwikiAll2HTML<CR>
+  nmap <LocalLeader>wl  :<C-u>VimwikiGenerateLinks<CR>
   " Setup vim for vimwiki diary note taking
   function! DToday()
     exec "VimwikiMakeDiaryNote"
