@@ -424,16 +424,27 @@ if dein#tap('vista.vim')
 endif
 
 if dein#tap('vim-easymotion')
-  nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
+  nmap <Leader><Leader>r <Plug>(easymotion-repeat)
+  nmap <Leader><Leader>s <Plug>(easymotion-s2)
+  nmap <Leader><Leader>S <Plug>(easymotion-overwin-f2)
+  nmap <Leader><Leader>e <Plug>(easymotion-e)
+  nmap <Leader><Leader>ge <Plug>(easymotion-ge)
   nmap <Leader><Leader>w <Plug>(easymotion-w)
-  nmap <Leader><Leader>f <Plug>(easymotion-f)
   nmap <Leader><Leader>b <Plug>(easymotion-b)
-  map <Leader><Leader>l <Plug>(easymotion-sl)
+  nmap <Leader><Leader>f <Plug>(easymotion-f2)
+  nmap <Leader><Leader>F <Plug>(easymotion-F2)
+  nmap <Leader><Leader>t <Plug>(easymotion-t2)
+  nmap <Leader><Leader>T <Plug>(easymotion-T2)
+  nmap <Leader><Leader>n <Plug>(easymotion-n)
+  nmap <Leader><Leader>N <Plug>(easymotion-N)
+  map <Leader><Leader>l <Plug>(easymotion-lineforward)
   map <Leader><Leader>j <Plug>(easymotion-j)
   map <Leader><Leader>k <Plug>(easymotion-k)
   map <Leader><Leader>h <Plug>(easymotion-linebackward)
   map  / <Plug>(easymotion-sn)
   omap / <Plug>(easymotion-tn)
+  nmap <Leader><Leader>; <Plug>(easymotion-next)
+  nmap <Leader><Leader>, <Plug>(easymotion-prev)
 endif
 
 if dein#tap('vim-which-key')
@@ -527,21 +538,6 @@ if dein#tap('vim-markdown')
   " Disable mappings
   map <Plug> <Plug>Markdown_MoveToCurHeader
 endif
-
-" if dein#tap('vimtex')
-"   nnoremap <Leader>fdl :call vimtex#fzf#run()<cr>
-" endif
-
-" if dein#tap('accelerated-jk')
-"   " conservative deceleration
-"   let g:accelerated_jk_enable_deceleration = 1
-"   " if default key-repeat interval check(150 ms) is too short
-"   let g:accelerated_jk_acceleration_limit = 300
-" 
-"   " Time-driven acceleration
-"   nmap j <Plug>(accelerated_jk_gj_position)
-"   nmap k <Plug>(accelerated_jk_gk_position)
-" endif
 
 if dein#tap('vimwiki')
   nmap <LocalLeader>WW :<C-u>VimwikiIndex<CR>
