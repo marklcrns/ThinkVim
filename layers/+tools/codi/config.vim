@@ -9,4 +9,9 @@ let g:codi#interpreters = {
         \ 'prompt': '^\(>\|\.\.\.\+\) ',
         \ 'rightalign': 0,
         \ },
+    \ 'cpp': {
+        \ 'bin': 'cling',
+        \ 'prompt': '^\(>\|\.\.\.\+\) ',
+        \ 'rightalign': 0,
+        \ },
     \ }

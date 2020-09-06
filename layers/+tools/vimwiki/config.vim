@@ -150,13 +150,15 @@ augroup VimwikiEditMode
 augroup END
 
 function! SubstituteOddChars()
-  " `e` flag silence errors, see `s_flags`
+  " `e` flag silence errors, see `s_flags'
   " TODO: turn into independent function with visual and normal mode support,
   " and accepts arbitrary args for odd chars
   exe "norm! gv:s/“/\"/ge\<CR>"
   exe "norm! gv:s/”/\"/ge\<CR>"
   exe "norm! gv:s/’/'/ge\<CR>"
   exe "norm! gv:s/—/--/ge\<CR>"
+  exe "norm! gv:s/…/.../ge\<CR>"
+  exe "norm! gv:s/​//ge\<CR>"
   " Clear commandline prompt
   redraw
 endfunction
@@ -166,6 +168,8 @@ function! SmartInsertPaste()
   exe "norm \<M-p>\<Esc>gp=gv"
   " Format pasted lines
   exe "norm gvgq"
+  " Remove whitespace
+  exe "norm gv:WhitespaceErase\<CR>"
   " Substitute odd chars
   call SubstituteOddChars()
   echo "Paste complete!"

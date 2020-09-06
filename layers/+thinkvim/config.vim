@@ -731,8 +731,8 @@ if dein#tap('vim-fugitive')
 endif
 
 if dein#tap('gv.vim')
-  nmap <Leader>gv :GV! --all<cr>
-  vmap <Leader>gv :GV! --all<cr>
+  noremap <Leader>gv :GV! --all<cr>
+  vnoremap <Leader>gv :GV! --all<cr>
 endif
 
 if dein#tap('gina.vim')
