@@ -266,6 +266,11 @@ if dein#tap('unite.vim')
   nnoremap <Leader>fuu :<C-u>Unite<Space>
 endif
 
+if dein#tap('codi.vim')
+  nnoremap <Leader>icc :<C-u>Codi!!<CR>
+  nnoremap <Leader>icu :<C-u>CodiUpdate<CR>
+endif
+
 if dein#tap('vim-easy-align')
   " Start interactive EasyAlign in visual mode
   xmap <Leader>raa <Plug>(EasyAlign)

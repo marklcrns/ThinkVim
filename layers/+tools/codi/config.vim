@@ -1,17 +1,25 @@
+let g:codi#autocmd = "InsertLeave"
+
 let g:codi#interpreters = {
     \ 'python': {
         \ 'bin': 'python3',
         \ 'prompt': '^\(>>>\|\.\.\.\) ',
-        \ 'rightalign': 0,
+        \ 'rightalign': 1,
         \ },
     \ 'javascript': {
         \ 'bin': 'node',
         \ 'prompt': '^\(>\|\.\.\.\+\) ',
-        \ 'rightalign': 0,
+        \ 'rightalign': 1,
         \ },
     \ 'cpp': {
         \ 'bin': 'cling',
         \ 'prompt': '^\(>\|\.\.\.\+\) ',
-        \ 'rightalign': 0,
+        \ 'rightalign': 1,
         \ },
-    \ }
+    \ 'java': {
+        \ 'bin': 'jshell',
+        \ 'prompt': '\(jshell> \)',
+        \ 'rightalign': 1,
+        \ },
+\ }
+

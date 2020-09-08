@@ -225,6 +225,11 @@ let g:which_key_map = {
     \ 'G' : 'Grep operator',
     \ 'i' : {
           \ 'name' : '+interface',
+          \ 'c' : {
+                \ 'name' : '+codi (interactive scratchpad)',
+                \ 'c' : 'Codi toggle',
+                \ 'u' : 'Update Codi output',
+                \ },
           \ 'd' : {
                 \ 'name' : '+diff',
                 \ 'd' : 'Diff unsaved changes',
