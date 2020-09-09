@@ -92,8 +92,8 @@ function! ExtendedBasicMappings()
   nnoremap <silent> <M-a> :<C-u>call AddSubtract("\<C-a>", '')<CR>
   nnoremap <silent> <M-x> :<C-u>call AddSubtract("\<C-x>", '')<CR>
   " Increment/Decrement previous searcheable number by one. Wraps at start of file.
-  nnoremap <silent> <Leader><M-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
-  nnoremap <silent> <Leader><M-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
+  nnoremap <silent> <M-S-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
+  nnoremap <silent> <M-S-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 endfunction
 " }}} BASIC MAPPINGS
 
@@ -224,33 +224,37 @@ function! WindowsManagementMappings()
   noremap <silent> q :call SmartBufClose()<cr>
 
   " bufkill.vim
-  nmap <C-x>b :BD<CR>
+  " BuffKillList stores buffers accessed so far
+  nmap <silent> <Leader>ba <Plug>BufKillAlt
+  nmap <silent> <Leader>bA <Plug>BufKillBangAlt
+  nmap <silent> <Leader>bb <Plug>BufKillBun
+  nmap <silent> <Leader>bB <Plug>BufKillBangBun
   nmap <silent> <Leader>bd <Plug>BufKillBd
+  nmap <silent> <Leader>bD <Plug>BufKillBangBd
+  nmap <silent> <Leader>bn <Plug>BufKillForward
+  nmap <silent> <Leader>bN <Plug>BufKillBangForward
+  nmap <silent> <Leader>bp <Plug>BufKillBack
+  nmap <silent> <Leader>bP <Plug>BufKillBangBack
   nmap <silent> <Leader>bu <Plug>BufKillUndo
-  " Wipe current buffer
-  noremap <LocalLeader><Tab> :Bw<CR>
-  " Wipe all buffer except current
-  noremap <LocalLeader><S-Tab> :Bonly<CR>
-  " Move between buffers
-  nmap <silent> [b <Plug>BufKillBack
-  nmap <silent> ]b <Plug>BufKillForward
-  nnoremap <silent> ]b :bnext<CR>
-  nnoremap <silent> ]B :blast<CR>
-  nnoremap <silent> [B :bfirst<CR>
+  nmap <silent> <Leader>bw <Plug>BufKillBw
+  nmap <silent> <Leader>bW <Plug>BufKillBangBw
 
   " Tab operation
   nnoremap <leader>tn :tabnew<cr>
   nnoremap <leader>tq :tabclose<cr>
   nnoremap <leader>te :tabedit
   nnoremap <leader>tm :tabmove
-
   " Move between tabs
   nnoremap <silent> [t :tabprevious<CR>
   nnoremap <silent> ]t :tabnext<CR>
   nnoremap <silent> ]T :tablast<CR>
   nnoremap <silent> [T :tabfirst<CR>
-  noremap <Leader><Tab> :bn<CR>
-  noremap <Leader><S-Tab> :bp<CR>
+
+  " Move between buffers
+  nnoremap <silent> ]b :bnext<CR>
+  nnoremap <silent> [b :bprevious<CR>
+  nnoremap <silent> ]B :blast<CR>
+  nnoremap <silent> [B :bfirst<CR>
 
   " Splits
   nnoremap <Leader>wH :split<CR>

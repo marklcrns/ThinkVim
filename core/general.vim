@@ -48,7 +48,7 @@ set breakindent        " Enable wrap indentation
 " indent by an additional 2 characters on wrapped lines,
 " when line >= 40 characters, put 'showbreak' at start of line
 set breakindentopt=shift:4,min:40,sbr
-let &showbreak='>>> '       " append '>>> ' to indent wrapped lines
+let &showbreak='>>> '  " append '>>> ' to indent wrapped lines
 set cursorline         " Highlights entire line of current cursor position"
 " set cursorcolumn       " Highlights column of current cursor position
 " Live interactive search and replace
