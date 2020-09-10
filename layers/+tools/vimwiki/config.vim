@@ -108,28 +108,32 @@ function! CopyMatches(reg)
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
-function! IndexResourcesLinks(header)
-  " Use default '# Resources' header of non is given
+function! IndexResourcesLinks(header, pattern)
+  " Use default link pattern in non was given
+  let pattern = empty(a:pattern) ? '^\([-*]\s\|[^+]*\)\zs\[[⬇🌎🎬⚓].*](.*)' : a:pattern
+  " Check if pattern matched
+  if search(pattern, 'w') == 0
+    echo "No link pattern match found"
+    return
+  endif
+
+  " Use default '# Resources' header of non was given
   let header = empty(a:header) ? '# Resources' : a:header
   if search(header, 'w') == 0
     " Create header if not found. Also adds '<br>' tag before the header
     exe "norm! Go\<CR><br>\<CR>\<CR>" . header
   endif
 
-  " Check if matching links exist
-  if search('\([-*]\s\|[^+]\s\)\zs\[[⬇🌎🎬⚓].*](.*)', 'w') == 0
-    return
-  endif
+  " Delete exising links under the header
   exe 'silent g/' . header . '/'
-
-  " Delete exising links (only first paragraph after the header)
   silent exe "norm! jVG:g/-\\s\\[.*\\](.*)/d\<CR>"
+
   " Clear `x` register and copy all matched reference links into it
   exe 'let @x = ""'
   " Copy all links in current buffer with this format `[(indicator).*](.*)`
   " Only with [⬇🌎🎬⚓] link indicators in the description.
   " Excludes links prepended with `+ ` type list
-  exe 'silent g/\([-*]\s\|[^+]\s\)\zs\[[⬇🌎🎬⚓].*](.*)/y A'
+  exe 'silent g/' . pattern . '/y A'
   " Copy all matches in 'x' register and ready for pasting
   call CopyMatches('x')
 
@@ -140,7 +144,7 @@ function! IndexResourcesLinks(header)
   endif
   exe 'silent g/' . header . '/'
   " Paste all links under the header
-  exe 'norm! "xp'
+  silent exe 'norm! "xp'
 
   " Prepend '- ' on every pasted matched links. 'j' after '`[' offsets extra
   " empty line at the beginning of selection, and 'jdd' at the end deletes
@@ -148,7 +152,7 @@ function! IndexResourcesLinks(header)
   silent exe "norm! `[jv`]:s/\\(.*\\)/- \\1/\<CR>`]jdd"
   " Add back new line if the following line is not empty and not a link
   let nextline = getline('.')
-  if (len(nextline) > 0) && !(nextline =~ "-\\s\\[.*\\](.*)")
+  if (len(nextline) > 0) && !(nextline =~ pattern)
     exe 'norm! O'
   endif
   " Clear highlights
@@ -189,7 +193,7 @@ function! SubstituteOddChars()
   silent exe "norm! gv:s/…/.../ge\<CR>"
   silent exe "norm! gv:s/​//ge\<CR>"
   " Clear commandline prompt
-  " redraw
+  redraw
 endfunction
 
 function! SmartInsertPaste()
@@ -201,9 +205,9 @@ function! SmartInsertPaste()
   exe "norm gv:WhitespaceErase\<CR>"
   " Substitute odd chars
   call SubstituteOddChars()
-  echo "Paste complete!"
-  " Go to the end of the last selected texts, then insert mode with 'a'
-  exe "norm `>a"
+  echo "SmartInsertPaste complete"
+  " Go to the end of the last selected texts
+  exe "norm! `>"
 endfunction
 
 " Ref: https://stackoverflow.com/a/61275100/11850077
@@ -238,7 +242,7 @@ augroup VimwikiCustomMappings
               \ <C-]><Esc>:VimwikiReturn 1 5<CR>
   autocmd FileType vimwiki inoremap <silent><buffer> <S-CR>
               \ <Esc>:VimwikiReturn 4 1<CR>
-  autocmd Filetype vimwiki nnoremap <silent><buffer><LocalLeader>wL :call IndexResourcesLinks('# Resources')<CR>
+  autocmd Filetype vimwiki nnoremap <silent><buffer><LocalLeader>wL :call IndexResourcesLinks('# Resources', '')<CR>
   " Dependent on `q` mapping to exec `bdelete`. Somehow <S-CR> on normal don't work
   autocmd Filetype vimwiki nmap <buffer><Leader><CR> :VimwikiFollowLink<CR>mZ<C-o>q`ZmZ
   autocmd Filetype vimwiki nmap <buffer><Leader><BS> :VimwikiGoBackLink<CR>mZ<C-o>q`ZmZ
