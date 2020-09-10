@@ -130,9 +130,7 @@ function! IndexResourcesLinks(header, pattern)
 
   " Clear `x` register and copy all matched reference links into it
   exe 'let @x = ""'
-  " Copy all links in current buffer with this format `[(indicator).*](.*)`
-  " Only with [⬇🌎🎬⚓] link indicators in the description.
-  " Excludes links prepended with `+ ` type list
+  " Yank all links matched with pattern
   exe 'silent g/' . pattern . '/y A'
   " Copy all matches in 'x' register and ready for pasting
   call CopyMatches('x')
