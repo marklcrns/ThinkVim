@@ -393,7 +393,6 @@
 
 - repo: vimwiki/vimwiki
   on_if: (getcwd() =~ $HOME . "/Docs/wiki.\*" && &filetype == 'markdown')  # load when in wiki directory
-  on_event: BufEnter
   on_cmd: [VimwikIndex, VimwikiDiaryIndex, VimwikiUISelect]
   hook_add: |
     let g:vimwiki_use_calendar = 1
@@ -406,12 +405,9 @@
   hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
 
 - repo: tbabej/taskwiki
-  on_ft: vimwiki
-  hook_source: |
-    let g:taskwiki_markup_syntax = 'markdown'
-    let g:taskwiki_dont_preserve_folds = 'yes'
-    let g:taskwiki_disable_concealcursor = 'yes'
-    let g:taskwiki_suppress_mappings = 'yes'
+  on_if: (expand('%:p') =~ $HOME . "/Docs/wiki/wiki/md/diary/.\*" && &filetype == 'vimwiki')  # load when in wiki diary directory
+  depends: vimwiki
+  hook_source: source $VIM_PATH/layers/+tools/taskwiki/config.vim
 
 - repo: xarthurx/taskwarrior.vim
   on_event: FileType
