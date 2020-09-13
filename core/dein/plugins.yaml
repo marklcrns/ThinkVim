@@ -566,6 +566,9 @@
 - repo:  lambdalisue/fern-mapping-project-top.vim
   on_source: fern.vim
 
+# Fix neovim cursorhold bug. Suggested by Fern.vim
+- repo: antoinemadec/FixCursorHold.nvim
+
 - repo: Shougo/defx.nvim
   on_cmd: Defx
   hook_source: source $VIM_PATH/layers/+ui/defx/config.vim

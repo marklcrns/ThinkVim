@@ -355,8 +355,8 @@ if dein#tap('goyo.vim')
 endif
 
 if dein#tap('fern.vim')
-  nnoremap <silent> <Leader>ef :<C-u>Fern . -drawer -keep -reveal=%<CR>
-  nnoremap <silent> <Leader>eF :<C-u>Fern . -drawer -keep<CR>
+  nnoremap <silent> <Leader>ef :<C-u>Fern . -drawer -keep -toggle -width=35 -reveal=%<CR><C-w>=
+  nnoremap <silent> <Leader>eF :<C-u>Fern . -drawer -keep -toggle -width=35<CR>
 endif
 
 if dein#tap('defx.nvim')
