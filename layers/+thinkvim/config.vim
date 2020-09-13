@@ -354,6 +354,11 @@ if dein#tap('goyo.vim')
   nnoremap <Leader>ig :Goyo<CR>
 endif
 
+if dein#tap('fern.vim')
+  nnoremap <silent> <Leader>ef :<C-u>Fern . -drawer -keep -reveal=%<CR>
+  nnoremap <silent> <Leader>eF :<C-u>Fern . -drawer -keep<CR>
+endif
+
 if dein#tap('defx.nvim')
   nnoremap <silent> <Leader>ee
         \ :<C-u>Defx -toggle -buffer-name=tab`tabpagenr()`<CR>

@@ -391,8 +391,9 @@
   on_cmd: [FloatermNew, FloatermToggle, FloatermPrev, FloatermNext, FloatermSend]
   hook_source: source  $VIM_PATH/layers/+tools/floaterm/config.vim
 
+# Only load when in wiki directory
 - repo: vimwiki/vimwiki
-  on_if: (getcwd() =~ $HOME . "/Docs/wiki.\*" && &filetype == 'markdown')  # load when in wiki directory
+  on_if: (getcwd() =~ $HOME . "/Docs/wiki.\*" && &filetype == 'markdown')
   on_cmd: [VimwikIndex, VimwikiDiaryIndex, VimwikiUISelect]
   hook_add: |
     let g:vimwiki_use_calendar = 1
@@ -404,8 +405,9 @@
     let g:vimwiki_table_mappings = 0
   hook_source: source $VIM_PATH/layers/+tools/vimwiki/config.vim
 
+# Only load when in wiki diary sub directory
 - repo: tbabej/taskwiki
-  on_if: (expand('%:p') =~ $HOME . "/Docs/wiki/wiki/md/diary/.\*" && &filetype == 'vimwiki')  # load when in wiki diary directory
+  on_if: (expand('%:p') =~ $HOME . "/Docs/wiki/wiki/md/diary/.\*" && &filetype == 'vimwiki')
   depends: vimwiki
   hook_source: source $VIM_PATH/layers/+tools/taskwiki/config.vim
 
@@ -544,6 +546,25 @@
 
 - repo: dhruvasagar/vim-zoom
   on_map: { n: <Plug> }
+
+- repo: lambdalisue/fern.vim
+  on_cmd: Fern
+  hook_source: source $VIM_PATH/layers/+ui/fern/config.vim
+
+- repo: lambdalisue/fern-renderer-nerdfont.vim
+  on_source: fern.vim
+
+- repo: lambdalisue/nerdfont.vim
+  on_source: fern.vim
+
+- repo: lambdalisue/glyph-palette.vim
+  on_source: fern.vim
+
+- repo: lambdalisue/fern-git-status.vim
+  on_source: fern.vim
+
+- repo:  lambdalisue/fern-mapping-project-top.vim
+  on_source: fern.vim
 
 - repo: Shougo/defx.nvim
   on_cmd: Defx

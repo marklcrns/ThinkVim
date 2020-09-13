@@ -41,7 +41,7 @@ let g:coc_global_extensions = [
       \ ]
       "\ 'coc-tabnine',
 
-augroup MyAutoCmd
+augroup CocAutoCmd
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')

@@ -4,14 +4,12 @@ let g:taskwiki_disable_concealcursor = 'yes'
 let g:taskwiki_suppress_mappings = 'yes'
 
 function! TaskWikiReload()
-  exe "TaskWikiBufferSave"
   silent !task sync
   exe "TaskWikiBufferLoad"
-  echom "Taskwiki Reloaded!"
+  echom strftime("%Y-%m-%d %H:%M:%S") . ": Task synced and loaded!"
 endfunction
 
-augroup taskwiki
-  autocmd!
-  autocmd Filetype vimwiki
-    \ autocmd BufWritePre <buffer> call TaskWikiReload()
+augroup TaskWikiReload
+  autocmd! Filetype vimwiki
+    \ autocmd! FocusGained <buffer> call TaskWikiReload()
 augroup END
