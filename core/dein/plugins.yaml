@@ -24,8 +24,6 @@
 - repo: honza/vim-snippets
   depends: ultisnips
 
-- repo: reconquest/vim-pythonx
-
 # UI
 # ----------------------------------------
 - repo: ryanoasis/vim-devicons
