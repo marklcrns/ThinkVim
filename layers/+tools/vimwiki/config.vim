@@ -162,7 +162,7 @@ function! IndexResourcesLinks(header, pattern)
   exe 'norm! zz'
   " Report complete
   redraw
-  echo "Auto generated resources header"
+  echo "Auto generated Resources header"
 endfunction
 
 " Deprecated by coc-spell-checker
