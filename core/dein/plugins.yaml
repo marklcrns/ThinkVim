@@ -322,8 +322,8 @@
   on_cmd: Denite
   depends: vim-devicons
   hook_source: |
-        source  $VIM_PATH/layers/+tools/denite/config.vim
-        source  $VIM_PATH/layers/+tools/denite/+denite_menu.vim
+    source  $VIM_PATH/layers/+tools/denite/config.vim
+    source  $VIM_PATH/layers/+tools/denite/+denite_menu.vim
 
 - repo: junegunn/goyo.vim
   on_cmd: Goyo

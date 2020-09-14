@@ -109,6 +109,8 @@ endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
 function! IndexResourcesLinks(header, pattern)
+  " Save cursor position
+  let save_pos = getpos(".")
   " Use default link pattern in non was given
   let pattern = empty(a:pattern) ? '^\([-*]\s\|[^+]*\)\zs\[[⬇🌎🎬⚓].*](.*)' : a:pattern
   " Check if pattern matched
@@ -155,6 +157,12 @@ function! IndexResourcesLinks(header, pattern)
   endif
   " Clear highlights
   nohls
+  " Go back to last cursor position centered
+  call setpos('.', save_pos)
+  exe 'norm! zz'
+  " Report complete
+  redraw
+  echo "Auto generated resources header"
 endfunction
 
 " Deprecated by coc-spell-checker

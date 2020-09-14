@@ -255,18 +255,20 @@
   "yank.highlight.enable": true,
   "yank.highlight.duration": 100,
   "yank.enableCompletion": false,
+  "clangd.path": "/home/markl/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd",
 
+  // DEPRECATED BY coc-clangd
   // add your languageServer into this list
-  "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-      "initializationOptions": {
-         "cache": {
-           "directory": "/tmp/ccls"
-         }
-       }
-    }
-  }
+  // "languageserver": {
+  //   "ccls": {
+  //     "command": "ccls",
+  //     "filetypes": ["c", "cpp", "objc", "objcpp"],
+  //     "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+  //     "initializationOptions": {
+  //        "cache": {
+  //          "directory": "/tmp/ccls"
+  //        }
+  //      }
+  //   }
+  // }
 }
