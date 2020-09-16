@@ -62,8 +62,8 @@ pandoc_template="pandoc \
     --toc-depth=4 \
     --standalone \
     --resource-path=$OUTPUTDIR \
+    --filter=R-pandoc \
     --metadata=root_path:$ROOT_PATH"
-    # --filter=R-pandoc \
     # --filter=diagrams-pandoc \
 
 # Searches for markdown markdown anchor links and append '.html' or replace
