@@ -520,6 +520,7 @@ let g:which_key_localmap = {
             \ 'G' : {
                   \ 'name' : '+taskwiki-ghistory',
                   \ },
+            \ 'r' : 'Custom Taskkwiki Reload',
             \ 'W' : 'Open taskwarrior',
             \ },
       \ 'v' : {

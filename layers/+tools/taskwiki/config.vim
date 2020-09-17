@@ -13,3 +13,5 @@ augroup TaskWikiReload
   autocmd! Filetype vimwiki
     \ autocmd! FocusGained <buffer> call TaskWikiReload()
 augroup END
+
+nnoremap <LocalLeader>tr :call TaskWikiReload()<CR>
