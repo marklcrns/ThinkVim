@@ -398,7 +398,7 @@ let g:which_key_map = {
                   \ },
             \ 'F' : 'Search and replace confirmation last selected',
             \ 'i' : 'Fix indentation',
-            \ 'l' : 'Enumerat selected lines (visual)',
+            \ 'l' : 'Enumerate selected lines (visual)',
             \ 'L' : 'Enumerate entire file',
             \ 'n' : 'Search forward and replace',
             \ 'N' : 'Search backward and replace',
