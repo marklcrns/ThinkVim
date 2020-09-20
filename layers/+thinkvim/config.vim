@@ -366,16 +366,16 @@ if dein#tap('goyo.vim')
 endif
 
 if dein#tap('fern.vim')
-  nnoremap <silent> <Leader>ef :<C-u>Fern . -drawer -keep -toggle -width=35 -reveal=%<CR><C-w>=
-  nnoremap <silent> <Leader>eF :<C-u>Fern . -drawer -keep -toggle -width=35<CR>
+  nnoremap <silent> <Leader>ea :<C-u>Fern . -drawer -keep -toggle -width=35 -reveal=%<CR><C-w>=
+  nnoremap <silent> <Leader>ee :<C-u>Fern . -drawer -keep -toggle -width=35<CR>
 endif
 
 if dein#tap('defx.nvim')
-  nnoremap <silent> <Leader>ee
+  nnoremap <silent> <Leader>eF
         \ :<C-u>Defx -toggle -buffer-name=tab`tabpagenr()`<CR>
   nnoremap <silent> <Leader>er
         \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-  nnoremap <silent> <Leader>ea
+  nnoremap <silent> <Leader>ef
         \ :<C-u>Defx -resume -toggle -search=`expand('%:p')` `getcwd()`<CR>
 endif
 

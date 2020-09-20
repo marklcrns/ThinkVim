@@ -44,25 +44,30 @@ function! s:init_fern() abort
         \   "\<Plug>(fern-action-collapse)",
         \ )
 
-  nmap <buffer> N <Plug>(fern-action-new-path)
-  nmap <buffer> dd <Plug>(fern-action-remove)
-  nmap <buffer> m <Plug>(fern-action-move)
-  nmap <buffer> R <Plug>(fern-action-rename)
-  nmap <buffer> r <Plug>(fern-action-reload)
-  nmap <buffer> s <Plug>(fern-action-open:split)
-  nmap <buffer> gs <Plug>(fern-action-open:split)<C-w>p
-  nmap <buffer> v <Plug>(fern-action-open:vsplit)
-  nmap <buffer> gv <Plug>(fern-action-open:vsplit)<C-w>p
-  nmap <buffer> - <Plug>(fern-action-mark:toggle)j
-  nmap <buffer> , <Plug>(fern-action-hidden:toggle)
   nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
   nmap <buffer><nowait> h <Plug>(fern-action-collapse)
   nmap <buffer><nowait> l <Plug>(fern-my-expand-or-collapse)
   nmap <buffer><nowait> < <Plug>(fern-action-leave)
   nmap <buffer><nowait> > <Plug>(fern-action-enter)
-
+  nmap <buffer><nowait> c <Plug>(fern-action-copy)
+  nmap <buffer><nowait> m <Plug>(fern-action-move)
+  nmap <buffer><nowait> r <Plug>(fern-action-rename)
+  nmap <buffer><nowait> N <Plug>(fern-action-new-file)
+  nmap <buffer><nowait> K <Plug>(fern-action-new-dir)
+  nmap <buffer><nowait> T <Plug>(fern-action-new-path)
+  nmap <buffer><nowait> D <Plug>(fern-action-remove)
+  nmap <buffer><nowait> R <Plug>(fern-action-reload)
+  nmap <buffer><nowait> C <Plug>(fern-action-clipboard-copy)
+  nmap <buffer><nowait> M <Plug>(fern-action-clipboard-move)
+  nmap <buffer><nowait> P <Plug>(fern-action-clipboard-paste)
+  nmap <buffer><nowait> s <Plug>(fern-action-open:split)
+  nmap <buffer><nowait> gs <Plug>(fern-action-open:split)<C-w>p
+  nmap <buffer><nowait> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer><nowait> gv <Plug>(fern-action-open:vsplit)<C-w>p
+  nmap <buffer><nowait> - <Plug>(fern-action-mark:toggle)j
+  nmap <buffer><nowait> , <Plug>(fern-action-hidden:toggle)
   " Note: Requires lambdalisue/fern-mapping-project-top.vim
-  nmap <buffer> ^ <Plug>(fern-action-project-top:reveal)
+  nmap <buffer><nowait> ^ <Plug>(fern-action-project-top:reveal)
 endfunction
 
 augroup fern-custom
