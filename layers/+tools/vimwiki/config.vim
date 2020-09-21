@@ -197,6 +197,10 @@ function! SubstituteOddChars()
   silent exe "norm! gv:s/’/'/ge\<CR>"
   silent exe "norm! gv:s/—/--/ge\<CR>"
   silent exe "norm! gv:s/…/.../ge\<CR>"
+  silent exe "norm! gv:s/ ,/,/ge\<CR>"
+  silent exe "norm! gv:s/ \\././ge\<CR>"
+  silent exe "norm! gv:s/  / /ge\<CR>"
+  silent exe "norm! gv:s/   / /ge\<CR>"
   silent exe "norm! gv:s/​//ge\<CR>"
   " Clear commandline prompt
   redraw

@@ -52,9 +52,7 @@ function! s:init_fern() abort
   nmap <buffer><nowait> c <Plug>(fern-action-copy)
   nmap <buffer><nowait> m <Plug>(fern-action-move)
   nmap <buffer><nowait> r <Plug>(fern-action-rename)
-  nmap <buffer><nowait> N <Plug>(fern-action-new-file)
-  nmap <buffer><nowait> K <Plug>(fern-action-new-dir)
-  nmap <buffer><nowait> T <Plug>(fern-action-new-path)
+  nmap <buffer><nowait> N <Plug>(fern-action-new-path)
   nmap <buffer><nowait> D <Plug>(fern-action-remove)
   nmap <buffer><nowait> R <Plug>(fern-action-reload)
   nmap <buffer><nowait> C <Plug>(fern-action-clipboard-copy)
@@ -64,7 +62,10 @@ function! s:init_fern() abort
   nmap <buffer><nowait> gs <Plug>(fern-action-open:split)<C-w>p
   nmap <buffer><nowait> v <Plug>(fern-action-open:vsplit)
   nmap <buffer><nowait> gv <Plug>(fern-action-open:vsplit)<C-w>p
-  nmap <buffer><nowait> - <Plug>(fern-action-mark:toggle)j
+  nmap <buffer><nowait> H <Plug>(fern-action-mark:toggle)
+  nmap <buffer><nowait> L <Plug>(fern-action-mark:toggle)
+  nmap <buffer><nowait> J <Plug>(fern-action-mark:toggle)j
+  nmap <buffer><nowait> K <Plug>(fern-action-mark:toggle)k
   nmap <buffer><nowait> , <Plug>(fern-action-hidden:toggle)
   " Note: Requires lambdalisue/fern-mapping-project-top.vim
   nmap <buffer><nowait> ^ <Plug>(fern-action-project-top:reveal)

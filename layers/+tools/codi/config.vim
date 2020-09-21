@@ -1,4 +1,4 @@
-let g:codi#autocmd = "InsertLeave"
+let g:codi#autocmd = "TextChanged"
 
 let g:codi#interpreters = {
     \ 'python': {
