@@ -4,10 +4,10 @@ highlight Whitespace ctermfg=238 guifg=#424450 guibg=NONE ctermbg=NONE
 highlight VertSplit  ctermfg=Black  guifg=Black guibg=NONE ctermbg=NONE
 highlight LineNr ctermbg=NONE guibg=NONE
 highlight SignColumn ctermfg=187 ctermbg=NONE guifg=#ebdbb2 guibg=NONE guisp=NONE cterm=NONE gui=NONE
-highlight! link pythonSpaceError  NONE
-highlight! link pythonIndentError NONE
 highlight Conceal guifg=#ebdbb2 guibg=NONE guisp=NONE gui=NONE cterm=NONE
 " highlight MatchParen cterm=bold ctermbg=NONE ctermfg=magenta
+highlight! link pythonSpaceError  NONE
+highlight! link pythonIndentError NONE
 
 " Transparent bg
 highlight Normal guibg=NONE ctermbg=NONE
@@ -53,17 +53,26 @@ highlight BufTabLineCurrent ctermbg=96 guibg=#5d4d7a
 
 " Magit highlight
 " ---------------------------------------------------------
-highlight  gitInfoRepotitle    guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitInfoHeadtitle   guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitInfoUpstreamtitle  guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitInfoPushtitle   guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitCommitModetitle  guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitInfoRepotitle guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitInfoHeadtitle guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitInfoUpstreamtitle guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitInfoPushtitle guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitCommitModetitle guibg=NONE guisp=NONE gui=bold cterm=bold
 
-highlight  gitSectionsStaged guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitSectionsUnstaged guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitSectionsCommitMsg guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitSectionsCommitStash  guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
-highlight  gitSectionsRecentCommit guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitSectionsStaged guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitSectionsUnstaged guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitSectionsCommitMsg guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitSectionsCommitStash  guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
+highlight gitSectionsRecentCommit guifg=#0087d7 guibg=NONE guisp=NONE gui=bold cterm=bold
+
+" Fern.vim
+" ---------------------------------------------------------
+highlight FernGitStatusBracket guifg=#6c7a80 ctermfg=NONE
+highlight FernGitStatusIndex guifg=#b5bd68 guibg=NONE
+highlight FernGitStatusWorktree guifg=#cc6666 guibg=NONE
+highlight FernGitStatusUnmerged guifg=#232c31 guibg=NONE
+highlight FernGitStatusUntracked guifg=#6c7a80 guibg=NONE
+highlight FernGitStatusIgnored guifg=#6c7a80 guibg=NONE
 
 " Janah Color Scheme
 " ---------------------------------------------------------
@@ -86,7 +95,7 @@ highlight WhichKeySeperator guibg=NONE ctermbg=NONE guifg=#303030 ctermfg=02
 
 " GetColorSynatxGroup
 " ---------------------------------------------------------
-" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-"\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-"\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
