@@ -202,22 +202,27 @@ function! SubstituteOddChars()
   silent exe "norm! gv:s/  / /ge\<CR>"
   silent exe "norm! gv:s/   / /ge\<CR>"
   silent exe "norm! gv:s/​//ge\<CR>"
+  " Add (if not already) a backslash '\' in front of currencies
+  " e.g., $10,000 -> \$10,000
+  silent exe 'norm! gv:s/\(\\\)\@<!\$\([0-9,.]\+\)\(\s\|\n\)/\\$\2\3/ge'."\<CR>"
   " Clear commandline prompt
   redraw
 endfunction
 
+" Ref:
+" Select last pasted line(s): https://vim.fandom.com/wiki/Selecting_your_pasted_text
 function! SmartInsertPaste()
-  " Paste and indent text
-  exe "norm \<M-p>\<Esc>gp=gv"
-  " Format pasted lines
-  exe "norm gvgq"
+  " Paste and indent pasted
+  exe "norm! \<M-p>`[v`]="
   " Remove whitespace
-  exe "norm gv:WhitespaceErase\<CR>"
+  exe "norm! gv:WhitespaceErase\<CR>"
   " Substitute odd chars
   call SubstituteOddChars()
+  " Reindent and format lines
+  exe "norm! gv=gvgw"
   echo "SmartInsertPaste complete"
   " Go to the end of the last selected texts
-  exe "norm! `>"
+  exe "norm! 0`>"
 endfunction
 
 " Ref: https://stackoverflow.com/a/61275100/11850077

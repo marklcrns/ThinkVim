@@ -508,8 +508,8 @@ function! TextManipulationMappings()
   nnoremap <silent><Leader>rs :<C-u>WhitespaceErase<CR>
   vnoremap <silent><Leader>rs :WhitespaceErase<CR>
   " Wrap paragraph to textwidth
-  nnoremap <Leader>rw gqap
-  xnoremap <Leader>rw gqa
+  nnoremap <Leader>rw gwap
+  xnoremap <Leader>rw gw
   " Duplicate paragraph
   nnoremap <leader>rp yap<S-}>p
   " Duplicate selected line
