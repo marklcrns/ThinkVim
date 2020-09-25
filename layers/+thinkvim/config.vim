@@ -59,14 +59,11 @@ if dein#tap('coc.nvim')
   " Remap for rename current word
   nmap <leader>cn <Plug>(coc-rename)
   " Remap for format selected region
-  vmap <leader>cF  <Plug>(coc-format-selected)
-  nmap <leader>cF  <Plug>(coc-format-selected)
-  " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open ' . a:type
-  endfunction
-  xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-  nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+  vmap <leader>cF <Plug>(coc-format-selected)
+  nmap <leader>cF <Plug>(coc-format-selected)
+  " Applying codeAction to the selected region.
+  xmap <silent><leader>ca <Plug>(coc-codeaction-selected)
+  nmap <silent><leader>ca <Plug>(coc-codeaction-selected)
   " xmap <leader>a  <Plug>(coc-codeaction-selected)
   " nmap <leader>a  <Plug>(coc-codeaction-selected)
   " Remap for do codeAction of current line
@@ -177,6 +174,13 @@ if dein#tap('coc.nvim')
   omap ic <Plug>(coc-classobj-i)
   xmap ac <Plug>(coc-classobj-a)
   omap ac <Plug>(coc-classobj-a)
+
+  " Use <c-space> to trigger completion.
+  if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+  else
+    inoremap <silent><expr> <c-@> coc#refresh()
+  endif
 endif
 
 

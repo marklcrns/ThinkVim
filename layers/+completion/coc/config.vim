@@ -5,7 +5,6 @@ let b:defx_git_loaded = 1
 let g:coc_status_error_sign = ''
 let g:coc_status_warning_sign = ' '
 let g:coc_global_extensions = [
-      \ 'coc-actions',
       \ 'coc-clangd',
       \ 'coc-css',
       \ 'coc-dictionary',
@@ -77,3 +76,9 @@ inoremap <silent><expr> <CR>
       \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
       \ pumvisible() ? "\<C-]>\<CR>" : "\<C-g>u\<CR>"
 
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')
