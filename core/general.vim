@@ -40,7 +40,7 @@ set smarttab           " Tab insert blanks according to 'shiftwidth'
 set autoindent         " Use same indenting on new lines
 set smartindent        " Smart autoindenting on new lines
 set shiftround         " Round indent to multiple of 'shiftwidth'
-set signcolumn=auto:3
+set signcolumn=yes:2
 set colorcolumn=80
 set sidescroll=5       " shows number of chars instantly when scrolling horizontally
 set nowrap             " Disables text wrap
@@ -186,7 +186,7 @@ augroup MyAutoCmds
   " autocmd SwapExists * let v:swapchoice = "o"
 augroup END
 
-augroup CursorUI
+augroup CursorlineUI
   autocmd!
   " disable cursorline on InsertEnter
   autocmd InsertEnter * set nocursorline
@@ -194,6 +194,35 @@ augroup CursorUI
   autocmd InsertLeave *
         \ if g:activate_cursorline == 1
         \ | set cursorline
+        \ | endif
+  " toggle cursorline when leaving and entering splits
+  autocmd WinLeave *
+        \ if g:activate_cursorline == 1
+        \ | setlocal nocursorline
+        \ | endif
+  autocmd WinEnter *
+        \ if g:activate_cursorline == 1
+        \ | setlocal cursorline
+        \ | endif
+augroup END
+
+augroup CursorcolumnUI
+  autocmd!
+  " disable cursorcolumn on InsertEnter
+  autocmd InsertEnter * set nocursorcolumn
+  " reenable cursorcolumn on InsertLeave when activated
+  autocmd InsertLeave *
+        \ if g:activate_cursorcolumn == 1
+        \ | set cursorcolumn
+        \ | endif
+  " toggle cursorcolumn when leaving and entering splits
+  autocmd WinLeave *
+        \ if g:activate_cursorcolumn == 1
+        \ | setlocal nocursorcolumn
+        \ | endif
+  autocmd WinEnter *
+        \ if g:activate_cursorcolumn == 1
+        \ | setlocal cursorcolumn
         \ | endif
 augroup END
 
