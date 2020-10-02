@@ -29,6 +29,7 @@ if command -v python2 &> /dev/null; then
     pip install wheel pynvim neovim
     pip install send2trash # For Defx file deletion support
     pip install git+git://github.com/tbabej/tasklib@develop # For tbabej/taskwiki
+    pip install six
     deactivate
   fi
 fi
@@ -42,9 +43,10 @@ if command -v python3 &> /dev/null; then
     python3 -m venv ${NVIM_ROOT}/env/python3/env
   fi
   if source ${NVIM_ROOT}/env/python3/env/bin/activate; then
-    pip3 install wheel pynvim neovim
-    pip3 install send2trash # For Defx file deletion support
-    pip3 install git+git://github.com/tbabej/tasklib@develop # For tbabej/taskwiki
+    pip install wheel pynvim neovim
+    pip install send2trash # For Defx file deletion support
+    pip install git+git://github.com/tbabej/tasklib@develop # For tbabej/taskwiki
+    pip install six
     deactivate
   fi
 fi
