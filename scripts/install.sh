@@ -17,16 +17,16 @@ sudo apt install taskwarrior
 # C/C++ language server for coc (Debian based and Ubuntu 20.04 only)
 sudo apt install ccls
 
-# python host prog
-if command -v python &> /dev/null; then
+# python2 host prog
+if command -v python2 &> /dev/null; then
   mkdir -p ${NVIM_ROOT}/env/python
   if command -v virtualenv &> /dev/null; then
-    virtualenv --python=python ${NVIM_ROOT}/env/python/env
+    virtualenv --python=python2 ${NVIM_ROOT}/env/python/env
   else
     python -m venv ${NVIM_ROOT}/env/python/env
   fi
   if source ${NVIM_ROOT}/env/python/env/bin/activate; then
-    pip install wheel neovim
+    pip install wheel pynvim neovim
     pip install send2trash # For Defx file deletion support
     pip install git+git://github.com/tbabej/tasklib@develop # For tbabej/taskwiki
     deactivate
@@ -42,7 +42,7 @@ if command -v python3 &> /dev/null; then
     python3 -m venv ${NVIM_ROOT}/env/python3/env
   fi
   if source ${NVIM_ROOT}/env/python3/env/bin/activate; then
-    pip3 install wheel neovim
+    pip3 install wheel pynvim neovim
     pip3 install send2trash # For Defx file deletion support
     pip3 install git+git://github.com/tbabej/tasklib@develop # For tbabej/taskwiki
     deactivate

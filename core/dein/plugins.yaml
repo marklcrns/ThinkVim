@@ -381,7 +381,7 @@
     - VimuxInterruptRunner
     - VimuxZoomRunner
   hook_source: |
-    let g:VimuxPromptString = "Bash command? $ "
+    let g:VimuxPromptString = "Shell command? $ "
     let g:VimuxUseNearest = 0
     let g:VimuxOrientation = 'v'
 
