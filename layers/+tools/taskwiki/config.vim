@@ -3,7 +3,7 @@ let g:taskwiki_dont_preserve_folds = 'yes'
 let g:taskwiki_disable_concealcursor = 'yes'
 let g:taskwiki_suppress_mappings = 'yes'
 
-function! TaskWikiReload()
+function! TaskWikiUpdate()
   silent !task sync
   exe "TaskWikiBufferLoad"
   echom strftime("%Y-%m-%d %H:%M:%S") . ": Task synced and loaded!"
@@ -14,4 +14,4 @@ augroup TaskWikiReload
     \ autocmd! FocusGained <buffer> call TaskWikiReload()
 augroup END
 
-nnoremap <LocalLeader>tr :call TaskWikiReload()<CR>
+nnoremap <LocalLeader>tU :call TaskWikiUpdate()<CR>
