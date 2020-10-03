@@ -94,17 +94,24 @@ endfunction
 " TODO: Check if reference header exists, if not make one
 " TODO: Do not overwrite on existing list sublists
 " Resources:
-" Copy search match - https://vim.fandom.com/wiki/Copy_search_matches
-" Undupe list - https://stackoverflow.com/a/6630950/11850077
+" Copy search match                   = https://vim.fandom.com/wiki/Copy_search_matches
+" Undupe list                         = https://stackoverflow.com/a/6630950/11850077
+" Match all characters with new lines = https://vi.stackexchange.com/a/13991
 " Extras:
 " https://vim.fandom.com/wiki/Folding_with_Regular_Expression
 " ----------
 function! CopyMatches(reg)
   let hits = []
+  " Add all matches into hits list
   silent %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  " Get register name. Use '+' if not provided
   let reg = empty(a:reg) ? '+' : a:reg
-  let unduphits=filter(copy(hits), 'index(hits, v:val, v:key+1)==-1')
-  exe 'let @'.reg.' = "\n" . join(unduphits, "\n") . "\n"'
+  " Filter out duplicate matches
+  let undupehits = filter(copy(hits), 'index(hits, v:val, v:key+1)==-1')
+  " Filter out in-between new lines/line breaks from each matches
+  let cleanhits = map(copy(undupehits), 'substitute(v:val, "\\n", "", "g")')
+  " Put all list of strings joined by new lines into register
+  exe 'let @'.reg.' = "\n" . join(cleanhits, "\n") . "\n"'
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
@@ -112,7 +119,8 @@ function! IndexResourcesLinks(header, pattern)
   " Save cursor position
   let save_pos = getpos(".")
   " Use default link pattern in non was given
-  let pattern = empty(a:pattern) ? '^\([-*]\s\|[^+]*\)\zs\[[⬇🌎🎬⚓].*](.*)' : a:pattern
+  " Note: \_.\{-} regex pattern matches all characters including new lines.
+  let pattern = empty(a:pattern) ? '^\([-*]\s\|[^+]*\)\zs\[[⬇🌎🎬⚓]\_.\{-}\](\_.\{-})' : a:pattern
   " Check if pattern matched
   if search(pattern, 'w') == 0
     echo "No link pattern match found"
