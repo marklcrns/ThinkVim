@@ -344,6 +344,7 @@ let g:which_key_map = {
     \ 'Q' : 'Quit neovim',
     \ 'r' : {
           \ 'name' : '+text-manipulate',
+             \ ' ' : 'Remove whitespaces',
              \ 'a' : {
                    \ 'name' : '+easyalign',
                    \ 'a' : 'Start easyalign',
@@ -372,12 +373,6 @@ let g:which_key_map = {
                    \ 'A<CR><CR>**<Delim>' : 'Right-left alternating around <Delim>',
                    \ 'a<CR><CR>Delim>' : 'Right alignment aroung 1st <Delim>',
                    \ },
-             \ 'b' : {
-                   \ 'name' : '+abolish',
-                          \ 'a' : 'Abolish [options] {abbrev} {replace}',
-                          \ 's' : 'Subvert/{pattern}/{replace}/[flags] line',
-                          \ 'S' : 'Subvert/{pattern}/{replace}/[flags] whole',
-                          \ },
              \ 'c' : 'Lowercase entire file (or selected lines)',
              \ 'C' : 'Capitalize entire file (or selected lines)',
              \ 'e' : {
@@ -405,7 +400,8 @@ let g:which_key_map = {
             \ 'p' : 'Duplicate paragraph',
             \ 'r' : 'Search and replace',
             \ 'R' : 'Search and replace current line',
-            \ 's' : 'Remove whitespaces',
+            \ 's' : 'Subvert line /{pat}/{sub}/[flags]',
+            \ 'S' : 'Subvert entire /{pat}/{sub}/[flags]',
             \ 't' : 'Thesaurus current word' ,
             \ 'w' : 'Wrap paragraph to textwidth',
             \ 'y' : {

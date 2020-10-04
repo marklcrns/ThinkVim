@@ -505,8 +505,8 @@ endfunction
 " TEXT MANIPULATION MAPPINGS -------------------- {{{
 function! TextManipulationMappings()
   " whitespace.vim
-  nnoremap <silent><Leader>rs :<C-u>WhitespaceErase<CR>
-  vnoremap <silent><Leader>rs :WhitespaceErase<CR>
+  nnoremap <silent><Leader>r<Space> :<C-u>WhitespaceErase<CR>
+  vnoremap <silent><Leader>r<Space> :WhitespaceErase<CR>
   " Wrap paragraph to textwidth
   nnoremap <Leader>rw gwap
   xnoremap <Leader>rw gw

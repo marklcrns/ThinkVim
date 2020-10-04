@@ -818,11 +818,9 @@ if dein#tap('vim-convert-color-to')
 endif
 
 if dein#tap('vim-abolish')
-  nnoremap <Leader>rbs :<C-u>Subvert//g<Left><Left>
-  vnoremap <Leader>rbs :Subvert//g<Left><Left>
-  nnoremap <Leader>rbS :<C-u>%Subvert//g<Left><Left>
-  nnoremap <Leader>rba :<C-u>Abolish<Space>
-  vnoremap <Leader>rba :Abolish<Space>
+  nnoremap <Leader>rs :<C-u>Subvert//g<Left><Left>
+  vnoremap <Leader>rs :Subvert//g<Left><Left>
+  nnoremap <Leader>rS :<C-u>%Subvert//g<Left><Left>
   " Duplicate line and subvert. Uses "x register for yanking and pasting
   nnoremap <M-y> "xyy"xpV:Subvert//g<bar>norm`.$
         \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
