@@ -140,7 +140,7 @@ set completefunc=emoji#complete
 set completeopt=menuone,preview
 set completeopt+=noselect,noinsert
 set list
-set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
+set listchars=tab:»\ ,nbsp:+,trail:·,extends:→,precedes:←
 set backspace=2
 set backspace=indent,eol,start
 set regexpengine=1
