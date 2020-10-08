@@ -382,7 +382,7 @@
     - VimuxZoomRunner
   hook_source: |
     let g:VimuxPromptString = "Shell command? $ "
-    let g:VimuxUseNearest = 0
+    let g:VimuxUseNearest = 1
     let g:VimuxOrientation = 'v'
 
 - repo: voldikss/vim-floaterm
