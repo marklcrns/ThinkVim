@@ -106,12 +106,12 @@ function! CopyMatches(reg)
   silent %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
   " Get register name. Use '+' if not provided
   let reg = empty(a:reg) ? '+' : a:reg
-  " Filter out duplicate matches
-  let undupehits = filter(copy(hits), 'index(hits, v:val, v:key+1)==-1')
   " Replace in-between new lines/line breaks with single space from each matches
-  let cleanhits = map(copy(undupehits), 'substitute(v:val, "\\n", " ", "g")')
+  let cleanhits = map(copy(hits), 'substitute(v:val, "\\n", " ", "g")')
+  " Filter out duplicate matches
+  let undupehits = filter(copy(cleanhits), 'index(cleanhits, v:val, v:key+1)==-1')
   " Put all list of strings joined by new lines into register
-  exe 'let @'.reg.' = "\n" . join(cleanhits, "\n") . "\n"'
+  exe 'let @'.reg.' = "\n" . join(undupehits, "\n") . "\n"'
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
