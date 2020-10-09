@@ -107,7 +107,7 @@ function! CopyMatches(reg)
   " Get register name. Use '+' if not provided
   let reg = empty(a:reg) ? '+' : a:reg
   " Replace in-between new lines/line breaks with single space from each matches
-  let cleanhits = map(copy(hits), 'substitute(v:val, "\\n", " ", "g")')
+  let cleanhits = map(copy(hits), 'substitute(v:val, "\\n\\(\\s*\\|\\t*\\)\\?", " ", "g")')
   " Filter out duplicate matches
   let undupehits = filter(copy(cleanhits), 'index(cleanhits, v:val, v:key+1)==-1')
   " Put all list of strings joined by new lines into register
