@@ -45,7 +45,7 @@
   on_event: FileType
   hook_add: |
     let g:rooter_change_directory_for_non_project_files = 'current'
-    let g:rooter_manual_only = 0
+    let g:rooter_manual_only = 1
     let g:rooter_patterns = [
         \ '.git/',
         \ 'README.*',
@@ -336,7 +336,7 @@
 
 - repo: liuchengxu/vim-clap
   merged: 0
-  build: 'bash install.sh'
+  build: call clap#installer#build_all()
   on_map: { n: <Plug> }
   hook_add: source $VIM_PATH/layers/+tools/vim-clap/config.vim
 

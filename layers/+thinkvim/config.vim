@@ -242,8 +242,8 @@ if dein#tap('vim-clap')
   nnoremap <silent> <Leader>fd: :<C-u>Clap command_history<CR>
   nnoremap <silent> <Leader>fdc :<C-u>Clap colors<CR>
   nnoremap <silent> <Leader>fdb :<C-u>Clap buffers<CR>
-  nnoremap <silent> <Leader>fdr :<C-u>Clap grep<CR>
-  nnoremap <silent> <Leader>fdR :<C-u>Clap grep2<CR>
+  nnoremap <silent> <Leader>fdr :<C-u>Clap grep2<CR>
+  nnoremap <silent> <Leader>fdR :<C-u>Clap grep2 %:p:h<CR>
   nnoremap <silent> <Leader>fdm :<C-u>Clap marks<CR>
   nnoremap <silent> <Leader>fdf :<C-u>Clap files ++finder=rg --files<cr>
   nnoremap <silent> <Leader>fdF :<C-u>Clap files ++finder=rg --hidden --files<cr>
@@ -253,8 +253,8 @@ if dein#tap('vim-clap')
   nnoremap <silent> <Leader>fdW :<C-u>Clap windows<CR>
   nnoremap <silent> <Leader>fdl :<C-u>Clap loclist<CR>
   nnoremap <silent> <Leader>fdu :<C-u>Clap git_diff_files<CR>
-  nnoremap <silent> <Leader>fdv :<C-u>Clap grep ++query=@visual<CR>
-  vnoremap <silent> <Leader>fdv <Esc>:<C-u>Clap grep ++query=@visual<CR>
+  nnoremap <silent> <Leader>fdv :<C-u>Clap grep2 ++query=@visual<CR>
+  vnoremap <silent> <Leader>fdv <Esc>:<C-u>Clap grep2 ++query=@visual<CR>
   nnoremap <silent> <Leader>fdp :<C-u>Clap personalconf<CR>
   "like emacs counsel-find-file
   nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
