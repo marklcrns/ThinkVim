@@ -9,17 +9,17 @@ function! ExitMappings()
   nnoremap <silent> <Leader>Q :silent qa!<CR>
   xnoremap <silent> <Leader>Q <Esc>:silent qa!<CR>
   " Write/Save buffer
-  nnoremap <silent> <leader>fs :silent w<CR>
-  xnoremap <silent> <leader>fs <Esc>:silent w<CR>
+  nnoremap <silent> <leader>fs :silent w<bar>echo "buffer saved!"<CR>
+  xnoremap <silent> <leader>fs <Esc>:silent w<bar>echo "buffer saved!"<<CR>
   " Write/Save all buffer
-  nnoremap <silent> <leader>fS :silent wa<CR>
-  xnoremap <silent> <leader>fS <Esc>:silent wa<CR>
+  nnoremap <silent> <leader>fS :silent wa<bar>echo "all buffer saved!"<<CR>
+  xnoremap <silent> <leader>fS <Esc>:silent wa<bar>echo "all buffer saved!"<CR>
   " Save and quit
   nnoremap <silent> <leader>fq :silent wq!<CR>
   xnoremap <silent> <leader>fq <Esc>:silent wq!<CR>
   " Wipe buffer
-  nnoremap <silent> <leader>fw :bw<CR>
-  xnoremap <silent> <leader>fw :<Esc>bw<CR>
+  nnoremap <silent> <leader>fw :bw<bar>echo "buffer wiped!"<CR>
+  xnoremap <silent> <leader>fw :<Esc>bw<bar>echo "buffer wiped!"<CR>
   " Save all and quit
   nnoremap <leader>fQ :confirm wqa!<CR>
   xnoremap <leader>fQ :<Esc>confirm wqa!<CR>
