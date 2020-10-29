@@ -482,6 +482,8 @@
   hook_source: |
     let g:far#enable_undo=1
     let g:far#source='rgnvim'
+    let g:far#auto_write_replaced_buffers=1
+    let g:far#auto_delete_replaced_buffers=1
 
 - repo: pechorin/any-jump.vim
   on_cmd: AnyJump

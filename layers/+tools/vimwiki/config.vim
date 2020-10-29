@@ -120,7 +120,7 @@ function! IndexResourcesLinks(header, pattern)
   let save_pos = getpos(".")
   " Use default link pattern in non was given
   " Note: \_.\{-} regex pattern matches all characters including new lines.
-  let pattern = empty(a:pattern) ? '^\([-*]\s\|[^+]*\)\zs\[[⬇🌎🎬⚓]\_.\{-}\](\_.\{-})' : a:pattern
+  let pattern = empty(a:pattern) ? '^\([-*]\s\|[^+]*\)\zs\[[⬇📄📑💽📺]\_.\{-}\](\_.\{-})' : a:pattern
   " Check if pattern matched
   if search(pattern, 'w') == 0
     echo "No link pattern match found"
