@@ -207,13 +207,13 @@ function! SubstituteOddChars()
   silent exe "norm! gv:s/…/.../ge\<CR>"
   silent exe "norm! gv:s/•/-/ge\<CR>"
   silent exe "norm! gv:s/ ,/,/ge\<CR>"
-  silent exe "norm! gv:s/ \\././ge\<CR>"
-  silent exe "norm! gv:s/  /\\r\\r/ge\<CR>"
   silent exe "norm! gv:s/   / /ge\<CR>"
+  silent exe "norm! gv:s/  /\\r\\r/ge\<CR>"
+  silent exe "norm! gv:s/ \\././ge\<CR>"
   silent exe "norm! gv:s/​//ge\<CR>"
   " Add (if not already) a backslash '\' in front of currencies
   " e.g., $10,000 -> \$10,000
-  silent exe 'norm! gv:s/\(\\\)\@<!\$\([0-9,.]\+\)\(\s\|\n\)/\\$\2\3/ge'."\<CR>"
+  silent exe 'norm! gv:s/\(\\\)\@<!\((\)\?\$\([0-9,.]\+\)\(\s\|\n\|)\)/\2\\$\3\4/ge'."\<CR>"
   " Clear commandline prompt
   redraw
 endfunction

@@ -152,12 +152,21 @@
   "java.enabled": true,
   "java.import.maven.enabled": true,
   "java.import.gradle.enabled": true,
+  "java.import.gradle.wrapper.enabled": true,
+  "java.imports.gradle.wrapper.checksums": [
+    {
+      "sha256": "34dfac25b0eb5b075f489dde2eb9d2c3224dba3d830d064cc5689a9080c2eddf",
+      "allowed": true
+    }
+  ],
   "java.maven.downloadSources": true,
   "java.implementationsCodeLens.enabled": true,
+  "java.signatureHelp.enabled": true,
+  "java.autobuild.enabled": false,
   "java.referencesCodeLens.enabled": true,
   "java.errors.incompleteClasspath.severity": "error",
   "java.completion.enabled": true,
-  "java.completion.guessMethodArguments": true,
+  "java.completion.overwrite": false,
   "java.completion.importOrder": [
     "java",
     "javafx",
@@ -211,7 +220,7 @@
   // Words to add to dictionary for a workspace.
   "cSpell.words": [],
   // Enable / Disable compound words like 'errormessage'
-  "cSpell.allowCompoundWords": false,
+  "cSpell.allowCompoundWords": true,
   // Words to be ignored and not suggested.
   "cSpell.ignoreWords": [
     "colour",
@@ -240,11 +249,6 @@
   "cSpell.flagWords": ["hte"],
   // Set the delay before spell checking the document. Default is 50.
   "cSpell.spellCheckDelayMs": 50,
-
-  // Coc-actions
-  "coc-actions.hideCursor": true,
-  "coc-actions.useCursorLine": false,
-  "coc-actions.showActionKind": true,
 
   // Coc-yank
   "yank.highlight.enable": true,

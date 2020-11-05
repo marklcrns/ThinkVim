@@ -12,7 +12,7 @@ function! ExitMappings()
   nnoremap <silent> <leader>fs :silent w<bar>echo "buffer saved!"<CR>
   xnoremap <silent> <leader>fs <Esc>:silent w<bar>echo "buffer saved!"<<CR>
   " Write/Save all buffer
-  nnoremap <silent> <leader>fS :silent wa<bar>echo "all buffer saved!"<<CR>
+  nnoremap <silent> <leader>fS :silent wa<bar>echo "all buffer saved!"<CR>
   xnoremap <silent> <leader>fS <Esc>:silent wa<bar>echo "all buffer saved!"<CR>
   " Save and quit
   nnoremap <silent> <leader>fq :silent wq!<CR>
@@ -333,7 +333,7 @@ endfunction
 
 function! YankPasteMappings()
   " Yank and paste line under cursor to and from "x register
-  nnoremap <C-y> "xyy"xp$
+  " nnoremap <C-y> "xyy"xp$
   inoremap <C-y> <Esc>"xyy"xp`.A
   " Duplicate current line then enter line substitution. DEPRECATED by vim-abolish
   " inoremap <C-y> <ESC>yypV:s//g<Left><Left>

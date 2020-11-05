@@ -25,7 +25,7 @@ let g:clap_layout = { 'relative': 'editor' }
 let g:clap_enable_icon = 1
 let g:clap_search_box_border_style = 'curve'
 let g:clap_provider_grep_executable = 'rg'
-let g:clap_provider_grep_opts = '-H --hidden --no-heading --smart-case --vimgrep --glob=!.git/'
+let g:clap_provider_grep_opts = '-H --hidden --no-heading --smart-case --vimgrep -g "!.git/"'
 let g:clap_provider_grep_enable_icon = 1
 let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%:'
 
