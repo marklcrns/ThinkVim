@@ -207,8 +207,8 @@ function! SubstituteOddChars()
   silent exe "norm! gv:s/…/.../ge\<CR>"
   silent exe "norm! gv:s/•/-/ge\<CR>"
   silent exe "norm! gv:s/ ,/,/ge\<CR>"
+  silent exe 'norm! gv:s/  /\r\r/ge'."\<CR>"
   silent exe "norm! gv:s/   / /ge\<CR>"
-  silent exe "norm! gv:s/  /\\r\\r/ge\<CR>"
   silent exe "norm! gv:s/ \\././ge\<CR>"
   silent exe "norm! gv:s/​//ge\<CR>"
   " Add (if not already) a backslash '\' in front of currencies
