@@ -51,8 +51,6 @@ set breakindentopt=shift:4,min:40,sbr
 let &showbreak='>>> '  " append '>>> ' to indent wrapped lines
 set cursorline         " Highlights entire line of current cursor position"
 " set cursorcolumn       " Highlights column of current cursor position
-" Live interactive search and replace
-set inccommand=split   " Options: split or nosplit
 " }}} UI SETTINGS
 
 " FILE MANAGEMENT SETTINGS -------------------- {{{
@@ -144,16 +142,17 @@ set listchars=tab:»\ ,nbsp:+,trail:·,extends:→,precedes:←
 set backspace=2
 set backspace=indent,eol,start
 set regexpengine=1
-set ignorecase      " Search ignoring case
-set smartcase       " Keep case when searching with *
-set infercase       " Adjust case in insert completion mode
-set incsearch       " Incremental search
-set hlsearch        " Highlight search results
-set wrapscan        " Incremental search stops wrapping around at the end of the file
-set showmatch       " Jump to matching bracket
-set matchpairs+=<:> " Add HTML brackets to pair matching
-set matchtime=1     " Tenths of a second to show the matching paren
-set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
+set ignorecase       " Search ignoring case
+set smartcase        " Keep case when searching with *
+set infercase        " Adjust case in insert completion mode
+set inccommand=split " Live interactive search and replace
+set incsearch        " Incremental search
+set hlsearch         " Highlight search results
+set wrapscan         " Incremental search stops wrapping around at the end of the file
+set showmatch        " Jump to matching bracket
+set matchpairs+=<:>  " Add HTML brackets to pair matching
+set matchtime=1      " Tenths of a second to show the matching paren
+set cpoptions-=m     " showmatch will wait 0.5s or until a char is typed
 set grepprg=rg\ --vimgrep\ $*
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 " }}} COMPLETION AND SYNTAX SETTINGS
