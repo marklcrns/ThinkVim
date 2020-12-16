@@ -584,4 +584,10 @@
 
 - repo: dstein64/vim-startuptime
   on_event: VimEnter
+
+- repo:  ianding1/leetcode.vim 
+  on_cmd: [ LeetCodeList, LeetCodeTest, LeetCodeSubmit, LeetCodeSignIn ]
+  hook_add: |
+    let g:leetcode_browser = 'chrome'
+    let g:leetcode_solution_filetype = 'java'
 # }}}

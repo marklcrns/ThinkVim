@@ -10,6 +10,11 @@ NVIM_ROOT="$(realpath "${SCRIPTDIR}/..")"
 
 echo $NVIM_ROOT
 
+# Make neovim is installed
+if ! command -v nvim &> /dev/null; then
+  sudo apt install neovim
+fi
+
 # For GUI prompts and VCoolor.vim support
 sudo apt install yad zenity
 # Taskwarrior
@@ -30,6 +35,9 @@ if command -v python2 &> /dev/null; then
     pip install send2trash # For Defx file deletion support
     pip install git+git://github.com/tbabej/tasklib@develop # For tbabej/taskwiki
     pip install six
+    # Optionals
+    pip install keyring browser_cookie3  # for leetcode.vim
+    pip install keyrings.alt
     deactivate
   fi
 fi
@@ -47,6 +55,9 @@ if command -v python3 &> /dev/null; then
     pip install send2trash # For Defx file deletion support
     pip install git+git://github.com/tbabej/tasklib@develop # For tbabej/taskwiki
     pip install six
+    # Optionals
+    pip install keyring browser_cookie3  # for leetcode.vim
+    pip install keyrings.alt
     deactivate
   fi
 fi
