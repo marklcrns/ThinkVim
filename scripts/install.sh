@@ -12,15 +12,15 @@ echo $NVIM_ROOT
 
 # Make neovim is installed
 if ! command -v nvim &> /dev/null; then
-  sudo apt install neovim
+  sudo apt install neovim -y
 fi
 
 # For GUI prompts and VCoolor.vim support
-sudo apt install yad zenity
+sudo apt install yad zenity -y
 # Taskwarrior
-sudo apt install taskwarrior
+sudo apt install taskwarrior -y
 # C/C++ language server for coc (Debian based and Ubuntu 20.04 only)
-sudo apt install ccls
+sudo apt install ccls -y
 
 # python2 host prog
 if command -v python2 &> /dev/null; then
